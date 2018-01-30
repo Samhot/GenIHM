@@ -1,5 +1,6 @@
-<mat-sidenav-container class="example-container">
-    <mat-sidenav #sidenav mode="side" [(opened)]="opened" (opened)="events.push('open!')" (closed)="events.push('close!')">
+<mat-sidenav-container class="">
+    <mat-sidenav #sidenav [mode]="mode.value" class="sidebar-left">
+      <h3>TEST</h3>
       <mat-list>
         <mat-list-item>Item 1</mat-list-item>
         <mat-divider></mat-divider>
@@ -7,6 +8,12 @@
         <mat-divider></mat-divider>
         <mat-list-item>Item 3</mat-list-item>
       </mat-list>
+      <mat-radio-group [formControl]="mode">
+          <label>Mode:</label><br>
+          <mat-radio-button value="over">Over</mat-radio-button>
+          <mat-radio-button value="side">Side</mat-radio-button>
+          <mat-radio-button value="push">Push</mat-radio-button>
+      </mat-radio-group><br>
       <button mat-button [matMenuTriggerFor]="appMenu">Paramètres</button>
     </mat-sidenav>
   
