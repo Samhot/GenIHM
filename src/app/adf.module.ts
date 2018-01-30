@@ -7,7 +7,14 @@ import { CoreModule } from '@alfresco/adf-core';
 
 // Material modules
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatButtonModule, MatCardModule, MatMenuModule, MatToolbarModule, MatIconModule, MatButton } from '@angular/material';
+import { MatGridListModule,
+         MatButtonModule,
+         MatCardModule,
+         MatMenuModule,
+         MatToolbarModule,
+         MatIconModule,
+         MatButton
+       } from '@angular/material';
 
 export function modules() {
   return [
@@ -21,7 +28,8 @@ export function modules() {
       MatMenuModule,
       MatCardModule,
       MatToolbarModule,
-      MatIconModule
+      MatIconModule,
+      MatGridListModule
   ];
 }
 
