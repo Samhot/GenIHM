@@ -1,0 +1,21 @@
+<adf-toolbar color="primary">
+  <adf-toolbar-title>
+    <a mat-button routerLink="/">ADF</a>
+  </adf-toolbar-title>
+  <button mat-button [matMenuTriggerFor]="appMenu"><mat-icon>menu</mat-icon> Menu</button>
+
+  <a mat-button href="" routerLink="/login"*ngIf=!checkIfLogged()>Login</a>
+  <a mat-button href="" routerLink="/documentlist">Documents</a>
+  <a mat-button href="" routerLink="/genihm">GenIHM</a>
+  <a mat-button href="" routerLink="/search">Search</a>
+
+  <button mat-button (click)="logout()" *ngIf=checkIfLogged()>Logout</button>
+  
+</adf-toolbar>
+
+<mat-menu #appMenu="matMenu">
+<button mat-menu-item> Settings </button>
+<button mat-menu-item> Help </button>
+</mat-menu>
+
+<router-outlet></router-outlet>
