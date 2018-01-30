@@ -1,21 +1,36 @@
-<adf-toolbar color="primary">
-  <adf-toolbar-title>
-    <a mat-button routerLink="/">ADF</a>
-  </adf-toolbar-title>
-  <button mat-button [matMenuTriggerFor]="appMenu"><mat-icon>menu</mat-icon> Menu</button>
-
-  <a mat-button href="" routerLink="/login"*ngIf=!checkIfLogged()>Login</a>
-  <a mat-button href="" routerLink="/documentlist">Documents</a>
-  <a mat-button href="" routerLink="/genihm">GenIHM</a>
-  <a mat-button href="" routerLink="/search">Search</a>
-
-  <button mat-button (click)="logout()" *ngIf=checkIfLogged()>Logout</button>
+<mat-sidenav-container class="example-container">
+    <mat-sidenav #sidenav mode="side" [(opened)]="opened" (opened)="events.push('open!')" (closed)="events.push('close!')">
+      <mat-list>
+        <mat-list-item>Item 1</mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>Item 2</mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>Item 3</mat-list-item>
+      </mat-list>
+      <button mat-button [matMenuTriggerFor]="appMenu">Paramètres</button>
+    </mat-sidenav>
   
-</adf-toolbar>
-
-<mat-menu #appMenu="matMenu">
-<button mat-menu-item> Settings </button>
-<button mat-menu-item> Help </button>
-</mat-menu>
-
-<router-outlet></router-outlet>
+    <mat-sidenav-content>
+      <!-- <p><mat-checkbox [(ngModel)]="opened">sidenav.opened</mat-checkbox></p> -->
+      <adf-toolbar color="primary">
+        <adf-toolbar-title>
+          <button mat-button (click)="sidenav.toggle()"><mat-icon>menu</mat-icon></button>
+          <a mat-button routerLink="/">ADF</a>
+        </adf-toolbar-title>
+        
+          <a mat-button href="" routerLink="/login"*ngIf=!checkIfLogged()>Login</a>
+          <a mat-button href="" routerLink="/documentlist">Documents</a>
+          <a mat-button href="" routerLink="/genihm">GenIHM</a>
+          <a mat-button href="" routerLink="/search">Search</a>
+        
+          <button mat-button (click)="logout()" *ngIf=checkIfLogged()>Logout</button>
+          
+        </adf-toolbar>
+        
+        <mat-menu #appMenu="matMenu">
+        <button mat-menu-item> Settings </button>
+        <button mat-menu-item> Help </button>
+        </mat-menu>
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
