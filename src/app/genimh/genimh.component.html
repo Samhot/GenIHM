@@ -7,7 +7,48 @@
         [style.background]="tile.color">
       {{tile.text}}
     </mat-grid-tile>
-  </mat-grid-list>
+  </mat-grid-list><br>
 
 <h1>2. Sidenav</h1>
-<p>Cliquer sur le bouton en haut à gauche permet d'afficher la sidebar, cliquer n'importe où ailleurs le ferme.</p>
+<h4>Cliquer sur le bouton en haut à gauche permet d'afficher la sidebar, cliquer n'importe où ailleurs le ferme.</h4><br>
+
+<h1>3. Drag&Drop</h1>
+<h4>Nous utilisons ici le module "Multi list sortable" de la librairie ng2-dnd</h4><br>
+<div class="row">
+    <div class="col-sm-3">
+    <div class="panel panel-warning">
+        <div class="panel-heading">
+        Composants disponibles
+        </div>
+        <div class="panel-body components" dnd-sortable-container [dropZones]="['boxers-zone']" [sortableData]="listBoxers">
+            <ul class="list-group" >
+                <li *ngFor="let item of listBoxers; let i = index" class="list-group-item" dnd-sortable [sortableIndex]="i">{{item}}</li>
+            </ul>
+        </div>
+    </div>
+    </div>
+    <!-- <div class="col-sm-3">
+    <div class="panel panel-success">
+        <div class="panel-heading">
+        First Team
+        </div>
+        <div class="panel-body" dnd-sortable-container [dropZones]="['boxers-zone']" [sortableData]="listTeamOne">
+            <ul class="list-group" >
+                <li *ngFor="let item of listTeamOne; let i = index" class="list-group-item" dnd-sortable [sortableIndex]="i">{{item}}</li>
+            </ul>
+        </div>
+    </div>
+    </div> -->
+    <div class="col-sm-9">
+    <div class="panel panel-info">
+        <div class="panel-heading">
+        Page Web
+        </div>
+        <div class="panel-body web-page" dnd-sortable-container [dropZones]="['boxers-zone']" [sortableData]="listTeamTwo">
+            <ul class="list-group">
+                <li *ngFor="let item of listTeamTwo; let i = index" class="list-group-item" dnd-sortable [sortableIndex]="i">{{item}}</li>
+            </ul>
+        </div>
+    </div>
+    </div>
+</div>

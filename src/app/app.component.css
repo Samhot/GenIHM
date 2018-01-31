@@ -5,5 +5,18 @@
 }
 
 .full-height{
-    height: -webkit-fill-available;
+    height: 100%;
+}
+
+.margin-bottom{
+    margin-bottom: 20px;
+}
+
+.margin-top{
+    margin-top: 30px;
+}
+
+.boxed{
+    padding-left: 20px;
+    padding-right: 20px;
 }

@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { DndModule } from 'ng2-dnd';
 import { RouterModule, Routes } from '@angular/router';
 
 // ADF modules
@@ -46,6 +47,7 @@ const appRoutes: Routes = [
 @NgModule({
   imports: [
     BrowserModule,
+    DndModule.forRoot(),
     RouterModule.forRoot(
       appRoutes // ,
       // { enableTracing: true } // <-- debugging purposes only

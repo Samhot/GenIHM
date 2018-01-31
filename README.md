@@ -1,7 +1,7 @@
-# Search Customisation Example
-Search Customisation Example
+# Générateur d'IHM
+Page du générateur d'IHM
 
-![Search Custom result example](https://github.com/Alfresco/adf-examples/blob/master/ADF_2.0.0/search-customisation-example/src/assets/SearchCardsJpg.jpg "Search Custom result example")
+![Page du générateur d'IHM](C:\projet\adf\src\assets\ADF.png "Module GenIHM")
 
 
 ## Prerequisites
@@ -47,6 +47,10 @@ You should need no additional files outside the `dist` folder.
 By default demo application is configured to use [wsrv](https://www.npmjs.com/package/wsrv) tool (lightweight web server)
 to serve production build output. It will be running at `0.0.0.0` address with port `3000` and allow you accessing your application
 via network. However you can use any web server of your choice in production.
+
+## Drag & Drop
+
+Pour implémenter la fonction de drag&drop nous utilisons la librairie [ng2-dnd](https://github.com/akserg/ng2-dnd) qui va nous permettre de créer des élements dragable, définir les zones dropables etc...
 
 ## i18n support
 

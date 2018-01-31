@@ -14,30 +14,31 @@
     
   </adf-toolbar>
   
-  <mat-menu #appMenu="matMenu">
-  <button mat-menu-item> Settings </button>
-  <button mat-menu-item> Help </button>
-  </mat-menu>
-<mat-sidenav-container class="">
+  <mat-sidenav-container>
     <mat-sidenav #sidenav [mode]="mode.value" class="sidebar-left">
-      <h3>TEST</h3>
+      <h3>SIDEBAR</h3>
       <mat-list>
         <mat-list-item>Item 1</mat-list-item>
         <mat-divider></mat-divider>
         <mat-list-item>Item 2</mat-list-item>
         <mat-divider></mat-divider>
         <mat-list-item>Item 3</mat-list-item>
-      </mat-list>
-      <mat-radio-group [formControl]="mode">
-          <label>Mode:</label><br>
-          <mat-radio-button value="over">Over</mat-radio-button>
-          <mat-radio-button value="side">Side</mat-radio-button>
-          <mat-radio-button value="push">Push</mat-radio-button>
+      </mat-list><br>
+      <mat-radio-group class="margin-bottom" [formControl]="mode">
+        <label>Mode de sidebar :</label><br>
+        <mat-radio-button value="over">Over</mat-radio-button><br>
+        <mat-radio-button value="side">Side</mat-radio-button><br>
+        <mat-radio-button value="push">Push</mat-radio-button>
       </mat-radio-group><br>
-      <button mat-button [matMenuTriggerFor]="appMenu">Paramètres</button>
+      <button mat-button [matMenuTriggerFor]="appMenu" class="margin-top">Bouton menu exemple</button>
     </mat-sidenav>
-  
-    <mat-sidenav-content class="full-height">
+    
+    <mat-menu #appMenu="matMenu">
+    <button mat-menu-item> Settings </button>
+    <button mat-menu-item> Help </button>
+    </mat-menu>
+    
+    <mat-sidenav-content class="full-height boxed">
         <router-outlet></router-outlet>
     </mat-sidenav-content>
   </mat-sidenav-container>
