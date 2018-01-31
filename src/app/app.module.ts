@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { DndModule } from 'ng2-dnd';
+import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 import { RouterModule, Routes } from '@angular/router';
 
 // ADF modules
@@ -48,6 +49,8 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     DndModule.forRoot(),
+    FroalaEditorModule.forRoot(),
+    FroalaViewModule.forRoot(),
     RouterModule.forRoot(
       appRoutes // ,
       // { enableTracing: true } // <-- debugging purposes only
