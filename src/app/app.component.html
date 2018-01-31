@@ -1,3 +1,23 @@
+<!-- <p><mat-checkbox [(ngModel)]="opened">sidenav.opened</mat-checkbox></p> -->
+<adf-toolbar color="primary">
+  <adf-toolbar-title>
+    <button mat-button (click)="sidenav.toggle()"><mat-icon>menu</mat-icon></button>
+    <a mat-button routerLink="/">ADF</a>
+  </adf-toolbar-title>
+  
+    <a mat-button href="" routerLink="/login"*ngIf=!checkIfLogged()>Login</a>
+    <a mat-button href="" routerLink="/documentlist">Documents</a>
+    <a mat-button href="" routerLink="/genihm">GenIHM</a>
+    <a mat-button href="" routerLink="/search">Search</a>
+  
+    <button mat-button (click)="logout()" *ngIf=checkIfLogged()>Logout</button>
+    
+  </adf-toolbar>
+  
+  <mat-menu #appMenu="matMenu">
+  <button mat-menu-item> Settings </button>
+  <button mat-menu-item> Help </button>
+  </mat-menu>
 <mat-sidenav-container class="">
     <mat-sidenav #sidenav [mode]="mode.value" class="sidebar-left">
       <h3>TEST</h3>
@@ -17,27 +37,7 @@
       <button mat-button [matMenuTriggerFor]="appMenu">Paramètres</button>
     </mat-sidenav>
   
-    <mat-sidenav-content>
-      <!-- <p><mat-checkbox [(ngModel)]="opened">sidenav.opened</mat-checkbox></p> -->
-      <adf-toolbar color="primary">
-        <adf-toolbar-title>
-          <button mat-button (click)="sidenav.toggle()"><mat-icon>menu</mat-icon></button>
-          <a mat-button routerLink="/">ADF</a>
-        </adf-toolbar-title>
-        
-          <a mat-button href="" routerLink="/login"*ngIf=!checkIfLogged()>Login</a>
-          <a mat-button href="" routerLink="/documentlist">Documents</a>
-          <a mat-button href="" routerLink="/genihm">GenIHM</a>
-          <a mat-button href="" routerLink="/search">Search</a>
-        
-          <button mat-button (click)="logout()" *ngIf=checkIfLogged()>Logout</button>
-          
-        </adf-toolbar>
-        
-        <mat-menu #appMenu="matMenu">
-        <button mat-menu-item> Settings </button>
-        <button mat-menu-item> Help </button>
-        </mat-menu>
+    <mat-sidenav-content class="full-height">
         <router-outlet></router-outlet>
     </mat-sidenav-content>
   </mat-sidenav-container>
