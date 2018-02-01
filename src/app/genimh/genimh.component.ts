@@ -42,15 +42,16 @@ export class GenimhComponent {
     addTo($event: any) {
         if ($event) {
             this.widgets.push($event.dragData);
+
         }
     }
 }
-
-class Container {
+ class Container {
   constructor(public id: number, public name: string, public widgets: Array<Widget>) {}
 }
 
-class Widget {
+ class Widget {
   constructor(public name: string) {}
 }
-}
+
+
