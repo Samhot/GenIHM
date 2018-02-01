@@ -41,6 +41,85 @@
     </div>
 </div><br>
 
-<h1>4. Editor</h1>
-<h4>WYSIWYG</h4>
+<h1> 4. Simple FormArray sortable</h1>
+<div class="row">
+  <div class="col-sm-3">
+    <div class="panel panel-success">
+      <div class="panel-heading">
+        Complete HTML Form
+      </div>
+      <div class="panel-body">
+        <ul class="list-group" dnd-sortable-container [sortableData]="listOne">
+          <li *ngFor="let item of listOne.controls; let i = index" class="list-group-item" dnd-sortable [sortableIndex]="i"><input type="text" [formControl]="item"></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        My prefences:<br/>
+        <span *ngFor="let item of listOne.controls; let i = index">{{i + 1}}) {{item.value}}<br/></span>
+      </div>
+    </div>
+  </div>
+</div>`
+
+
+
+<h1>5. Simple sortable With Drop into something, without delete it</h1>
+<div class="row">
+  <div class="col-sm-3">
+    <div class="panel panel-warning"
+         dnd-sortable-container [sortableData]="sourceList" [dropZones]="['source-dropZone']">
+      <div class="panel-heading">Source List</div>
+      <div class="panel-body">
+        <ul class="list-group">
+          <li *ngFor="let source of sourceList; let x = index" class="list-group-item"
+              dnd-sortable [sortableIndex]="x" [dragEnabled]="true"
+              [dragData]="source">{{source.name}}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="panel panel-info">
+      <div class="panel-heading">Target List</div>
+      <div class="panel-body" dnd-droppable (onDropSuccess)="addTo($event)" [dropZones]="['source-dropZone']">
+        <ul class="list-group">
+          <li *ngFor="let target of targetList" class="list-group-item">
+            {{target.name}}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>`
+
+<h1>6. Simple sortable With Drop into recycle bin</h1>
+<div class="row">
+  <div class="col-sm-3">
+    <div class="panel panel-success">
+      <div class="panel-heading">
+        Favorite drinks
+      </div>
+      <div class="panel-body" dnd-sortable-container [sortableData]="listOne" [dropZones]="['delete-dropZone']">
+        <ul class="list-group">
+          <li *ngFor="let item of listOne; let i = index" class="list-group-item"
+              dnd-sortable [sortableIndex]="i">{{item}}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="panel panel-default">
+      <div class="panel-body" dnd-sortable-container [dropZones]="['delete-dropZone']" [sortableData]="listRecycled">
+        Recycle bin: Drag into me to delete it<br/>
+      </div>
+    </div>
+    <div *ngIf="listRecycled.length">
+      <b>Recycled:</b> <span>{{listRecycled.toString()}} </span>
+    </div>
+  </div>
+</div>`
 <!-- <div [froalaEditor]>Hello, Froala!</div> -->

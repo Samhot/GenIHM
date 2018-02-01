@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {FormControl, FormArray} from "@angular/forms";
 
 @Component({
   selector: 'app-genimh',
@@ -6,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./genimh.component.scss']
 })
 export class GenimhComponent {
+
 
   // tiles for grid
   tiles = [
@@ -28,7 +30,8 @@ export class GenimhComponent {
                                'Component 3',
                                'Component 4'];
   listTeamOne: Array<string> = [];
-  listTeamTwo: Array<string> = [];
+  listTeamTwo: Array<string> = ['Label',
+    'Button'];
 
   dragOperation = false;
 
@@ -38,13 +41,30 @@ export class GenimhComponent {
         new Container(3, 'Container 3', [new Widget('5'), new Widget('6')])
     ];
 
-    widgets: Array<Widget> = [];
-    addTo($event: any) {
-        if ($event) {
-            this.widgets.push($event.dragData);
+  listOne: FormArray = new FormArray([
+    new FormControl('Nom'),
+    new FormControl('Prénom'),
+    new FormControl('Email'),
+    new FormControl('Date de naissance'),
+    new FormControl('Document')
+  ]);
 
-        }
-    }
+
+  //listOne: Array<string> = ['Nom', 'Prénom', 'Email', 'Date de naissance', 'Document'];
+  listRecycled: Array<string> = [];
+
+
+  sourceList: Widget[] = [
+    new Widget('Nom'), new Widget('Prénom'),
+    new Widget('Email'), new Widget('Date de naissance'),
+    new Widget('Document'), new Widget('Formulaire')
+  ];
+
+  targetList: Widget[] = [];
+  addTo($event: any) {
+    this.targetList.push($event.dragData);
+    console.log($event)
+  }
 }
  class Container {
   constructor(public id: number, public name: string, public widgets: Array<Widget>) {}
