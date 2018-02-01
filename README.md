@@ -1,7 +1,7 @@
 # Générateur d'IHM
 Page du générateur d'IHM
 
-![Page du générateur d'IHM](C:\projet\adf\src\assets\ADF.png "Module GenIHM")
+![Page du générateur d'IHM](https://github.com/Samhot/GenIHM/blob/master/src/assets/ADF.png "Module GenIHM")
 
 
 ## Prerequisites
