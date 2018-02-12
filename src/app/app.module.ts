@@ -4,6 +4,7 @@ import { DndModule } from 'ng2-dnd';
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 import { RouterModule, Routes } from '@angular/router';
 
+
 // ADF modules
 import { AdfModule } from './adf.module';
 import { AuthGuardBpm } from '@alfresco/adf-core';

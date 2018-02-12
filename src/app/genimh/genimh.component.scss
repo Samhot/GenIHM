@@ -41,3 +41,23 @@
   opacity:0.7;
   border: 1px dashed #000;
 }
+
+.selected {
+  background-color: green !important;
+}
+.selecting {
+  background-color: yellow !important;
+}
+
+.colTab{
+  float: right;
+  border: solid;
+  height:100px;
+  width: 25%;
+}
+.select-helper {
+  position: absolute;
+  border: 1px dashed red;
+  background: red;
+  opacity: 0.2;
+}

@@ -25,6 +25,7 @@
       "@angular/*": [
         "../node_modules/@angular/*"
       ]
+      
     }
   }
 }
