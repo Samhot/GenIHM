@@ -81,87 +81,17 @@
 
 </mat-sidenav-container>
 <h1>3. Drag&Drop</h1>
-<h4>Nous utilisons ici le module "Multi list sortable" de la librairie ng2-dnd</h4><br>
-<div class="row">
-    <div class="col-sm-3">
-    <div class="panel panel-warning">
-        <div class="panel-heading">
-        Composants disponibles
-        </div>
-        <div class="panel-body components" dnd-sortable-container [dropZones]="['boxers-zone']" [sortableData]="listBoxers">
-            <ul class="list-group" >
-                <li *ngFor="let item of listBoxers; let i = index" class="list-group-item" dnd-sortable [sortableIndex]="i">{{item}}</li>
-            </ul>
-        </div>
+<div class='parent'>
+  <label for='hy'>Copying stuff is common too, so we made it easy for you.</label>
+  <div class='wrapper'>
+    <div class='container' [dragula]='"page-bag"' [dragulaModel]='many' id="component">
+        <div *ngFor='let text of many' [innerHtml]='text'></div>
     </div>
+    <div class='container' [dragula]='"page-bag"' [dragulaModel]='many2' id="web">
+      <div *ngFor='let text of many2' [innerHtml]='text'></div>
     </div>
-    <div class="col-sm-9">
-    <div class="panel panel-info">
-        <div class="panel-heading">
-        Page Web
-        </div>
-        <div class="panel-body web-page" dnd-sortable-container [dropZones]="['boxers-zone']" [sortableData]="listTeamTwo">
-            <ul class="list-group">
-                <li *ngFor="let item of listTeamTwo; let i = index" class="list-group-item" dnd-sortable [sortableIndex]="i">{{item}}</li>
-            </ul>
-        </div>
-    </div>
-    </div>
-</div><br>
-
-<h1> 4. Simple FormArray sortable</h1>
-<div class="row">
-  <div class="col-sm-3">
-    <div class="panel panel-success">
-      <div class="panel-heading">
-        Complete HTML Form
-      </div>
-      <div class="panel-body">
-        <ul class="list-group" dnd-sortable-container [sortableData]="listOne">
-          <li *ngFor="let item of listOne.controls; let i = index" class="list-group-item" dnd-sortable [sortableIndex]="i"><input type="text" [formControl]="item"></li>
-        </ul>
-      </div>
+    <div class='container'>
+      <pre>{{many2 | json}}</pre>
     </div>
   </div>
-  <div class="col-sm-6">
-    <div class="panel panel-default">
-      <div class="panel-body">
-        My prefences:<br/>
-        <span *ngFor="let item of listOne.controls; let i = index">{{i + 1}}) {{item.value}}<br/></span>
-      </div>
-    </div>
-  </div>
-</div>`
-
-
-
-<h1>5. Simple sortable With Drop into something, without delete it</h1>
-<div class="row">
-  <div class="col-sm-3">
-    <div class="panel panel-warning"
-         dnd-sortable-container [sortableData]="sourceList" [dropZones]="['source-dropZone']">
-      <div class="panel-heading">Source List</div>
-      <div class="panel-body">
-        <ul class="list-group">
-          <li *ngFor="let source of sourceList; let x = index" class="list-group-item"
-              dnd-sortable [sortableIndex]="x" [dragEnabled]="true"
-              [dragData]="source">{{source.name}}</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-6">
-    <div class="panel panel-info">
-      <div class="panel-heading">Target List</div>
-      <div class="panel-body" dnd-droppable (onDropSuccess)="addTo($event)" [dropZones]="['source-dropZone']">
-        <ul class="list-group">
-          <li *ngFor="let target of targetList" class="list-group-item">
-            {{target.name}}
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</div>`
-
-<!-- <div [froalaEditor]>Hello, Froala!</div> -->
+</div>
