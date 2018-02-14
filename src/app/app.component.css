@@ -29,10 +29,31 @@ mat-sidenav {
   height:100px;
   width: 25%;
 }
-.backgroundColor{
+.backgroundColorred{
   float: right;
   border: solid;
   height:100px;
   width: 25%;
   background: red;
+}
+.backgroundColorlightblue{
+  float: right;
+  border: solid;
+  height:100px;
+  width: 25%;
+  background: lightblue;
+}
+.backgroundColoryellow{
+  float: right;
+  border: solid;
+  height:100px;
+  width: 25%;
+  background: yellow;
+}
+.backgroundColorgreen{
+  float: right;
+  border: solid;
+  height:100px;
+  width: 25%;
+  background: green;
 }

@@ -20,6 +20,7 @@ export class AppComponent {
   public backgroundColor
   public matrisVerif
   public TestmatrisVerif
+  public matrisVerifColor
 
   mode = new FormControl('push');
   constructor(translationService: TranslationService, private authService: AuthenticationService, private router: Router) {
@@ -43,6 +44,7 @@ export class AppComponent {
     this.backgroundColor = []
     this.matrisVerif = []
     this.TestmatrisVerif = []
+    this.matrisVerifColor = []
   }
 
   ngOnInit(){
@@ -91,15 +93,22 @@ export class AppComponent {
 
   fillMatrisVerif(matris){
     this.matrisVerif = []
+    this.matrisVerifColor = []
     for( var z = 0; z < matris.length; z++){
       this.matrisVerif.push(parseInt(matris[z][0]))
+      this.matrisVerifColor.push([(parseInt(matris[z][0])),matris[z][4]])
       for( var e = 1; e < parseInt(matris[z][2]); e++){
         this.matrisVerif.push(parseInt(matris[z][0]) + e)
+        this.matrisVerifColor.push([(parseInt(matris[z][0]) + e),matris[z][4]])
       }
       for( var a = 1; a < matris[z][3]; a++){
         this.matrisVerif.push(parseInt(matris[z][0]) + 10 * a)
+        this.matrisVerifColor.push([(parseInt(matris[z][0]) + 10 * a),matris[z][4]])
+
         for( var e = 1; e < matris[z][2]; e++){
           this.matrisVerif.push(parseInt(matris[z][0]) + 10 *a + e)
+          this.matrisVerifColor.push([(parseInt(matris[z][0]) + 10 * a + e),matris[z][4]])
+
         }
       }
     }
@@ -121,12 +130,12 @@ export class AppComponent {
   }
 
 
-  changeBackColor(matrisVerif){
+  changeBackColor(matrisVerifColor){
     var tabreference = [11,12,13,14,21,22,23,24,31,32,33,34,41,42,43,44,51,52,53,54,61,62,63,64]
-    for(var i = 0; i < matrisVerif.length; i++){
+    for(var i = 0; i < matrisVerifColor.length; i++){
       for(var e = 0; e < tabreference.length; e++){
-        if( matrisVerif[i] == tabreference[e]){
-          this.backgroundColor[e] = "backgroundColor"
+        if( matrisVerifColor[i][0] == tabreference[e]){
+          this.backgroundColor[e] = "backgroundColor"+matrisVerifColor[i][1]
         }
       }
     }
@@ -190,7 +199,7 @@ export class AppComponent {
         }
         this.fillMatrisVerif(this.matris)
         this.fillTiles(this.matris)
-        this.changeBackColor(this.matrisVerif)
+        this.changeBackColor(this.matrisVerifColor)
         //// code genere grid
         /* if (colonne > this.gridColonne) {
          if (ligne > this.gridLigne) {
