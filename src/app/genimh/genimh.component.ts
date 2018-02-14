@@ -76,7 +76,7 @@ export class GenimhComponent {
           }
         }
         if(matrisVerif == false){
-          this.tiles.push({text: '', cols:1 , rows:1, color: 'grey',vide:"false"})
+          this.tiles.push({text: '', cols:1 , rows:1, color: '',vide:"false"})
         }
       }
     }
