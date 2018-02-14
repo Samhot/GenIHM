@@ -68,3 +68,62 @@
   background: red;
   opacity: 0.2;
 }
+.sidebar-left{
+  padding-left : 10px;
+  padding-right: 20px;
+  /* background-color: blue; */
+}
+mat-sidenav {
+  width: 30%;
+  background: gainsboro;
+}
+.full-height{
+  height: 100%;
+}
+
+.margin-bottom{
+  margin-bottom: 20px;
+}
+
+.margin-top{
+  margin-top: 30px;
+}
+
+.boxed{
+  padding-left: 20px;
+  padding-right: 20px;
+}
+.colTab{
+  float: right;
+  border: solid;
+  height:100px;
+  width: 25%;
+}
+.backgroundColorred{
+  float: right;
+  border: solid;
+  height:100px;
+  width: 25%;
+  background: red;
+}
+.backgroundColorlightblue{
+  float: right;
+  border: solid;
+  height:100px;
+  width: 25%;
+  background: lightblue;
+}
+.backgroundColoryellow{
+  float: right;
+  border: solid;
+  height:100px;
+  width: 25%;
+  background: yellow;
+}
+.backgroundColorgreen{
+  float: right;
+  border: solid;
+  height:100px;
+  width: 25%;
+  background: green;
+}
