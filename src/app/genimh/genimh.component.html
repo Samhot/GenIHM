@@ -1,45 +1,45 @@
 <h1>1. Grid</h1>
-<button (click)="gridNameColor('one', 'blue')">One - Blue </button>
+<button (click)="gridNameColor('one', 'lightblue')">One - Blue </button>
 <button (click)="gridNameColor('two', 'red')">Two - Red</button>
 <button (click)="gridNameColor('three', 'yellow')">Three - Yellow</button>
 <button (click)="gridNameColor('four', 'green')">Four - Green</button>
 
 
 <div id="ligne1" style="display: block; ">
-  <div id="col14" (click)="gridSkull(1,4)" class="colTab" ></div>
-  <div id="col13" (click)="gridSkull(1,3)"class="colTab"></div>
-  <div id="col12" (click)="gridSkull(1,2)"class="colTab"></div>
-  <div id="col11" (click)="gridSkull(1,1)" class="colTab"> </div>
+  <div id="col14" (click)="gridSkull(1,4)"  class="{{backgroundColor[3]}}" >14</div>
+  <div id="col13" (click)="gridSkull(1,3)"  class="{{backgroundColor[2]}}">13</div>
+  <div id="col12" (click)="gridSkull(1,2)"  class="{{backgroundColor[1]}}">12</div>
+  <div id="col11" (click)="gridSkull(1,1)"  class="{{backgroundColor[0]}}">11</div>
 </div>
 <div id="ligne2" style="display: block;" >
-  <div id="col24" (click)="gridSkull(2,4)" class="colTab"></div>
-  <div id="col23" (click)="gridSkull(2,3)"class="colTab"></div>
-  <div id="col22" (click)="gridSkull(2,2)" class="colTab"></div>
-  <div id="col21" (click)="gridSkull(2,1)" class="colTab"> </div>
+  <div id="col24" (click)="gridSkull(2,4)" class="{{backgroundColor[7]}}">24</div>
+  <div id="col23" (click)="gridSkull(2,3)" class="{{backgroundColor[6]}}">23</div>
+  <div id="col22" (click)="gridSkull(2,2)" class="{{backgroundColor[5]}}">22</div>
+  <div id="col21" (click)="gridSkull(2,1)" class="{{backgroundColor[4]}}">21</div>
 </div>
 <div id="ligne3" style="display: block;" >
-  <div id="col34" (click)="gridSkull(3,4)" class="colTab"></div>
-  <div id="col33" (click)="gridSkull(3,3)"class="colTab"></div>
-  <div id="col32" (click)="gridSkull(3,2)"class="colTab"></div>
-  <div id="col31" (click)="gridSkull(3,1)" class="colTab"></div>
+  <div id="col34" (click)="gridSkull(3,4)" class="{{backgroundColor[11]}}">34</div>
+  <div id="col33" (click)="gridSkull(3,3)" class="{{backgroundColor[10]}}">33</div>
+  <div id="col32" (click)="gridSkull(3,2)" class="{{backgroundColor[9]}}">32</div>
+  <div id="col31" (click)="gridSkull(3,1)" class="{{backgroundColor[8]}}">31</div>
 </div>
 <div id="ligne4" style="display: block;" >
-  <div id="col44" (click)="gridSkull(4,4)" class="colTab"></div>
-  <div id="col43" (click)="gridSkull(4,3)" class="colTab"></div>
-  <div id="col42" (click)="gridSkull(4,2)" class="colTab"></div>
-  <div id="col41" (click)="gridSkull(4,1)" class="colTab"></div>
+  <div id="col44" (click)="gridSkull(4,4)" class="{{backgroundColor[15]}}">44</div>
+  <div id="col43" (click)="gridSkull(4,3)" class="{{backgroundColor[14]}}">43</div>
+  <div id="col42" (click)="gridSkull(4,2)" class="{{backgroundColor[13]}}">42</div>
+  <div id="col41" (click)="gridSkull(4,1)" class="{{backgroundColor[12]}}">41</div>
 </div>
 <div id="ligne5" style="display: block; " >
-  <div id="col54" (click)="gridSkull(5,4)" class="colTab"></div>
-  <div id="col53" (click)="gridSkull(5,3)" class="colTab"></div>
-  <div id="col52" (click)="gridSkull(5,2)" class="colTab"></div>
-  <div id="col51" (click)="gridSkull(5,1)" class="colTab"></div>
+  <div id="col54" (click)="gridSkull(5,4)" class="{{backgroundColor[19]}}">54</div>
+  <div id="col53" (click)="gridSkull(5,3)" class="{{backgroundColor[18]}}">53</div>
+  <div id="col52" (click)="gridSkull(5,2)" class="{{backgroundColor[17]}}">52</div>
+  <div id="col51" (click)="gridSkull(5,1)" class="{{backgroundColor[16]}}">51</div>
 </div>
 <div id="ligne6" style="display: block; padding-bottom: 900px" >
-  <div id="col64" (click)="gridSkull(6,4)" class="colTab"></div>
-  <div id="col63" (click)="gridSkull(6,3)" class="colTab"></div>
-  <div id="col62" (click)="gridSkull(6,2)" class="colTab"></div>
-  <div id="col61" (click)="gridSkull(6,1)" class="colTab"></div>
+  <div id="col64" (click)="gridSkull(6,4)" class="{{backgroundColor[23]}}">64</div>
+  <div id="col63" (click)="gridSkull(6,3)" class="{{backgroundColor[22]}}">63</div>
+  <div id="col62" (click)="gridSkull(6,2)" class="{{backgroundColor[21]}}">62</div>
+  <div id="col61" (click)="gridSkull(6,1)" class="{{backgroundColor[20]}}">61</div>
 </div>
 
 <mat-grid-list cols="4" rowHeight="100px">
@@ -49,7 +49,7 @@
         [rowspan]="tile.rows"
         [style.background]="tile.color">
 
-      <div>{{tile.text}} -  test</div>
+      <div></div>
     </mat-grid-tile>
   </mat-grid-list><br>
 
