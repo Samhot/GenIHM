@@ -3,7 +3,10 @@
     padding-right: 20px;
     /* background-color: blue; */
 }
-
+mat-sidenav {
+  width: 30%;
+  background: gainsboro;
+}
 .full-height{
     height: 100%;
 }
@@ -19,4 +22,17 @@
 .boxed{
     padding-left: 20px;
     padding-right: 20px;
+}
+.colTab{
+  float: right;
+  border: solid;
+  height:100px;
+  width: 25%;
+}
+.backgroundColor{
+  float: right;
+  border: solid;
+  height:100px;
+  width: 25%;
+  background: red;
 }

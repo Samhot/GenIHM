@@ -3,8 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="f178aab3-5491-4129-b314-4655cdca33e9" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/app.component.css" afterPath="$PROJECT_DIR$/src/app/app.component.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/app.component.html" afterPath="$PROJECT_DIR$/src/app/app.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/app.component.ts" afterPath="$PROJECT_DIR$/src/app/app.component.ts" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/genimh/genimh.component.html" afterPath="$PROJECT_DIR$/src/app/genimh/genimh.component.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/genimh/genimh.component.scss" afterPath="$PROJECT_DIR$/src/app/genimh/genimh.component.scss" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/genimh/genimh.component.ts" afterPath="$PROJECT_DIR$/src/app/genimh/genimh.component.ts" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -20,11 +22,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="genimh.component.ts" pinned="false" current-in-tab="true">
+      <file leaf-file-name="genimh.component.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/app/genimh/genimh.component.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="385">
-              <caret line="175" column="0" lean-forward="true" selection-start-line="175" selection-start-column="0" selection-end-line="175" selection-end-column="0" />
+            <state relative-caret-position="255">
+              <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
               <folding>
                 <element signature="e#0#50#0" expanded="true" />
               </folding>
@@ -32,72 +34,70 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="multiple-select.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/node_modules/angular-2-multiple-selection/multiple-select.ts">
+      <file leaf-file-name="genimh.component.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/app/genimh/genimh.component.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="34">
+              <caret line="2" column="0" lean-forward="true" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="app.component.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/app/app.component.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="663">
+              <caret line="60" column="85" lean-forward="false" selection-start-line="60" selection-start-column="85" selection-end-line="60" selection-end-column="85" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#mat-tab#0;n#mat-tab-group#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#mat-tab#0;n#mat-tab-group#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#2;n#mat-tab#0;n#mat-tab-group#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#3;n#mat-tab#0;n#mat-tab-group#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#4;n#mat-tab#0;n#mat-tab-group#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#5;n#mat-tab#0;n#mat-tab-group#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="home.component.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/app/home/home.component.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#89#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="multiple-select.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/node_modules/angular-2-multiple-selection/sources/models/multiple-select.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="3" column="29" lean-forward="false" selection-start-line="3" selection-start-column="29" selection-end-line="3" selection-end-column="29" />
-              <folding>
-                <element signature="e#0#45#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="genimh.component.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/app/genimh/genimh.component.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="266">
-              <caret line="43" column="0" lean-forward="true" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
-              <folding>
-                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#1;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#2;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#3;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#4;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#5;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="package.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/package.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="527">
-              <caret line="31" column="31" lean-forward="false" selection-start-line="31" selection-start-column="31" selection-end-line="31" selection-end-column="31" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="tsconfig.app.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/tsconfig.app.json">
+      <file leaf-file-name="app.component.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/app/app.component.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="11" column="3" lean-forward="false" selection-start-line="11" selection-start-column="3" selection-end-line="11" selection-end-column="3" />
+            <state relative-caret-position="170">
+              <caret line="10" column="25" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="25" />
+              <folding>
+                <element signature="e#0#42#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="search-demo.component.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/app/search/search-demo.component.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="tsconfig.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tsconfig.json">
+      <file leaf-file-name="app.component.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/app/app.component.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="459">
-              <caret line="27" column="6" lean-forward="false" selection-start-line="27" selection-start-column="6" selection-end-line="27" selection-end-column="6" />
+            <state relative-caret-position="629">
+              <caret line="37" column="1" lean-forward="false" selection-start-line="37" selection-start-column="1" selection-end-line="37" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -116,8 +116,8 @@
       <file leaf-file-name="genimh.component.scss" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/app/genimh/genimh.component.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="472">
-              <caret line="57" column="16" lean-forward="false" selection-start-line="57" selection-start-column="1" selection-end-line="57" selection-end-column="16" />
+            <state relative-caret-position="370">
+              <caret line="51" column="0" lean-forward="false" selection-start-line="51" selection-start-column="0" selection-end-line="63" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -126,7 +126,7 @@
       <file leaf-file-name="app.module.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/app/app.module.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="884">
+            <state relative-caret-position="437">
               <caret line="63" column="17" lean-forward="false" selection-start-line="63" selection-start-column="17" selection-end-line="63" selection-end-column="17" />
               <folding>
                 <element signature="e#0#58#0" expanded="true" />
@@ -178,8 +178,11 @@
         <option value="$PROJECT_DIR$/tsconfig.json" />
         <option value="$PROJECT_DIR$/src/app/app.module.ts" />
         <option value="$PROJECT_DIR$/src/app/genimh/genimh.component.scss" />
-        <option value="$PROJECT_DIR$/src/app/genimh/genimh.component.html" />
+        <option value="$PROJECT_DIR$/src/app/app.component.ts" />
+        <option value="$PROJECT_DIR$/src/app/app.component.css" />
+        <option value="$PROJECT_DIR$/src/app/app.component.html" />
         <option value="$PROJECT_DIR$/src/app/genimh/genimh.component.ts" />
+        <option value="$PROJECT_DIR$/src/app/genimh/genimh.component.html" />
       </list>
     </option>
   </component>
@@ -257,6 +260,28 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GenIHM" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GenIHM" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="search" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -701,12 +726,12 @@
       <workItem from="1517416055404" duration="159000" />
       <workItem from="1517474082251" duration="7978000" />
       <workItem from="1518425713049" duration="18589000" />
-      <workItem from="1518597548772" duration="16548000" />
+      <workItem from="1518597548772" duration="19900000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="43274000" />
+    <option name="totallyTimeSpent" value="46626000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1608" y="-8" width="1616" height="916" extended-state="6" />
@@ -771,7 +796,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#0#89#0" expanded="true" />
+            <element signature="e#0#89#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -781,7 +806,7 @@
         <state relative-caret-position="51">
           <caret line="3" column="29" lean-forward="false" selection-start-line="3" selection-start-column="29" selection-end-line="3" selection-end-column="29" />
           <folding>
-            <element signature="e#0#45#0" expanded="true" />
+            <element signature="e#0#45#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -790,14 +815,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#2;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#3;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#4;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#5;n#!!top" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -886,6 +904,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -917,14 +936,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1955">
           <caret line="115" column="11" lean-forward="false" selection-start-line="115" selection-start-column="11" selection-end-line="115" selection-end-column="11" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#2;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#3;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#4;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#5;n#!!top" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -979,21 +991,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/app.component.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/app.component.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/server/package.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
@@ -1020,6 +1017,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#47#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1027,16 +1027,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/app.component.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#42#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1052,7 +1042,7 @@
         <state relative-caret-position="34">
           <caret line="3" column="29" lean-forward="false" selection-start-line="3" selection-start-column="29" selection-end-line="3" selection-end-column="29" />
           <folding>
-            <element signature="e#0#45#0" expanded="true" />
+            <element signature="e#0#45#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1078,7 +1068,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#0#89#0" expanded="true" />
+            <element signature="e#0#89#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1099,9 +1089,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/home/home.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/app/app.module.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="884">
+        <state relative-caret-position="437">
           <caret line="63" column="17" lean-forward="false" selection-start-line="63" selection-start-column="17" selection-end-line="63" selection-end-column="17" />
           <folding>
             <element signature="e#0#58#0" expanded="true" />
@@ -1109,36 +1107,70 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/genimh/genimh.component.html">
+    <entry file="file://$PROJECT_DIR$/src/app/genimh/genimh.component.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="43" column="0" lean-forward="true" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
+        <state relative-caret-position="370">
+          <caret line="51" column="0" lean-forward="false" selection-start-line="51" selection-start-column="0" selection-end-line="63" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/app.component.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="629">
+          <caret line="37" column="1" lean-forward="false" selection-start-line="37" selection-start-column="1" selection-end-line="37" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/app.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="663">
+          <caret line="60" column="85" lean-forward="false" selection-start-line="60" selection-start-column="85" selection-end-line="60" selection-end-column="85" />
           <folding>
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#2;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#3;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#4;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#5;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#mat-tab#0;n#mat-tab-group#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#mat-tab#0;n#mat-tab-group#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#2;n#mat-tab#0;n#mat-tab-group#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#3;n#mat-tab#0;n#mat-tab-group#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#4;n#mat-tab#0;n#mat-tab-group#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#5;n#mat-tab#0;n#mat-tab-group#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/genimh/genimh.component.scss">
+    <entry file="file://$PROJECT_DIR$/src/app/app.component.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="472">
-          <caret line="57" column="16" lean-forward="false" selection-start-line="57" selection-start-column="1" selection-end-line="57" selection-end-column="16" />
+        <state relative-caret-position="170">
+          <caret line="10" column="25" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="25" />
+          <folding>
+            <element signature="e#0#42#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/search/search-demo.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/app/genimh/genimh.component.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="385">
-          <caret line="175" column="0" lean-forward="true" selection-start-line="175" selection-start-column="0" selection-end-line="175" selection-end-column="0" />
+        <state relative-caret-position="255">
+          <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
           <folding>
             <element signature="e#0#50#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/genimh/genimh.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="0" lean-forward="true" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
