@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { DragulaModule } from 'ng2-dragula';
 
 // ADF modules
 import { ContentModule } from '@alfresco/adf-content-services';
@@ -29,7 +30,8 @@ export function modules() {
       MatCardModule,
       MatToolbarModule,
       MatIconModule,
-      MatGridListModule
+      MatGridListModule,
+      DragulaModule
   ];
 }
 

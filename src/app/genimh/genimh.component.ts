@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormArray} from "@angular/forms";
-import { AppComponent } from '../app.component'
+import {FormControl, FormArray} from '@angular/forms';
+import { AppComponent } from '../app.component';
+import { DragulaService } from 'ng2-dragula';
+
 
 @Component({
   selector: 'app-genimh',
@@ -10,7 +12,6 @@ import { AppComponent } from '../app.component'
 
 export class GenimhComponent {
 
-  public tiles
   public firstClick
   public gridLigne
   public gridColonne
@@ -22,16 +23,29 @@ export class GenimhComponent {
   public matrisVerif
   public TestmatrisVerif
   public matrisVerifColor
+  public tiles;
 
-  constructor( public App : AppComponent){
+  public many: Array<string> = ['The', 'possibilities', 'are', 'endless!'];
+  public many2: Array<string> = ['Explore', 'them'];
 
+  constructor( public App: AppComponent, private dragulaService: DragulaService) {
+    dragulaService.setOptions('page-bag', {
+      accepts: function (el, target, source, sibling) {
+        return target.id === 'web'; // elements can be dropped only in 'to_drop_to' container
+      },
+      copy: (el: Element, source: Element): boolean => {
+        // elements are copied only if they are not already copied ones. That enables the 'removeOnSpill' to work
+        return source.id === 'component';
+      },
+      removeOnSpill: true
+    });
     this.tiles = [
       /* {text: 'One', cols: 3, rows: 1, color: 'lightblue'},
        {text: 'Twoivgyguiguyghibuhbvguvbihyb jkbn jbihbjinkn,', cols: 1, rows: 2, color: 'lightgreen'},
        {text: 'Three', cols: 1, rows: 1, color: 'lightpink'},
        {text: 'Four', cols: 2, rows: 1, color: '#DDBDF1'},*/
-    ]
-
+    ];
+  
     this.firstClick = true
     this.gridLigne = 0
     this.gridColonne = 0
@@ -43,9 +57,56 @@ export class GenimhComponent {
     this.matrisVerif = []
     this.TestmatrisVerif = []
     this.matrisVerifColor = []
+
+    // determine if drop is allowed
+    dragulaService.over.subscribe((value) => {
+      this.onOver(value.slice(1));
+    });
+    dragulaService.drop.subscribe((value) => {
+      this.onDrop(value);
+    });
+
+    dragulaService.dropModel.subscribe((value: any) => {
+      this.onDropModel(value.slice(1));
+    });
+    dragulaService.removeModel.subscribe((value: any) => {
+      this.onRemoveModel(value.slice(1));
+    });
+  }
+
+  private onDropModel(args: any): void {
+    const [el, target, source] = args;
+    console.log('onDropModel:');
+    console.log(el);
+    console.log(target);
+    console.log(source);
+  }
+
+  private onRemoveModel(args: any): void {
+    const [el, source] = args;
+    console.log('onRemoveModel:');
+    console.log(el);
+    console.log(source);
   }
 
 
+
+
+  private onOver(args) {
+    const [el, container, source] = args;
+    if ( container.id !== 'web' ) {
+        el.remove();
+      }
+  }
+
+  // (0 - bagname, 1 - el, 2 - target, 3 - source, 4 - sibling)
+  private onDrop(value) {
+    if (value[2] == null) {// dragged outside any of the bags
+      return; }
+    if (value[2].id !== 'web' && value[2].id !== value[3].id) {// dragged to a container that should not add the element
+      value[1].remove(); }
+  }
+  
   ngOnInit(){
     this.tiles = []
     this.tiles.push({text: '', cols: 4, rows: 6, color: 'grey',vide:"true"})
@@ -222,63 +283,5 @@ export class GenimhComponent {
       alert("case " + ligne+colonne +" déjà choisi")
     }
   }
-
-
-  events = [];
-
-  listBoxers: Array<string> = ['Formulaire',
-                               'Checkbox',
-                               'Label',
-                               'Button',
-                               'Image',
-                               'Firm',
-                               'Component 1',
-                               'Component 2',
-                               'Component 3',
-                               'Component 4'];
-  listTeamOne: Array<string> = [];
-  listTeamTwo: Array<string> = ['Label',
-    'Button'];
-
-  dragOperation = false;
-
-    containers: Array<Container> = [
-        new Container(1, 'Container 1', [new Widget('1'), new Widget('2')]),
-        new Container(2, 'Container 2', [new Widget('3'), new Widget('4')]),
-        new Container(3, 'Container 3', [new Widget('5'), new Widget('6')])
-    ];
-
-  listOne: FormArray = new FormArray([
-    new FormControl('Nom'),
-    new FormControl('Prénom'),
-    new FormControl('Email'),
-    new FormControl('Date de naissance'),
-    new FormControl('Document')
-  ]);
-
-
-  //listOne: Array<string> = ['Nom', 'Prénom', 'Email', 'Date de naissance', 'Document'];
-  listRecycled: Array<string> = [];
-
-
-  sourceList: Widget[] = [
-    new Widget('Nom'), new Widget('Prénom'),
-    new Widget('Email'), new Widget('Date de naissance'),
-    new Widget('Document'), new Widget('Formulaire')
-  ];
-
-  targetList: Widget[] = [];
-  addTo($event: any) {
-    this.targetList.push($event.dragData);
-    console.log($event)
-  }
 }
- class Container {
-  constructor(public id: number, public name: string, public widgets: Array<Widget>) {}
-}
-
- class Widget {
-  constructor(public name: string) {}
-}
-
 
