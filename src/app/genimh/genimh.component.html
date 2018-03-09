@@ -5,9 +5,6 @@
  <button mat-button (click)="sidenav2.toggle()"><mat-icon>menu</mat-icon></button>
 <mat-sidenav-container>
   <mat-sidenav #sidenav2 mode="side" class="sidebar-left">
-
-    <h3>SIDEBAR</h3>
-
     <mat-tab-group>
       <mat-tab label="Grid Option">
         <!-- <div>
@@ -31,6 +28,7 @@
          <div (click)="gridNameColor('rgb(255, 0, 191)')" style="display: block;float: right; height:15px;width: 5%; background-color: rgb(255, 0, 191) "></div>
          <div (click)="gridNameColor('rgb(255, 0, 128)')" style="display: block;float: right; height:15px;width: 5%; background-color: rgb(255, 0, 128) "></div>
          </div>-->
+
           <input (click)="back()" type="image"  class="button" src="../../assets/Fgauche.jpg" >
           <input (click)="reset()" type="image" class="button" src="../../assets/reset.jpg">
          <input (click)="forward()" type="image"  class="button" src="../../assets/Fdroite.jpg" >
@@ -99,56 +97,56 @@
           <div id="col92" (click)="gridSkull(9,2)" class="{{backgroundColor[33]}}"></div>
           <div id="col91" (click)="gridSkull(9,1)" class="{{backgroundColor[32]}}"></div>
         </div>
-        <div id="ligne10" style="display: block; padding-bottom: 900px" >
-          <div id="col104" (click)="gridSkull(10,4)" class="{{backgroundColor[39]}}"></div>
-          <div id="col103" (click)="gridSkull(10,3)" class="{{backgroundColor[38]}}"></div>
-          <div id="col102" (click)="gridSkull(10,2)" class="{{backgroundColor[37]}}"></div>
-          <div id="col101" (click)="gridSkull(10,1)" class="{{backgroundColor[36]}}"></div>
-        </div>
+        <!-- <div id="ligne10" style="display: block; padding-bottom: 900px" >
+           <div id="col104" (click)="gridSkull(10,4)" class="{{backgroundColor[39]}}"></div>
+           <div id="col103" (click)="gridSkull(10,3)" class="{{backgroundColor[38]}}"></div>
+           <div id="col102" (click)="gridSkull(10,2)" class="{{backgroundColor[37]}}"></div>
+           <div id="col101" (click)="gridSkull(10,1)" class="{{backgroundColor[36]}}"></div>
+         </div>-->
 
 
-      </mat-tab>
-      <mat-tab label="Dag Item Option">
-        <div class='parent'>
-          <div class='wrapper'>
-            <div class='container' [dragula]='"page-bag"' [dragulaModel]='many' id="component">
-              <div *ngFor='let text of many' [innerHtml]='text'></div>
-            </div>
-          </div>
-        </div>
-        <div  class='container' >
-          <div *ngFor='let tile of tiles'>
-            <pre *ngIf="tile.vide == 'true' ">{{tile.tab | json}}</pre>
-          </div>
-        </div>
-      </mat-tab>
-    </mat-tab-group>
+       </mat-tab>
+       <mat-tab label="Dag Item Option">
+         <div class='parent'>
+           <div class='wrapper'>
+             <div class='container' [dragula]='"page-bag"' [dragulaModel]='many' id="component">
+               <div *ngFor='let text of many' [innerHtml]='text'></div>
+             </div>
+           </div>
+         </div>
+         <div  class='container' >
+           <div *ngFor='let tile of tiles'>
+             <pre *ngIf="tile.vide == 'true' ">{{tile.tab | json}}</pre>
+           </div>
+         </div>
+       </mat-tab>
+     </mat-tab-group>
 
-  </mat-sidenav>
+   </mat-sidenav>
 
-  <mat-menu #appMenu="matMenu">
-    <button mat-menu-item> Settings </button>
-    <button mat-menu-item> Help </button>
-  </mat-menu>
-
-
-<mat-grid-list cols="4" rowHeight="100px">
-    <mat-grid-tile  dnd-sortable-container [dropZones]="['boxers-zone']" [sortableData]="listTeamTwo"
-        *ngFor="let tile of tiles"
-        [colspan]="tile.cols"
-        [rowspan]="tile.rows"
-        [style.background]="tile.color">
+   <mat-menu #appMenu="matMenu">
+     <button mat-menu-item> Settings </button>
+     <button mat-menu-item> Help </button>
+   </mat-menu>
 
 
-  <div *ngIf="tile.vide == 'true' " class='container' [dragula]='"page-bag"' [dragulaModel]='tile.tab' id={{tile.id}}>
-    <div *ngFor='let text of tile.tab' [innerHtml]='text'>
-    </div>
-  </div>
+ <mat-grid-list cols="4" rowHeight="100px">
+     <mat-grid-tile  dnd-sortable-container [dropZones]="['boxers-zone']" [sortableData]="listTeamTwo"
+         *ngFor="let tile of tiles"
+         [colspan]="tile.cols"
+         [rowspan]="tile.rows"
+         [style.background]="tile.color">
 
 
-    </mat-grid-tile>
-  </mat-grid-list><br>
+   <div *ngIf="tile.vide == 'true' " class='container' [dragula]='"page-bag"' [dragulaModel]='tile.tab' id={{tile.id}}>
+     <div *ngFor='let text of tile.tab' [innerHtml]='text'>
+     </div>
+   </div>
 
-  <button mat-button [matMenuTriggerFor]="appMenu" class="margin-top">Bouton menu exemple</button>
-</mat-sidenav-container>
+
+     </mat-grid-tile>
+   </mat-grid-list><br>
+
+   <button mat-button [matMenuTriggerFor]="appMenu" class="margin-top">Bouton menu exemple</button>
+ </mat-sidenav-container>
 

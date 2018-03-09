@@ -174,9 +174,18 @@ reset(){
       for( var z = 0; z < matrice.length; z++){
         if(matrice[z][0] == i){
           verif = true
-            this.allArray.push(new Array(''))
-          this.tiles.push({text: '', cols:matrice[z][2] , rows: matrice[z][3], color: matrice[z][4] ,vide:"true", tab:this.allArray[this.listID] , id: "web"+this.listID})
-          this.listID = parseInt(this.listID) + 1
+         var allArrayVerif = false
+          for(var o = 0; o < this.allArray.length; o++){
+            if( this.allArray[o][0] == String(matrice[z][0])+ String(matrice[z][1])){
+              allArrayVerif = true
+              this.tiles.push({text: '', cols:matrice[z][2] , rows: matrice[z][3], color: matrice[z][4] ,vide:"true", tab:this.allArray[o][1] , id: "web"+this.listID})
+            }
+          }
+          if(allArrayVerif == false){
+            this.allArray.push(new Array(String(matrice[z][0])+ String(matrice[z][1]),[""]))
+            this.tiles.push({text: '', cols:matrice[z][2] , rows: matrice[z][3], color: matrice[z][4] ,vide:"true", tab:this.allArray[this.allArray.length-1][1] , id: "web"+this.listID})
+            this.listID = parseInt(this.listID) + 1
+          }
         }
       }
       if(verif == false){
@@ -324,21 +333,19 @@ reset(){
               this.saveRemove.push([ligne.toString() + this.gridColonne.toString(), this.gridLigne.toString() + colonne.toString(), colonneF, ligneF, this.gridColor])
             } else {
               this.saveRemove.push([this.gridLigne.toString() + this.gridColonne.toString(), ligne.toString() + colonne.toString(), colonneF, ligneF, this.gridColor])
-
             }
           }
           var DeleteM = false
-          console.log(this.saveRemove)
-          console.log(this.saveRemove[this.saveRemove.length -1])
-          console.log(this.matrice)
           for(var i = 0; i < this.matrice.length; i++){
-            console.log("-----------------------")
-            console.log(this.matrice[i])
-            console.log(this.saveRemove[this.saveRemove.length -1])
             if(this.matrice[i][0] == this.saveRemove[this.saveRemove.length -1][0] && this.matrice[i][1] == this.saveRemove[this.saveRemove.length -1][1] ){
-              this.matrice.splice(i,1)
+
+              var remove = this.matrice.splice(i,1)
+              for(var o = 0; o < this.allArray.length; o++){
+                if( this.allArray[o][0] == this.saveRemove[this.saveRemove.length -1][0].toString() + this.saveRemove[this.saveRemove.length -1][1].toString() ){
+                  this.allArray.splice(o,1)
+                }
+              }
               DeleteM = true
-              console.log("OK")
             }
           }
           if(DeleteM == false){
@@ -347,12 +354,7 @@ reset(){
           this.main()
           this.firstClick = true
         }
-
-
-
     }
-
-
   }
 }
 
