@@ -17,21 +17,26 @@ export class GenimhComponent {
   public gridColonne
   public gridName
   public gridColor
-  public matris
+  public matrice
   public matrix
   public backgroundColor
   public matrisVerif
   public TestmatrisVerif
-  public matrisVerifColor
+  public matriceVerifColor
   public tiles;
+  public listID;
+  public lastSavelistID;
+  public allArray;
+  public saveRemove;
+  public deleteMode;
+  public classBtnDelete;
 
-  public many: Array<string> = ['The', 'possibilities', 'are', 'endless!'];
-  public many2: Array<string> = ['Explore', 'them'];
+  public many: Array<string> = ['Title', 'Content', 'Checkbox', 'Button'];
 
   constructor( public App: AppComponent, private dragulaService: DragulaService) {
     dragulaService.setOptions('page-bag', {
       accepts: function (el, target, source, sibling) {
-        return target.id === 'web'; // elements can be dropped only in 'to_drop_to' container
+        return target.id !== 'component'; // elements can be dropped only in 'to_drop_to' container
       },
       copy: (el: Element, source: Element): boolean => {
         // elements are copied only if they are not already copied ones. That enables the 'removeOnSpill' to work
@@ -45,18 +50,23 @@ export class GenimhComponent {
        {text: 'Three', cols: 1, rows: 1, color: 'lightpink'},
        {text: 'Four', cols: 2, rows: 1, color: '#DDBDF1'},*/
     ];
-  
+
     this.firstClick = true
     this.gridLigne = 0
     this.gridColonne = 0
-    this.gridName = "NONAME"
     this.gridColor = "lightblue"
-    this.matris = []
+    this.matrice = []
     this.matrix = []
     this.backgroundColor = []
     this.matrisVerif = []
     this.TestmatrisVerif = []
-    this.matrisVerifColor = []
+    this.listID = 0
+    this.lastSavelistID = 0
+    this.allArray = ['']
+    this.matriceVerifColor = []
+    this.saveRemove = []
+    this.deleteMode = "Off"
+    this.classBtnDelete = "button floatRight"
 
     // determine if drop is allowed
     dragulaService.over.subscribe((value) => {
@@ -94,7 +104,7 @@ export class GenimhComponent {
 
   private onOver(args) {
     const [el, container, source] = args;
-    if ( container.id !== 'web' ) {
+    if ( container.id == 'component' ) {
         el.remove();
       }
   }
@@ -103,31 +113,70 @@ export class GenimhComponent {
   private onDrop(value) {
     if (value[2] == null) {// dragged outside any of the bags
       return; }
-    if (value[2].id !== 'web' && value[2].id !== value[3].id) {// dragged to a container that should not add the element
+    if (value[2].id == 'component' && value[2].id !== value[3].id) {// dragged to a container that should not add the element
       value[1].remove(); }
   }
-  
+
   ngOnInit(){
-    this.tiles = []
-    this.tiles.push({text: '', cols: 4, rows: 6, color: 'grey',vide:"true"})
-    this.backgroundColor = []
-    for(var i = 0; i < 25; i++){
-      this.backgroundColor.push("colTab")
+    this.reset()
+  }
+
+  back() {
+    var remove = this.matrice.splice(this.matrice.length -1 ,1)
+    this.saveRemove.push(remove[0])
+    this.main()
+  }
+  forward(){
+    var forward =  this.saveRemove.splice(this.saveRemove.length -1 ,1)
+    this.matrice.push(forward[0])
+    this.main()
+  }
+  DeleteMode(){
+    if(this.deleteMode == "Off"){
+      this.deleteMode = "On"
+      console.log(this.deleteMode)
+      this.classBtnDelete = "button floatRight borderColorRed"
+    }else{
+      this.deleteMode = "Off"
+      console.log(this.deleteMode)
+      this.classBtnDelete = "button floatRight"
     }
   }
 
-  fillTiles(matris){
+  main(){
+    this.fillMatrisVerif(this.matrice)
+    this.fillTiles(this.matrice)
+    this.changeBackColor(this.matriceVerifColor)
+  }
+
+reset(){
+  this.tiles = []
+  this.listID = 0
+  this.allArray = []
+  this.matrisVerif = []
+  this.matrice = []
+  this.tiles.push({text: '', cols: 4, rows: 10, color: 'grey',vide:"false", id: "0web"})
+  this.backgroundColor = []
+  for(var i = 0; i < 40; i++){
+    this.backgroundColor.push("colTab")
+  }
+}
+
+  fillTiles(matrice){
     this.tiles = []
-    for( var i = 11; i < 65; i++){
-      if(i == 15 || i == 25 || i == 35 || i == 45 || i == 55){
+    this.listID = 0
+    for( var i = 11; i < 105; i++){
+      if(i == 15 || i == 25 || i == 35 || i == 45 || i == 55 ||i == 65 || i == 75 || i == 85 ){
         i = i + 6
       }
       var verif = false
       var matrisVerif = false
-      for( var z = 0; z < matris.length; z++){
-        if(matris[z][0] == i){
+      for( var z = 0; z < matrice.length; z++){
+        if(matrice[z][0] == i){
           verif = true
-          this.tiles.push({text: '', cols:matris[z][2] , rows: matris[z][3], color: matris[z][4] ,vide:"true"})
+            this.allArray.push(new Array(''))
+          this.tiles.push({text: '', cols:matrice[z][2] , rows: matrice[z][3], color: matrice[z][4] ,vide:"true", tab:this.allArray[this.listID] , id: "web"+this.listID})
+          this.listID = parseInt(this.listID) + 1
         }
       }
       if(verif == false){
@@ -141,6 +190,7 @@ export class GenimhComponent {
         }
       }
     }
+    this.lastSavelistID = this.listID
   }
   SelectedCase(number){
     for ( var e = 0; e < this.matrisVerif.length; e++){
@@ -150,138 +200,159 @@ export class GenimhComponent {
     }
     return false
   }
-
-  fillMatrisVerif(matris){
+  fillMatrisVerif(matrice){
     this.matrisVerif = []
-    this.matrisVerifColor = []
-    for( var z = 0; z < matris.length; z++){
-      this.matrisVerif.push(parseInt(matris[z][0]))
-      this.matrisVerifColor.push([(parseInt(matris[z][0])),matris[z][4]])
-      for( var e = 1; e < parseInt(matris[z][2]); e++){
-        this.matrisVerif.push(parseInt(matris[z][0]) + e)
-        this.matrisVerifColor.push([(parseInt(matris[z][0]) + e),matris[z][4]])
+    this.matriceVerifColor = []
+    for( var z = 0; z < matrice.length; z++){
+      this.matrisVerif.push(parseInt(matrice[z][0]))
+      this.matriceVerifColor.push([(parseInt(matrice[z][0])),matrice[z][4]])
+      for( var e = 1; e < parseInt(matrice[z][2]); e++){
+        this.matrisVerif.push(parseInt(matrice[z][0]) + e)
+        this.matriceVerifColor.push([(parseInt(matrice[z][0]) + e),matrice[z][4]])
       }
-      for( var a = 1; a < matris[z][3]; a++){
-        this.matrisVerif.push(parseInt(matris[z][0]) + 10 * a)
-        this.matrisVerifColor.push([(parseInt(matris[z][0]) + 10 * a),matris[z][4]])
+      for( var a = 1; a < matrice[z][3]; a++){
+        this.matrisVerif.push(parseInt(matrice[z][0]) + 10 * a)
+        this.matriceVerifColor.push([(parseInt(matrice[z][0]) + 10 * a),matrice[z][4]])
 
-        for( var e = 1; e < matris[z][2]; e++){
-          this.matrisVerif.push(parseInt(matris[z][0]) + 10 *a + e)
-          this.matrisVerifColor.push([(parseInt(matris[z][0]) + 10 * a + e),matris[z][4]])
+        for( var e = 1; e < matrice[z][2]; e++){
+          this.matrisVerif.push(parseInt(matrice[z][0]) + 10 *a + e)
+          this.matriceVerifColor.push([(parseInt(matrice[z][0]) + 10 * a + e),matrice[z][4]])
 
         }
       }
     }
   }
-
   mathSignPlus(nombre){
     if(nombre < 0){
       nombre = nombre * -1
     }
     return nombre
   }
-
-  gridNameColor(name, color){
-    this.gridName = name
+  gridNameColor(color){
     this.gridColor = color
-
-    console.log( this.gridName)
-    console.log( this.gridColor)
   }
-
-
-  changeBackColor(matrisVerifColor){
-    console.log(matrisVerifColor)
-    var tabreference = [11,12,13,14,21,22,23,24,31,32,33,34,41,42,43,44,51,52,53,54,61,62,63,64]
-    for(var i = 0; i < matrisVerifColor.length; i++){
+  changeBackColor(matriceVerifColor){
+    this.backgroundColor = []
+    for(var i = 0; i < 40; i++){
+      this.backgroundColor.push("colTab")
+    }
+    var tabreference = [11,12,13,14,21,22,23,24,31,32,33,34,41,42,43,44,51,52,53,54,61,62,63,64,71,72,73,74,81,82,83,84,91,92,93,94,101,102,103,104]
+    for(var i = 0; i < matriceVerifColor.length; i++){
       for(var e = 0; e < tabreference.length; e++){
-        if( matrisVerifColor[i][0] == tabreference[e]){
-          this.backgroundColor[e] = "backgroundColor"+matrisVerifColor[i][1]
+        if( matriceVerifColor[i][0] == tabreference[e]){
+          this.backgroundColor[e] = "backgroundColor" +matriceVerifColor[i][1]
         }
+
       }
     }
   }
-
-
   gridSkull(ligne,colonne) {
+      if (this.deleteMode == "Off"){
+        if (this.SelectedCase(ligne.toString() + colonne.toString()) == false) {
+          var ligneF
+          var colonneF
+          if (this.firstClick == true) {
+            this.gridColonne = colonne
+            this.gridLigne = ligne
+            this.firstClick = false
+          }else {
+            colonneF = this.mathSignPlus(this.gridColonne - colonne) + 1;
+            ligneF = this.mathSignPlus(this.gridLigne - ligne) + 1;
+            if (this.gridColonne.toString() > colonne.toString()) {
+              if (this.gridLigne.toString() > ligne.toString()) {
+                this.matrice.push([ligne.toString() + colonne.toString(), this.gridLigne.toString() + this.gridColonne.toString(), colonneF, ligneF, this.gridColor])
+              } else {
+                this.matrice.push([this.gridLigne.toString() + colonne.toString(), ligne.toString() + this.gridColonne.toString(), colonneF, ligneF, this.gridColor])
+              }
+            } else {
+              if (this.gridLigne.toString() > ligne.toString()) {
+                this.matrice.push([ligne.toString() + this.gridColonne.toString(), this.gridLigne.toString() + colonne.toString(), colonneF, ligneF, this.gridColor])
+              } else {
+                this.matrice.push([this.gridLigne.toString() + this.gridColonne.toString(), ligne.toString() + colonne.toString(), colonneF, ligneF, this.gridColor])
 
-    if (this.SelectedCase(ligne.toString() + colonne.toString()) == false) {
-      var ligneF
-      var colonneF
-      if (this.firstClick == true) {
-        this.gridColonne = colonne
-        this.gridLigne = ligne
-        this.firstClick = false
-      } else {
+              }
+            }
+            this.TestmatrisVerif = []
+            var lengthMatris = this.matrice.length - 1
+            this.TestmatrisVerif.push(parseInt(this.matrice[lengthMatris][0]))
+            for (var e = 1; e < parseInt(this.matrice[lengthMatris][2]); e++) {
+              this.TestmatrisVerif.push(parseInt(this.matrice[lengthMatris][0]) + e)
+            }
+            for (var a = 1; a < this.matrice[lengthMatris][3]; a++) {
+              this.TestmatrisVerif.push(parseInt(this.matrice[lengthMatris][0]) + 10 * a)
+              for (var e = 1; e < this.matrice[lengthMatris][2]; e++) {
+                this.TestmatrisVerif.push(parseInt(this.matrice[lengthMatris][0]) + 10 * a + e)
+              }
+            }
+            var verifBlock = false
+            for (var i = 0; i < this.TestmatrisVerif.length; i++) {
+              for (var e = 0; e < this.matrisVerif.length; e++) {
+                if (this.matrisVerif[e] == this.TestmatrisVerif[i] && verifBlock == false) {
+                  this.matrice = this.matrice.splice(0, this.matrice.length - 1)
+                  verifBlock = true
+                  alert("Imposible de selectionner cette zone")
+                }
+              }
+            }
+            this.main()
+            this.firstClick = true
+          }
+        }
+        else {
+          alert("case " + ligne + colonne + " déjà choisi")
+        }
+    }
+    if(this.deleteMode == "On"){
+        var ligneF
+        var colonneF
+        if (this.firstClick == true) {
+          this.gridColonne = colonne
+          this.gridLigne = ligne
+          this.firstClick = false
 
-        colonneF = this.mathSignPlus(this.gridColonne - colonne) + 1;
-        ligneF = this.mathSignPlus(this.gridLigne - ligne) + 1;
-
-        if (this.gridColonne.toString() > colonne.toString()) {
-          if (this.gridLigne.toString() > ligne.toString()) {
-            this.matris.push([ligne.toString() + colonne.toString(), this.gridLigne.toString() + this.gridColonne.toString(), colonneF, ligneF, this.gridColor])
+        }else {
+          colonneF = this.mathSignPlus(this.gridColonne - colonne) + 1;
+          ligneF = this.mathSignPlus(this.gridLigne - ligne) + 1;
+          if (this.gridColonne.toString() > colonne.toString()) {
+            if (this.gridLigne.toString() > ligne.toString()) {
+              this.saveRemove.push([ligne.toString() + colonne.toString(), this.gridLigne.toString() + this.gridColonne.toString(), colonneF, ligneF, this.gridColor])
+            } else {
+              this.saveRemove.push([this.gridLigne.toString() + colonne.toString(), ligne.toString() + this.gridColonne.toString(), colonneF, ligneF, this.gridColor])
+            }
           } else {
-            this.matris.push([this.gridLigne.toString() + colonne.toString(), ligne.toString() + this.gridColonne.toString(), colonneF, ligneF, this.gridColor])
-          }
-        } else {
-          if (this.gridLigne.toString() > ligne.toString()) {
-            this.matris.push([ligne.toString() + this.gridColonne.toString(), this.gridLigne.toString() + colonne.toString(), colonneF, ligneF, this.gridColor])
-          } else {
-            this.matris.push([this.gridLigne.toString() + this.gridColonne.toString(), ligne.toString() + colonne.toString(), colonneF, ligneF, this.gridColor])
+            if (this.gridLigne.toString() > ligne.toString()) {
+              this.saveRemove.push([ligne.toString() + this.gridColonne.toString(), this.gridLigne.toString() + colonne.toString(), colonneF, ligneF, this.gridColor])
+            } else {
+              this.saveRemove.push([this.gridLigne.toString() + this.gridColonne.toString(), ligne.toString() + colonne.toString(), colonneF, ligneF, this.gridColor])
 
-          }
-        }
-
-        this.TestmatrisVerif = []
-        var lengthMatris = this.matris.length - 1
-        this.TestmatrisVerif.push(parseInt(this.matris[lengthMatris][0]))
-        for( var e = 1; e < parseInt(this.matris[lengthMatris][2]); e++){
-          this.TestmatrisVerif.push(parseInt(this.matris[lengthMatris][0]) + e)
-        }
-        for( var a = 1; a < this.matris[lengthMatris][3]; a++){
-          this.TestmatrisVerif.push(parseInt(this.matris[lengthMatris][0]) + 10 * a)
-          for( var e = 1; e < this.matris[lengthMatris][2]; e++){
-            this.TestmatrisVerif.push(parseInt(this.matris[lengthMatris][0]) + 10 *a + e)
-          }
-        }
-
-
-        this.matris
-        var verifBlock = false
-        for (var i = 0; i < this.TestmatrisVerif.length; i++){
-          for (var e = 0; e < this.matrisVerif.length; e++){
-            if(this.matrisVerif[e] == this.TestmatrisVerif[i] && verifBlock == false){
-
-              this.matris = this.matris.splice(0, this.matris.length - 1)
-              verifBlock = true
-              alert("Imposible de selectionner cette zone")
             }
           }
+          var DeleteM = false
+          console.log(this.saveRemove)
+          console.log(this.saveRemove[this.saveRemove.length -1])
+          console.log(this.matrice)
+          for(var i = 0; i < this.matrice.length; i++){
+            console.log("-----------------------")
+            console.log(this.matrice[i])
+            console.log(this.saveRemove[this.saveRemove.length -1])
+            if(this.matrice[i][0] == this.saveRemove[this.saveRemove.length -1][0] && this.matrice[i][1] == this.saveRemove[this.saveRemove.length -1][1] ){
+              this.matrice.splice(i,1)
+              DeleteM = true
+              console.log("OK")
+            }
+          }
+          if(DeleteM == false){
+            alert("Impossible de supprimer cet element")
+          }
+          this.main()
+          this.firstClick = true
         }
-        this.fillMatrisVerif(this.matris)
-        this.fillTiles(this.matris)
-        this.changeBackColor(this.matrisVerifColor)
-        //// code genere grid
-        /* if (colonne > this.gridColonne) {
-         if (ligne > this.gridLigne) {
-         this.tiles.push({text: 'One', cols: colonne, rows: ligne, color: 'lightblue'});
-         } else {
-         this.tiles.push({text: 'One', cols: colonne, rows: this.gridLigne, color: 'lightblue'})
-         }
-         } else {
-         if (ligne > this.gridLigne) {
-         this.tiles.push({text: 'One', cols: this.gridColonne, rows: ligne, color: 'lightblue'})
-         } else {
-         this.tiles.push({text: 'One', cols: this.gridColonne, rows: this.gridLigne, color: 'lightblue'})
-         }
-         }*/
 
-        this.firstClick = true
-      }
+
+
     }
-    else{
-      alert("case " + ligne+colonne +" déjà choisi")
-    }
+
+
   }
 }
 

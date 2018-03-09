@@ -55,13 +55,6 @@
   height:100px;
   width: 25%;
 }
-.backgroundColor{
-  float: right;
-  border: solid;
-  height:100px;
-  width: 25%;
-  background: red;
-}
 .select-helper {
   position: absolute;
   border: 1px dashed red;
@@ -96,36 +89,47 @@ mat-sidenav {
 .colTab{
   float: right;
   border: solid;
-  height:100px;
+  height:60px;
   width: 25%;
 }
 .backgroundColorred{
   float: right;
   border: solid;
-  height:100px;
+  height:60px;
   width: 25%;
   background: red;
 }
 .backgroundColorlightblue{
   float: right;
   border: solid;
-  height:100px;
+  height:60px;
   width: 25%;
   background: lightblue;
 }
 .backgroundColoryellow{
   float: right;
   border: solid;
-  height:100px;
+  height:60px;
   width: 25%;
   background: yellow;
 }
 .backgroundColorgreen{
   float: right;
   border: solid;
-  height:100px;
+  height:60px;
   width: 25%;
   background: green;
+}
+.button{
+  height: 30px;
+  width: 40px;
+  border: solid;
+}
+.floatRight{
+  float: right;
+}
+.borderColorRed{
+  border-color: red;
 }
 
 /* dragula-specific example page styles */
@@ -166,6 +170,9 @@ mat-sidenav {
   background-color: #e74c3c;
 }
 .container.ex-over {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+.backclick{
   background-color: rgba(255, 255, 255, 0.3);
 }
 .handle {
