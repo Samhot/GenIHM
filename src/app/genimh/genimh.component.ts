@@ -38,6 +38,7 @@ export class GenimhComponent {
   public name
   public animal
   public ItemEdit
+  public placeHolderAutoComplete
 
   public formControl: Array<string> = ['autocomplete','checkbox','datepicker','input','radiobutton','select','slider','slidetoggle'];
   public navigation: Array<string> = ['menu','sidenav','toolbar'];
@@ -86,6 +87,7 @@ export class GenimhComponent {
     this.name
     this.animal
     this.ItemEdit
+    this.placeHolderAutoComplete = "PlaceHolder"
     this.deleteMode = "Off"
     this.classBtnDelete = "button floatRight"
     this.OptionSelect = [
@@ -150,10 +152,31 @@ export class GenimhComponent {
   ngOnInit(){
     this.reset()
   }
+  addValueAutocomplete(){
+    this.options.push('')
+  }
 
+  changeValueAutoComplete(value,event){
+    for (var i = 0; i < this.options.length; i++){
+      if(this.options[i] == value){
+        this.options[i] = event.target.value
+      }
+    }
+  }
+
+  removeValueAutocomplete(value){
+    for (var i = 0; i < this.options.length; i++){
+     if(this.options[i] == value){
+       this.options.splice(i,1)
+     }
+    }
+  }
   editItem(item){
     this.ItemEdit = item;
   }
+
+
+
   back() {
     console.log(this.lastAction[this.lastAction.length-1])
     console.log(this.lastAction)
@@ -262,7 +285,7 @@ reset(){
             }
           }
           if(allArrayVerif == false){
-            this.allArray.push(new Array(String(matrice[z][0])+ String(matrice[z][1]),[]))
+            this.allArray.push(new Array(String(matrice[z][0])+ String(matrice[z][1]),new Array()))
             this.tiles.push({text: '', cols:matrice[z][2] , rows: matrice[z][3], color: matrice[z][4] ,vide:"true", tab:this.allArray[this.allArray.length-1][1] , id: "web"+this.listID})
             this.listID = parseInt(this.listID) + 1
           }
