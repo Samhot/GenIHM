@@ -39,6 +39,11 @@ export class GenimhComponent {
   public animal
   public ItemEdit
   public placeHolderAutoComplete
+  public valueCheckbox
+  public typeButton
+  public buttonValue
+  public styleButton
+  public styleButton2
 
   public formControl: Array<string> = ['autocomplete','checkbox','datepicker','input','radiobutton','select','slider','slidetoggle'];
   public navigation: Array<string> = ['menu','sidenav','toolbar'];
@@ -87,6 +92,11 @@ export class GenimhComponent {
     this.name
     this.animal
     this.ItemEdit
+    this.typeButton = 'basic'
+    this.buttonValue = "Button"
+    this.styleButton = "basic"
+    this.styleButton2 = "basic"
+    this.valueCheckbox = "Option 1"
     this.placeHolderAutoComplete = "PlaceHolder"
     this.deleteMode = "Off"
     this.classBtnDelete = "button floatRight"
@@ -155,7 +165,10 @@ export class GenimhComponent {
   addValueAutocomplete(){
     this.options.push('')
   }
-
+  changeTypeButton(type){
+    this.typeButton = type
+    console.log(this.typeButton)
+  }
   changeValueAutoComplete(value,event){
     for (var i = 0; i < this.options.length; i++){
       if(this.options[i] == value){
@@ -174,8 +187,13 @@ export class GenimhComponent {
   editItem(item){
     this.ItemEdit = item;
   }
-
-
+  changeTextButton(text){
+    this.buttonValue = text
+  }
+  changeStyle(style, style2){
+    this.styleButton = style
+    this.styleButton2 = style2
+  }
 
   back() {
     console.log(this.lastAction[this.lastAction.length-1])

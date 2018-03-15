@@ -105,165 +105,336 @@
        </mat-tab>
        <mat-tab label="Edit Page">
 
-          <div style=" width: 100%;background-color: #FF9700; margin-bottom: 15px; border: solid; border-color: rgba(37,37,37,0.95);">
-           <p style="text-align: center"><strong style="color: white">Edit item</strong></p>
-            <div *ngIf="ItemEdit == 'autocomplete' " >
-              <div style="display: inline-block;color: white" > Placeholder : <input  style="color: black" [(ngModel)]="placeHolderAutoComplete"></div>
-              <div *ngFor="let option of options" >
-                <input (change)="changeValueAutoComplete(option,$event)"  value="{{ option }}"><button mat-mini-fab color="warn">
-                <mat-icon aria-label="Example icon-button with a heart icon" (click)="removeValueAutocomplete(option)" >remove</mat-icon>
-              </button>
-              </div>
-              <button mat-mini-fab color="#3349FF" (click)="addValueAutocomplete()">
-                <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
-              </button>
+         <!--  $$$$$$$$$$$$$$$$$$$$$$$$$$$  EDIT ITEM $$$$$$$$$$$$$$$$$$$$$$$$  -->
+
+                   <div style=" width: 100%;background-color: #FF9700; margin-bottom: 15px; border: solid; border-color: rgba(37,37,37,0.95);">
+                    <h4 style="text-align: center"><strong style="color: white">Edit item</strong></h4>
+
+                     <div *ngIf="ItemEdit == 'autocomplete' " >
+                       <div style="display: inline-block;color: white" > Placeholder : <input  style="color: black" [(ngModel)]="placeHolderAutoComplete"></div>
+                       <div *ngFor="let option of options" >
+                         <input (change)="changeValueAutoComplete(option,$event)"  value="{{ option }}"><button mat-mini-fab color="warn">
+                         <mat-icon aria-label="Example icon-button with a heart icon" (click)="removeValueAutocomplete(option)" >remove</mat-icon>
+                       </button>
+                       </div>
+                       <button mat-mini-fab (click)="addValueAutocomplete()">
+                         <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
+                       </button>
+                     </div>
+
+                     <div *ngIf="ItemEdit == 'checkbox' " >
+                       <div style="display: inline-block;color: black" > Value : <input  style="color: black" [(ngModel)]="valueCheckbox"></div>
+                     </div>
+
+                     <div *ngIf="ItemEdit == 'button' ">
+                      <div  style="text-align: center">
+                       <mat-radio-group>
+                         <mat-radio-button (click)="changeTypeButton('basic')" value="1">Basic Buttons  <button mat-raised-button style="margin-right: 20px">Basic</button> </mat-radio-button>
+                         <mat-radio-button (click)="changeTypeButton('icon')" value="2">Icon Buttons <button mat-icon-button><mat-icon aria-label="Example icon-button with a heart icon">favorite</mat-icon></button></mat-radio-button>
+                       </mat-radio-group>
+                      </div>
+                       <div *ngIf="typeButton == 'basic' " style="text-align: center" >
+                         <div style="display: inline-block;color: white" > Value : <input  style="color: black" [(ngModel)]="buttonValue"></div>
+
+                         <h3 style="text-align: center">Choose your style button</h3>
+                         <div class="button-row">
+                           <button mat-button (click)="changeStyle('basic','basic') ">Basic</button>
+                           <button mat-button color="accent" (click)="changeStyle('basic','accent') ">Accent</button>
+                           <button mat-button color="warn" (click)="changeStyle('basic','warn') ">Warn</button>
+                           <button mat-button disabled>Disabled</button>
+                         </div>
+                         <div class="button-row"  >
+                           <button mat-raised-button (click)="changeStyle('raised','basic') " >Basic</button>
+                           <button mat-raised-button color="accent" (click)="changeStyle('raised','accent') ">Accent</button>
+                           <button mat-raised-button color="warn" (click)="changeStyle('raised','warn') ">Warn</button>
+                           <button mat-raised-button disabled>Disabled</button>
+                         </div>
+                         <div class="button-row"  >
+                           <button mat-fab (click)="changeStyle('fab','basic') ">Basic</button>
+                           <button mat-fab color="warn" (click)="changeStyle('fab','warn') ">Warn</button>
+                           <button mat-fab disabled >Disabled</button>
+                         </div>
+                         <div class="button-row"  >
+                           <button mat-mini-fab (click)="changeStyle('minifab','warn')">Basic</button>
+                           <button mat-mini-fab color="warn" (click)="changeStyle('minifab','warn') ">Warn</button>
+                           <button mat-mini-fab disabled>Disabled</button>
+                         </div>
+                       </div>
+
+                       <div *ngIf="typeButton == 'icon' " style="text-align: center">
+                         <h3 style="text-align: center">Choose your Icon </h3>
+                         <div class="button-row">
+                           <button mat-icon-button (click)="changeTextButton('favorite')">
+                             <mat-icon aria-label="Example icon-button with a heart icon">favorite</mat-icon>
+                           </button>
+                           <button mat-icon-button (click)="changeTextButton('add')">
+                             <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
+                           </button>
+                           <button mat-icon-button (click)="changeTextButton('remove')">
+                             <mat-icon aria-label="Example icon-button with a heart icon">remove</mat-icon>
+                           </button>
+                         </div>
+                         <h3 style="text-align: center">Chosse your style button</h3>
+                         <div class="button-row">
+                           <button mat-icon-button (click)="changeStyle('icon','basic')">
+                             <mat-icon aria-label="Example icon-button with a heart icon">favorite</mat-icon>
+                           </button>
+                           <button mat-icon-button color="accent" (click)="changeStyle('icon','accent')">
+                             <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
+                           </button>
+                           <button mat-icon-button color="warn" (click)="changeStyle('icon','warn')">
+                             <mat-icon aria-label="Example icon-button with a heart icon">remove</mat-icon>
+                           </button>
+                         </div>
+                         <div class="button-row">
+                           <button mat-button (click)="changeStyle('basic','basic')"> <mat-icon aria-label="Example icon-button with a heart icon">favorite</mat-icon></button>
+                           <button mat-button color="accent" (click)="changeStyle('basic','accent')"> <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon></button>
+                           <button mat-button color="warn" (click)="changeStyle('basic','warn')"> <mat-icon aria-label="Example icon-button with a heart icon">remove</mat-icon></button>
+                         </div>
+                         <div class="button-row">
+                           <button mat-raised-button (click)="changeStyle('raised','basic')"> <mat-icon aria-label="Example icon-button with a heart icon">favorite</mat-icon></button>
+                           <button mat-raised-button color="accent" (click)="changeStyle('raised','accent')"> <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon></button>
+                           <button mat-raised-button color="warn" (click)="changeStyle('raised','warn')"> <mat-icon aria-label="Example icon-button with a heart icon">remove</mat-icon></button>
+                         </div>
+                         <div class="button-row">
+                           <button mat-fab (click)="changeStyle('fab','basic')"><mat-icon aria-label="Example icon-button with a heart icon">favorite</mat-icon></button>
+                           <button mat-fab color="warn" (click)="changeStyle('fab','warn')"><mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon></button>
+                         </div>
+                         <div class="button-row">
+                           <button mat-mini-fab (click)="changeStyle('minifab','basic')"><mat-icon aria-label="Example icon-button with a heart icon">favorite</mat-icon></button>
+                           <button mat-mini-fab color="warn" (click)="changeStyle('fab','warn')"><mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon></button>
+                         </div>
+                       </div>
+                     </div>
+                   </div>
+
+
+         <!--  $$$$$$$$$$$$$$$$$$$$$$$$$$$  FIN EDIT ITEM $$$$$$$$$$$$$$$$$$$$$$$$  -->
+
+                    <accordion>
+                      <accordion-group heading="Form Control">
+                        <div class='parent'>
+                        <div class='wrapper'>
+                          <div [dragula]='"page-bag"' [dragulaModel]='formControl' id="componentFrom">
+                            <img *ngFor='let text of formControl' src="../../assets/iconeGENIHM/{{text}}.PNG" name="{{text}}" style="padding: 5px">
+                          </div>
+                        </div>
+                        </div>
+                      </accordion-group>
+                      <accordion-group heading="Navigation">
+                        <div class='parent'>
+                          <div class='wrapper'>
+                            <div [dragula]='"page-bag"' [dragulaModel]='navigation' id="componentNav">
+                              <img *ngFor='let text of navigation' src="../../assets/iconeGENIHM/{{text}}.PNG" name="{{text}}" style="padding: 5px">
+                            </div>
+                          </div>
+                        </div>
+                      </accordion-group>
+                      <accordion-group heading="Layout">
+                        <div class='parent'>
+                          <div class='wrapper'>
+                            <div [dragula]='"page-bag"' [dragulaModel]='layout' id="componentLayout">
+                              <img *ngFor='let text of layout' src="../../assets/iconeGENIHM/{{text}}.PNG" name="{{text}}" style="padding: 5px">
+                            </div>
+                          </div>
+                        </div>
+                      </accordion-group>
+                      <accordion-group heading="Button & Indicators">
+                        <div class='parent'>
+                          <div class='wrapper'>
+                            <div [dragula]='"page-bag"' [dragulaModel]='button' id="componentButton">
+                              <img *ngFor='let text of button' src="../../assets/iconeGENIHM/{{text}}.PNG" name="{{text}}" style="padding: 5px">
+                            </div>
+                          </div>
+                        </div>
+                      </accordion-group>
+                      <accordion-group heading="Popups & Modals">
+                        <div class='parent'>
+                          <div class='wrapper'>
+                            <div [dragula]='"page-bag"' [dragulaModel]='modals' id="componentModals">
+                              <img *ngFor='let text of modals' src="../../assets/iconeGENIHM/{{text}}.PNG" name="{{text}}" style="padding: 5px">
+                            </div>
+                          </div>
+                        </div>
+                      </accordion-group>
+                      <accordion-group heading="Data Table">
+                        <div class='parent'>
+                          <div class='wrapper'>
+                            <div [dragula]='"page-bag"' [dragulaModel]='dataTable' id="componentDataTable">
+                              <img *ngFor='let text of dataTable' src="../../assets/iconeGENIHM/{{text}}.PNG" name="{{text}}" style="padding: 5px">
+                            </div>
+                          </div>
+                        </div>
+                      </accordion-group>
+                    </accordion>
+                  <accordion>
+                    <accordion-group heading="Console">
+                      <div *ngFor='let tile of tiles'>
+                        <pre *ngIf="tile.vide == 'true' ">{{tile.tab | json}}</pre>
+                      </div>
+                    </accordion-group>
+                  </accordion>
+                </mat-tab>
+              </mat-tab-group>
+
+            </mat-sidenav>
+
+            <mat-menu #appMenu="matMenu">
+              <button mat-menu-item> Settings </button>
+              <button mat-menu-item> Help </button>
+            </mat-menu>
+
+         <form id="formGrid">
+          <mat-grid-list cols="4" rowHeight="100px">
+              <mat-grid-tile
+                  *ngFor="let tile of tiles"
+                  [colspan]="tile.cols"
+                  [rowspan]="tile.rows"
+                  [style.background]="tile.color">
+
+
+            <div *ngIf="tile.vide == 'true' "  [dragula]='"page-bag"' [dragulaModel]='tile.tab' id={{tile.id}} style="width: 100%;height: 100%;">
+                  <div *ngFor='let text of tile.tab'>
+
+                    <div *ngIf="text == 'autocomplete' " (click)="editItem('autocomplete')">
+                      <input class="w3-input w3-border w3-light-grey" type="text" placeholder="{{placeHolderAutoComplete}}" [matAutocomplete]="auto">
+                      <mat-autocomplete #auto="matAutocomplete">
+                        <mat-option *ngFor="let option of options" [value]="option">
+                          {{ option }}
+                        </mat-option>
+                      </mat-autocomplete>
+                     </div>
+
+                    <div *ngIf="text == 'checkbox' " (click)="editItem('checkbox')">
+                    <mat-checkbox>{{valueCheckbox}}</mat-checkbox>
+                    </div>
+
+                    <div *ngIf="text == 'button' " (click)="editItem('button')">
+                      <div *ngIf="typeButton == 'basic' ">
+                      <div *ngIf="styleButton == 'basic' ">
+                        <button mat-button *ngIf="styleButton2 == 'basic' ">{{buttonValue}}</button>
+                        <button mat-button color="accent" *ngIf="styleButton2 == 'accent' ">{{buttonValue}}</button>
+                        <button mat-button color="warn"  *ngIf="styleButton2 == 'warn' ">{{buttonValue}}</button>
+                      </div>
+
+                      <div *ngIf="styleButton == 'raised' ">
+                        <button mat-raised-button  *ngIf="styleButton2 == 'basic' ">{{buttonValue}}</button>
+                        <button mat-raised-button color="accent"  *ngIf="styleButton2 == 'accent' ">{{buttonValue}}</button>
+                        <button mat-raised-button color="warn" *ngIf="styleButton2 == 'warn' ">{{buttonValue}}</button>
+                      </div>
+
+                      <div *ngIf="styleButton == 'fab' ">
+                        <button mat-fab  *ngIf="styleButton2 == 'basic' ">{{buttonValue}}</button>
+                        <button mat-fab color="accent"  *ngIf="styleButton2 == 'accent' ">{{buttonValue}}</button>
+                        <button mat-fab color="warn" *ngIf="styleButton2 == 'warn' ">{{buttonValue}}</button>
+                      </div>
+
+                      <div *ngIf="styleButton == 'minifab' ">
+                        <button mat-mini-fab  *ngIf="styleButton2 == 'basic' ">{{buttonValue}}</button>
+                        <button mat-mini-fab color="accent"  *ngIf="styleButton2 == 'accent' ">{{buttonValue}}</button>
+                        <button mat-mini-fab color="warn" *ngIf="styleButton2 == 'warn' ">{{buttonValue}}</button>
+                      </div>
+                    </div>
+                      <div *ngIf="typeButton == 'icon' ">
+                        <div *ngIf="styleButton == 'icon' ">
+                        <button mat-icon-button  *ngIf="styleButton2 == 'basic' ">
+                          <mat-icon aria-label="Example icon-button with a heart icon">{{buttonValue}}</mat-icon>
+                        </button>
+                        <button mat-icon-button color="accent"  *ngIf="styleButton2 == 'accent' ">
+                          <mat-icon aria-label="Example icon-button with a heart icon">{{buttonValue}}</mat-icon>
+                        </button>
+                        <button mat-icon-button color="warn"  *ngIf="styleButton2 == 'warn' ">
+                          <mat-icon aria-label="Example icon-button with a heart icon">{{buttonValue}}</mat-icon>
+                        </button>
+                        </div>
+                        <div *ngIf="styleButton == 'basic' ">
+                          <button mat-button  *ngIf="styleButton2 == 'basic' ">
+                            <mat-icon aria-label="Example icon-button with a heart icon">{{buttonValue}}</mat-icon>
+                          </button>
+                          <button mat-button color="accent"  *ngIf="styleButton2 == 'accent' ">
+                            <mat-icon aria-label="Example icon-button with a heart icon">{{buttonValue}}</mat-icon>
+                          </button>
+                          <button mat-button color="warn"  *ngIf="styleButton2 == 'warn' ">
+                            <mat-icon aria-label="Example icon-button with a heart icon">{{buttonValue}}</mat-icon>
+                          </button>
+                        </div>
+
+                        <div *ngIf="styleButton == 'raised' ">
+                          <button mat-raised-button  *ngIf="styleButton2 == 'basic' ">
+                            <mat-icon aria-label="Example icon-button with a heart icon">{{buttonValue}}</mat-icon>
+                          </button>
+                          <button mat-raised-button color="accent"  *ngIf="styleButton2 == 'accent' ">
+                            <mat-icon aria-label="Example icon-button with a heart icon">{{buttonValue}}</mat-icon>
+                          </button>
+                          <button mat-raised-button color="warn"  *ngIf="styleButton2 == 'warn' ">
+                            <mat-icon aria-label="Example icon-button with a heart icon">{{buttonValue}}</mat-icon>
+                          </button>
+                        </div>
+
+                        <div *ngIf="styleButton == 'fab' ">
+                          <button mat-fab  *ngIf="styleButton2 == 'basic' ">
+                            <mat-icon aria-label="Example icon-button with a heart icon">{{buttonValue}}</mat-icon>
+                          </button>
+                          <button mat-fab color="warn"  *ngIf="styleButton2 == 'warn' ">
+                            <mat-icon aria-label="Example icon-button with a heart icon">{{buttonValue}}</mat-icon>
+                          </button>
+                        </div>
+
+                        <div *ngIf="styleButton == 'minifab' ">
+                          <button mat-mini-fab  *ngIf="styleButton2 == 'basic' ">
+                            <mat-icon aria-label="Example icon-button with a heart icon">{{buttonValue}}</mat-icon>
+                          </button>
+                          <button mat-mini-fab color="warn"  *ngIf="styleButton2 == 'warn' ">
+                            <mat-icon aria-label="Example icon-button with a heart icon">{{buttonValue}}</mat-icon>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div *ngIf="text == 'datepicker' ">
+                      <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+                      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                      <mat-datepicker #picker></mat-datepicker>
+                    </div>
+
+
+                    <div *ngIf="text == 'input' ">
+                      <input matInput placeholder="Your value" >
+                    </div>
+
+                   <div *ngIf="text == 'radiobutton' ">
+                     <mat-radio-group>
+                       <mat-radio-button value="1">Option 1</mat-radio-button>
+                       <mat-radio-button value="2">Option 2</mat-radio-button>
+                     </mat-radio-group>
+                    </div>
+
+                    <div *ngIf="text == 'select' ">
+                      <mat-select placeholder="Your Option">
+                        <mat-option *ngFor="let option of OptionSelect" [value]="option.value">
+                          {{ option.viewValue }}
+                        </mat-option>
+                      </mat-select>
+                    </div>
+
+                    <div *ngIf="text == 'slider' ">
+
+                    </div>
+
+                    <div *ngIf="text == 'slidetoggle' ">
+                      <mat-slide-toggle>Slide me!</mat-slide-toggle>
+                    </div>
+
+                  </div>
             </div>
-          </div>
 
 
-           <accordion>
-             <accordion-group heading="Form Control">
-               <div class='parent'>
-               <div class='wrapper'>
-                 <div [dragula]='"page-bag"' [dragulaModel]='formControl' id="componentFrom">
-                   <img *ngFor='let text of formControl' src="../../assets/iconeGENIHM/{{text}}.PNG" name="{{text}}" style="padding: 5px">
-                 </div>
-               </div>
-               </div>
-             </accordion-group>
-             <accordion-group heading="Navigation">
-               <div class='parent'>
-                 <div class='wrapper'>
-                   <div [dragula]='"page-bag"' [dragulaModel]='navigation' id="componentNav">
-                     <img *ngFor='let text of navigation' src="../../assets/iconeGENIHM/{{text}}.PNG" name="{{text}}" style="padding: 5px">
-                   </div>
-                 </div>
-               </div>
-             </accordion-group>
-             <accordion-group heading="Layout">
-               <div class='parent'>
-                 <div class='wrapper'>
-                   <div [dragula]='"page-bag"' [dragulaModel]='layout' id="componentLayout">
-                     <img *ngFor='let text of layout' src="../../assets/iconeGENIHM/{{text}}.PNG" name="{{text}}" style="padding: 5px">
-                   </div>
-                 </div>
-               </div>
-             </accordion-group>
-             <accordion-group heading="Button & Indicators">
-               <div class='parent'>
-                 <div class='wrapper'>
-                   <div [dragula]='"page-bag"' [dragulaModel]='button' id="componentButton">
-                     <img *ngFor='let text of button' src="../../assets/iconeGENIHM/{{text}}.PNG" name="{{text}}" style="padding: 5px">
-                   </div>
-                 </div>
-               </div>
-             </accordion-group>
-             <accordion-group heading="Popups & Modals">
-               <div class='parent'>
-                 <div class='wrapper'>
-                   <div [dragula]='"page-bag"' [dragulaModel]='modals' id="componentModals">
-                     <img *ngFor='let text of modals' src="../../assets/iconeGENIHM/{{text}}.PNG" name="{{text}}" style="padding: 5px">
-                   </div>
-                 </div>
-               </div>
-             </accordion-group>
-             <accordion-group heading="Data Table">
-               <div class='parent'>
-                 <div class='wrapper'>
-                   <div [dragula]='"page-bag"' [dragulaModel]='dataTable' id="componentDataTable">
-                     <img *ngFor='let text of dataTable' src="../../assets/iconeGENIHM/{{text}}.PNG" name="{{text}}" style="padding: 5px">
-                   </div>
-                 </div>
-               </div>
-             </accordion-group>
-           </accordion>
-         <accordion>
-           <accordion-group heading="Console">
-             <div *ngFor='let tile of tiles'>
-               <pre *ngIf="tile.vide == 'true' ">{{tile.tab | json}}</pre>
-             </div>
-           </accordion-group>
-         </accordion>
-       </mat-tab>
-     </mat-tab-group>
-
-   </mat-sidenav>
-
-   <mat-menu #appMenu="matMenu">
-     <button mat-menu-item> Settings </button>
-     <button mat-menu-item> Help </button>
-   </mat-menu>
-
-<form id="formGrid">
- <mat-grid-list cols="4" rowHeight="100px">
-     <mat-grid-tile
-         *ngFor="let tile of tiles"
-         [colspan]="tile.cols"
-         [rowspan]="tile.rows"
-         [style.background]="tile.color">
+              </mat-grid-tile>
+            </mat-grid-list>
+         </form>
+           <button type="submit" form="formGrid" value="Valider">Valider</button>
 
 
-   <div *ngIf="tile.vide == 'true' "  [dragula]='"page-bag"' [dragulaModel]='tile.tab' id={{tile.id}} style="width: 100%;height: 100%;">
-         <div *ngFor='let text of tile.tab'>
-
-           <div *ngIf="text == 'autocomplete' " (click)="editItem('autocomplete')">
-             <input class="w3-input w3-border w3-light-grey" type="text" placeholder="{{placeHolderAutoComplete}}" [matAutocomplete]="auto">
-             <mat-autocomplete #auto="matAutocomplete">
-               <mat-option *ngFor="let option of options" [value]="option">
-                 {{ option }}
-               </mat-option>
-             </mat-autocomplete>
-            </div>
-
-           <div *ngIf="text == 'checkbox' ">
-           <mat-checkbox><input type="text"></mat-checkbox>
-           </div>
-
-
-           <div *ngIf="text == 'datepicker' ">
-             <input matInput [matDatepicker]="picker" placeholder="Choose a date">
-             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-             <mat-datepicker #picker></mat-datepicker>
-           </div>
-
-
-           <div *ngIf="text == 'input' ">
-             <input matInput placeholder="Your value" >
-           </div>
-
-          <div *ngIf="text == 'radiobutton' ">
-            <mat-radio-group>
-              <mat-radio-button value="1">Option 1</mat-radio-button>
-              <mat-radio-button value="2">Option 2</mat-radio-button>
-            </mat-radio-group>
-           </div>
-
-           <div *ngIf="text == 'select' ">
-             <mat-select placeholder="Your Option">
-               <mat-option *ngFor="let option of OptionSelect" [value]="option.value">
-                 {{ option.viewValue }}
-               </mat-option>
-             </mat-select>
-           </div>
-
-           <div *ngIf="text == 'slider' ">
-
-           </div>
-
-           <div *ngIf="text == 'slidetoggle' ">
-             <mat-slide-toggle>Slide me!</mat-slide-toggle>
-           </div>
-
-         </div>
-   </div>
-
-
-     </mat-grid-tile>
-   </mat-grid-list>
-</form>
-  <button type="submit" form="formGrid" value="Valider">Valider</button>
-
-
-  <!-- <button mat-button [matMenuTriggerFor]="appMenu" class="margin-top">Bouton menu exemple</button> -->
+           <!-- <button mat-button [matMenuTriggerFor]="appMenu" class="margin-top">Bouton menu exemple</button> -->
  </mat-sidenav-container>
 
