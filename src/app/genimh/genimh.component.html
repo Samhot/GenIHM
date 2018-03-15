@@ -203,10 +203,11 @@
          [style.background]="tile.color">
 
 
-   <div *ngIf="tile.vide == 'true' "  [dragula]='"page-bag"' [dragulaModel]='tile.tab' id={{tile.id}} style="width: 100%;height: 100%;">
-         <div *ngFor='let text of tile.tab'>
+   <div *ngIf="tile.vide == 'true' " [dragula]='"page-bag"' [dragulaModel]='tile.tab' id={{tile.id}} style="width: 100%;height: 100%;" class="containerX"
+        fxLayout="column" fxLayoutAlign="space-around center">
+         <div *ngFor='let text of tile.tab' >
 
-           <div *ngIf="text == 'autocomplete' " (click)="editItem('autocomplete')">
+           <div *ngIf="text == 'autocomplete' " (click)="editItem('autocomplete')" >
              <input class="w3-input w3-border w3-light-grey" type="text" placeholder="{{placeHolderAutoComplete}}" [matAutocomplete]="auto">
              <mat-autocomplete #auto="matAutocomplete">
                <mat-option *ngFor="let option of options" [value]="option">
@@ -263,7 +264,28 @@
 </form>
   <button type="submit" form="formGrid" value="Valider">Valider</button>
 
-
-  <!-- <button mat-button [matMenuTriggerFor]="appMenu" class="margin-top">Bouton menu exemple</button> -->
- </mat-sidenav-container>
+  <mat-card class="card-demo">
+    <mat-card-title>Flex Attribute Values</mat-card-title>
+    <mat-card-subtitle>Explore impact of non-numerical values for the 'fxFlex' API:
+    </mat-card-subtitle>
+    <mat-card-content>
+      <div class="containerX">
+        <div fxLayout="row wrap" class="colored box nopad">
+          <div fxFlex="none"> [fxFlex="none"]</div>
+          <div fxFlex> [fxFlex]</div>
+          <div fxFlex="nogrow"> [fxFlex="nogrow"]</div>
+          <div fxFlex="grow"> [fxFlex="grow"]</div>
+          <div fxFlex="initial"> [fxFlex="initial"]</div>
+          <div fxFlex="auto"> [fxFlex="auto"]</div>
+          <div fxFlex="noshrink"> [fxFlex="noshrink"]</div>
+          <!-- <div fxFlex="0"> [fxFlex="0"]</div> -->
+          <div fxFlex="auto"> [fxFlex="auto"]</div>
+          <!-- <div fxFlex="50">[fxFlex="50"]</div> -->
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-footer>
+      <div class="hint">&lt;div fxLayout="row wrap" &gt;</div>
+    </mat-card-footer>
+  </mat-card> </mat-sidenav-container>
 

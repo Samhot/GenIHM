@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { DragulaModule } from 'ng2-dragula';
+import { FlexLayoutModule } from '@angular/flex-layout';
+
 
 // ADF modules
 import { ContentModule } from '@alfresco/adf-content-services';
@@ -14,8 +16,8 @@ import { MatGridListModule,
          MatMenuModule,
          MatToolbarModule,
          MatIconModule,
-         MatButton
-       } from '@angular/material';
+         MatButton,
+        } from '@angular/material';
 
 export function modules() {
   return [
@@ -31,7 +33,8 @@ export function modules() {
       MatToolbarModule,
       MatIconModule,
       MatGridListModule,
-      DragulaModule
+      DragulaModule,
+      FlexLayoutModule,
   ];
 }
 
