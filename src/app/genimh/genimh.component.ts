@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, Inject} from '@angular/core';
 import {FormControl, FormArray} from '@angular/forms';
 import { AppComponent } from '../app.component';
 import { DragulaService } from 'ng2-dragula';
-
+import {MatDialog, MAT_DIALOG_DATA, MatDialogRef} from "@angular/material";
+import {AccordionModule} from "ng2-accordion";
 
 @Component({
   selector: 'app-genimh',
@@ -30,17 +31,32 @@ export class GenimhComponent {
   public saveRemove;
   public deleteMode;
   public classBtnDelete;
+  public lastAction
+  public lastActionBack
+  public options
+  public OptionSelect
+  public name
+  public animal
+  public ItemEdit
 
-  public many: Array<string> = ['Title', 'Content', 'Checkbox', 'Button'];
+  public formControl: Array<string> = ['autocomplete','checkbox','datepicker','input','radiobutton','select','slider','slidetoggle'];
+  public navigation: Array<string> = ['menu','sidenav','toolbar'];
+  public layout: Array<string> = ['card','list','tabs','stepper'];
+  public button: Array<string> = ['button','buttontoggle','chips','icon','progressspinner','progressbar'];
+  public modals: Array<string> = ['dialog','snackbar','tooltip'];
+  public dataTable: Array<string> = ['paginator','sortheader','table'];
 
-  constructor( public App: AppComponent, private dragulaService: DragulaService) {
+
+  constructor( public App: AppComponent, private dragulaService: DragulaService,public dialog: MatDialog) {
     dragulaService.setOptions('page-bag', {
       accepts: function (el, target, source, sibling) {
-        return target.id !== 'component'; // elements can be dropped only in 'to_drop_to' container
+
+
+        return target.id !== 'componentFrom' || target.id !== 'componentNav' || target.id !== 'componentLayout'|| target.id !== 'componentButton' || target.id !== 'componentModals'|| target.id !== 'componentDataTable'  ; // elements can be dropped only in 'to_drop_to' container
       },
       copy: (el: Element, source: Element): boolean => {
         // elements are copied only if they are not already copied ones. That enables the 'removeOnSpill' to work
-        return source.id === 'component';
+        return source.id === 'componentNav' ||  source.id === 'componentFrom' ||  source.id === 'componentLayout'||  source.id === 'componentButton'||  source.id === 'componentModals'||  source.id === 'componentDataTable';
       },
       removeOnSpill: true
     });
@@ -65,15 +81,35 @@ export class GenimhComponent {
     this.allArray = ['']
     this.matriceVerifColor = []
     this.saveRemove = []
+    this.lastAction = []
+    this.lastActionBack = []
+    this.name
+    this.animal
+    this.ItemEdit
     this.deleteMode = "Off"
     this.classBtnDelete = "button floatRight"
+    this.OptionSelect = [
+      {value: 'Option-0', viewValue: 'Option 1'},
+      {value: 'Option-1', viewValue: 'Option 2'},
+      {value: 'Option-2', viewValue: 'Option 3'}
+    ];
 
+    this.options = [
+      'One',
+      'Two',
+      'Three'
+    ];
     // determine if drop is allowed
     dragulaService.over.subscribe((value) => {
       this.onOver(value.slice(1));
     });
     dragulaService.drop.subscribe((value) => {
       this.onDrop(value);
+
+      //value
+      //if(value[1].name == "checkbox"){
+       // this.openDialog();
+      //}
     });
 
     dragulaService.dropModel.subscribe((value: any) => {
@@ -85,32 +121,26 @@ export class GenimhComponent {
   }
 
   private onDropModel(args: any): void {
+    console.log(args)
     const [el, target, source] = args;
-    console.log('onDropModel:');
-    console.log(el);
-    console.log(target);
-    console.log(source);
+
   }
 
   private onRemoveModel(args: any): void {
     const [el, source] = args;
-    console.log('onRemoveModel:');
-    console.log(el);
-    console.log(source);
+
   }
-
-
-
 
   private onOver(args) {
     const [el, container, source] = args;
-    if ( container.id == 'component' ) {
+    if ( container.id == 'componentFrom' || container.id == 'componentNav' || container.id == 'componentLayout'|| container.id == 'componentButton'|| container.id == 'componentModals'|| container.id == 'componentDataTable' ) {
         el.remove();
       }
   }
 
   // (0 - bagname, 1 - el, 2 - target, 3 - source, 4 - sibling)
   private onDrop(value) {
+    console.log(value[1])
     if (value[2] == null) {// dragged outside any of the bags
       return; }
     if (value[2].id == 'component' && value[2].id !== value[3].id) {// dragged to a container that should not add the element
@@ -121,16 +151,51 @@ export class GenimhComponent {
     this.reset()
   }
 
+  editItem(item){
+    this.ItemEdit = item;
+  }
   back() {
-    var remove = this.matrice.splice(this.matrice.length -1 ,1)
-    this.saveRemove.push(remove[0])
-    this.main()
+    console.log(this.lastAction[this.lastAction.length-1])
+    console.log(this.lastAction)
+    if( this.lastAction[this.lastAction.length-1] == "delete"){
+      this.lastActionBack.push("add")
+      this.lastAction.splice(this.lastAction.length-1,1)
+      var forward =  this.saveRemove.splice(this.saveRemove.length -1 ,1)
+      console.log(forward[0])
+      this.matrice.push(forward[0])
+      console.log(this.matrice)
+      this.main()
+    }
+    if( this.lastAction[this.lastAction.length-1] == "add"){
+      this.lastActionBack.push("delete")
+      this.lastAction.splice(this.lastAction.length-1,1)
+      var remove = this.matrice.splice(this.matrice.length -1 ,1)
+      this.saveRemove.push(remove[0])
+      this.main()
+    }
+
+
   }
   forward(){
-    var forward =  this.saveRemove.splice(this.saveRemove.length -1 ,1)
-    this.matrice.push(forward[0])
-    this.main()
+    console.log(this.lastActionBack[this.lastActionBack.length-1])
+    console.log(this.lastActionBack)
+    if( this.lastActionBack[this.lastActionBack.length-1] == "delete"){
+      this.lastActionBack.splice(this.lastActionBack.length-1,1)
+      this.lastAction.push("add")
+
+      var forward =  this.saveRemove.splice(this.saveRemove.length -1 ,1)
+      this.matrice.push(forward[0])
+      this.main()
+    }
+    if( this.lastActionBack[this.lastActionBack.length-1] == "add"){
+      this.lastActionBack.splice(this.lastActionBack.length-1,1)
+      this.lastAction.push("delete")
+      var remove = this.matrice.splice(this.matrice.length -1 ,1)
+      this.saveRemove.push(remove[0])
+      this.main()
+    }
   }
+
   DeleteMode(){
     if(this.deleteMode == "Off"){
       this.deleteMode = "On"
@@ -143,6 +208,19 @@ export class GenimhComponent {
     }
   }
 
+  openDialog(): void {
+    let dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
+      width: '250px',
+      data: { name: this.name, animal: this.animal }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.animal = result;
+      console.log(this.animal)
+    });
+  }
+
   main(){
     this.fillMatrisVerif(this.matrice)
     this.fillTiles(this.matrice)
@@ -153,9 +231,11 @@ reset(){
   this.tiles = []
   this.listID = 0
   this.allArray = []
+  this.lastAction = []
+  this.lastActionBack = []
   this.matrisVerif = []
   this.matrice = []
-  this.tiles.push({text: '', cols: 4, rows: 10, color: 'grey',vide:"false", id: "0web"})
+  this.tiles.push({text: '', cols: 4, rows: 10, color: '#C0C0C0',vide:"false", id: "0web"})
   this.backgroundColor = []
   for(var i = 0; i < 40; i++){
     this.backgroundColor.push("colTab")
@@ -182,7 +262,7 @@ reset(){
             }
           }
           if(allArrayVerif == false){
-            this.allArray.push(new Array(String(matrice[z][0])+ String(matrice[z][1]),[""]))
+            this.allArray.push(new Array(String(matrice[z][0])+ String(matrice[z][1]),[]))
             this.tiles.push({text: '', cols:matrice[z][2] , rows: matrice[z][3], color: matrice[z][4] ,vide:"true", tab:this.allArray[this.allArray.length-1][1] , id: "web"+this.listID})
             this.listID = parseInt(this.listID) + 1
           }
@@ -257,7 +337,9 @@ reset(){
   }
   gridSkull(ligne,colonne) {
       if (this.deleteMode == "Off"){
+
         if (this.SelectedCase(ligne.toString() + colonne.toString()) == false) {
+
           var ligneF
           var colonneF
           if (this.firstClick == true) {
@@ -265,6 +347,7 @@ reset(){
             this.gridLigne = ligne
             this.firstClick = false
           }else {
+
             colonneF = this.mathSignPlus(this.gridColonne - colonne) + 1;
             ligneF = this.mathSignPlus(this.gridLigne - ligne) + 1;
             if (this.gridColonne.toString() > colonne.toString()) {
@@ -294,6 +377,8 @@ reset(){
               }
             }
             var verifBlock = false
+
+
             for (var i = 0; i < this.TestmatrisVerif.length; i++) {
               for (var e = 0; e < this.matrisVerif.length; e++) {
                 if (this.matrisVerif[e] == this.TestmatrisVerif[i] && verifBlock == false) {
@@ -303,6 +388,7 @@ reset(){
                 }
               }
             }
+            this.lastAction.push('add')
             this.main()
             this.firstClick = true
           }
@@ -320,6 +406,7 @@ reset(){
           this.firstClick = false
 
         }else {
+
           colonneF = this.mathSignPlus(this.gridColonne - colonne) + 1;
           ligneF = this.mathSignPlus(this.gridLigne - ligne) + 1;
           if (this.gridColonne.toString() > colonne.toString()) {
@@ -350,6 +437,8 @@ reset(){
           }
           if(DeleteM == false){
             alert("Impossible de supprimer cet element")
+          }else{
+            this.lastAction.push('delete')
           }
           this.main()
           this.firstClick = true
@@ -358,3 +447,18 @@ reset(){
   }
 }
 
+@Component({
+  selector: 'popup',
+  templateUrl: 'popup.html',
+})
+export class DialogOverviewExampleDialog {
+
+  constructor(
+    public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
+    @Inject(MAT_DIALOG_DATA) public data: any) { }
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+
+}

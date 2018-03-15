@@ -43,6 +43,7 @@
     "minimatch": "3.0.4",
     "moment": "2.15.2",
     "moment-es6": "^1.0.0",
+    "ng2-accordion": "0.0.15",
     "ng2-charts": "1.6.0",
     "ng2-dnd": "^5.0.2",
     "ng2-dragula": "^1.5.0",

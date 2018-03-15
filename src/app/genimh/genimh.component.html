@@ -1,12 +1,9 @@
-
-
-
- <h1> Grid View</h1>
+ <h1 (click)="editItem('Title')" >GenIHM Editor</h1>
  <button mat-button (click)="sidenav2.toggle()"><mat-icon>menu</mat-icon></button>
 <mat-sidenav-container>
   <mat-sidenav #sidenav2 mode="side" class="sidebar-left">
     <mat-tab-group>
-      <mat-tab label="Grid Option">
+      <mat-tab label="Create Page">
         <!-- <div>
          <div (click)="gridNameColor('rgb(255, 0, 0)')" style="display: block;float: right; height:15px;width: 5%; background-color: rgb(255, 0, 0) "></div>
          <div (click)="gridNameColor('rgb(255, 64, 0)')" style="display: block;float: right; height:15px;width: 5%; background-color: rgb(255, 64, 0) "></div>
@@ -106,19 +103,85 @@
 
 
        </mat-tab>
-       <mat-tab label="Dag Item Option">
-         <div class='parent'>
-           <div class='wrapper'>
-             <div class='container' [dragula]='"page-bag"' [dragulaModel]='many' id="component">
-               <div *ngFor='let text of many' [innerHtml]='text'></div>
+       <mat-tab label="Edit Page">
+
+          <div style=" width: 100%;background-color: #FF9700; margin-bottom: 15px; border: solid; border-color: rgba(37,37,37,0.95);">
+           <p style="text-align: center"><strong style="color: white">Edit item</strong></p>
+            <div *ngIf="ItemEdit == 'autocomplete' " >
+              <div style="display: block"><p style="color: white">Placeholder : </p> <input></div>
+              <div *ngFor="let option of options" >
+                <input value="{{ option }}"><button mat-mini-fab color="warn">
+                <mat-icon aria-label="Example icon-button with a heart icon">remove</mat-icon>
+              </button>
+              </div>
+              <button mat-mini-fab color="primary">
+                <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
+              </button>
+            </div>
+          </div>
+           <accordion>
+             <accordion-group heading="Form Control">
+               <div class='parent'>
+               <div class='wrapper'>
+                 <div [dragula]='"page-bag"' [dragulaModel]='formControl' id="componentFrom">
+                   <img *ngFor='let text of formControl' src="../../assets/iconeGENIHM/{{text}}.PNG" name="{{text}}" style="padding: 5px">
+                 </div>
+               </div>
+               </div>
+             </accordion-group>
+             <accordion-group heading="Navigation">
+               <div class='parent'>
+                 <div class='wrapper'>
+                   <div [dragula]='"page-bag"' [dragulaModel]='navigation' id="componentNav">
+                     <img *ngFor='let text of navigation' src="../../assets/iconeGENIHM/{{text}}.PNG" name="{{text}}" style="padding: 5px">
+                   </div>
+                 </div>
+               </div>
+             </accordion-group>
+             <accordion-group heading="Layout">
+               <div class='parent'>
+                 <div class='wrapper'>
+                   <div [dragula]='"page-bag"' [dragulaModel]='layout' id="componentLayout">
+                     <img *ngFor='let text of layout' src="../../assets/iconeGENIHM/{{text}}.PNG" name="{{text}}" style="padding: 5px">
+                   </div>
+                 </div>
+               </div>
+             </accordion-group>
+             <accordion-group heading="Button & Indicators">
+               <div class='parent'>
+                 <div class='wrapper'>
+                   <div [dragula]='"page-bag"' [dragulaModel]='button' id="componentButton">
+                     <img *ngFor='let text of button' src="../../assets/iconeGENIHM/{{text}}.PNG" name="{{text}}" style="padding: 5px">
+                   </div>
+                 </div>
+               </div>
+             </accordion-group>
+             <accordion-group heading="Popups & Modals">
+               <div class='parent'>
+                 <div class='wrapper'>
+                   <div [dragula]='"page-bag"' [dragulaModel]='modals' id="componentModals">
+                     <img *ngFor='let text of modals' src="../../assets/iconeGENIHM/{{text}}.PNG" name="{{text}}" style="padding: 5px">
+                   </div>
+                 </div>
+               </div>
+             </accordion-group>
+             <accordion-group heading="Data Table">
+               <div class='parent'>
+                 <div class='wrapper'>
+                   <div [dragula]='"page-bag"' [dragulaModel]='dataTable' id="componentDataTable">
+                     <img *ngFor='let text of dataTable' src="../../assets/iconeGENIHM/{{text}}.PNG" name="{{text}}" style="padding: 5px">
+                   </div>
+                 </div>
+               </div>
+             </accordion-group>
+           </accordion>
+         <accordion>
+           <accordion-group heading="Console">
+             <div *ngFor='let tile of tiles'>
+               <pre *ngIf="tile.vide == 'true' ">{{tile.tab | json}}</pre>
              </div>
-           </div>
-         </div>
-         <div  class='container' >
-           <div *ngFor='let tile of tiles'>
-             <pre *ngIf="tile.vide == 'true' ">{{tile.tab | json}}</pre>
-           </div>
-         </div>
+           </accordion-group>
+         </accordion>
        </mat-tab>
      </mat-tab-group>
 
@@ -129,7 +192,7 @@
      <button mat-menu-item> Help </button>
    </mat-menu>
 
-
+<form id="formGrid">
  <mat-grid-list cols="4" rowHeight="100px">
      <mat-grid-tile  dnd-sortable-container [dropZones]="['boxers-zone']" [sortableData]="listTeamTwo"
          *ngFor="let tile of tiles"
@@ -138,15 +201,66 @@
          [style.background]="tile.color">
 
 
-   <div *ngIf="tile.vide == 'true' " class='container' [dragula]='"page-bag"' [dragulaModel]='tile.tab' id={{tile.id}}>
-     <div *ngFor='let text of tile.tab' [innerHtml]='text'>
-     </div>
+   <div *ngIf="tile.vide == 'true' "  [dragula]='"page-bag"' [dragulaModel]='tile.tab' id={{tile.id}} style="width: 100%;height: 100%;">
+         <div *ngFor='let text of tile.tab'>
+           <div *ngIf="text == 'autocomplete' " (click)="editItem('autocomplete')">
+             <input type="text" placeholder="Autocomplete" aria-label="Number" matInput [matAutocomplete]="auto">
+             <mat-autocomplete #auto="matAutocomplete">
+               <mat-option *ngFor="let option of options" [value]="option">
+                 {{ option }}
+               </mat-option>
+             </mat-autocomplete>
+            </div>
+
+           <div *ngIf="text == 'checkbox' ">
+           <mat-checkbox><input type="text"></mat-checkbox>
+           </div>
+
+
+           <div *ngIf="text == 'datepicker' ">
+             <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+             <mat-datepicker #picker></mat-datepicker>
+           </div>
+
+
+           <div *ngIf="text == 'input' ">
+             <input matInput placeholder="Your value" >
+           </div>
+
+          <div *ngIf="text == 'radiobutton' ">
+            <mat-radio-group>
+              <mat-radio-button value="1">Option 1</mat-radio-button>
+              <mat-radio-button value="2">Option 2</mat-radio-button>
+            </mat-radio-group>
+           </div>
+
+           <div *ngIf="text == 'select' ">
+             <mat-select placeholder="Your Option">
+               <mat-option *ngFor="let option of OptionSelect" [value]="option.value">
+                 {{ option.viewValue }}
+               </mat-option>
+             </mat-select>
+           </div>
+
+           <div *ngIf="text == 'slider' ">
+
+           </div>
+
+           <div *ngIf="text == 'slidetoggle' ">
+             <mat-slide-toggle>Slide me!</mat-slide-toggle>
+           </div>
+
+         </div>
    </div>
 
 
      </mat-grid-tile>
-   </mat-grid-list><br>
+   </mat-grid-list>
+</form>
+  <button type="submit" form="formGrid" value="Valider">Valider</button>
 
-   <button mat-button [matMenuTriggerFor]="appMenu" class="margin-top">Bouton menu exemple</button>
+
+  <!-- <button mat-button [matMenuTriggerFor]="appMenu" class="margin-top">Bouton menu exemple</button> -->
  </mat-sidenav-container>
 
