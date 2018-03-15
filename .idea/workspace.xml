@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f178aab3-5491-4129-b314-4655cdca33e9" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/genimh/genimh.component.html" afterPath="$PROJECT_DIR$/src/app/genimh/genimh.component.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/genimh/genimh.component.ts" afterPath="$PROJECT_DIR$/src/app/genimh/genimh.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/custom-style.scss" afterPath="$PROJECT_DIR$/src/custom-style.scss" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -30,8 +30,8 @@
       <file leaf-file-name="genimh.component.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/app/genimh/genimh.component.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="165" column="0" lean-forward="true" selection-start-line="165" selection-start-column="0" selection-end-line="165" selection-end-column="0" />
+            <state relative-caret-position="136">
+              <caret line="94" column="28" lean-forward="false" selection-start-line="94" selection-start-column="28" selection-end-line="94" selection-end-column="28" />
               <folding>
                 <element signature="e#0#56#0" expanded="true" />
               </folding>
@@ -62,8 +62,8 @@
       <file leaf-file-name="genimh.component.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/app/genimh/genimh.component.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="169">
-              <caret line="198" column="19" lean-forward="false" selection-start-line="198" selection-start-column="19" selection-end-line="198" selection-end-column="19" />
+            <state relative-caret-position="393">
+              <caret line="385" column="35" lean-forward="false" selection-start-line="385" selection-start-column="35" selection-end-line="385" selection-end-column="35" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#mat-tab#0;n#mat-tab-group#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#1;n#mat-tab#0;n#mat-tab-group#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
@@ -75,10 +75,21 @@
                 <element signature="n#style#0;n#div#7;n#mat-tab#0;n#mat-tab-group#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#8;n#mat-tab#0;n#mat-tab-group#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#mat-tab#1;n#mat-tab-group#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#p#0;n#div#0;n#mat-tab#1;n#mat-tab-group#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#strong#0;n#p#0;n#div#0;n#mat-tab#1;n#mat-tab-group#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#h4#0;n#div#0;n#mat-tab#1;n#mat-tab-group#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#strong#0;n#h4#0;n#div#0;n#mat-tab#1;n#mat-tab-group#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#mat-tab#1;n#mat-tab-group#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#input#0;n#div#0;n#div#0;n#div#0;n#mat-tab#1;n#mat-tab-group#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#mat-tab#1;n#mat-tab-group#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#input#0;n#div#0;n#div#1;n#div#0;n#mat-tab#1;n#mat-tab-group#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#2;n#div#0;n#mat-tab#1;n#mat-tab-group#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#button#0;n#mat-radio-button#0;n#mat-radio-group#0;n#div#0;n#div#2;n#div#0;n#mat-tab#1;n#mat-tab-group#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#div#2;n#div#0;n#mat-tab#1;n#mat-tab-group#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#1;n#div#2;n#div#0;n#mat-tab#1;n#mat-tab-group#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#input#0;n#div#0;n#div#1;n#div#2;n#div#0;n#mat-tab#1;n#mat-tab-group#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#h3#0;n#div#1;n#div#2;n#div#0;n#mat-tab#1;n#mat-tab-group#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#2;n#div#2;n#div#0;n#mat-tab#1;n#mat-tab-group#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#h3#0;n#div#2;n#div#2;n#div#0;n#mat-tab#1;n#mat-tab-group#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#h3#1;n#div#2;n#div#2;n#div#0;n#mat-tab#1;n#mat-tab-group#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#div#0;n#accordion-group#0;n#accordion#0;n#mat-tab#1;n#mat-tab-group#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#div#0;n#accordion-group#1;n#accordion#0;n#mat-tab#1;n#mat-tab-group#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#div#0;n#accordion-group#2;n#accordion#0;n#mat-tab#1;n#mat-tab-group#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
@@ -87,6 +98,16 @@
                 <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#div#0;n#accordion-group#5;n#accordion#0;n#mat-tab#1;n#mat-tab-group#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#mat-grid-tile#0;n#mat-grid-list#0;n#form#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="custom-style.scss" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/custom-style.scss">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="144">
+              <caret line="10" column="8" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="8" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -109,16 +130,6 @@
               <folding>
                 <element signature="e#0#42#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="search-demo.component.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/app/search/search-demo.component.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -193,6 +204,7 @@
       <find>onDropModel</find>
       <find>component</find>
       <find>many</find>
+      <find>primary</find>
     </findStrings>
     <dirStrings>
       <dir>C:\Users\A644643\GenIHM\src</dir>
@@ -209,7 +221,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/custom-style.scss" />
         <option value="$PROJECT_DIR$/server/sever.js" />
         <option value="$PROJECT_DIR$/server/package.json" />
         <option value="$PROJECT_DIR$/server/server.js" />
@@ -222,6 +233,7 @@
         <option value="$PROJECT_DIR$/src/app/genimh/genimh.component.scss" />
         <option value="$PROJECT_DIR$/src/app/genimh/popup.html" />
         <option value="$PROJECT_DIR$/src/app/app.module.ts" />
+        <option value="$PROJECT_DIR$/src/custom-style.scss" />
         <option value="$PROJECT_DIR$/src/app/genimh/genimh.component.ts" />
         <option value="$PROJECT_DIR$/src/app/genimh/genimh.component.html" />
       </list>
@@ -802,12 +814,12 @@
       <workItem from="1520931120396" duration="10412000" />
       <workItem from="1521016583257" duration="9487000" />
       <workItem from="1521104177451" duration="10213000" />
-      <workItem from="1521119237419" duration="1770000" />
+      <workItem from="1521119237419" duration="8022000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="117321000" />
+    <option name="totallyTimeSpent" value="123573000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1608" y="-8" width="1616" height="916" extended-state="6" />
@@ -826,10 +838,11 @@
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="TypeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.0038265307" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="TypeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.0038265307" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20694087" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.075835474" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25637755" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -841,7 +854,6 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.10610932" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -930,10 +942,21 @@
             <element signature="n#style#0;n#div#7;n#mat-tab#0;n#mat-tab-group#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#8;n#mat-tab#0;n#mat-tab-group#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#mat-tab#1;n#mat-tab-group#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#p#0;n#div#0;n#mat-tab#1;n#mat-tab-group#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#strong#0;n#p#0;n#div#0;n#mat-tab#1;n#mat-tab-group#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h4#0;n#div#0;n#mat-tab#1;n#mat-tab-group#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#strong#0;n#h4#0;n#div#0;n#mat-tab#1;n#mat-tab-group#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#mat-tab#1;n#mat-tab-group#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#input#0;n#div#0;n#div#0;n#div#0;n#mat-tab#1;n#mat-tab-group#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#mat-tab#1;n#mat-tab-group#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#div#0;n#div#1;n#div#0;n#mat-tab#1;n#mat-tab-group#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#2;n#div#0;n#mat-tab#1;n#mat-tab-group#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#mat-radio-button#0;n#mat-radio-group#0;n#div#0;n#div#2;n#div#0;n#mat-tab#1;n#mat-tab-group#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#2;n#div#0;n#mat-tab#1;n#mat-tab-group#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#2;n#div#0;n#mat-tab#1;n#mat-tab-group#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#div#0;n#div#1;n#div#2;n#div#0;n#mat-tab#1;n#mat-tab-group#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h3#0;n#div#1;n#div#2;n#div#0;n#mat-tab#1;n#mat-tab-group#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#2;n#div#2;n#div#0;n#mat-tab#1;n#mat-tab-group#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h3#0;n#div#2;n#div#2;n#div#0;n#mat-tab#1;n#mat-tab-group#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h3#1;n#div#2;n#div#2;n#div#0;n#mat-tab#1;n#mat-tab-group#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#div#0;n#accordion-group#0;n#accordion#0;n#mat-tab#1;n#mat-tab-group#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#div#0;n#accordion-group#1;n#accordion#0;n#mat-tab#1;n#mat-tab-group#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#div#0;n#accordion-group#2;n#accordion#0;n#mat-tab#1;n#mat-tab-group#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
@@ -1073,10 +1096,21 @@
             <element signature="n#style#0;n#div#7;n#mat-tab#0;n#mat-tab-group#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#8;n#mat-tab#0;n#mat-tab-group#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#mat-tab#1;n#mat-tab-group#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#p#0;n#div#0;n#mat-tab#1;n#mat-tab-group#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#strong#0;n#p#0;n#div#0;n#mat-tab#1;n#mat-tab-group#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h4#0;n#div#0;n#mat-tab#1;n#mat-tab-group#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#strong#0;n#h4#0;n#div#0;n#mat-tab#1;n#mat-tab-group#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#mat-tab#1;n#mat-tab-group#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#input#0;n#div#0;n#div#0;n#div#0;n#mat-tab#1;n#mat-tab-group#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#mat-tab#1;n#mat-tab-group#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#div#0;n#div#1;n#div#0;n#mat-tab#1;n#mat-tab-group#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#2;n#div#0;n#mat-tab#1;n#mat-tab-group#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#mat-radio-button#0;n#mat-radio-group#0;n#div#0;n#div#2;n#div#0;n#mat-tab#1;n#mat-tab-group#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#2;n#div#0;n#mat-tab#1;n#mat-tab-group#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#2;n#div#0;n#mat-tab#1;n#mat-tab-group#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#div#0;n#div#1;n#div#2;n#div#0;n#mat-tab#1;n#mat-tab-group#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h3#0;n#div#1;n#div#2;n#div#0;n#mat-tab#1;n#mat-tab-group#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#2;n#div#2;n#div#0;n#mat-tab#1;n#mat-tab-group#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h3#0;n#div#2;n#div#2;n#div#0;n#mat-tab#1;n#mat-tab-group#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h3#1;n#div#2;n#div#2;n#div#0;n#mat-tab#1;n#mat-tab-group#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#div#0;n#accordion-group#0;n#accordion#0;n#mat-tab#1;n#mat-tab-group#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#div#0;n#accordion-group#1;n#accordion#0;n#mat-tab#1;n#mat-tab-group#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#div#0;n#accordion-group#2;n#accordion#0;n#mat-tab#1;n#mat-tab-group#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
@@ -1119,13 +1153,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="23" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/custom-style.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="2" lean-forward="false" selection-start-line="5" selection-start-column="2" selection-end-line="5" selection-end-column="2" />
         </state>
       </provider>
     </entry>
@@ -1296,10 +1323,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/custom-style.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="10" column="8" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/app/genimh/genimh.component.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="165" column="0" lean-forward="true" selection-start-line="165" selection-start-column="0" selection-end-line="165" selection-end-column="0" />
+        <state relative-caret-position="136">
+          <caret line="94" column="28" lean-forward="false" selection-start-line="94" selection-start-column="28" selection-end-line="94" selection-end-column="28" />
           <folding>
             <element signature="e#0#56#0" expanded="true" />
           </folding>
@@ -1308,8 +1343,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/app/genimh/genimh.component.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="169">
-          <caret line="198" column="19" lean-forward="false" selection-start-line="198" selection-start-column="19" selection-end-line="198" selection-end-column="19" />
+        <state relative-caret-position="393">
+          <caret line="385" column="35" lean-forward="false" selection-start-line="385" selection-start-column="35" selection-end-line="385" selection-end-column="35" />
           <folding>
             <element signature="n#style#0;n#div#0;n#mat-tab#0;n#mat-tab-group#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#1;n#mat-tab#0;n#mat-tab-group#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
@@ -1321,10 +1356,21 @@
             <element signature="n#style#0;n#div#7;n#mat-tab#0;n#mat-tab-group#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#8;n#mat-tab#0;n#mat-tab-group#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#mat-tab#1;n#mat-tab-group#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#p#0;n#div#0;n#mat-tab#1;n#mat-tab-group#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#strong#0;n#p#0;n#div#0;n#mat-tab#1;n#mat-tab-group#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h4#0;n#div#0;n#mat-tab#1;n#mat-tab-group#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#strong#0;n#h4#0;n#div#0;n#mat-tab#1;n#mat-tab-group#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#mat-tab#1;n#mat-tab-group#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#input#0;n#div#0;n#div#0;n#div#0;n#mat-tab#1;n#mat-tab-group#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#mat-tab#1;n#mat-tab-group#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#div#0;n#div#1;n#div#0;n#mat-tab#1;n#mat-tab-group#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#2;n#div#0;n#mat-tab#1;n#mat-tab-group#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#mat-radio-button#0;n#mat-radio-group#0;n#div#0;n#div#2;n#div#0;n#mat-tab#1;n#mat-tab-group#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#2;n#div#0;n#mat-tab#1;n#mat-tab-group#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#2;n#div#0;n#mat-tab#1;n#mat-tab-group#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#div#0;n#div#1;n#div#2;n#div#0;n#mat-tab#1;n#mat-tab-group#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h3#0;n#div#1;n#div#2;n#div#0;n#mat-tab#1;n#mat-tab-group#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#2;n#div#2;n#div#0;n#mat-tab#1;n#mat-tab-group#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h3#0;n#div#2;n#div#2;n#div#0;n#mat-tab#1;n#mat-tab-group#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h3#1;n#div#2;n#div#2;n#div#0;n#mat-tab#1;n#mat-tab-group#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#div#0;n#accordion-group#0;n#accordion#0;n#mat-tab#1;n#mat-tab-group#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#div#0;n#accordion-group#1;n#accordion#0;n#mat-tab#1;n#mat-tab-group#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#div#0;n#accordion-group#2;n#accordion#0;n#mat-tab#1;n#mat-tab-group#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
