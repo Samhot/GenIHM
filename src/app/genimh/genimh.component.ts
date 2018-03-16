@@ -26,7 +26,6 @@ export class GenimhComponent {
   public matriceVerifColor
   public tiles;
   public listID;
-  public lastSavelistID;
   public allArray;
   public saveRemove;
   public deleteMode;
@@ -42,15 +41,23 @@ export class GenimhComponent {
   public valueCheckbox
   public typeButton
   public buttonValue
+  public valueDatepicker
   public styleButton
   public styleButton2
+  public idElement
+  public idWebEdit
+  public idElementEdit
+  public IDCONTAINER
 
-  public formControl: Array<string> = ['autocomplete','checkbox','datepicker','input','radiobutton','select','slider','slidetoggle'];
+
+  public formControl = [['autocomplete',"NULL","Placeholder",['OneT','Two','Three']],['checkbox',"NULL"],['datepicker',"NULL"],['input',"NULL"],['radiobutton',"NULL"],['select',"NULL"],['slider',"NULL"],['slidetoggle',"NULL"]];
   public navigation: Array<string> = ['menu','sidenav','toolbar'];
   public layout: Array<string> = ['card','list','tabs','stepper'];
   public button: Array<string> = ['button','buttontoggle','chips','icon','progressspinner','progressbar'];
   public modals: Array<string> = ['dialog','snackbar','tooltip'];
   public dataTable: Array<string> = ['paginator','sortheader','table'];
+  public total: Array<string> = ['autocomplete','checkbox','datepicker','input','radiobutton','select','slider','slidetoggle','menu','sidenav','toolbar','card','list','tabs','stepper','button','buttontoggle','chips','icon','progressspinner','progressbar','dialog','snackbar','tooltip','paginator','sortheader','table'];
+  public totalSave: Array<string> = ['autocomplete','checkbox','datepicker','input','radiobutton','select','slider','slidetoggle','menu','sidenav','toolbar','card','list','tabs','stepper','button','buttontoggle','chips','icon','progressspinner','progressbar','dialog','snackbar','tooltip','paginator','sortheader','table'];
 
 
   constructor( public App: AppComponent, private dragulaService: DragulaService,public dialog: MatDialog) {
@@ -58,11 +65,11 @@ export class GenimhComponent {
       accepts: function (el, target, source, sibling) {
 
 
-        return target.id !== 'componentFrom' || target.id !== 'componentNav' || target.id !== 'componentLayout'|| target.id !== 'componentButton' || target.id !== 'componentModals'|| target.id !== 'componentDataTable'  ; // elements can be dropped only in 'to_drop_to' container
+        return target.id !== 'componentFrom' || target.id !== 'componentNav'|| target.id !== 'componentTotal' || target.id !== 'componentLayout'|| target.id !== 'componentButton' || target.id !== 'componentModals'|| target.id !== 'componentDataTable'  ; // elements can be dropped only in 'to_drop_to' container
       },
       copy: (el: Element, source: Element): boolean => {
         // elements are copied only if they are not already copied ones. That enables the 'removeOnSpill' to work
-        return source.id === 'componentNav' ||  source.id === 'componentFrom' ||  source.id === 'componentLayout'||  source.id === 'componentButton'||  source.id === 'componentModals'||  source.id === 'componentDataTable';
+        return source.id === 'componentNav' ||  source.id === 'componentFrom'||  source.id === 'componentTotal' ||  source.id === 'componentLayout'||  source.id === 'componentButton'||  source.id === 'componentModals'||  source.id === 'componentDataTable';
       },
       removeOnSpill: true
     });
@@ -82,8 +89,6 @@ export class GenimhComponent {
     this.backgroundColor = []
     this.matrisVerif = []
     this.TestmatrisVerif = []
-    this.listID = 0
-    this.lastSavelistID = 0
     this.allArray = ['']
     this.matriceVerifColor = []
     this.saveRemove = []
@@ -91,12 +96,17 @@ export class GenimhComponent {
     this.lastActionBack = []
     this.name
     this.animal
-    this.ItemEdit
+    this.idWebEdit
+    this.idWebEdit
+    this.IDCONTAINER
+    this.idElementEdit
+    this.idElement = 0
     this.typeButton = 'basic'
     this.buttonValue = "Button"
     this.styleButton = "basic"
     this.styleButton2 = "basic"
     this.valueCheckbox = "Option 1"
+    this.valueDatepicker = "Choose a date"
     this.placeHolderAutoComplete = "PlaceHolder"
     this.deleteMode = "Off"
     this.classBtnDelete = "button floatRight"
@@ -106,18 +116,14 @@ export class GenimhComponent {
       {value: 'Option-2', viewValue: 'Option 3'}
     ];
 
-    this.options = [
-      'One',
-      'Two',
-      'Three'
-    ];
+    this.options = ['One','Two','Three'];
     // determine if drop is allowed
     dragulaService.over.subscribe((value) => {
+
       this.onOver(value.slice(1));
     });
     dragulaService.drop.subscribe((value) => {
       this.onDrop(value);
-
       //value
       //if(value[1].name == "checkbox"){
        // this.openDialog();
@@ -133,7 +139,22 @@ export class GenimhComponent {
   }
 
   private onDropModel(args: any): void {
-    console.log(args)
+
+    if(args[0].nodeName == "IMG"){
+      alert('test')
+      var idDiv = args[1].id.split("web")
+
+      var tabValue = this.allArray[idDiv[1]][1]
+      console.log(tabValue)
+      for(var i = 0; i < tabValue.length;i++){
+        console.log(tabValue[i][1])
+        if(tabValue[i][1] == "NULL"){
+          tabValue[i][1] = tabValue[i][0] + this.idElement
+          this.idElement = this.idElement + 1
+        }
+      }
+    }
+
     const [el, target, source] = args;
 
   }
@@ -145,7 +166,7 @@ export class GenimhComponent {
 
   private onOver(args) {
     const [el, container, source] = args;
-    if ( container.id == 'componentFrom' || container.id == 'componentNav' || container.id == 'componentLayout'|| container.id == 'componentButton'|| container.id == 'componentModals'|| container.id == 'componentDataTable' ) {
+    if ( container.id == 'componentFrom' || container.id == 'componentNav'|| container.id == 'componentTotal' || container.id == 'componentLayout'|| container.id == 'componentButton'|| container.id == 'componentModals'|| container.id == 'componentDataTable' ) {
         el.remove();
       }
   }
@@ -166,8 +187,13 @@ export class GenimhComponent {
     this.options.push('')
   }
   changeTypeButton(type){
+    if(type == 'basic'){
+      this.buttonValue = "Button"
+    }
+    if(type == 'icon'){
+      this.buttonValue = 'add'
+    }
     this.typeButton = type
-    console.log(this.typeButton)
   }
   changeValueAutoComplete(value,event){
     for (var i = 0; i < this.options.length; i++){
@@ -176,7 +202,10 @@ export class GenimhComponent {
       }
     }
   }
-
+  monContainer(idContainer){
+    this.IDCONTAINER = idContainer
+    alert(this.IDCONTAINER)
+  }
   removeValueAutocomplete(value){
     for (var i = 0; i < this.options.length; i++){
      if(this.options[i] == value){
@@ -184,8 +213,24 @@ export class GenimhComponent {
      }
     }
   }
-  editItem(item){
+  editItem(item,idWeb,idElement){
     this.ItemEdit = item;
+    this.idWebEdit = idWeb
+    this.idElementEdit = idElement
+    console.log(this.idWebEdit)
+    console.log(this.idElementEdit)
+  }
+  inputNameAutocomplete(event){
+    var inputValue = event.target.value
+    var idDiv = this.idWebEdit.split("web")
+    var tabValue = this.allArray[idDiv[1]][1]
+    console.log(tabValue)
+    for(var i = 0; i < tabValue.length;i++){
+      console.log(tabValue[i][1])
+      if(tabValue[i][1] == this.idElementEdit){
+        tabValue[i][2] =  inputValue
+      }
+    }
   }
   changeTextButton(text){
     this.buttonValue = text
@@ -214,8 +259,33 @@ export class GenimhComponent {
       this.saveRemove.push(remove[0])
       this.main()
     }
+  }
+  changeSearch(event){
+    this.total = []
+    var search = event.target.value.toLowerCase()
 
+    if(search == ""){
+      this.total = this.totalSave
+    }else{
+      for( var e=0; e < search.length; e++){
+        if (search[e] == " "){
+          search = search.substring(0,e) + search.substring(e + 1 , search.length);
+        }
+      }
 
+      for(var i = 0; i < this.totalSave.length;i++){
+        var verif = true
+        for( var z=0; z < search.length; z++){
+          if(this.totalSave[i][z] != search[z]){
+            verif = false
+          }
+        }
+        if(verif == true){
+        this.total.push(this.totalSave[i])
+        }
+      }
+    }
+    this.total.sort()
   }
   forward(){
     console.log(this.lastActionBack[this.lastActionBack.length-1])
@@ -276,16 +346,17 @@ reset(){
   this.lastActionBack = []
   this.matrisVerif = []
   this.matrice = []
+  this.total.sort()
   this.tiles.push({text: '', cols: 4, rows: 10, color: '#C0C0C0',vide:"false", id: "0web"})
   this.backgroundColor = []
   for(var i = 0; i < 40; i++){
     this.backgroundColor.push("colTab")
   }
+
 }
 
   fillTiles(matrice){
     this.tiles = []
-    this.listID = 0
     for( var i = 11; i < 105; i++){
       if(i == 15 || i == 25 || i == 35 || i == 45 || i == 55 ||i == 65 || i == 75 || i == 85 ){
         i = i + 6
@@ -299,13 +370,13 @@ reset(){
           for(var o = 0; o < this.allArray.length; o++){
             if( this.allArray[o][0] == String(matrice[z][0])+ String(matrice[z][1])){
               allArrayVerif = true
-              this.tiles.push({text: '', cols:matrice[z][2] , rows: matrice[z][3], color: matrice[z][4] ,vide:"true", tab:this.allArray[o][1] , id: "web"+this.listID})
+              this.tiles.push({text: '', cols:matrice[z][2] , rows: matrice[z][3], color: matrice[z][4] ,vide:"true", tab:this.allArray[o][1] , id: "web"+o})
             }
           }
           if(allArrayVerif == false){
             this.allArray.push(new Array(String(matrice[z][0])+ String(matrice[z][1]),new Array()))
-            this.tiles.push({text: '', cols:matrice[z][2] , rows: matrice[z][3], color: matrice[z][4] ,vide:"true", tab:this.allArray[this.allArray.length-1][1] , id: "web"+this.listID})
-            this.listID = parseInt(this.listID) + 1
+            this.tiles.push({text: '', cols:matrice[z][2] , rows: matrice[z][3], color: matrice[z][4] ,vide:"true", tab:this.allArray[this.allArray.length-1][1] , id: "web"+o})
+
           }
         }
       }
@@ -320,7 +391,6 @@ reset(){
         }
       }
     }
-    this.lastSavelistID = this.listID
   }
   SelectedCase(number){
     for ( var e = 0; e < this.matrisVerif.length; e++){
