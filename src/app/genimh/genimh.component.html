@@ -220,63 +220,64 @@
                    </div>
 
          <!--  $$$$$$$$$$$$$$$$$$$$$$$$$$$  FIN EDIT ITEM $$$$$$$$$$$$$$$$$$$$$$$$  -->
-
-        <accordion>
-          <accordion-group heading="Form Control">
-            <div class='parent'>
-            <div class='wrapper'>
-              <div [dragula]='"page-bag"' [dragulaModel]='formControl' id="componentFrom">
-                <img *ngFor='let text of formControl' src="../../assets/iconeGENIHM/{{text[0]}}.PNG" name="{{text[0]}}" style="padding: 5px">
-              </div>
-            </div>
-            </div>
-          </accordion-group>
-          <accordion-group heading="Navigation">
-            <div class='parent'>
+         <!--  $$$$$$$$$$$$$$$$$$$$$$$$$$$  COMPOSANTS LIST $$$$$$$$$$$$$$$$$$$$$$$$  -->
+          <accordion>
+            <accordion-group heading="Form Control">
+              <div class='parent'>
               <div class='wrapper'>
-                <div [dragula]='"page-bag"' [dragulaModel]='navigation' id="componentNav">
-                  <img *ngFor='let text of navigation' src="../../assets/iconeGENIHM/{{text}}.PNG" name="{{text}}" style="padding: 5px">
+                <div [dragula]='"page-bag"' [dragulaModel]='formControl' id="componentFrom">
+                  <img *ngFor='let text of formControl' src="../../assets/iconeGENIHM/{{text[0]}}.PNG" name="{{text[0]}}" style="padding: 5px">
                 </div>
               </div>
-            </div>
-          </accordion-group>
-          <accordion-group heading="Layout">
-            <div class='parent'>
-              <div class='wrapper'>
-                <div [dragula]='"page-bag"' [dragulaModel]='layout' id="componentLayout">
-                  <img *ngFor='let text of layout' src="../../assets/iconeGENIHM/{{text}}.PNG" name="{{text}}" style="padding: 5px">
+              </div>
+            </accordion-group>
+            <accordion-group heading="Navigation">
+              <div class='parent'>
+                <div class='wrapper'>
+                  <div [dragula]='"page-bag"' [dragulaModel]='navigation' id="componentNav">
+                    <img *ngFor='let text of navigation' src="../../assets/iconeGENIHM/{{text}}.PNG" name="{{text}}" style="padding: 5px">
+                  </div>
                 </div>
               </div>
-            </div>
-          </accordion-group>
-          <accordion-group heading="Button & Indicators">
-            <div class='parent'>
-              <div class='wrapper'>
-                <div [dragula]='"page-bag"' [dragulaModel]='button' id="componentButton">
-                  <img *ngFor='let text of button' src="../../assets/iconeGENIHM/{{text}}.PNG" name="{{text}}" style="padding: 5px">
+            </accordion-group>
+            <accordion-group heading="Layout">
+              <div class='parent'>
+                <div class='wrapper'>
+                  <div [dragula]='"page-bag"' [dragulaModel]='layout' id="componentLayout">
+                    <img *ngFor='let text of layout' src="../../assets/iconeGENIHM/{{text}}.PNG" name="{{text}}" style="padding: 5px">
+                  </div>
                 </div>
               </div>
-            </div>
-          </accordion-group>
-          <accordion-group heading="Popups & Modals">
-            <div class='parent'>
-              <div class='wrapper'>
-                <div [dragula]='"page-bag"' [dragulaModel]='modals' id="componentModals">
-                  <img *ngFor='let text of modals' src="../../assets/iconeGENIHM/{{text}}.PNG" name="{{text}}" style="padding: 5px">
+            </accordion-group>
+            <accordion-group heading="Button & Indicators">
+              <div class='parent'>
+                <div class='wrapper'>
+                  <div [dragula]='"page-bag"' [dragulaModel]='button' id="componentButton">
+                    <img *ngFor='let text of button' src="../../assets/iconeGENIHM/{{text}}.PNG" name="{{text}}" style="padding: 5px">
+                  </div>
                 </div>
               </div>
-            </div>
-          </accordion-group>
-          <accordion-group heading="Data Table">
-            <div class='parent'>
-              <div class='wrapper'>
-                <div [dragula]='"page-bag"' [dragulaModel]='dataTable' id="componentDataTable">
-                  <img *ngFor='let text of dataTable' src="../../assets/iconeGENIHM/{{text}}.PNG" name="{{text}}" style="padding: 5px">
+            </accordion-group>
+            <accordion-group heading="Popups & Modals">
+              <div class='parent'>
+                <div class='wrapper'>
+                  <div [dragula]='"page-bag"' [dragulaModel]='modals' id="componentModals">
+                    <img *ngFor='let text of modals' src="../../assets/iconeGENIHM/{{text}}.PNG" name="{{text}}" style="padding: 5px">
+                  </div>
                 </div>
               </div>
-            </div>
-          </accordion-group>
-        </accordion>
+            </accordion-group>
+            <accordion-group heading="Data Table">
+              <div class='parent'>
+                <div class='wrapper'>
+                  <div [dragula]='"page-bag"' [dragulaModel]='dataTable' id="componentDataTable">
+                    <img *ngFor='let text of dataTable' src="../../assets/iconeGENIHM/{{text}}.PNG" name="{{text}}" style="padding: 5px">
+                  </div>
+                </div>
+              </div>
+            </accordion-group>
+          </accordion>
+        <!--  $$$$$$$$$$$$$$$$$$$$$$$$$$$  FIN COMPOSANT LIST $$$$$$$$$$$$$$$$$$$$$$$$  -->
         <accordion>
           <accordion-group heading="Console">
             <div *ngFor='let tile of tiles'>
