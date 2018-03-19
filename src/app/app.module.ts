@@ -17,8 +17,8 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { DocumentlistComponent } from './documentlist/documentlist.component';
 import { SearchDemoComponent } from './search/search-demo.component';
-import {GenimhComponent, DialogOverviewExampleDialog} from 'app/genimh/genimh.component';
-import {AccordionModule} from "ng2-accordion";
+import {GenimhComponent, DialogOverviewExampleDialogComponent} from 'app/genimh/genimh.component';
+import {AccordionModule} from 'ng2-accordion';
 
 
 const appRoutes: Routes = [
@@ -61,12 +61,12 @@ const appRoutes: Routes = [
 
     // ADF modules
     AdfModule,
-  ],entryComponents: [ DialogOverviewExampleDialog],
+  ], entryComponents: [ DialogOverviewExampleDialogComponent],
   declarations: [
     AppComponent,
     HomeComponent,
     LoginComponent,
-    DialogOverviewExampleDialog,
+    DialogOverviewExampleDialogComponent,
     DocumentlistComponent,
     SearchDemoComponent,
     GenimhComponent

@@ -217,66 +217,72 @@
                        </div>
                      </div>
                      <!--  $$$$$$$$$$$$$$$$$$$$$$$$$$$  Fin button $$$$$$$$$$$$$$$$$$$$$$$$  -->
+
+                     <div *ngIf="ItemEdit == 'input' " >
+                       <div style="display: inline-block;color: black; margin-bottom: 10px" > Placeholder : <input  style="color: black" [(ngModel)]="valueDatepicker"></div>
+                     </div>
+
                    </div>
 
          <!--  $$$$$$$$$$$$$$$$$$$$$$$$$$$  FIN EDIT ITEM $$$$$$$$$$$$$$$$$$$$$$$$  -->
-
-        <accordion>
-          <accordion-group heading="Form Control">
-            <div class='parent'>
-            <div class='wrapper'>
-              <div [dragula]='"page-bag"' [dragulaModel]='formControl' id="componentFrom">
-                <img *ngFor='let text of formControl' src="../../assets/iconeGENIHM/{{text[0]}}.PNG" name="{{text[0]}}" style="padding: 5px">
-              </div>
-            </div>
-            </div>
-          </accordion-group>
-          <accordion-group heading="Navigation">
-            <div class='parent'>
+         <!--  $$$$$$$$$$$$$$$$$$$$$$$$$$$  COMPOSANTS LIST $$$$$$$$$$$$$$$$$$$$$$$$  -->
+          <accordion>
+            <accordion-group heading="Form Control">
+              <div class='parent'>
               <div class='wrapper'>
-                <div [dragula]='"page-bag"' [dragulaModel]='navigation' id="componentNav">
-                  <img *ngFor='let text of navigation' src="../../assets/iconeGENIHM/{{text}}.PNG" name="{{text}}" style="padding: 5px">
+                <div [dragula]='"page-bag"' [dragulaModel]='formControl' id="componentFrom">
+                  <img *ngFor='let text of formControl' src="../../assets/iconeGENIHM/{{text[0]}}.PNG" name="{{text[0]}}" style="padding: 5px">
                 </div>
               </div>
-            </div>
-          </accordion-group>
-          <accordion-group heading="Layout">
-            <div class='parent'>
-              <div class='wrapper'>
-                <div [dragula]='"page-bag"' [dragulaModel]='layout' id="componentLayout">
-                  <img *ngFor='let text of layout' src="../../assets/iconeGENIHM/{{text}}.PNG" name="{{text}}" style="padding: 5px">
+              </div>
+            </accordion-group>
+            <accordion-group heading="Navigation">
+              <div class='parent'>
+                <div class='wrapper'>
+                  <div [dragula]='"page-bag"' [dragulaModel]='navigation' id="componentNav">
+                    <img *ngFor='let text of navigation' src="../../assets/iconeGENIHM/{{text}}.PNG" name="{{text}}" style="padding: 5px">
+                  </div>
                 </div>
               </div>
-            </div>
-          </accordion-group>
-          <accordion-group heading="Button & Indicators">
-            <div class='parent'>
-              <div class='wrapper'>
-                <div [dragula]='"page-bag"' [dragulaModel]='button' id="componentButton">
-                  <img *ngFor='let text of button' src="../../assets/iconeGENIHM/{{text}}.PNG" name="{{text}}" style="padding: 5px">
+            </accordion-group>
+            <accordion-group heading="Layout">
+              <div class='parent'>
+                <div class='wrapper'>
+                  <div [dragula]='"page-bag"' [dragulaModel]='layout' id="componentLayout">
+                    <img *ngFor='let text of layout' src="../../assets/iconeGENIHM/{{text}}.PNG" name="{{text}}" style="padding: 5px">
+                  </div>
                 </div>
               </div>
-            </div>
-          </accordion-group>
-          <accordion-group heading="Popups & Modals">
-            <div class='parent'>
-              <div class='wrapper'>
-                <div [dragula]='"page-bag"' [dragulaModel]='modals' id="componentModals">
-                  <img *ngFor='let text of modals' src="../../assets/iconeGENIHM/{{text}}.PNG" name="{{text}}" style="padding: 5px">
+            </accordion-group>
+            <accordion-group heading="Button & Indicators">
+              <div class='parent'>
+                <div class='wrapper'>
+                  <div [dragula]='"page-bag"' [dragulaModel]='button' id="componentButton">
+                    <img *ngFor='let text of button' src="../../assets/iconeGENIHM/{{text}}.PNG" name="{{text}}" style="padding: 5px">
+                  </div>
                 </div>
               </div>
-            </div>
-          </accordion-group>
-          <accordion-group heading="Data Table">
-            <div class='parent'>
-              <div class='wrapper'>
-                <div [dragula]='"page-bag"' [dragulaModel]='dataTable' id="componentDataTable">
-                  <img *ngFor='let text of dataTable' src="../../assets/iconeGENIHM/{{text}}.PNG" name="{{text}}" style="padding: 5px">
+            </accordion-group>
+            <accordion-group heading="Popups & Modals">
+              <div class='parent'>
+                <div class='wrapper'>
+                  <div [dragula]='"page-bag"' [dragulaModel]='modals' id="componentModals">
+                    <img *ngFor='let text of modals' src="../../assets/iconeGENIHM/{{text}}.PNG" name="{{text}}" style="padding: 5px">
+                  </div>
                 </div>
               </div>
-            </div>
-          </accordion-group>
-        </accordion>
+            </accordion-group>
+            <accordion-group heading="Data Table">
+              <div class='parent'>
+                <div class='wrapper'>
+                  <div [dragula]='"page-bag"' [dragulaModel]='dataTable' id="componentDataTable">
+                    <img *ngFor='let text of dataTable' src="../../assets/iconeGENIHM/{{text}}.PNG" name="{{text}}" style="padding: 5px">
+                  </div>
+                </div>
+              </div>
+            </accordion-group>
+          </accordion>
+        <!--  $$$$$$$$$$$$$$$$$$$$$$$$$$$  FIN COMPOSANT LIST $$$$$$$$$$$$$$$$$$$$$$$$  -->
         <accordion>
           <accordion-group heading="Console">
             <div *ngFor='let tile of tiles'>
@@ -296,7 +302,7 @@
           [style.background]="tile.color">
 
 
-    <div *ngIf="tile.vide == 'true' "  [dragula]='"page-bag"' [dragulaModel]='tile.tab' id={{tile.id}} style="width: 100%;height: 100%;"  [fxLayout]="options_layout.direction" [fxLayoutAlign]="layoutAlign()" (click)="monContainer(tile.id)">
+    <div *ngIf="tile.vide == 'true' "  [dragula]='"page-bag"' [dragulaModel]='tile.tab' id={{tile.id}} style="width: 100%;height: 100%;"  [fxLayout]="optLayout[tile.optLayoutId].direction" [fxLayoutAlign]="layoutAlign(tile.optLayoutId)" (click)="monContainer(tile.optLayoutId)">
           <div *ngFor='let text of tile.tab'>
 
               <div *ngIf="text[0] == 'autocomplete' " (click)="editItem('autocomplete',tile.id,text[1])" >
@@ -308,7 +314,7 @@
                   </mat-autocomplete>
                  </div>
 
-            <div *ngIf="text == 'checkbox' " (click)="editItem('checkbox')">
+            <div *ngIf="text[0] == 'checkbox' " (click)="editItem('checkbox')">
             <mat-checkbox>{{valueCheckbox}}</mat-checkbox>
             </div>
 
@@ -401,7 +407,7 @@
             </div>
 
 
-            <div *ngIf="text == 'input' ">
+            <div *ngIf="text[0] == 'input' " (click)="editItem('input')">
               <input matInput placeholder="Your value" >
             </div>
 
@@ -441,7 +447,7 @@
           class="demo_controls">
       <div>
         <div>Layout Direction</div>
-        <mat-radio-group [(ngModel)]="options_layout.direction" name="direction" fxLayout="column">
+        <mat-radio-group [(ngModel)]="optLayout[idLayoutEdit].direction" name="direction" fxLayout="column">
           <mat-radio-button value="row">row</mat-radio-button>
           <mat-radio-button value="column">column</mat-radio-button>
         </mat-radio-group>
@@ -450,7 +456,7 @@
         <div>Alignment in Layout Direction
           ({{options_layout.direction == 'row' ? 'horizontal' : 'vertical'}})
         </div>
-        <mat-radio-group [(ngModel)]="options_layout.mainAxis" name="mainAxis" fxLayout="column">
+        <mat-radio-group [(ngModel)]="optLayout[idLayoutEdit].mainAxis" name="mainAxis" fxLayout="column">
           <mat-radio-button value="">none</mat-radio-button>
           <mat-radio-button value="start">start (default)</mat-radio-button>
           <mat-radio-button value="center">center</mat-radio-button>
@@ -464,7 +470,7 @@
         <div>Alignment in Perpendicular Direction
           ({{options_layout.direction == 'column' ? 'horizontal' : 'vertical'}})
         </div>
-        <mat-radio-group [(ngModel)]="options_layout.crossAxis" name="crossAxis" fxLayout="column">
+        <mat-radio-group [(ngModel)]="optLayout[idLayoutEdit].crossAxis" name="crossAxis" fxLayout="column">
           <mat-radio-button value="none"><em>none</em></mat-radio-button>
           <mat-radio-button value="start">start</mat-radio-button>
           <mat-radio-button value="center">center</mat-radio-button>
@@ -476,7 +482,6 @@
   </mat-card-actions>
   <div class="hint" style="padding-left:50px;">
     &lt;div fxLayout="{{ options_layout.direction }}"
-    <span style="padding-left: 30px">fxLayoutAlign="{{ layoutAlign() }}"</span>
     &gt;
   </div>
 </mat-card>
