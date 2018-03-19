@@ -58,6 +58,7 @@ export class GenimhComponent {
   public idWebEdit
   public idElementEdit
   public IDCONTAINER
+  public resetInputAuto
 
 
   public formControl = [['autocomplete',"NULL","Placeholder",['OneT','Two','Three']],['checkbox',"NULL"],['datepicker',"NULL"],['input',"NULL"],['radiobutton',"NULL"],['select',"NULL"],['slider',"NULL"],['slidetoggle',"NULL"]];
@@ -106,6 +107,7 @@ export class GenimhComponent {
     this.lastActionBack = []
     this.name
     this.animal
+    this.resetInputAuto
     this.idWebEdit
     this.idWebEdit
     this.IDCONTAINER
@@ -151,7 +153,7 @@ export class GenimhComponent {
   private onDropModel(args: any): void {
 
     if(args[0].nodeName == "IMG"){
-      alert('test')
+      console.log('test')
       var idDiv = args[1].id.split("web")
 
       var tabValue = this.allArray[idDiv[1]][1]
@@ -211,6 +213,13 @@ export class GenimhComponent {
         this.options[i] = event.target.value
       }
     }
+    var idDiv = this.idWebEdit.split("web")
+    var tabValue = this.allArray[idDiv[1]][1]
+    for(var i = 0; i < tabValue.length;i++){
+      if(tabValue[i][1] == this.idElementEdit){
+        tabValue[i][3] =  this.options
+      }
+    }
   }
   monContainer(idContainer){
     this.IDCONTAINER = idContainer
@@ -227,8 +236,16 @@ export class GenimhComponent {
     this.ItemEdit = item;
     this.idWebEdit = idWeb
     this.idElementEdit = idElement
-    console.log(this.idWebEdit)
-    console.log(this.idElementEdit)
+
+    var idDiv = this.idWebEdit.split("web")
+    var tabValue = this.allArray[idDiv[1]][1]
+    for(var i = 0; i < tabValue.length;i++){
+      if(tabValue[i][1] == this.idElementEdit){
+        this.options = tabValue[i][3]
+        this.resetInputAuto = tabValue[i][2]
+
+      }
+    }
   }
   inputNameAutocomplete(event){
     var inputValue = event.target.value
@@ -384,7 +401,7 @@ reset(){
             }
           }
           if(allArrayVerif == false){
-            this.allArray.push(new Array(String(matrice[z][0])+ String(matrice[z][1]),new Array()))
+            this.allArray.push(new Array(String(matrice[z][0])+ String(matrice[z][1]),[]))
             this.tiles.push({text: '', cols:matrice[z][2] , rows: matrice[z][3], color: matrice[z][4] ,vide:"true", tab:this.allArray[this.allArray.length-1][1] , id: "web"+o})
 
           }

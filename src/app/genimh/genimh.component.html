@@ -113,7 +113,7 @@
                      <!--  $$$$$$$$$$$$$$$$$$$$$$$$$$$  Autocomplete $$$$$$$$$$$$$$$$$$$$$$$$  -->
 
                      <div *ngIf="ItemEdit == 'autocomplete' " >
-                       <div style="display: inline-block;color: white" > Placeholder : <input  style="color: black" (input)="inputNameAutocomplete($event)"></div>
+                       <div style="display: inline-block;color: white" > Placeholder : <input  style="color: black" (input)="inputNameAutocomplete($event)" [(ngModel)]="resetInputAuto"></div>
                        <div *ngFor="let option of options" >
                          <input (change)="changeValueAutoComplete(option,$event)"  value="{{ option }}"><button mat-mini-fab color="warn">
                          <mat-icon aria-label="Example icon-button with a heart icon" (click)="removeValueAutocomplete(option)" >remove</mat-icon>
