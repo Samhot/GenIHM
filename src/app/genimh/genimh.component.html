@@ -1,4 +1,4 @@
- <h1 (click)="editItem('Title')" >GenIHM Editor</h1>
+<h1 (click)="editItem('Title')" >GenIHM Editor</h1>
  <button mat-button (click)="sidenav2.toggle()"><mat-icon>menu</mat-icon></button>
 <mat-sidenav-container>
   <mat-sidenav #sidenav2 mode="side" class="sidebar-left">
@@ -224,8 +224,52 @@
 
                    </div>
 
-         <!--  $$$$$$$$$$$$$$$$$$$$$$$$$$$  FIN EDIT ITEM $$$$$$$$$$$$$$$$$$$$$$$$  -->
-         <!--  $$$$$$$$$$$$$$$$$$$$$$$$$$$  COMPOSANTS LIST $$$$$$$$$$$$$$$$$$$$$$$$  -->
+      <!--  $$$$$$$$$$$$$$$$$$$$$$$$$$$  FIN EDIT ITEM $$$$$$$$$$$$$$$$$$$$$$$$  -->
+
+      <!--  $$$$$$$$$$$$$$$$$$$$$$$$$$$  EDIT BLOCK $$$$$$$$$$$$$$$$$$$$$$$$  -->
+        
+      <div style=" width: 100%;background-color: #FF9700; margin-bottom: 15px; border: solid; border-color: rgba(37,37,37,0.95);">
+          <h4 style="text-align: center"><strong style="color: white">Edit block</strong></h4>
+          <div >
+            <mat-card class="card-demo">
+              <mat-card-actions fxHide="false" style="padding-left:20px">
+                <form fxLayout="column" fxLayout.xs="column" class="demo_controls">
+                  <div>
+                    <div>Layout Direction</div>
+                    <mat-radio-group [(ngModel)]="optLayout[idLayoutEdit].direction" name="direction" fxLayout="column" style="padding: 10px 0px 10px 10px;">
+                      <mat-radio-button value="row">row</mat-radio-button>
+                      <mat-radio-button value="column">column</mat-radio-button>
+                    </mat-radio-group>
+                  </div>
+                  <div>
+                    <div>Alignment in Layout Direction</div>
+                    <mat-radio-group [(ngModel)]="optLayout[idLayoutEdit].mainAxis" name="mainAxis" fxLayout="column" style="padding: 10px 0px 10px 10px;">
+                      <mat-radio-button value="">none</mat-radio-button>
+                      <mat-radio-button value="start">start (default)</mat-radio-button>
+                      <mat-radio-button value="center">center</mat-radio-button>
+                      <mat-radio-button value="end">end</mat-radio-button>
+                      <mat-radio-button value="space-around">space-around</mat-radio-button>
+                      <mat-radio-button value="space-between">space-between</mat-radio-button>
+                      <mat-radio-button value="space-evenly">space-evenly</mat-radio-button>
+                    </mat-radio-group>
+                  </div>
+                  <div>
+                    <div>Alignment in Perpendicular Direction</div>
+                    <mat-radio-group [(ngModel)]="optLayout[idLayoutEdit].crossAxis" name="crossAxis" fxLayout="column" style="padding: 10px 0px 10px 10px;">
+                      <mat-radio-button value="none"><em>none</em></mat-radio-button>
+                      <mat-radio-button value="start">start</mat-radio-button>
+                      <mat-radio-button value="center">center</mat-radio-button>
+                      <mat-radio-button value="end">end</mat-radio-button>
+                      <mat-radio-button value="stretch">stretch (default)</mat-radio-button>
+                    </mat-radio-group>
+                  </div>
+                </form>
+              </mat-card-actions>
+            </mat-card>
+          </div>
+        </div>
+      <!--  $$$$$$$$$$$$$$$$$$$$$$$$$$$  FIN EDIT BLOCK $$$$$$$$$$$$$$$$$$$$$$$$  -->      
+      <!--  $$$$$$$$$$$$$$$$$$$$$$$$$$$  COMPOSANTS LIST $$$$$$$$$$$$$$$$$$$$$$$$  -->
           <accordion>
             <accordion-group heading="Form Control">
               <div class='parent'>
@@ -440,48 +484,3 @@
     </mat-grid-list>
   </form>
 </mat-sidenav-container>
-<br>
-<mat-card class="card-demo">
-  <mat-card-actions fxLayout="row" fxLayoutAlign="center" fxHide fxHide.gt-sm="false">
-    <form fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-around stretch"
-          class="demo_controls">
-      <div>
-        <div>Layout Direction</div>
-        <mat-radio-group [(ngModel)]="optLayout[idLayoutEdit].direction" name="direction" fxLayout="column">
-          <mat-radio-button value="row">row</mat-radio-button>
-          <mat-radio-button value="column">column</mat-radio-button>
-        </mat-radio-group>
-      </div>
-      <div>
-        <div>Alignment in Layout Direction
-          ({{options_layout.direction == 'row' ? 'horizontal' : 'vertical'}})
-        </div>
-        <mat-radio-group [(ngModel)]="optLayout[idLayoutEdit].mainAxis" name="mainAxis" fxLayout="column">
-          <mat-radio-button value="">none</mat-radio-button>
-          <mat-radio-button value="start">start (default)</mat-radio-button>
-          <mat-radio-button value="center">center</mat-radio-button>
-          <mat-radio-button value="end">end</mat-radio-button>
-          <mat-radio-button value="space-around">space-around</mat-radio-button>
-          <mat-radio-button value="space-between">space-between</mat-radio-button>
-          <mat-radio-button value="space-evenly">space-evenly</mat-radio-button>
-        </mat-radio-group>
-      </div>
-      <div>
-        <div>Alignment in Perpendicular Direction
-          ({{options_layout.direction == 'column' ? 'horizontal' : 'vertical'}})
-        </div>
-        <mat-radio-group [(ngModel)]="optLayout[idLayoutEdit].crossAxis" name="crossAxis" fxLayout="column">
-          <mat-radio-button value="none"><em>none</em></mat-radio-button>
-          <mat-radio-button value="start">start</mat-radio-button>
-          <mat-radio-button value="center">center</mat-radio-button>
-          <mat-radio-button value="end">end</mat-radio-button>
-          <mat-radio-button value="stretch">stretch (default)</mat-radio-button>
-        </mat-radio-group>
-      </div>
-    </form>
-  </mat-card-actions>
-  <div class="hint" style="padding-left:50px;">
-    &lt;div fxLayout="{{ options_layout.direction }}"
-    &gt;
-  </div>
-</mat-card>

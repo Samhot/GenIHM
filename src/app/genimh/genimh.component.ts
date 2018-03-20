@@ -49,8 +49,9 @@ export class GenimhComponent implements OnInit {
   public idWebEdit;
   public idElementEdit;
   public IDCONTAINER;
-  public optLayout
-  public idLayoutEdit
+  public optLayout;
+  public idLayoutEdit;
+  public resetInputAuto;
 
   // tslint:disable-next-line:max-line-length
   public formControl = [['autocomplete', 'NULL', 'Placeholder', ['OneT', 'Two', 'Three']], ['checkbox', 'NULL'], ['datepicker', 'NULL'], ['input', 'NULL'], ['radiobutton', 'NULL'], ['select', 'NULL'], ['slider', 'NULL'], ['slidetoggle', 'NULL']];
@@ -65,7 +66,7 @@ export class GenimhComponent implements OnInit {
 
 
 
-  constructor( public App: AppComponent, private dragulaService: DragulaService,public dialog: MatDialog) {
+  constructor( public App: AppComponent, private dragulaService: DragulaService, public dialog: MatDialog) {
     dragulaService.setOptions('page-bag', {
       accepts: function (el, target, source, sibling) {
 
@@ -137,8 +138,8 @@ export class GenimhComponent implements OnInit {
       this.onDrop(value);
       // value
       // if(value[1].name == "checkbox"){
-      // this.openDialog();
-      // }
+        // this.openDialog();
+        // }
     });
 
     dragulaService.dropModel.subscribe((value: any) => {
@@ -149,6 +150,15 @@ export class GenimhComponent implements OnInit {
     });
   }
 
+  options_layout = {
+    direction :  'column',
+    mainAxis  : 'space-around',
+    crossAxis :  'center'
+  };
+
+  layoutAlign(id) {
+      return `${this.optLayout[id].mainAxis} ${this.optLayout[id].crossAxis}`;
+  }
   private onDropModel(args: any): void {
     if (args[0].nodeName === 'IMG') {
       alert('test');
@@ -167,15 +177,6 @@ export class GenimhComponent implements OnInit {
 
     const [el, target, source] = args;
 
-  }
-  options_layout = {
-    direction :  'column',
-    mainAxis  : 'space-around',
-    crossAxis :  'center'
-  }
-
-  layoutAlign(id) {
-      return `${this.optLayout[id].mainAxis} ${this.optLayout[id].crossAxis}`;
   }
   private onRemoveModel(args: any): void {
     const [el, source] = args;
@@ -225,18 +226,18 @@ export class GenimhComponent implements OnInit {
         this.options[i] = event.target.value;
       }
     }
-    var idDiv = this.idWebEdit.split("web")
-    var tabValue = this.allArray[idDiv[1]][1]
-    for(var i = 0; i < tabValue.length;i++){
-      if(tabValue[i][1] == this.idElementEdit){
-        tabValue[i][3] =  this.options
+    let idDiv = this.idWebEdit.split('web');
+    let tabValue = this.allArray[idDiv[1]][1];
+    for (let i = 0; i < tabValue.length; i++) {
+      if (tabValue[i][1] === this.idElementEdit) {
+        tabValue[i][3] =  this.options;
       }
     }
   }
   monContainer(idContainer) {
 
-    this.idLayoutEdit = idContainer
-    console.log(this.idLayoutEdit)
+    this.idLayoutEdit = idContainer;
+    console.log(this.idLayoutEdit);
     // alert(this.IDCONTAINER)
   }
   removeValueAutocomplete(value) {
@@ -251,13 +252,12 @@ export class GenimhComponent implements OnInit {
     this.idWebEdit = idWeb;
     this.idElementEdit = idElement;
 
-    var idDiv = this.idWebEdit.split("web");
-    var tabValue = this.allArray[idDiv[1]][1];
-    for(var i = 0; i < tabValue.length;i++){
-      if(tabValue[i][1] == this.idElementEdit){
+    let idDiv = this.idWebEdit.split('web');
+    let tabValue = this.allArray[idDiv[1]][1];
+    for (let i = 0; i < tabValue.length; i++) {
+      if (tabValue[i][1] === this.idElementEdit) {
         this.options = tabValue[i][3];
         this.resetInputAuto = tabValue[i][2];
-
       }
     }
 
@@ -378,7 +378,7 @@ export class GenimhComponent implements OnInit {
     this.fillMatrisVerif(this.matrice);
     this.fillTiles(this.matrice);
     this.changeBackColor(this.matriceVerifColor);
-    console.log(this.optLayout)
+    console.log(this.optLayout);
   }
 
 reset() {
@@ -412,21 +412,23 @@ reset() {
         if (matrice[z][0] == i) {
           verif = true;
           let allArrayVerif = false;
-          for (let o = 0; o < this.allArray.length; o++) {
-            if ( this.allArray[o][0] === (matrice[z][0]) + (matrice[z][1])) {
+          let x;
+          for (x = 0; x < this.allArray.length; x++) {
+            if ( this.allArray[x][0] === (matrice[z][0]) + (matrice[z][1])) {
               allArrayVerif = true;
               // tslint:disable-next-line:max-line-length
-              this.tiles.push({text: '', cols: matrice[z][2] , rows: matrice[z][3], color: matrice[z][4] , vide: 'true', tab: this.allArray[o][1] , id: 'web' + o, optLayoutId: o});
+              this.tiles.push({text: '', cols: matrice[z][2] , rows: matrice[z][3], color: matrice[z][4] , vide: 'true', tab: this.allArray[x][1] , id: 'web' + x, optLayoutId: x});
             }
           }
-          if(allArrayVerif == false){
-            this.allArray.push(new Array(String(matrice[z][0])+ String(matrice[z][1]),[]))
+          if (allArrayVerif === false) {
+            this.allArray.push(new Array((matrice[z][0]) + (matrice[z][1]), []));
             this.optLayout.push({
               direction :  'column',
               mainAxis  : 'space-around',
               crossAxis :  'center'
-            })
-            this.tiles.push({text: '', cols:matrice[z][2] , rows: matrice[z][3], color: matrice[z][4] ,vide:"true", tab:this.allArray[this.allArray.length-1][1] , id: "web"+ o, optLayoutId: o})
+            });
+            // tslint:disable-next-line:max-line-length
+            this.tiles.push({text: '', cols: matrice[z][2] , rows: matrice[z][3], color: matrice[z][4] , vide: 'true', tab: this.allArray[this.allArray.length - 1][1] , id: 'web' + x, optLayoutId: x});
 
 
           }
