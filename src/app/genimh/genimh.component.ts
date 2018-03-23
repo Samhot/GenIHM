@@ -161,7 +161,7 @@ export class GenimhComponent implements OnInit {
   }
   private onDropModel(args: any): void {
     if (args[0].nodeName === 'IMG') {
-      alert('test');
+      // alert('test');
       const idDiv = args[1].id.split('web');
 
       const tabValue = this.allArray[idDiv[1]][1];

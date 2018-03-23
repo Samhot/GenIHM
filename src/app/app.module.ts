@@ -19,6 +19,7 @@ import { DocumentlistComponent } from './documentlist/documentlist.component';
 import { SearchDemoComponent } from './search/search-demo.component';
 import {GenimhComponent, DialogOverviewExampleDialogComponent} from 'app/genimh/genimh.component';
 import {AccordionModule} from 'ng2-accordion';
+import { NewComponent } from './new/new.component';
 
 
 const appRoutes: Routes = [
@@ -44,6 +45,10 @@ const appRoutes: Routes = [
     path: 'genihm',
     component: GenimhComponent,
     canActivate: [ AuthGuardEcm ]
+  },
+  {
+    path: 'test',
+    component: NewComponent
   }
 ];
 
@@ -69,7 +74,8 @@ const appRoutes: Routes = [
     DialogOverviewExampleDialogComponent,
     DocumentlistComponent,
     SearchDemoComponent,
-    GenimhComponent
+    GenimhComponent,
+    NewComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
