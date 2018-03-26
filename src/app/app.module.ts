@@ -22,6 +22,7 @@ import {AccordionModule} from 'ng2-accordion';
 import {MoteurGenIHMComponent} from "./moteurgenihm/moteur-genihm.component";
 import {VisionneuseGenIHMComponent} from "./visionneuseihm/visionneuse-genihm.component";
 import {GlobalService} from "./Services/GlobalService";
+import { NewComponent } from './new/new.component';
 
 
 const appRoutes: Routes = [
@@ -56,7 +57,11 @@ const appRoutes: Routes = [
   {
     path: 'VisionneuseGenIHM/:id',
     component: VisionneuseGenIHMComponent,
-    canActivate: [ AuthGuardEcm ]
+    canActivate: [AuthGuardEcm]
+  },
+  {
+    path: 'test',
+    component: NewComponent
   }
 ];
 
@@ -85,7 +90,8 @@ const appRoutes: Routes = [
     GenimhComponent,
     VisionneuseGenIHMComponent,
     MoteurGenIHMComponent,
-    FileSelectDirective
+    FileSelectDirective,
+    NewComponent
   ],
   providers: [GlobalService],
   bootstrap: [AppComponent]
