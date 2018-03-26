@@ -113,7 +113,7 @@
                      <!--  $$$$$$$$$$$$$$$$$$$$$$$$$$$  Autocomplete $$$$$$$$$$$$$$$$$$$$$$$$  -->
 
                      <div *ngIf="ItemEdit == 'autocomplete' " >
-                       <div style="display: inline-block;color: white" > Placeholder : <input  style="color: black" (input)="inputNameAutocomplete($event)" [(ngModel)]="resetInputAuto"></div>
+                       <div style="display: inline-block;color: white" > Placeholder : <input  style="color: black" (input)="EditPlaceholder($event)" placeholder="{{resetInputAuto}}"></div>
                        <div *ngFor="let option of options" >
                          <input (change)="changeValueAutoComplete(option,$event)"  value="{{ option }}"><button mat-mini-fab color="warn">
                          <mat-icon aria-label="Example icon-button with a heart icon" (click)="removeValueAutocomplete(option)" >remove</mat-icon>
@@ -219,7 +219,7 @@
                      <!--  $$$$$$$$$$$$$$$$$$$$$$$$$$$  Fin button $$$$$$$$$$$$$$$$$$$$$$$$  -->
 
                      <div *ngIf="ItemEdit == 'input' " >
-                       <div style="display: inline-block;color: black; margin-bottom: 10px" > Placeholder : <input  style="color: black" [(ngModel)]="valueDatepicker"></div>
+                       <div style="display: inline-block;color: black; margin-bottom: 10px" > Placeholder : <input  style="color: black" (input)="EditPlaceholder($event)" placeholder="{{resetInputAuto}}"></div>
                      </div>
 
                    </div>
@@ -227,7 +227,8 @@
       <!--  $$$$$$$$$$$$$$$$$$$$$$$$$$$  FIN EDIT ITEM $$$$$$$$$$$$$$$$$$$$$$$$  -->
 
       <!--  $$$$$$$$$$$$$$$$$$$$$$$$$$$  EDIT BLOCK $$$$$$$$$$$$$$$$$$$$$$$$  -->
-        
+        <accordion>
+        <accordion-group heading="Edit Block">
       <div style=" width: 100%;background-color: #FF9700; margin-bottom: 15px; border: solid; border-color: rgba(37,37,37,0.95);">
           <h4 style="text-align: center"><strong style="color: white">Edit block</strong></h4>
           <div >
@@ -268,7 +269,11 @@
             </mat-card>
           </div>
         </div>
-      <!--  $$$$$$$$$$$$$$$$$$$$$$$$$$$  FIN EDIT BLOCK $$$$$$$$$$$$$$$$$$$$$$$$  -->      
+        </accordion-group>
+        </accordion>
+
+
+      <!--  $$$$$$$$$$$$$$$$$$$$$$$$$$$  FIN EDIT BLOCK $$$$$$$$$$$$$$$$$$$$$$$$  -->
       <!--  $$$$$$$$$$$$$$$$$$$$$$$$$$$  COMPOSANTS LIST $$$$$$$$$$$$$$$$$$$$$$$$  -->
           <accordion>
             <accordion-group heading="Form Control">
@@ -334,9 +339,13 @@
             </div>
           </accordion-group>
         </accordion>
+        <a title="Download JSON" [href]="downloadJsonHref" download="export.json"><button mat-raised-button (mouseenter)="generateDownloadJsonUri()" color="accent">Export</button></a>
+
       </mat-tab>
     </mat-tab-group>
   </mat-sidenav>
+
+  <div style="width: 100%; height: 1000px">
   <form id="formGrid">
     <mat-grid-list cols="4" rowHeight="100px">
       <mat-grid-tile
@@ -350,12 +359,14 @@
           <div *ngFor='let text of tile.tab'>
 
               <div *ngIf="text[0] == 'autocomplete' " (click)="editItem('autocomplete',tile.id,text[1])" >
-                  <input class="w3-input w3-border w3-light-grey" type="text[0]" placeholder="{{text[2]}}" [matAutocomplete]="auto">
+                <mat-form-field>
+                  <input matInput class="w3-input w3-border w3-light-grey" type="text[0]" placeholder="{{text[2]}}" [matAutocomplete]="auto">
                   <mat-autocomplete #auto="matAutocomplete">
                     <mat-option *ngFor="let option of text[3]" [value]="option">
                       {{ option }}
                     </mat-option>
                   </mat-autocomplete>
+                </mat-form-field>
                  </div>
 
             <div *ngIf="text[0] == 'checkbox' " (click)="editItem('checkbox')">
@@ -376,11 +387,13 @@
                 <button mat-raised-button color="warn" *ngIf="styleButton2 == 'warn' ">{{buttonValue}}</button>
               </div>
 
+
               <div *ngIf="styleButton == 'fab' ">
                 <button mat-fab  *ngIf="styleButton2 == 'basic' ">{{buttonValue}}</button>
                 <button mat-fab color="accent"  *ngIf="styleButton2 == 'accent' ">{{buttonValue}}</button>
                 <button mat-fab color="warn" *ngIf="styleButton2 == 'warn' ">{{buttonValue}}</button>
               </div>
+
 
               <div *ngIf="styleButton == 'minifab' ">
                 <button mat-mini-fab  *ngIf="styleButton2 == 'basic' ">{{buttonValue}}</button>
@@ -444,43 +457,55 @@
               </div>
             </div>
 
-            <div *ngIf="text == 'datepicker' ">
+
+            <div *ngIf="text[0] == 'datepicker' ">
+              <mat-form-field>
               <input matInput [matDatepicker]="picker" placeholder="Choose a date">
               <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
               <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
             </div>
 
 
-            <div *ngIf="text[0] == 'input' " (click)="editItem('input')">
-              <input matInput placeholder="Your value" >
+            <div *ngIf="text[0] == 'input' " (click)="editItem('input',tile.id,text[1])">
+              <mat-form-field>
+              <input matInput placeholder="{{text[2]}}" >
+              </mat-form-field>
             </div>
 
-            <div *ngIf="text == 'radiobutton' ">
+
+            <div *ngIf="text[0] == 'radiobutton' ">
               <mat-radio-group>
                 <mat-radio-button value="1">Option 1</mat-radio-button>
                 <mat-radio-button value="2">Option 2</mat-radio-button>
               </mat-radio-group>
             </div>
 
-            <div *ngIf="text == 'select' ">
+
+            <div *ngIf="text[0] == 'select' ">
+              <mat-form-field>
               <mat-select placeholder="Your Option">
                 <mat-option *ngFor="let option of OptionSelect" [value]="option.value">
                   {{ option.viewValue }}
                 </mat-option>
               </mat-select>
+              </mat-form-field>
             </div>
 
-            <div *ngIf="text == 'slider' ">
 
+            <div *ngIf="text[0] == 'slider' ">
+              <mat-slider min="1" max="5" step="0.5" value="1.5"></mat-slider>
             </div>
 
-            <div *ngIf="text == 'slidetoggle' ">
+
+            <div *ngIf="text[0] == 'slidetoggle' ">
               <mat-slide-toggle>Slide me!</mat-slide-toggle>
             </div>
-
           </div>
     </div>
       </mat-grid-tile>
     </mat-grid-list>
+
   </form>
+</div>
 </mat-sidenav-container>

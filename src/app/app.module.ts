@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { DndModule } from 'ng2-dnd';
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 import { RouterModule, Routes } from '@angular/router';
-
+import { FileSelectDirective } from 'ng2-file-upload';
 
 // ADF modules
 import { AdfModule } from './adf.module';
@@ -19,6 +19,9 @@ import { DocumentlistComponent } from './documentlist/documentlist.component';
 import { SearchDemoComponent } from './search/search-demo.component';
 import {GenimhComponent, DialogOverviewExampleDialogComponent} from 'app/genimh/genimh.component';
 import {AccordionModule} from 'ng2-accordion';
+import {MoteurGenIHMComponent} from "./moteurgenihm/moteur-genihm.component";
+import {VisionneuseGenIHMComponent} from "./visionneuseihm/visionneuse-genihm.component";
+import {GlobalService} from "./Services/GlobalService";
 
 
 const appRoutes: Routes = [
@@ -43,6 +46,16 @@ const appRoutes: Routes = [
   {
     path: 'genihm',
     component: GenimhComponent,
+    canActivate: [ AuthGuardEcm ]
+  },
+  {
+    path: 'moteurGenihm',
+    component: MoteurGenIHMComponent,
+    canActivate: [ AuthGuardEcm ]
+  },
+  {
+    path: 'VisionneuseGenIHM/:id',
+    component: VisionneuseGenIHMComponent,
     canActivate: [ AuthGuardEcm ]
   }
 ];
@@ -69,9 +82,12 @@ const appRoutes: Routes = [
     DialogOverviewExampleDialogComponent,
     DocumentlistComponent,
     SearchDemoComponent,
-    GenimhComponent
+    GenimhComponent,
+    VisionneuseGenIHMComponent,
+    MoteurGenIHMComponent,
+    FileSelectDirective
   ],
-  providers: [],
+  providers: [GlobalService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -4,6 +4,7 @@ import { AppComponent } from '../app.component';
 import { DragulaService } from 'ng2-dragula';
 import {MatDialog, MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {AccordionModule} from 'ng2-accordion';
+import {DomSanitizer} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-genimh',
@@ -52,9 +53,10 @@ export class GenimhComponent implements OnInit {
   public optLayout;
   public idLayoutEdit;
   public resetInputAuto;
+  public downloadJsonHref;
 
   // tslint:disable-next-line:max-line-length
-  public formControl = [['autocomplete', 'NULL', 'Placeholder', ['OneT', 'Two', 'Three']], ['checkbox', 'NULL'], ['datepicker', 'NULL'], ['input', 'NULL'], ['radiobutton', 'NULL'], ['select', 'NULL'], ['slider', 'NULL'], ['slidetoggle', 'NULL']];
+  public formControl = [['autocomplete', 'NULL', 'Placeholder', ['OneT', 'Two', 'Three']], ['checkbox', 'NULL'], ['datepicker', 'NULL'], ['input', 'NULL', 'Placeholder'], ['radiobutton', 'NULL'], ['select', 'NULL'], ['slider', 'NULL'], ['slidetoggle', 'NULL']];
   public navigation: Array<string> = ['menu', 'sidenav', 'toolbar'];
   public layout: Array<string> = ['card', 'list', 'tabs', 'stepper'];
   public button: Array<string> = ['button', 'buttontoggle', 'chips', 'icon', 'progressspinner', 'progressbar'];
@@ -66,7 +68,7 @@ export class GenimhComponent implements OnInit {
 
 
 
-  constructor( public App: AppComponent, private dragulaService: DragulaService, public dialog: MatDialog) {
+  constructor( public App: AppComponent, private dragulaService: DragulaService, public dialog: MatDialog,private sanitizer: DomSanitizer) {
     dragulaService.setOptions('page-bag', {
       accepts: function (el, target, source, sibling) {
 
@@ -103,6 +105,7 @@ export class GenimhComponent implements OnInit {
     // this.name;
     // this.animal;
     this.idWebEdit;
+    this.downloadJsonHref = {test: "le test"};
     // this.IDCONTAINER;
     this.idElementEdit;
     this.optLayout = [{
@@ -161,9 +164,7 @@ export class GenimhComponent implements OnInit {
   }
   private onDropModel(args: any): void {
     if (args[0].nodeName === 'IMG') {
-      alert('test');
       const idDiv = args[1].id.split('web');
-
       const tabValue = this.allArray[idDiv[1]][1];
       console.log(tabValue);
       for (let i = 0; i < tabValue.length; i++) {
@@ -207,6 +208,7 @@ export class GenimhComponent implements OnInit {
 
   ngOnInit() {
     this.reset();
+
   }
   addValueAutocomplete() {
     this.options.push('');
@@ -248,6 +250,7 @@ export class GenimhComponent implements OnInit {
     }
   }
   editItem(item, idWeb, idElement) {
+
     this.ItemEdit = item;
     this.idWebEdit = idWeb;
     this.idElementEdit = idElement;
@@ -262,6 +265,17 @@ export class GenimhComponent implements OnInit {
     }
 
   }
+  EditPlaceholder(event){
+    const inputValue = event.target.value;
+    const idDiv = this.idWebEdit.split('web');
+    const tabValue = this.allArray[idDiv[1]][1];
+    for (let i = 0; i < tabValue.length; i++) {
+      if (tabValue[i][1] === this.idElementEdit) {
+        tabValue[i][2] =  inputValue;
+      }
+    }
+  }
+
   inputNameAutocomplete(event) {
     const inputValue = event.target.value;
     const idDiv = this.idWebEdit.split('web');
@@ -274,6 +288,19 @@ export class GenimhComponent implements OnInit {
       }
     }
   }
+
+  generateDownloadJsonUri() {
+
+    let tabExport = []
+     tabExport.push(this.tiles)
+     tabExport.push(this.optLayout)
+    console.log(tabExport)
+    var theJSON = JSON.stringify(tabExport);
+
+    var uri = this.sanitizer.bypassSecurityTrustUrl("data:text/json;charset=UTF-8," + encodeURIComponent(theJSON));
+    this.downloadJsonHref = uri;
+  }
+
   changeTextButton(text) {
     this.buttonValue = text;
   }
@@ -378,7 +405,6 @@ export class GenimhComponent implements OnInit {
     this.fillMatrisVerif(this.matrice);
     this.fillTiles(this.matrice);
     this.changeBackColor(this.matriceVerifColor);
-    console.log(this.optLayout);
   }
 
 reset() {
@@ -406,6 +432,15 @@ reset() {
       }
       let verif = false;
       let matrisVerif = false;
+      let verifFinMatrice = false
+      for ( let y = 0; y < matrice.length; y++){
+        if(matrice[y][0] > i ){
+          console.log(matrice[y][0])
+          console.log(i)
+          verifFinMatrice = true
+        }
+      }
+
       for ( let z = 0; z < matrice.length; z++) {
         // la comparaison ci-dessous doit obligatoirement être == au lieu de ===
         // tslint:disable-next-line:triple-equals
@@ -416,7 +451,6 @@ reset() {
           for (x = 0; x < this.allArray.length; x++) {
             if ( this.allArray[x][0] === (matrice[z][0]) + (matrice[z][1])) {
               allArrayVerif = true;
-              // tslint:disable-next-line:max-line-length
               this.tiles.push({text: '', cols: matrice[z][2] , rows: matrice[z][3], color: matrice[z][4] , vide: 'true', tab: this.allArray[x][1] , id: 'web' + x, optLayoutId: x});
             }
           }
@@ -427,14 +461,14 @@ reset() {
               mainAxis  : 'space-around',
               crossAxis :  'center'
             });
-            // tslint:disable-next-line:max-line-length
+
             this.tiles.push({text: '', cols: matrice[z][2] , rows: matrice[z][3], color: matrice[z][4] , vide: 'true', tab: this.allArray[this.allArray.length - 1][1] , id: 'web' + x, optLayoutId: x});
 
 
           }
         }
       }
-      if (verif === false) {
+      if (verif === false && verifFinMatrice == true ) {
         for ( let e = 0; e < this.matrisVerif.length; e++) {
           if (this.matrisVerif[e] === i) {
             matrisVerif = true;
