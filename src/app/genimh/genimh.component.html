@@ -116,10 +116,10 @@
                        <div style="display: inline-block;color: white" > Placeholder : <input  style="color: black" (input)="EditPlaceholder($event)" placeholder="{{resetInputAuto}}"></div>
                        <div *ngFor="let option of options" >
                          <input (change)="changeValueAutoComplete(option,$event)"  value="{{ option }}"><button mat-mini-fab color="warn">
-                         <mat-icon aria-label="Example icon-button with a heart icon" (click)="removeValueAutocomplete(option)" >remove</mat-icon>
+                         <mat-icon aria-label="Example icon-button with a heart icon" (click)="removeValueTabEditItem(option)" >remove</mat-icon>
                        </button>
                        </div>
-                       <button mat-mini-fab (click)="addValueAutocomplete()">
+                       <button mat-mini-fab (click)="addValueTabEditItem('')">
                          <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
                        </button>
                      </div>
@@ -218,10 +218,37 @@
                      </div>
                      <!--  $$$$$$$$$$$$$$$$$$$$$$$$$$$  Fin button $$$$$$$$$$$$$$$$$$$$$$$$  -->
 
+                     <!--  $$$$$$$$$$$$$$$$$$$$$$$$$$$ Input  $$$$$$$$$$$$$$$$$$$$$$$$  -->
+
                      <div *ngIf="ItemEdit == 'input' " >
                        <div style="display: inline-block;color: black; margin-bottom: 10px" > Placeholder : <input  style="color: black" (input)="EditPlaceholder($event)" placeholder="{{resetInputAuto}}"></div>
                      </div>
 
+                     <!--  $$$$$$$$$$$$$$$$$$$$$$$$$$$  Fin Input $$$$$$$$$$$$$$$$$$$$$$$$  -->
+
+                     <!--  $$$$$$$$$$$$$$$$$$$$$$$$$$$ icon Button  $$$$$$$$$$$$$$$$$$$$$$$$  -->
+
+                     <div *ngIf="ItemEdit == 'icon' " >
+
+                       <div style="display: inline-block;color: black; margin-bottom: 10px" > Code icon font : <input  style="color: black" (input)="EditPlaceholder($event)" placeholder="Code icon font" value="{{resetInputAuto}}"></div>
+                       <a href="https://material.io/icons/" target="_blank">Liste Icon</a>
+
+                     </div>
+
+                     <!--  $$$$$$$$$$$$$$$$$$$$$$$$$$$  Fin iconButton  $$$$$$$$$$$$$$$$$$$$$$$$  -->
+
+                     <!--  $$$$$$$$$$$$$$$$$$$$$$$$$$$  radioButton $$$$$$$$$$$$$$$$$$$$$$$$  -->
+                     <div *ngIf="ItemEdit == 'radiobutton' " >
+                       <div *ngFor="let option of options" >
+                         <input (change)="changeValueTabEditItem(option,$event)"  value="{{ option }}"><button mat-mini-fab color="warn">
+                         <mat-icon aria-label="Example icon-button with a heart icon" (click)="removeValueTabEditItem(option)" >remove</mat-icon>
+                       </button>
+                       </div>
+                       <button mat-mini-fab (click)="addValueTabEditItem('Option')">
+                         <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
+                       </button>
+                     </div>
+                     <!--  $$$$$$$$$$$$$$$$$$$$$$$$$$$  Fin radioButton $$$$$$$$$$$$$$$$$$$$$$$$  -->
                    </div>
 
       <!--  $$$$$$$$$$$$$$$$$$$$$$$$$$$  FIN EDIT ITEM $$$$$$$$$$$$$$$$$$$$$$$$  -->
@@ -307,7 +334,7 @@
               <div class='parent'>
                 <div class='wrapper'>
                   <div [dragula]='"page-bag"' [dragulaModel]='button' id="componentButton">
-                    <img *ngFor='let text of button' src="../../assets/iconeGENIHM/{{text}}.PNG" name="{{text}}" style="padding: 5px">
+                    <img *ngFor='let text of button' src="../../assets/iconeGENIHM/{{text[0]}}.PNG" name="{{text[0]}}" style="padding: 5px">
                   </div>
                 </div>
               </div>
@@ -462,7 +489,17 @@
               </div>
             </div>
 
-            <!----------------------------------------       GRID BUTTON  ---------------------------------------------------------->
+            <!----------------------------------------     FIN  GRID BUTTON  ---------------------------------------------------------->
+
+            <!----------------------------------------       GRID ICON BUTTON  ---------------------------------------------------------->
+            <div *ngIf="text[0] == 'icon' " (click)="editItem('icon',tile.id,text[1])">
+
+                <button mat-button ><mat-icon>{{text[2]}}</mat-icon></button>
+
+            </div>
+
+
+            <!----------------------------------------     FIN  GRID  ICON BUTTON  ---------------------------------------------------------->
 
 
             <div *ngIf="text[0] == 'datepicker' " (click)="editItem('datepicker',tile.id,text[1])">
@@ -481,10 +518,20 @@
             </div>
 
 
-            <div *ngIf="text[0] == 'radiobutton' ">
+            <div *ngIf="text[0] == 'chips' " (click)="editItem('chips',tile.id,text[1])">
+              <mat-chip-list>
+              <mat-chip *ngFor="let option of text[2]" color="{{option[1]}}" >{{option[0]}}</mat-chip>
+                <mat-chip color="primary" selected="true">Primary fish</mat-chip>
+              </mat-chip-list>
+            </div>
+
+
+            <div *ngIf="text[0] == 'radiobutton' "(click)="editItem('radiobutton',tile.id,text[1])">
               <mat-radio-group>
-                <mat-radio-button value="1">Option 1</mat-radio-button>
-                <mat-radio-button value="2">Option 2</mat-radio-button>
+                <mat-radio-button *ngFor="let option of text[2]" [value]="option" style="margin-right: 10px">
+                  {{ option }}
+                </mat-radio-button>
+
               </mat-radio-group>
             </div>
 

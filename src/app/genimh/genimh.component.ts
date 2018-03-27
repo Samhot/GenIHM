@@ -56,10 +56,10 @@ export class GenimhComponent implements OnInit {
   public downloadJsonHref;
 
   // tslint:disable-next-line:max-line-length
-  public formControl = [['autocomplete', 'NULL', 'Placeholder', ['OneT', 'Two', 'Three']], ['checkbox', 'NULL','Value'], ['datepicker', 'NULL','Placeholder'], ['input', 'NULL', 'Placeholder'], ['radiobutton', 'NULL'], ['select', 'NULL'], ['slider', 'NULL'], ['slidetoggle', 'NULL']];
+  public formControl = [['autocomplete', 'NULL', 'Placeholder', ['OneT', 'Two', 'Three']], ['checkbox', 'NULL','Value'], ['datepicker', 'NULL','Placeholder'], ['input', 'NULL', 'Placeholder'], ['radiobutton', 'NULL',['Option 1','Option 2']], ['select', 'NULL'], ['slider', 'NULL'], ['slidetoggle', 'NULL']];
   public navigation: Array<string> = ['menu', 'sidenav', 'toolbar'];
   public layout: Array<string> = ['card', 'list', 'tabs', 'stepper'];
-  public button: Array<string> = ['button', 'buttontoggle', 'chips', 'icon', 'progressspinner', 'progressbar'];
+  public button  = [['button','NULL'], ['buttontoggle','NULL'], ['chips','NULL',[['one',''],['two','primary'],['three','accent']]], ['icon','NULL','home'], ['progressspinner','NULL'], ['progressbar','NULL']];
   public modals: Array<string> = ['dialog', 'snackbar', 'tooltip'];
   public dataTable: Array<string> = ['paginator', 'sortheader', 'table'];
   // tslint:disable-next-line:max-line-length
@@ -208,8 +208,8 @@ export class GenimhComponent implements OnInit {
     this.reset();
 
   }
-  addValueAutocomplete() {
-    this.options.push('');
+  addValueTabEditItem(value) {
+    this.options.push(value);
   }
   changeTypeButton(type) {
     if (type === 'basic') {
@@ -220,7 +220,7 @@ export class GenimhComponent implements OnInit {
     }
     this.typeButton = type;
   }
-  changeValueAutoComplete(value, event) {
+  changeValueTabEditItem(value, event) {
     for (let i = 0; i < this.options.length; i++) {
       if (this.options[i] === value) {
         this.options[i] = event.target.value;
@@ -264,7 +264,8 @@ export class GenimhComponent implements OnInit {
     console.log(this.idLayoutEdit);
     // alert(this.IDCONTAINER)
   }
-  removeValueAutocomplete(value) {
+
+  removeValueTabEditItem(value) {
     for (let i = 0; i < this.options.length; i++) {
      if (this.options[i] === value) {
        this.options.splice(i, 1);
@@ -301,6 +302,25 @@ export class GenimhComponent implements OnInit {
       for (let i = 0; i < tabValue.length; i++) {
         if (tabValue[i][1] === this.idElementEdit) {
           this.valueDatepicker = tabValue[i][2];
+
+        }
+      }
+
+    }
+    if(item == 'radiobutton'){
+
+      for (let i = 0; i < tabValue.length; i++) {
+        if (tabValue[i][1] === this.idElementEdit) {
+          this.options = tabValue[i][2];
+        }
+      }
+
+    }
+    if(item == 'icon'){
+
+      for (let i = 0; i < tabValue.length; i++) {
+        if (tabValue[i][1] === this.idElementEdit) {
+          this.resetInputAuto = tabValue[i][2];
         }
       }
 
