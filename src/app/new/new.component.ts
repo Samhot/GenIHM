@@ -1,5 +1,5 @@
 import {Component, ElementRef, ViewChild, OnInit} from '@angular/core';
-import * as autoScroll from 'dom-autoscroller';
+//import * as autoScroll from 'dom-autoscroller';
 
 @Component({
   selector: 'app-new',
@@ -17,7 +17,7 @@ export class NewComponent implements OnInit {
   name = 'Angular';
 
   ngOnInit() {
-    setTimeout(() => {
+   /* setTimeout(() => {
       let scroll = autoScroll([
         this.autoscrollG.nativeElement,
         this.autoscroll.nativeElement,
@@ -34,7 +34,7 @@ export class NewComponent implements OnInit {
         }
       });
     }, 3000);
-
+*/
   }
 }
 

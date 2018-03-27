@@ -127,12 +127,12 @@
                      <!--  $$$$$$$$$$$$$$$$$$$$$$$$$$$   checkbox $$$$$$$$$$$$$$$$$$$$$$$$  -->
                      <div *ngIf="ItemEdit == 'checkbox' " >
 
-                       <div style="display: inline-block;color: black; margin-bottom: 10px" > Value : <input  style="color: black" [(ngModel)]="valueCheckbox"></div>
+                       <div style="display: inline-block;color: black; margin-bottom: 10px" > Value : <input  style="color: black" (input)="changeValueCheckbox($event)" [(ngModel)]="valueCheckbox"></div>
                      </div>
                     <!--  $$$$$$$$$$$$$$$$$$$$$$$$$$$  Fin checkbox $$$$$$$$$$$$$$$$$$$$$$$$  -->
                     <!--  $$$$$$$$$$$$$$$$$$$$$$$$$$$  datepicker $$$$$$$$$$$$$$$$$$$$$$$$  -->
                      <div *ngIf="ItemEdit == 'datepicker' " >
-                       <div style="display: inline-block;color: black; margin-bottom: 10px" > Placeholder : <input  style="color: black" [(ngModel)]="valueDatepicker"></div>
+                       <div style="display: inline-block;color: black; margin-bottom: 10px" > Placeholder : <input  style="color: black" (input)="changeValueDatePicker($event)"  [(ngModel)]="valueDatepicker"></div>
                      </div>
                     <!--  $$$$$$$$$$$$$$$$$$$$$$$$$$$  Fin datepicker $$$$$$$$$$$$$$$$$$$$$$$$  -->
                     <!--  $$$$$$$$$$$$$$$$$$$$$$$$$$$  button $$$$$$$$$$$$$$$$$$$$$$$$  -->
@@ -345,6 +345,9 @@
     </mat-tab-group>
   </mat-sidenav>
 
+
+  <!--------------------------------------------   GRID VIEW  ---------------------------------------->
+
   <div style="width: 100%; height: 1000px">
   <form id="formGrid">
     <mat-grid-list cols="4" rowHeight="100px">
@@ -369,9 +372,11 @@
                 </mat-form-field>
                  </div>
 
-            <div *ngIf="text[0] == 'checkbox' " (click)="editItem('checkbox')">
-            <mat-checkbox>{{valueCheckbox}}</mat-checkbox>
+            <div *ngIf="text[0] == 'checkbox' " (click)="editItem('checkbox',tile.id,text[1])">
+            <mat-checkbox>{{text[2]}}</mat-checkbox>
             </div>
+
+            <!----------------------------------------       GRID BUTTON  ---------------------------------------------------------->
 
             <div *ngIf="text == 'button' " (click)="editItem('button')">
               <div *ngIf="typeButton == 'basic' ">
@@ -457,10 +462,12 @@
               </div>
             </div>
 
+            <!----------------------------------------       GRID BUTTON  ---------------------------------------------------------->
 
-            <div *ngIf="text[0] == 'datepicker' ">
+
+            <div *ngIf="text[0] == 'datepicker' " (click)="editItem('datepicker',tile.id,text[1])">
               <mat-form-field>
-              <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+              <input matInput [matDatepicker]="picker" placeholder="{{ text[2] }}">
               <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
               <mat-datepicker #picker></mat-datepicker>
                 </mat-form-field>

@@ -56,7 +56,7 @@ export class GenimhComponent implements OnInit {
   public downloadJsonHref;
 
   // tslint:disable-next-line:max-line-length
-  public formControl = [['autocomplete', 'NULL', 'Placeholder', ['OneT', 'Two', 'Three']], ['checkbox', 'NULL'], ['datepicker', 'NULL'], ['input', 'NULL', 'Placeholder'], ['radiobutton', 'NULL'], ['select', 'NULL'], ['slider', 'NULL'], ['slidetoggle', 'NULL']];
+  public formControl = [['autocomplete', 'NULL', 'Placeholder', ['OneT', 'Two', 'Three']], ['checkbox', 'NULL','Value'], ['datepicker', 'NULL','Placeholder'], ['input', 'NULL', 'Placeholder'], ['radiobutton', 'NULL'], ['select', 'NULL'], ['slider', 'NULL'], ['slidetoggle', 'NULL']];
   public navigation: Array<string> = ['menu', 'sidenav', 'toolbar'];
   public layout: Array<string> = ['card', 'list', 'tabs', 'stepper'];
   public button: Array<string> = ['button', 'buttontoggle', 'chips', 'icon', 'progressspinner', 'progressbar'];
@@ -119,8 +119,6 @@ export class GenimhComponent implements OnInit {
     this.buttonValue = 'Button';
     this.styleButton = 'basic';
     this.styleButton2 = 'basic';
-    this.valueCheckbox = 'Option 1';
-    this.valueDatepicker = 'Choose a date';
     this.placeHolderAutoComplete = 'PlaceHolder';
     this.deleteMode = 'Off';
     this.classBtnDelete = 'button floatRight';
@@ -236,6 +234,30 @@ export class GenimhComponent implements OnInit {
       }
     }
   }
+
+  changeValueCheckbox(event){
+    let idDiv = this.idWebEdit.split('web');
+    let tabValue = this.allArray[idDiv[1]][1];
+
+    for (let i = 0; i < tabValue.length; i++) {
+      if (tabValue[i][1] === this.idElementEdit) {
+         tabValue[i][2] = event.target.value
+      }
+    }
+  }
+
+  changeValueDatePicker(event){
+
+    let idDiv = this.idWebEdit.split('web');
+    let tabValue = this.allArray[idDiv[1]][1];
+
+    for (let i = 0; i < tabValue.length; i++) {
+      if (tabValue[i][1] === this.idElementEdit) {
+        tabValue[i][2] = event.target.value
+      }
+    }
+  }
+
   monContainer(idContainer) {
 
     this.idLayoutEdit = idContainer;
@@ -254,15 +276,36 @@ export class GenimhComponent implements OnInit {
     this.ItemEdit = item;
     this.idWebEdit = idWeb;
     this.idElementEdit = idElement;
-
     let idDiv = this.idWebEdit.split('web');
     let tabValue = this.allArray[idDiv[1]][1];
-    for (let i = 0; i < tabValue.length; i++) {
-      if (tabValue[i][1] === this.idElementEdit) {
-        this.options = tabValue[i][3];
-        this.resetInputAuto = tabValue[i][2];
+
+    if( item == "autocomplete"){
+      for (let i = 0; i < tabValue.length; i++) {
+        if (tabValue[i][1] === this.idElementEdit) {
+          this.options = tabValue[i][3];
+          this.resetInputAuto = tabValue[i][2];
+        }
       }
     }
+
+    if(item == 'checkbox'){
+      for (let i = 0; i < tabValue.length; i++) {
+        if (tabValue[i][1] === this.idElementEdit) {
+          this.valueCheckbox = tabValue[i][2];
+        }
+      }
+    }
+
+    if(item == 'datepicker'){
+
+      for (let i = 0; i < tabValue.length; i++) {
+        if (tabValue[i][1] === this.idElementEdit) {
+          this.valueDatepicker = tabValue[i][2];
+        }
+      }
+
+    }
+
 
   }
   EditPlaceholder(event){

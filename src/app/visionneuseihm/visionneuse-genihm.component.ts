@@ -27,7 +27,6 @@ export class VisionneuseGenIHMComponent {
     if(local.length - 1 < this.id || local == [] || local == null){
       this.router.navigate(['/genihm']);
     }
-    let local = localStorage.getItem("VisionneuseGenIHM").split('|$|')
     console.log(local)
     this.tiles = JSON.parse(local[this.id])[0]
     this.optLayout = JSON.parse(local[this.id])[1]
