@@ -59,7 +59,7 @@ export class GenimhComponent implements OnInit {
   public formControl = [['autocomplete', 'NULL', 'Placeholder', ['OneT', 'Two', 'Three']], ['checkbox', 'NULL','Value'], ['datepicker', 'NULL','Placeholder'], ['input', 'NULL', 'Placeholder'], ['radiobutton', 'NULL',['Option 1','Option 2']], ['select', 'NULL'], ['slider', 'NULL'], ['slidetoggle', 'NULL']];
   public navigation: Array<string> = ['menu', 'sidenav', 'toolbar'];
   public layout: Array<string> = ['card', 'list', 'tabs', 'stepper'];
-  public button  = [['button','NULL'], ['buttontoggle','NULL'], ['chips','NULL',[['one',''],['two','primary'],['three','accent']]], ['icon','NULL','home'], ['progressspinner','NULL'], ['progressbar','NULL']];
+  public button  = [['button','NULL','basic','basic','basic','Bouton'], ['buttontoggle','NULL'], ['chips','NULL',[['one',''],['two','primary'],['three','accent']]], ['icon','NULL','home'], ['progressspinner','NULL'], ['progressbar','NULL']];
   public modals: Array<string> = ['dialog', 'snackbar', 'tooltip'];
   public dataTable: Array<string> = ['paginator', 'sortheader', 'table'];
   // tslint:disable-next-line:max-line-length

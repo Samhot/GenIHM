@@ -405,32 +405,32 @@
 
             <!----------------------------------------       GRID BUTTON  ---------------------------------------------------------->
 
-            <div *ngIf="text == 'button' " (click)="editItem('button')">
-              <div *ngIf="typeButton == 'basic' ">
-              <div *ngIf="styleButton == 'basic' ">
-                <button mat-button *ngIf="styleButton2 == 'basic' ">{{buttonValue}}</button>
-                <button mat-button color="accent" *ngIf="styleButton2 == 'accent' ">{{buttonValue}}</button>
-                <button mat-button color="warn"  *ngIf="styleButton2 == 'warn' ">{{buttonValue}}</button>
+            <div *ngIf="text[0] == 'button' " (click)="editItem('button')">
+              <div *ngIf="text[2] == 'basic' ">
+              <div *ngIf="text[3] == 'basic' ">
+                <button mat-button *ngIf="text[4] == 'basic' ">{{text[5]}}</button>
+                <button mat-button color="accent" *ngIf="text[4] == 'accent' ">{{text[5]}}</button>
+                <button mat-button color="warn"  *ngIf="text[4] == 'warn' ">{{text[5]}}</button>
               </div>
 
-              <div *ngIf="styleButton == 'raised' ">
-                <button mat-raised-button  *ngIf="styleButton2 == 'basic' ">{{buttonValue}}</button>
-                <button mat-raised-button color="accent"  *ngIf="styleButton2 == 'accent' ">{{buttonValue}}</button>
-                <button mat-raised-button color="warn" *ngIf="styleButton2 == 'warn' ">{{buttonValue}}</button>
+              <div *ngIf="text[3] == 'raised' ">
+                <button mat-raised-button  *ngIf="text[4] == 'basic' ">{{buttonValue}}</button>
+                <button mat-raised-button color="accent"  *ngIf="text[4] == 'accent' ">{{buttonValue}}</button>
+                <button mat-raised-button color="warn" *ngIf="text[4] == 'warn' ">{{buttonValue}}</button>
               </div>
 
 
               <div *ngIf="styleButton == 'fab' ">
-                <button mat-fab  *ngIf="styleButton2 == 'basic' ">{{buttonValue}}</button>
-                <button mat-fab color="accent"  *ngIf="styleButton2 == 'accent' ">{{buttonValue}}</button>
-                <button mat-fab color="warn" *ngIf="styleButton2 == 'warn' ">{{buttonValue}}</button>
+                <button mat-fab  *ngIf="text[4] == 'basic' ">{{buttonValue}}</button>
+                <button mat-fab color="accent"  *ngIf="text[4] == 'accent' ">{{buttonValue}}</button>
+                <button mat-fab color="warn" *ngIf="text[4] == 'warn' ">{{buttonValue}}</button>
               </div>
 
 
               <div *ngIf="styleButton == 'minifab' ">
-                <button mat-mini-fab  *ngIf="styleButton2 == 'basic' ">{{buttonValue}}</button>
-                <button mat-mini-fab color="accent"  *ngIf="styleButton2 == 'accent' ">{{buttonValue}}</button>
-                <button mat-mini-fab color="warn" *ngIf="styleButton2 == 'warn' ">{{buttonValue}}</button>
+                <button mat-mini-fab  *ngIf="text[4] == 'basic' ">{{buttonValue}}</button>
+                <button mat-mini-fab color="accent"  *ngIf="text[4] == 'accent' ">{{buttonValue}}</button>
+                <button mat-mini-fab color="warn" *ngIf="text[4] == 'warn' ">{{buttonValue}}</button>
               </div>
             </div>
               <div *ngIf="typeButton == 'icon' ">

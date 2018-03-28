@@ -14,6 +14,11 @@
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
+  
+  "publishConfig": {
+    "registry": "https://nexus.mtpl.bs.fr.atos.net/repository/npm-private/"
+  },
+
   "private": true,
   "dependencies": {
     "@alfresco/adf-content-services": "2.0.0",
