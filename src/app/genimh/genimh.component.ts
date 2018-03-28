@@ -4,7 +4,8 @@ import { AppComponent } from '../app.component';
 import { DragulaService } from 'ng2-dragula';
 import {MatDialog, MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {AccordionModule} from 'ng2-accordion';
-import {DomSanitizer} from "@angular/platform-browser";
+import {DomSanitizer} from '@angular/platform-browser';
+import { Placeholder } from '@angular/compiler/src/i18n/i18n_ast';
 
 @Component({
   selector: 'app-genimh',
@@ -13,7 +14,6 @@ import {DomSanitizer} from "@angular/platform-browser";
 })
 
 export class GenimhComponent implements OnInit {
-
 
   public firstClick;
   public gridLigne;
@@ -44,6 +44,7 @@ export class GenimhComponent implements OnInit {
   public typeButton;
   public buttonValue;
   public valueDatepicker;
+  public valueSelect;
   public styleButton;
   public styleButton2;
   public idElement;
@@ -54,9 +55,10 @@ export class GenimhComponent implements OnInit {
   public idLayoutEdit;
   public resetInputAuto;
   public downloadJsonHref;
+  public tabValue;
 
   // tslint:disable-next-line:max-line-length
-  public formControl = [['autocomplete', 'NULL', 'Placeholder', ['OneT', 'Two', 'Three']], ['checkbox', 'NULL','Value'], ['datepicker', 'NULL','Placeholder'], ['input', 'NULL', 'Placeholder'], ['radiobutton', 'NULL',['Option 1','Option 2']], ['select', 'NULL'], ['slider', 'NULL'], ['slidetoggle', 'NULL']];
+  public formControl = [['autocomplete', 'NULL', 'Placeholder', ['OneT', 'Two', 'Three']], ['checkbox', 'NULL', 'Value'], ['datepicker', 'NULL', 'Placeholder'], ['input', 'NULL', 'Placeholder'], ['radiobutton', 'NULL', ['Option 1', 'Option 2']], ['select', 'NULL', 'Placeholder', ['Un', 'Deux', 'Trois']], ['slider', 'NULL'], ['slidetoggle', 'NULL']];
   public navigation: Array<string> = ['menu', 'sidenav', 'toolbar'];
   public layout: Array<string> = ['card', 'list', 'tabs', 'stepper'];
   public button  = [['button','NULL','basic','basic','basic','Bouton'], ['buttontoggle','NULL'], ['chips','NULL',[['one',''],['two','primary'],['three','accent']]], ['icon','NULL','home'], ['progressspinner','NULL'], ['progressbar','NULL']];
@@ -68,7 +70,7 @@ export class GenimhComponent implements OnInit {
 
 
 
-  constructor( public App: AppComponent, private dragulaService: DragulaService, public dialog: MatDialog,private sanitizer: DomSanitizer) {
+  constructor(public App: AppComponent, private dragulaService: DragulaService, public dialog: MatDialog, private sanitizer: DomSanitizer) {
     dragulaService.setOptions('page-bag', {
       accepts: function (el, target, source, sibling) {
 
@@ -82,6 +84,7 @@ export class GenimhComponent implements OnInit {
       },
       removeOnSpill: true
     });
+
     this.tiles = [
       /* {text: 'One', cols: 3, rows: 1, color: 'lightblue'},
        {text: 'Twoivgyguiguyghibuhbvguvbihyb jkbn jbihbjinkn,', cols: 1, rows: 2, color: 'lightgreen'},
@@ -104,37 +107,33 @@ export class GenimhComponent implements OnInit {
     this.lastActionBack = [];
     // this.name;
     // this.animal;
-    this.idWebEdit;
-    this.downloadJsonHref = {test: "le test"};
+    this.downloadJsonHref = {test: 'le test'};
     // this.IDCONTAINER;
-    this.idElementEdit;
     this.optLayout = [{
       direction :  'row',
       mainAxis  : 'space-around',
       crossAxis :  'center'
-    }]
+    }];
     this.idElement = 0;
     this.idLayoutEdit = 0;
     this.typeButton = 'basic';
     this.buttonValue = 'Button';
     this.styleButton = 'basic';
     this.styleButton2 = 'basic';
-    this.placeHolderAutoComplete = 'PlaceHolder';
     this.deleteMode = 'Off';
     this.classBtnDelete = 'button floatRight';
-    this.OptionSelect = [
-      {value: 'Option-0', viewValue: 'Option 1'},
-      {value: 'Option-1', viewValue: 'Option 2'},
-      {value: 'Option-2', viewValue: 'Option 3'}
-    ];
+    // this.OptionSelect = [
+    //   {value: 'Option-0', viewValue: 'Optiontt 1'},
+    //   {value: 'Option-1', viewValue: 'Optionyy 2'},
+    //   {value: 'Option-2', viewValue: 'Optionuu 3'}
+    // ];
+    // this.options = ['One', 'Two', 'Three'];
 
-
-    this.options = ['One', 'Two', 'Three'];
     // determine if drop is allowed
     dragulaService.over.subscribe((value) => {
-
       this.onOver(value.slice(1));
     });
+
     dragulaService.drop.subscribe((value) => {
       this.onDrop(value);
       // value
@@ -146,6 +145,7 @@ export class GenimhComponent implements OnInit {
     dragulaService.dropModel.subscribe((value: any) => {
       this.onDropModel(value.slice(1));
     });
+
     dragulaService.removeModel.subscribe((value: any) => {
       this.onRemoveModel(value.slice(1));
     });
@@ -160,6 +160,7 @@ export class GenimhComponent implements OnInit {
   layoutAlign(id) {
       return `${this.optLayout[id].mainAxis} ${this.optLayout[id].crossAxis}`;
   }
+
   private onDropModel(args: any): void {
     if (args[0].nodeName === 'IMG') {
       const idDiv = args[1].id.split('web');
@@ -173,13 +174,11 @@ export class GenimhComponent implements OnInit {
         }
       }
     }
-
     const [el, target, source] = args;
-
   }
+
   private onRemoveModel(args: any): void {
     const [el, source] = args;
-
   }
 
   private onOver(args) {
@@ -206,11 +205,16 @@ export class GenimhComponent implements OnInit {
 
   ngOnInit() {
     this.reset();
-
   }
+
   addValueTabEditItem(value) {
     this.options.push(value);
   }
+
+  addValueSelect() {
+    this.OptionSelect.push('');
+  }
+
   changeTypeButton(type) {
     if (type === 'basic') {
       this.buttonValue = 'Button';
@@ -220,14 +224,15 @@ export class GenimhComponent implements OnInit {
     }
     this.typeButton = type;
   }
+
   changeValueTabEditItem(value, event) {
+    const idDiv = this.idWebEdit.split('web');
+    const tabValue = this.allArray[idDiv[1]][1];
     for (let i = 0; i < this.options.length; i++) {
       if (this.options[i] === value) {
         this.options[i] = event.target.value;
       }
     }
-    let idDiv = this.idWebEdit.split('web');
-    let tabValue = this.allArray[idDiv[1]][1];
     for (let i = 0; i < tabValue.length; i++) {
       if (tabValue[i][1] === this.idElementEdit) {
         tabValue[i][3] =  this.options;
@@ -235,25 +240,35 @@ export class GenimhComponent implements OnInit {
     }
   }
 
-  changeValueCheckbox(event){
-    let idDiv = this.idWebEdit.split('web');
-    let tabValue = this.allArray[idDiv[1]][1];
+  changeValueCheckbox(event) {
+    const idDiv = this.idWebEdit.split('web');
+    const tabValue = this.allArray[idDiv[1]][1];
 
     for (let i = 0; i < tabValue.length; i++) {
       if (tabValue[i][1] === this.idElementEdit) {
-         tabValue[i][2] = event.target.value
+         tabValue[i][2] = event.target.value;
       }
     }
   }
 
-  changeValueDatePicker(event){
-
-    let idDiv = this.idWebEdit.split('web');
-    let tabValue = this.allArray[idDiv[1]][1];
+  changeValueDatePicker(event) {
+    const idDiv = this.idWebEdit.split('web');
+    const tabValue = this.allArray[idDiv[1]][1];
 
     for (let i = 0; i < tabValue.length; i++) {
       if (tabValue[i][1] === this.idElementEdit) {
-        tabValue[i][2] = event.target.value
+        tabValue[i][2] = event.target.value;
+      }
+    }
+  }
+
+  changeValueSelect(event) {
+    const idDiv = this.idWebEdit.split('web');
+    const tabValue = this.allArray[idDiv[1]][1];
+
+    for (let i = 0; i < tabValue.length; i++) {
+      if (tabValue[i][1] === this.idElementEdit) {
+        tabValue[i][2] = event.target.value;
       }
     }
   }
@@ -272,15 +287,24 @@ export class GenimhComponent implements OnInit {
      }
     }
   }
+
+  removeValueSelect(value) {
+    for (let i = 0; i < this.OptionSelect.length; i++) {
+     if (this.OptionSelect[i] === value) {
+       this.OptionSelect.splice(i, 1);
+     }
+    }
+  }
+
   editItem(item, idWeb, idElement) {
 
     this.ItemEdit = item;
     this.idWebEdit = idWeb;
     this.idElementEdit = idElement;
-    let idDiv = this.idWebEdit.split('web');
-    let tabValue = this.allArray[idDiv[1]][1];
+    const idDiv = this.idWebEdit.split('web');
+    const tabValue = this.allArray[idDiv[1]][1];
 
-    if( item == "autocomplete"){
+    if (item === 'autocomplete') {
       for (let i = 0; i < tabValue.length; i++) {
         if (tabValue[i][1] === this.idElementEdit) {
           this.options = tabValue[i][3];
@@ -289,7 +313,7 @@ export class GenimhComponent implements OnInit {
       }
     }
 
-    if(item == 'checkbox'){
+    if (item === 'checkbox') {
       for (let i = 0; i < tabValue.length; i++) {
         if (tabValue[i][1] === this.idElementEdit) {
           this.valueCheckbox = tabValue[i][2];
@@ -297,8 +321,7 @@ export class GenimhComponent implements OnInit {
       }
     }
 
-    if(item == 'datepicker'){
-
+    if (item === 'datepicker') {
       for (let i = 0; i < tabValue.length; i++) {
         if (tabValue[i][1] === this.idElementEdit) {
           this.valueDatepicker = tabValue[i][2];
@@ -307,7 +330,7 @@ export class GenimhComponent implements OnInit {
       }
 
     }
-    if(item == 'radiobutton'){
+    if (item === 'radiobutton') {
 
       for (let i = 0; i < tabValue.length; i++) {
         if (tabValue[i][1] === this.idElementEdit) {
@@ -316,19 +339,26 @@ export class GenimhComponent implements OnInit {
       }
 
     }
-    if(item == 'icon'){
+    if (item === 'icon') {
 
       for (let i = 0; i < tabValue.length; i++) {
         if (tabValue[i][1] === this.idElementEdit) {
           this.resetInputAuto = tabValue[i][2];
         }
       }
-
     }
 
-
+    if (item === 'select') {
+      for (let i = 0; i < tabValue.length; i++) {
+        if (tabValue[i][1] === this.idElementEdit) {
+          this.options = tabValue[i][3];
+          this.valueSelect = tabValue[i][2];
+        }
+      }
+    }
   }
-  EditPlaceholder(event){
+
+  EditPlaceholder(event) {
     const inputValue = event.target.value;
     const idDiv = this.idWebEdit.split('web');
     const tabValue = this.allArray[idDiv[1]][1];
@@ -354,13 +384,13 @@ export class GenimhComponent implements OnInit {
 
   generateDownloadJsonUri() {
 
-    let tabExport = []
-     tabExport.push(this.tiles)
-     tabExport.push(this.optLayout)
-    console.log(tabExport)
-    var theJSON = JSON.stringify(tabExport);
+    const tabExport = [];
+     tabExport.push(this.tiles);
+     tabExport.push(this.optLayout);
+    console.log(tabExport);
+    const theJSON = JSON.stringify(tabExport);
 
-    var uri = this.sanitizer.bypassSecurityTrustUrl("data:text/json;charset=UTF-8," + encodeURIComponent(theJSON));
+    const uri = this.sanitizer.bypassSecurityTrustUrl('data:text/json;charset=UTF-8,' + encodeURIComponent(theJSON));
     this.downloadJsonHref = uri;
   }
 
@@ -392,6 +422,7 @@ export class GenimhComponent implements OnInit {
       this.main();
     }
   }
+
   changeSearch(event) {
     this.total = [];
     let search = event.target.value.toLowerCase();
@@ -419,6 +450,7 @@ export class GenimhComponent implements OnInit {
     }
     this.total.sort();
   }
+
   forward() {
     console.log(this.lastActionBack[this.lastActionBack.length - 1]);
     console.log(this.lastActionBack);
@@ -470,22 +502,22 @@ export class GenimhComponent implements OnInit {
     this.changeBackColor(this.matriceVerifColor);
   }
 
-reset() {
-  this.tiles = [];
-  this.listID = 0;
-  this.allArray = [];
-  this.lastAction = [];
-  this.lastActionBack = [];
-  this.matrisVerif = [];
-  this.matrice = [];
-  this.total.sort();
-  this.tiles.push({text: '', cols: 4, rows: 10, color: '#C0C0C0', vide: 'false', id: '0web'});
-  this.backgroundColor = [];
-  for (let i = 0; i < 40; i++) {
-    this.backgroundColor.push('colTab');
-  }
+  reset() {
+    this.tiles = [];
+    this.listID = 0;
+    this.allArray = [];
+    this.lastAction = [];
+    this.lastActionBack = [];
+    this.matrisVerif = [];
+    this.matrice = [];
+    this.total.sort();
+    this.tiles.push({text: '', cols: 4, rows: 10, color: '#C0C0C0', vide: 'false', id: '0web'});
+    this.backgroundColor = [];
+    for (let i = 0; i < 40; i++) {
+      this.backgroundColor.push('colTab');
+    }
 
-}
+  }
 
   fillTiles(matrice) {
     this.tiles = [];
@@ -495,12 +527,12 @@ reset() {
       }
       let verif = false;
       let matrisVerif = false;
-      let verifFinMatrice = false
-      for ( let y = 0; y < matrice.length; y++){
-        if(matrice[y][0] > i ){
-          console.log(matrice[y][0])
-          console.log(i)
-          verifFinMatrice = true
+      let verifFinMatrice = false;
+      for ( let y = 0; y < matrice.length; y++) {
+        if (matrice[y][0] > i ) {
+          console.log(matrice[y][0]);
+          console.log(i);
+          verifFinMatrice = true;
         }
       }
 
@@ -514,6 +546,7 @@ reset() {
           for (x = 0; x < this.allArray.length; x++) {
             if ( this.allArray[x][0] === (matrice[z][0]) + (matrice[z][1])) {
               allArrayVerif = true;
+              // tslint:disable-next-line:max-line-length
               this.tiles.push({text: '', cols: matrice[z][2] , rows: matrice[z][3], color: matrice[z][4] , vide: 'true', tab: this.allArray[x][1] , id: 'web' + x, optLayoutId: x});
             }
           }
@@ -525,13 +558,14 @@ reset() {
               crossAxis :  'center'
             });
 
+            // tslint:disable-next-line:max-line-length
             this.tiles.push({text: '', cols: matrice[z][2] , rows: matrice[z][3], color: matrice[z][4] , vide: 'true', tab: this.allArray[this.allArray.length - 1][1] , id: 'web' + x, optLayoutId: x});
 
 
           }
         }
       }
-      if (verif === false && verifFinMatrice == true ) {
+      if (verif === false && verifFinMatrice === true ) {
         for ( let e = 0; e < this.matrisVerif.length; e++) {
           if (this.matrisVerif[e] === i) {
             matrisVerif = true;
@@ -584,15 +618,18 @@ reset() {
       }
     }
   }
+
   mathSignPlus(nombre) {
     if (nombre < 0) {
       nombre = nombre * - 1;
     }
     return nombre;
   }
+
   gridNameColor(color) {
     this.gridColor = color;
   }
+
   changeBackColor(matriceVerifColor) {
     this.backgroundColor = [];
     for (let i = 0; i < 40; i++) {
@@ -609,6 +646,7 @@ reset() {
       }
     }
   }
+
   gridSkull(ligne, colonne) {
       if (this.deleteMode === 'Off') {
 
