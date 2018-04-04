@@ -11,7 +11,7 @@
 
 .colTab{
   float: right;
-  border: solid;
+  border: 1px solid;
   height:100px;
   width: 25%;
 }
@@ -48,48 +48,109 @@ mat-sidenav {
 }
 .colTab{
   float: right;
-  border: solid;
+  border: 1px solid;
   height:60px;
   width: 25%;
 }
+.backgroundColorGridR0{
+  background: rgb(255, 0, 0);
+}
+.backgroundColorGridR1{
+  background: rgb(255, 64, 0);
+}
+.backgroundColorGridO0{
+  background: rgb(255, 128, 0);
+}
+.backgroundColorGridO1{
+  background: rgb(255, 191, 0);
+}
+.backgroundColorGridJ0{
+  background: rgb(255, 255, 0);
+}
+.backgroundColorGridJ1{
+  background: rgb(191, 255, 0);
+}
+.backgroundColorGridV0{
+  background: rgb(128, 255, 0);
+}
+.backgroundColorGridV1{
+  background: rgb(64, 255, 0);
+}
+.backgroundColorGridV2{
+  background: rgb(0, 255, 64);
+}
+.backgroundColorGridV3{
+  background: rgb(0, 255, 128);
+}
+.backgroundColorGridV4{
+  background: rgb(0, 255, 191);
+}
+.backgroundColorGridB0{
+  background: rgb(0, 255, 255);
+}
+.backgroundColorGridB1{
+  background: rgb(0, 0, 255);
+}
+.backgroundColorGridB2{
+  background: rgb(64, 0, 255);
+}
+.backgroundColorGridB3{
+  background: rgb(128, 0, 255);
+}
+.backgroundColorGridVI0{
+  background: rgb(191, 0, 255);
+}
+.backgroundColorGridVI1{
+  background: rgb(255, 0, 255);
+}
+.backgroundColorGridROS0{
+  background: rgb(255, 0, 191);
+}
+.backgroundColorGridROS1{
+  background: rgb(255, 0, 128);
+}
+.mat-test{
+  vertical-align: middle;
+}
+
+
 .backgroundColorred{
   float: right;
-  border: solid;
+  border:  1px solid;
   height:60px;
   width: 25%;
   background: red;
 }
 .backgroundColorlightblue{
   float: right;
-  border: solid;
+  border:  1px solid;
   height:60px;
   width: 25%;
   background: lightblue;
 }
 .backgroundColoryellow{
   float: right;
-  border: solid;
+  border:  1px solid;
   height:60px;
   width: 25%;
   background: yellow;
 }
 .backgroundColorgreen{
   float: right;
-  border: solid;
+  border:  1px solid;
   height:60px;
   width: 25%;
   background: green;
 }
-.button{
-  height: 30px;
-  width: 40px;
-  border: solid;
-}
+
 .floatRight{
   float: right;
 }
 .borderColorRed{
-  border-color: red;
+  border:1px solid red;
+}
+.bColorred{
+  background-color: red;
 }
 
 /* dragula-specific example page styles */
