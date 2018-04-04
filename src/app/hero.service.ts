@@ -6,7 +6,7 @@ import { of } from 'rxjs/observable/of';
 import { catchError, map, tap } from 'rxjs/operators';
 
 import { Hero } from './hero';
-import { MessageService } from './message.service';
+// import { MessageService } from './message.service';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -19,13 +19,14 @@ export class HeroService {
 
   constructor(
     private http: HttpClient,
-    private messageService: MessageService) { }
+    // private messageService: MessageService
+  ) { }
 
   /** GET heroes from the server */
   public getHeroes (): Observable<Hero[]> {
     return this.http.get<Hero[]>(this.heroesUrl + '/wods')
       .pipe(
-        tap(heroes => this.log(`fetched heroes`)),
+        // tap(heroes => this.log(`fetched heroes`)),
         catchError(this.handleError('getHeroes', []))
       );
   }
@@ -38,7 +39,7 @@ export class HeroService {
         map(heroes => heroes[0]), // returns a {0|1} element array
         tap(h => {
           const outcome = h ? `fetched` : `did not find`;
-          this.log(`${outcome} hero id=${id}`);
+          // this.log(`${outcome} hero id=${id}`);
         }),
         catchError(this.handleError<Hero>(`getHero id=${id}`))
       );
@@ -49,7 +50,7 @@ export class HeroService {
     // const url = `${this.heroesUrl}/${id}`;
     return this.http.get<Hero>(this.heroesUrl + '/wod/' + id)
     .pipe(
-      tap(_ => this.log(`fetched hero id=${id}`)),
+      // tap(_ => this.log(`fetched hero id=${id}`)),
       catchError(this.handleError<Hero>(`getHero id=${id}`))
     );
   }
@@ -61,7 +62,7 @@ export class HeroService {
       return of([]);
     }
     return this.http.get<Hero[]>(this.heroesUrl + `/wod/search/${term}`).pipe(
-      tap(_ => this.log(`found heroes matching "${term}"`)),
+      // tap(_ => this.log(`found heroes matching "${term}"`)),
       catchError(this.handleError<Hero[]>('searchHeroes', []))
     );
   }
@@ -73,7 +74,7 @@ export class HeroService {
     return this.http.post<Hero>(this.heroesUrl + '/wod', hero, httpOptions)
     .pipe(
       // tslint:disable-next-line:no-shadowed-variable
-      tap((hero: Hero) => this.log(`added hero w/ id=${hero.id}`)),
+      // tap((hero: Hero) => this.log(`added hero w/ id=${hero.id}`)),
       catchError(this.handleError<Hero>('addHero'))
     );
   }
@@ -84,7 +85,7 @@ export class HeroService {
     // const url = `${this.heroesUrl}/${id}`;
 
     return this.http.delete<Hero>(this.heroesUrl + '/wod/' + id, httpOptions).pipe(
-      tap(_ => this.log(`deleted hero id=${id}`)),
+      // tap(_ => this.log(`deleted hero id=${id}`)),
       catchError(this.handleError<Hero>('deleteHero'))
     );
   }
@@ -92,7 +93,7 @@ export class HeroService {
   /** PUT: update the hero on the server */
   updateHero (hero: Hero): Observable<any> {
     return this.http.put(this.heroesUrl + '/wod/' + hero.id, hero, httpOptions).pipe(
-      tap(_ => this.log(`updated hero id=${hero.id}`)),
+      // tap(_ => this.log(`updated hero id=${hero.id}`)),
       catchError(this.handleError<any>('updateHero'))
     );
   }
@@ -110,7 +111,7 @@ export class HeroService {
       console.error(error); // log to console instead
 
       // TODO: better job of transforming error for user consumption
-      this.log(`${operation} failed: ${error.message}`);
+      // this.log(`${operation} failed: ${error.message}`);
 
       // Let the app keep running by returning an empty result.
       return of(result as T);
@@ -118,7 +119,7 @@ export class HeroService {
   }
 
   /** Log a HeroService message with the MessageService */
-  private log(message: string) {
-    this.messageService.addMessage('HeroService: ' + message);
-  }
+  // private log(message: string) {
+  //   this.messageService.addMessage('HeroService: ' + message);
+  // }
 }

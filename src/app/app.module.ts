@@ -7,14 +7,13 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataServiceHero } from './in-memory-data.service';
 
 // ADF modules
 import { AdfModule } from './adf.module';
 import { AuthGuardBpm } from '@alfresco/adf-core';
 import { AuthGuardEcm } from '@alfresco/adf-core';
 
-import { TestModule } from './test.module';
+import { ApiModule } from './api.module';
 
 // App components
 import { AppComponent } from './app.component';
@@ -74,7 +73,7 @@ const appRoutes: Routes = [
     ),
     // ADF modules
     AdfModule,
-    TestModule
+    ApiModule
   ], entryComponents: [ DialogOverviewExampleDialogComponent],
   declarations: [
     AppComponent,
