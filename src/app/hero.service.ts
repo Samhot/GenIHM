@@ -6,7 +6,8 @@ import { of } from 'rxjs/observable/of';
 import { catchError, map, tap } from 'rxjs/operators';
 
 import { Hero } from './hero';
-// import { MessageService } from './message.service';
+import { Composant } from './composant';
+import { Json } from './json';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -21,6 +22,25 @@ export class HeroService {
     private http: HttpClient,
     // private messageService: MessageService
   ) { }
+
+  /** GET composants from the server */
+  public getComposants (): Observable<Composant[]> {
+    return this.http.get<Composant[]>(this.heroesUrl + '/composants')
+      .pipe(
+        // tap(heroes => this.log(`fetched heroes`)),
+        catchError(this.handleError('getComposants', []))
+      );
+  }
+
+  /** GET jsons from the server */
+  public getJson (): Observable<Json[]> {
+    return this.http.get<Json[]>(this.heroesUrl + '/jsons')
+      .pipe(
+        // tap(heroes => this.log(`fetched heroes`)),
+        catchError(this.handleError('getJson', []))
+      );
+  }
+
 
   /** GET heroes from the server */
   public getHeroes (): Observable<Hero[]> {
@@ -55,6 +75,16 @@ export class HeroService {
     );
   }
 
+    /** GET hero by id. Will 404 if id not found */
+    public getJson1(id: number): Observable<Json> {
+      // const url = `${this.heroesUrl}/${id}`;
+      return this.http.get<Json>(this.heroesUrl + '/json/' + id)
+      .pipe(
+        // tap(_ => this.log(`fetched hero id=${id}`)),
+        catchError(this.handleError<Json>(`getHero id=${id}`))
+      );
+    }
+
   /* GET heroes whose name contains search term */
   searchHeroes(term: string): Observable<Hero[]> {
     if (!term.trim()) {
@@ -76,6 +106,16 @@ export class HeroService {
       // tslint:disable-next-line:no-shadowed-variable
       // tap((hero: Hero) => this.log(`added hero w/ id=${hero.id}`)),
       catchError(this.handleError<Hero>('addHero'))
+    );
+  }
+
+  /** POST: add a new hero to the server */
+  addJson (json: Json): Observable<Json> {
+    return this.http.post<Json>(this.heroesUrl + '/json', json, httpOptions)
+    .pipe(
+      // tslint:disable-next-line:no-shadowed-variable
+      // tap((hero: Hero) => this.log(`added hero w/ id=${hero.id}`)),
+      catchError(this.handleError<Json>('addJson'))
     );
   }
 

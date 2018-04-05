@@ -6,6 +6,10 @@ import {MatDialog, MAT_DIALOG_DATA, MatDialogRef, MatTabChangeEvent} from '@angu
 import {AccordionModule} from 'ng2-accordion';
 import {DomSanitizer} from '@angular/platform-browser';
 import { Placeholder } from '@angular/compiler/src/i18n/i18n_ast';
+import { Composant } from '../composant';
+import { Json } from '../json';
+import { HeroService } from '../hero.service';
+import { ContentActionListComponent } from '@alfresco/adf-content-services';
 
 @Component({
   selector: 'app-genimh',
@@ -63,16 +67,19 @@ export class GenimhComponent implements OnInit {
   public formControl = [['autocomplete', 'NULL', 'Placeholder', ['OneT', 'Two', 'Three']], ['checkbox', 'NULL', 'Value'], ['datepicker', 'NULL', 'Placeholder'], ['input', 'NULL', 'Placeholder'], ['radiobutton', 'NULL', ['Option 1', 'Option 2']], ['select', 'NULL', 'Placeholder', ['Un', 'Deux', 'Trois']], ['slider', 'NULL'], ['slidetoggle', 'NULL']];
   public navigation: Array<string> = ['menu', 'sidenav', 'toolbar'];
   public layout: Array<string> = ['card', 'list', 'tabs', 'stepper'];
-  public button  = [['button','NULL','basic','basic','basic','Bouton'], ['buttontoggle','NULL'], ['chips','NULL',[['one',''],['two','primary'],['three','accent']]], ['icon','NULL','home'], ['progressspinner','NULL'], ['progressbar','NULL']];
+  // tslint:disable-next-line:max-line-length
+  public button  = [['button', 'NULL', 'basic', 'basic', 'basic', 'Bouton'], ['buttontoggle', 'NULL'], ['chips', 'NULL', [['one', ''], ['two', 'primary'], ['three', 'accent']]], ['icon', 'NULL', 'home'], ['progressspinner', 'NULL'], ['progressbar', 'NULL']];
   public modals: Array<string> = ['dialog', 'snackbar', 'tooltip'];
   public dataTable: Array<string> = ['paginator', 'sortheader', 'table'];
   // tslint:disable-next-line:max-line-length
   public total: Array<string> = ['autocomplete', 'checkbox', 'datepicker', 'input', 'radiobutton', 'select', 'slider', 'slidetoggle', 'menu', 'sidenav', 'toolbar', 'card', 'list', 'tabs', 'stepper', 'button', 'buttontoggle', 'chips', 'icon', 'progressspinner', 'progressbar', 'dialog', 'snackbar', 'tooltip', 'paginator', 'sortheader', 'table'];
   public totalSave: Array<string> = ['autocomplete', 'checkbox', 'datepicker', 'input', 'radiobutton', 'select', 'slider', 'slidetoggle', 'menu', 'sidenav', 'toolbar', 'card', 'list', 'tabs', 'stepper', 'button', 'buttontoggle', 'chips', 'icon', 'progressspinner', 'progressbar', 'dialog', 'snackbar', 'tooltip', 'paginator', 'sortheader', 'table'];
 
+  totaltest: Composant[];
+  jsons: Json[];
 
-
-  constructor(public App: AppComponent,private _sanitizer: DomSanitizer, private dragulaService: DragulaService, public dialog: MatDialog, private sanitizer: DomSanitizer) {
+  // tslint:disable-next-line:max-line-length
+  constructor(public App: AppComponent, private _sanitizer: DomSanitizer, private dragulaService: DragulaService, public dialog: MatDialog, private sanitizer: DomSanitizer, private heroService: HeroService) {
     dragulaService.setOptions('page-bag', {
       accepts: function (el, target, source, sibling) {
 
@@ -82,7 +89,7 @@ export class GenimhComponent implements OnInit {
       copy: (el: Element, source: Element): boolean => {
         // elements are copied only if they are not already copied ones. That enables the 'removeOnSpill' to work
         // tslint:disable-next-line:max-line-length
-        return source.id === 'componentNav' ||  source.id === 'componentFrom' ||  source.id === 'componentTotal' ||  source.id === 'componentLayout' ||  source.id === 'componentButton' ||  source.id === 'componentModals' ||  source.id === 'componentDataTable'||  source.id === 'componentSearch';
+        return source.id === 'componentNav' ||  source.id === 'componentFrom' ||  source.id === 'componentTotal' ||  source.id === 'componentLayout' ||  source.id === 'componentButton' ||  source.id === 'componentModals' ||  source.id === 'componentDataTable' ||  source.id === 'componentSearch';
       },
       removeOnSpill: true
     });
@@ -124,7 +131,7 @@ export class GenimhComponent implements OnInit {
     this.styleButton2 = 'basic';
     this.deleteMode = 'Off';
     this.colorSelect = this._sanitizer.bypassSecurityTrustStyle('rgb(64, 0, 255)');
-    this.colorNameClass = 'B2'
+    this.colorNameClass = 'B2';
     this.classBtnDelete = 'button floatRight';
     // this.OptionSelect = [
     //   {value: 'Option-0', viewValue: 'Optiontt 1'},
@@ -193,7 +200,7 @@ export class GenimhComponent implements OnInit {
         container.id === 'componentLayout' ||
         container.id === 'componentButton' ||
         container.id === 'componentModals' ||
-        container.id === 'componentDataTable'||
+        container.id === 'componentDataTable' ||
         container.id === 'componentSearch' ) {
           el.remove();
         }
@@ -210,6 +217,21 @@ export class GenimhComponent implements OnInit {
 
   ngOnInit() {
     this.reset();
+    this.getComposants();
+  }
+
+  getComposants(): void {
+    this.heroService.getComposants()
+    .subscribe(composants => this.totaltest = composants);
+  }
+
+  addJson(content: string): void {
+    content = content.trim();
+    if (!content) { return; }
+    this.heroService.addJson({ content } as Json)
+      .subscribe(json => {
+        this.jsons.push(json);
+      });
   }
 
   addValueTabEditItem(value) {
@@ -229,13 +251,13 @@ export class GenimhComponent implements OnInit {
         if (event.index === 0) {
           tabValue[i][5] = 'Button';
 
-          tabValue[i][2] = 'basic'
-          this.typeButton =  tabValue[i][2]
+          tabValue[i][2] = 'basic';
+          this.typeButton =  tabValue[i][2];
         }
         if (event.index === 1) {
           tabValue[i][5] = 'add';
-          tabValue[i][2] = 'icon'
-          this.typeButton =  tabValue[i][2]
+          tabValue[i][2] = 'icon';
+          this.typeButton =  tabValue[i][2];
 
         }
       }
@@ -621,7 +643,7 @@ export class GenimhComponent implements OnInit {
   fillMatrisVerif(matrice) {
     this.matrisVerif = [];
     this.matriceVerifColor = [];
-    console.log(matrice)
+    console.log(matrice);
     for ( let z = 0; z < matrice.length; z++) {
       // tslint:disable-next-line:radix
       this.matrisVerif.push(parseInt(matrice[z][0]));
@@ -661,7 +683,7 @@ export class GenimhComponent implements OnInit {
   gridNameColor(color, colorNoOpa, colorNameclass) {
     this.colorSelect = this._sanitizer.bypassSecurityTrustStyle(colorNoOpa);
     this.gridColor = color;
-    this.colorNameClass = colorNameclass
+    this.colorNameClass = colorNameclass;
 
   }
 
@@ -701,18 +723,18 @@ export class GenimhComponent implements OnInit {
             if (this.gridColonne.toString() > colonne.toString()) {
               if (this.gridLigne.toString() > ligne.toString()) {
                 // tslint:disable-next-line:max-line-length
-                this.matrice.push([ligne.toString() + colonne.toString(), this.gridLigne.toString() + this.gridColonne.toString(), colonneF, ligneF, this.gridColor,this.colorNameClass]);
+                this.matrice.push([ligne.toString() + colonne.toString(), this.gridLigne.toString() + this.gridColonne.toString(), colonneF, ligneF, this.gridColor, this.colorNameClass]);
               } else {
                 // tslint:disable-next-line:max-line-length
-                this.matrice.push([this.gridLigne.toString() + colonne.toString(), ligne.toString() + this.gridColonne.toString(), colonneF, ligneF, this.gridColor,this.colorNameClass]);
+                this.matrice.push([this.gridLigne.toString() + colonne.toString(), ligne.toString() + this.gridColonne.toString(), colonneF, ligneF, this.gridColor, this.colorNameClass]);
               }
             } else {
               if (this.gridLigne.toString() > ligne.toString()) {
                 // tslint:disable-next-line:max-line-length
-                this.matrice.push([ligne.toString() + this.gridColonne.toString(), this.gridLigne.toString() + colonne.toString(), colonneF, ligneF, this.gridColor,this.colorNameClass]);
+                this.matrice.push([ligne.toString() + this.gridColonne.toString(), this.gridLigne.toString() + colonne.toString(), colonneF, ligneF, this.gridColor, this.colorNameClass]);
               } else {
                 // tslint:disable-next-line:max-line-length
-                this.matrice.push([this.gridLigne.toString() + this.gridColonne.toString(), ligne.toString() + colonne.toString(), colonneF, ligneF, this.gridColor,this.colorNameClass]);
+                this.matrice.push([this.gridLigne.toString() + this.gridColonne.toString(), ligne.toString() + colonne.toString(), colonneF, ligneF, this.gridColor, this.colorNameClass]);
 
               }
             }
@@ -768,18 +790,18 @@ export class GenimhComponent implements OnInit {
           if (this.gridColonne.toString() > colonne.toString()) {
             if (this.gridLigne.toString() > ligne.toString()) {
               // tslint:disable-next-line:max-line-length
-              this.saveRemove.push([ligne.toString() + colonne.toString(), this.gridLigne.toString() + this.gridColonne.toString(), colonneF, ligneF, this.gridColor],this.colorNameClass);
+              this.saveRemove.push([ligne.toString() + colonne.toString(), this.gridLigne.toString() + this.gridColonne.toString(), colonneF, ligneF, this.gridColor], this.colorNameClass);
             } else {
               // tslint:disable-next-line:max-line-length
-              this.saveRemove.push([this.gridLigne.toString() + colonne.toString(), ligne.toString() + this.gridColonne.toString(), colonneF, ligneF, this.gridColor,this.colorNameClass]);
+              this.saveRemove.push([this.gridLigne.toString() + colonne.toString(), ligne.toString() + this.gridColonne.toString(), colonneF, ligneF, this.gridColor, this.colorNameClass]);
             }
           } else {
             if (this.gridLigne.toString() > ligne.toString()) {
               // tslint:disable-next-line:max-line-length
-              this.saveRemove.push([ligne.toString() + this.gridColonne.toString(), this.gridLigne.toString() + colonne.toString(), colonneF, ligneF, this.gridColor,this.colorNameClass]);
+              this.saveRemove.push([ligne.toString() + this.gridColonne.toString(), this.gridLigne.toString() + colonne.toString(), colonneF, ligneF, this.gridColor, this.colorNameClass]);
             } else {
               // tslint:disable-next-line:max-line-length
-              this.saveRemove.push([this.gridLigne.toString() + this.gridColonne.toString(), ligne.toString() + colonne.toString(), colonneF, ligneF, this.gridColor,this.colorNameClass]);
+              this.saveRemove.push([this.gridLigne.toString() + this.gridColonne.toString(), ligne.toString() + colonne.toString(), colonneF, ligneF, this.gridColor, this.colorNameClass]);
             }
           }
           let DeleteM = false;

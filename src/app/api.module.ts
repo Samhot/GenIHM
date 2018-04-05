@@ -13,6 +13,7 @@ import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { HeroService } from './hero.service';
 import { HeroesComponent } from './heroes/heroes.component';
 import { HeroDetailComponent } from './hero-detail/hero-detail.component';
+import { JsonDetailComponent } from './json-detail/json-detail.component';
 
 
 const appRoutes: Routes = [
@@ -22,6 +23,7 @@ const appRoutes: Routes = [
   },
   { path: 'api/hero/:id', component: HeroDetailComponent },
   { path: 'api/heroes', component: HeroesComponent },
+  { path: 'api/json/:id', component: JsonDetailComponent }
   // { path: 'hero/search/:keyword', component: WodSearchComponent},
 ];
 
@@ -38,7 +40,8 @@ const appRoutes: Routes = [
   ],
   declarations: [
     HeroesComponent,
-    HeroDetailComponent
+    HeroDetailComponent,
+    JsonDetailComponent
   ],
   providers: [HeroService],
   bootstrap: [HeroesComponent]

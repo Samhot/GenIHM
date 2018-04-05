@@ -1,3 +1,25 @@
+<div style="padding-left: 3%;padding-top: 1%;">
+    <h2>JSON</h2>
+  
+    <div class="example-container">
+    <!-- <span> -->
+      <label>JSON :
+        <input matInput placeholder="Entrez Json" #json>
+      </label>
+      <!-- </span> -->
+      <!-- (click) passes input value to add() and then clears the input -->
+    </div>
+      <button (click)="addJson(json.value); json.value=''">
+        add
+      </button>
+  
+    <ul>
+      <li *ngFor="let json of jsons">
+          {{json.content}}
+      </li>
+    </ul>
+</div>
+
 <h2>List of WODs</h2>
 
 <div class="example-container">
@@ -14,7 +36,7 @@
 
 <ul class="heroes">
   <li *ngFor="let hero of heroes">
-    <a routerLink="/test/hero/{{hero.id}}">
+    <a routerLink="/api/hero/{{hero.id}}">
       <span class="badge">{{hero.id}}</span> {{hero.name}}
     </a>
       <button class="delete" title="delete wod" (click)="deleteHero(hero)">x</button>

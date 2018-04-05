@@ -15,21 +15,33 @@ ServerTODO = require('./routes_todos');
  
 // default route
 app.get('/', function (req, res) {
-    return res.send({ error: true, message: 'Bienvenue' })
+    return res.send({ message: 'Bienveeeenue' })
 });
 
 // // // // // // // // // WODS // // // // // // // // // //
 // Retrieve all wods 
 app.get('/wods', ServerWOD.getWods);
 
+// Retrieve all wods 
+app.get('/composants', ServerWOD.getComposants);
+
+// Retrieve all json 
+app.get('/jsons', ServerWOD.getJson);
+
 // Retrieve wod with id 
 app.get('/wod/:id', ServerWOD.getWodById);
+
+// Retrieve wod with id 
+app.get('/json/:id', ServerWOD.getJsonById);
 
 // Search for wods with ‘bug’ in their name
 app.get('/wod/search/:keyword', ServerWOD.searchWod);
 
 // Add a new wod  
 app.post('/wod', ServerWOD.createWod);
+
+// Add a new json  
+app.post('/json', ServerWOD.createJson);
 
 //  Update wod with id
 app.put('/wod/:id', ServerWOD.updateWod);
