@@ -1,6 +1,8 @@
-import {Component, ViewEncapsulation, ElementRef, ViewChild} from '@angular/core';
+import {Component,OnInit, ViewEncapsulation, ElementRef, ViewChild} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {GlobalService} from "../Services/GlobalService";
+import { NotificationService } from '@alfresco/adf-core';
+import { DocumentListComponent } from '@alfresco/adf-content-services';
 
 
 @Component({
@@ -15,8 +17,14 @@ export class VisionneuseGenIHMComponent {
   private sub: any;
   public tiles
   public optLayout
+  showViewer: Boolean = false;
+  nodeId: String = null;
 
-  constructor(private route: ActivatedRoute,public global : GlobalService, public router: Router) {}
+  @ViewChild(DocumentListComponent)
+  documentList: DocumentListComponent;
+
+
+  constructor(private notificationService: NotificationService,private route: ActivatedRoute,public global : GlobalService, public router: Router) {}
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
@@ -33,5 +41,23 @@ export class VisionneuseGenIHMComponent {
   }
   layoutAlign(id) {
     return `${this.optLayout[id].mainAxis} ${this.optLayout[id].crossAxis}`;
+  }
+
+  uploadSuccess(event: any) {
+    this.notificationService.openSnackMessage('File uploaded');
+    this.documentList.reload();
+  }
+
+  showPreview(event) {
+    this.showViewer = false;
+    if (event.value.entry.isFile) {
+      this.nodeId = event.value.entry.id;
+      this.showViewer = true;
+    }
+  }
+
+  onGoBack(event: any) {
+    this.showViewer = false;
+    this.nodeId = null;
   }
 }

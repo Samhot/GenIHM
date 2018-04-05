@@ -128,7 +128,7 @@
 
           <div *ngIf="ItemEdit == 'autocomplete' " style="text-align: center">
             <div style="display: inline-block;color: black" > Placeholder : <input  style="color: black" (input)="EditPlaceholder($event)" placeholder="{{resetInputAuto}}"></div>
-            <div *ngFor="let option of options"  style="display: inline-block;">
+            <div *ngFor="let option of options">
               <input (change)="changeValueTabEditItem(option,$event)"  value="{{ option }}" style="  margin: 10px;">
               <mat-icon mat-test color="warn" aria-label="Example icon-button with a heart icon" (click)="removeValueTabEditItem(option)" >cancel</mat-icon>
             </div>
@@ -143,6 +143,13 @@
             <div style="display: inline-block;color: black; margin-bottom: 10px" > Value : <input  style="color: black" (input)="changeValueCheckbox($event)" [(ngModel)]="valueCheckbox"></div>
           </div>
         <!--  ------------------------------------------  FIN CHECKBOX ------------------------------------------  -->
+            <!--  ------------------------------------------   Alfresco ADF ------------------------------------------  -->
+          <div *ngIf="ItemEdit == 'alfrescoadf' " style="text-align: center">
+
+            <div style="display: inline-block;color: black; margin-bottom: 10px" > UIID : <input  style="color: black" (input)="changeValueUIID($event)" [(ngModel)]="UIIDadfValue"></div>
+            <div style="display: inline-block;color: black; margin-bottom: 10px" > Nom dossier racine : <input  style="color: black" (input)="changeValueADFRacine($event)" [(ngModel)]="adfRacineValue"></div>
+          </div>
+        <!--  ------------------------------------------  FIN CHECKBOX ------------------------------------------  -->
 
         <!--  ------------------------------------------  DATEPICKER ------------------------------------------  -->
           <div *ngIf="ItemEdit == 'datepicker' " >
@@ -153,38 +160,32 @@
         <!--  ------------------------------------------  BUTTON ------------------------------------------  -->
           <div *ngIf="ItemEdit == 'button' ">
             <mat-tab-group (selectedTabChange)="onLinkClick($event)" >
-          <mat-tab label="Basic buttons" >
+          <mat-tab label='Bouton texte' >
             <div *ngIf="typeButton == 'basic' " style="text-align: center" >
-              <div style="display: inline-block;color: white" > Value : <input  style="color: black" [(ngModel)]="buttonValue"></div>
+              <div style="display: inline-block;color: black" > Texte : <input  style="color: black" (input)="changeValueButton($event)" [(ngModel)]="buttonValue"></div>
 
-              <h3 style="text-align: center">Choose your style button</h3>
               <div class="button-row">
-                <button mat-button (click)="changeStyle('basic','basic') ">Basic</button>
-                <button mat-button color="accent" (click)="changeStyle('basic','accent') ">Accent</button>
-                <button mat-button color="warn" (click)="changeStyle('basic','warn') ">Warn</button>
-                <button mat-button disabled>Disabled</button>
+                <button mat-button (click)="changeStyle('basic','basic') ">{{buttonValue}}</button>
+                <button mat-button color="accent" (click)="changeStyle('basic','accent') ">{{buttonValue}}</button>
+                <button mat-button color="warn" (click)="changeStyle('basic','warn') ">{{buttonValue}}</button>
               </div>
               <div class="button-row"  >
-                <button mat-raised-button (click)="changeStyle('raised','basic') " >Basic</button>
-                <button mat-raised-button color="accent" (click)="changeStyle('raised','accent') ">Accent</button>
+                <button mat-raised-button (click)="changeStyle('raised','basic') " >{{buttonValue}}</button>
+                <button mat-raised-button color="accent" (click)="changeStyle('raised','accent') ">{{buttonValue}}{{buttonValue}}</button>
                 <button mat-raised-button color="warn" (click)="changeStyle('raised','warn') ">Warn</button>
-                <button mat-raised-button disabled>Disabled</button>
               </div>
               <div class="button-row"  >
-                <button mat-fab (click)="changeStyle('fab','basic') ">Basic</button>
-                <button mat-fab color="warn" (click)="changeStyle('fab','warn') ">Warn</button>
-                <button mat-fab disabled >Disabled</button>
+                <button mat-fab (click)="changeStyle('fab','basic') ">{{buttonValue}}</button>
+                <button mat-fab color="warn" (click)="changeStyle('fab','warn') ">{{buttonValue}}</button>
               </div>
               <div class="button-row"  >
-                <button mat-mini-fab (click)="changeStyle('minifab','warn')">Basic</button>
-                <button mat-mini-fab color="warn" (click)="changeStyle('minifab','warn') ">Warn</button>
-                <button mat-mini-fab disabled>Disabled</button>
+                <button mat-mini-fab (click)="changeStyle('minifab','warn')">{{buttonValue}}</button>
+                <button mat-mini-fab color="warn" (click)="changeStyle('minifab','warn') ">{{buttonValue}}</button>
               </div>
             </div>
               </mat-tab>
-          <mat-tab label="Icon Buttons" (tabClicked)="changeTypeButton('icon')">
+          <mat-tab label="Bouton icon" (tabClicked)="changeTypeButton('icon')">
             <div *ngIf="typeButton == 'icon' " style="text-align: center">
-              <h3 style="text-align: center">Choose your Icon </h3>
               <div class="button-row">
                 <button mat-icon-button (click)="changeTextButton('favorite')">
                   <mat-icon aria-label="Example icon-button with a heart icon">favorite</mat-icon>
@@ -195,39 +196,35 @@
                 <button mat-icon-button (click)="changeTextButton('remove')">
                   <mat-icon aria-label="Example icon-button with a heart icon">remove</mat-icon>
                 </button>
-              </div>
-              <h3 style="text-align: center">Chosse your style button</h3>
-              <div class="button-row">
-                <button mat-icon-button (click)="changeStyle('icon','basic')">
-                  <mat-icon aria-label="Example icon-button with a heart icon">favorite</mat-icon>
-                </button>
-                <button mat-icon-button color="accent" (click)="changeStyle('icon','accent')">
-                  <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
-                </button>
-                <button mat-icon-button color="warn" (click)="changeStyle('icon','warn')">
-                  <mat-icon aria-label="Example icon-button with a heart icon">remove</mat-icon>
-                </button>
+              <br/>
+                <div style="display: inline-block;color: black; margin-bottom: 10px" > Code icon font : <input  style="color: black" (input)="changeTextButtonID($event)" placeholder="Code icon font" value="{{iconBtnEdit}}"></div>
+                <a href="https://material.io/icons/" target="_blank">Liste Icon</a>
               </div>
               <div class="button-row">
-                <button mat-button (click)="changeStyle('basic','basic')"> <mat-icon aria-label="Example icon-button with a heart icon">favorite</mat-icon></button>
-                <button mat-button color="accent" (click)="changeStyle('basic','accent')"> <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon></button>
-                <button mat-button color="warn" (click)="changeStyle('basic','warn')"> <mat-icon aria-label="Example icon-button with a heart icon">remove</mat-icon></button>
+                <button mat-button (click)="changeStyle('basic','basic')"> <mat-icon aria-label="Example icon-button with a heart icon">{{iconBtnEdit}}</mat-icon></button>
+                <button mat-button color="accent" (click)="changeStyle('basic','accent')"> <mat-icon aria-label="Example icon-button with a heart icon">{{iconBtnEdit}}</mat-icon></button>
+                <button mat-button color="warn" (click)="changeStyle('basic','warn')"> <mat-icon aria-label="Example icon-button with a heart icon">{{iconBtnEdit}}</mat-icon></button>
               </div>
               <div class="button-row">
-                <button mat-raised-button (click)="changeStyle('raised','basic')"> <mat-icon aria-label="Example icon-button with a heart icon">favorite</mat-icon></button>
-                <button mat-raised-button color="accent" (click)="changeStyle('raised','accent')"> <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon></button>
-                <button mat-raised-button color="warn" (click)="changeStyle('raised','warn')"> <mat-icon aria-label="Example icon-button with a heart icon">remove</mat-icon></button>
+                <button mat-raised-button (click)="changeStyle('raised','basic')"> <mat-icon aria-label="Example icon-button with a heart icon">{{iconBtnEdit}}</mat-icon></button>
+                <button mat-raised-button color="accent" (click)="changeStyle('raised','accent')"> <mat-icon aria-label="Example icon-button with a heart icon">{{iconBtnEdit}}</mat-icon></button>
+                <button mat-raised-button color="warn" (click)="changeStyle('raised','warn')"> <mat-icon aria-label="Example icon-button with a heart icon">{{iconBtnEdit}}</mat-icon></button>
               </div>
               <div class="button-row">
-                <button mat-fab (click)="changeStyle('fab','basic')"><mat-icon aria-label="Example icon-button with a heart icon">favorite</mat-icon></button>
-                <button mat-fab color="warn" (click)="changeStyle('fab','warn')"><mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon></button>
+                <button mat-fab (click)="changeStyle('fab','basic')"><mat-icon aria-label="Example icon-button with a heart icon">{{iconBtnEdit}}</mat-icon></button>
+                <button mat-fab color="warn" (click)="changeStyle('fab','warn')"><mat-icon aria-label="Example icon-button with a heart icon">{{iconBtnEdit}}</mat-icon></button>
               </div>
               <div class="button-row">
-                <button mat-mini-fab (click)="changeStyle('minifab','basic')"><mat-icon aria-label="Example icon-button with a heart icon">favorite</mat-icon></button>
-                <button mat-mini-fab color="warn" (click)="changeStyle('fab','warn')"><mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon></button>
+                <button mat-mini-fab (click)="changeStyle('minifab','basic')"><mat-icon aria-label="Example icon-button with a heart icon">{{iconBtnEdit}}</mat-icon></button>
+                <button mat-mini-fab color="warn" (click)="changeStyle('fab','warn')"><mat-icon aria-label="Example icon-button with a heart icon">{{iconBtnEdit}}</mat-icon></button>
               </div>
             </div>
-          </mat-tab>
+          </mat-tab >
+              <mat-tab label="Action bouton">
+                <div style="display: inline-block;color: black; margin-bottom: 10px" > API : <input  style="color: black" (input)="changeApi($event)" placeholder="https://MonApi/" ></div>
+                <div style="display: inline-block;color: black; margin-bottom: 10px" > Fonction : <input  style="color: black" (input)="changeFonction($event)" placeholder="function(){ }" ></div>
+
+              </mat-tab>
         </mat-tab-group>
       </div>
         <!--  ------------------------------------------  FIN BUTTON ------------------------------------------  -->
@@ -286,7 +283,7 @@
         <accordion>
           <accordion-group heading="Modifier le block">
             <div style=" width: 100%;background-color: #AEB6BF; margin-bottom: 15px;  border: 1px solid;">
-                <h4 style="text-align: center"><strong style="color: white">Modifier le block</strong></h4>
+                <h4 style="text-align: center"><strong style="color: white">Disposition des éléments</strong></h4>
                 <div >
                   <mat-card class="card-demo">
                     <mat-card-actions fxHide="false" style="padding-left:20px">
@@ -324,14 +321,15 @@
                     </mat-card-actions>
                   </mat-card>
                 </div>
-              </div>
+                </div>
           </accordion-group>
         </accordion>
       <!--------------------------------------------   FIN EDIT BLOCK  ---------------------------------------->
 
       <!--------------------------------------------   COMPOSANTS LIST  ---------------------------------------->
+        <div style="margin-top: 15px">
         <accordion>
-          <accordion-group heading="Form Control">
+          <accordion-group heading="Formulaire">
             <div class='parent'>
             <div class='wrapper'>
               <div [dragula]='"page-bag"' [dragulaModel]='formControl' id="componentFrom">
@@ -340,7 +338,7 @@
             </div>
             </div>
           </accordion-group>
-          <accordion-group heading="Navigation">
+          <accordion-group heading="Navigation" >
             <div class='parent'>
               <div class='wrapper'>
                 <div [dragula]='"page-bag"' [dragulaModel]='navigation' id="componentNav">
@@ -348,8 +346,8 @@
                 </div>
               </div>
             </div>
-          </accordion-group>
-          <accordion-group heading="Layout">
+          </accordion-group >
+          <accordion-group heading="Mise en page" >
             <div class='parent'>
               <div class='wrapper'>
                 <div [dragula]='"page-bag"' [dragulaModel]='layout' id="componentLayout">
@@ -357,8 +355,9 @@
                 </div>
               </div>
             </div>
-          </accordion-group>
-          <accordion-group heading="Button & Indicators">
+          </accordion-group >
+          <accordion-group heading="Boutons et Indicateurs">
+
             <div class='parent'>
               <div class='wrapper'>
                 <div [dragula]='"page-bag"' [dragulaModel]='button' id="componentButton">
@@ -367,7 +366,7 @@
               </div>
             </div>
           </accordion-group>
-          <accordion-group heading="Popups & Modals">
+          <accordion-group heading="Popups et Modals">
             <div class='parent'>
               <div class='wrapper'>
                 <div [dragula]='"page-bag"' [dragulaModel]='modals' id="componentModals">
@@ -376,7 +375,7 @@
               </div>
             </div>
           </accordion-group>
-          <accordion-group heading="Data Table">
+          <accordion-group heading="Tableau">
             <div class='parent'>
               <div class='wrapper'>
                 <div [dragula]='"page-bag"' [dragulaModel]='dataTable' id="componentDataTable">
@@ -385,10 +384,21 @@
               </div>
             </div>
           </accordion-group>
+          <accordion-group heading="Alfresco module">
+            <div class='parent'>
+              <div class='wrapper'>
+                <div [dragula]='"page-bag"' [dragulaModel]='alfresco' id="componentAlfresco">
+                  <img *ngFor='let text of alfresco' src="../../assets/iconeGENIHM/{{text[0]}}.PNG" name="{{text}}" style="padding: 5px">
+                </div>
+              </div>
+            </div>
+          </accordion-group>
         </accordion>
+        </div>
       <!--------------------------------------------   FIN COMPOSANTS LIST  ---------------------------------------->
+        <div style="margin-top: 15px">
         <accordion>
-          <accordion-group heading="Recherche">
+          <accordion-group heading="Recherche" >
             <div class='parent'>
               <div class='wrapper'>
                 <input (input)="changeSearch($event)">
@@ -399,7 +409,9 @@
             </div>
           </accordion-group>
         </accordion>
+        </div>
 
+        <div style="margin-top: 15px">
         <accordion>
           <accordion-group heading="Console">
             <div *ngFor='let tile of tiles'>
@@ -407,7 +419,11 @@
             </div>
           </accordion-group>
         </accordion>
-        <a title="Download JSON" [href]="downloadJsonHref" download="export.json"><button mat-raised-button (mouseenter)="generateDownloadJsonUri()" color="accent">Export</button></a>
+        </div>
+
+        <div style="margin-top: 15px">
+        <a title="Download JSON" [href]="downloadJsonHref" download="export.json"><button mat-raised-button (mouseenter)="generateDownloadJsonUri()" color="accent">Exporter ma page</button></a>
+        </div>
 
       </mat-tab>
     </mat-tab-group>
@@ -417,7 +433,7 @@
   <!--------------------------------------------   GRID VIEW  ---------------------------------------->
 
   <div style="width: 100%; height: 1000px">
-    <form id="formGrid">
+    <form>
       <mat-grid-list cols="4" rowHeight="100px">
         <mat-grid-tile
           *ngFor="let tile of tiles"
@@ -425,12 +441,48 @@
           [rowspan]="tile.rows"
           [style.background]="tile.color">
 
-          <div *ngIf="tile.vide == 'true' "  [dragula]='"page-bag"' [dragulaModel]='tile.tab' id={{tile.id}} style="width: 100%;height: 100%;"  [fxLayout]="optLayout[tile.optLayoutId].direction" [fxLayoutAlign]="layoutAlign(tile.optLayoutId)" (click)="monContainer(tile.optLayoutId)">
+
+
+          <div *ngIf="tile.vide == 'true' "  [dragula]='"page-bag"' [dragulaModel]='tile.tab' id={{tile.id}} style="width: 100%;overflow:scroll;height: 100%;"  [fxLayout]="optLayout[tile.optLayoutId].direction" [fxLayoutAlign]="layoutAlign(tile.optLayoutId)" (click)="monContainer(tile.optLayoutId)">
             <div *ngFor='let text of tile.tab'>
+
+            <div *ngIf="text[0] == 'alfrescoadf' " (click)="editItem('alfrescoadf',tile.id,text[1])" >
+              <adf-toolbar>
+                <adf-toolbar-title>
+                  <adf-breadcrumb
+                    class="files-breadcrumb"
+                    root= {{text[3]}}
+                    [target]="documentList"
+                    [folderNode]="documentList.folderNode">
+                  </adf-breadcrumb>
+                </adf-toolbar-title>
+                <adf-upload-button
+                  [rootFolderId]="documentList.currentFolderId || '-root-'"
+                  [adf-node-permission]="'create'"
+                  (success)="uploadSuccess($event)">
+                </adf-upload-button>
+
+              </adf-toolbar>
+
+
+              <adf-document-list
+                #documentList
+                [currentFolderId]= text[2]
+                (preview)="showPreview($event)">
+              </adf-document-list>
+
+              <adf-viewer
+                [showViewer]="showViewer"
+                [overlayMode]="true"
+                [fileNodeId]="nodeId"
+                (goBack)="onGoBack($event)">
+              </adf-viewer>
+              <file-uploading-dialog></file-uploading-dialog>
+            </div>
 
               <div *ngIf="text[0] == 'autocomplete' " (click)="editItem('autocomplete',tile.id,text[1])" >
                 <mat-form-field>
-                  <input matInput class="w3-input w3-border w3-light-grey" type="text[0]" placeholder="{{text[2]}}" [matAutocomplete]="auto">
+                  <input matInput class="w3-input w3-border w3-light-grey" type="text[0]" placeholder="{{text[2]}}" [matAutocomplete]="auto" >
                   <mat-autocomplete #auto="matAutocomplete">
                     <mat-option *ngFor="let option of text[3]" [value]="option">
                       {{ option }}
@@ -456,8 +508,8 @@
             <div *ngIf="text[0] == 'button' " (click)="editItem('button',tile.id,text[1])">
               <div *ngIf="text[2] == 'basic' ">
               <div *ngIf="text[3] == 'basic' ">
-                <button mat-button *ngIf="text[4] == 'basic' ">{{text[5]}}</button>
-                <button mat-button color="accent" *ngIf="text[4] == 'accent' ">{{text[5]}}</button>
+                <button mat-button  *ngIf="text[4] == 'basic' "  (click)="fonctionTest()">{{text[5]}}</button>
+                <button mat-button color="accent" *ngIf="text[4] == 'accent' " (click)="onSubmit()">{{text[5]}}</button>
                 <button mat-button color="warn"  *ngIf="text[4] == 'warn' ">{{text[5]}}</button>
               </div>
 
@@ -545,7 +597,7 @@
 
               <div *ngIf="text[0] == 'input' " (click)="editItem('input',tile.id,text[1])">
                 <mat-form-field>
-                <input matInput placeholder="{{text[2]}}" >
+                  <input matInput id="{{text[1]}}" placeholder="{{text[2]}}" >
                 </mat-form-field>
               </div>
 

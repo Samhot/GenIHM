@@ -6,9 +6,43 @@
       [colspan]="tile.cols"
       [rowspan]="tile.rows">
 
-      <div *ngIf="tile.vide == 'true' "  [dragula]='"page-bag"' [dragulaModel]='tile.tab' id={{tile.id}} style="width: 100%;height: 100%;"  [fxLayout]="optLayout[tile.optLayoutId].direction" [fxLayoutAlign]="layoutAlign(tile.optLayoutId)">
+      <div *ngIf="tile.vide == 'true' " id={{tile.id}} style="width: 100%;overflow:scroll;height: 100%;"  [fxLayout]="optLayout[tile.optLayoutId].direction" [fxLayoutAlign]="layoutAlign(tile.optLayoutId)">
         <div *ngFor='let text of tile.tab'>
 
+
+          <div *ngIf="text[0] == 'alfrescoadf' " >
+            <adf-toolbar>
+              <adf-toolbar-title>
+                <adf-breadcrumb
+                  class="files-breadcrumb"
+                  root= {{text[3]}}
+                  [target]="documentList"
+                  [folderNode]="documentList.folderNode">
+                </adf-breadcrumb>
+              </adf-toolbar-title>
+              <adf-upload-button
+                [rootFolderId]="documentList.currentFolderId || '-root-'"
+                [adf-node-permission]="'create'"
+                (success)="uploadSuccess($event)">
+              </adf-upload-button>
+
+            </adf-toolbar>
+
+
+            <adf-document-list
+              #documentList
+              [currentFolderId]= text[2]
+              (preview)="showPreview($event)">
+            </adf-document-list>
+
+            <adf-viewer
+              [showViewer]="showViewer"
+              [overlayMode]="true"
+              [fileNodeId]="nodeId"
+              (goBack)="onGoBack($event)">
+            </adf-viewer>
+            <file-uploading-dialog></file-uploading-dialog>
+          </div>
           <div *ngIf="text[0] == 'autocomplete' ">
             <mat-form-field>
               <input matInput class="w3-input w3-border w3-light-grey" type="text[0]" placeholder="{{text[2]}}" [matAutocomplete]="auto">

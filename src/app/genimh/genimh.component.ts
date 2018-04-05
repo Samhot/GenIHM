@@ -1,4 +1,3 @@
-import {Component, OnInit, Inject} from '@angular/core';
 import {FormControl, FormArray} from '@angular/forms';
 import { AppComponent } from '../app.component';
 import { DragulaService } from 'ng2-dragula';
@@ -6,6 +5,10 @@ import {MatDialog, MAT_DIALOG_DATA, MatDialogRef, MatTabChangeEvent} from '@angu
 import {AccordionModule} from 'ng2-accordion';
 import {DomSanitizer} from '@angular/platform-browser';
 import { Placeholder } from '@angular/compiler/src/i18n/i18n_ast';
+import { Component, OnInit, ViewChild,Inject } from '@angular/core';
+import { NotificationService } from '@alfresco/adf-core';
+import { DocumentListComponent } from '@alfresco/adf-content-services';
+
 
 @Component({
   selector: 'app-genimh',
@@ -58,6 +61,10 @@ export class GenimhComponent implements OnInit {
   public tabValue;
   public colorSelect;
   public colorNameClass;
+  public UIIDadfValue;
+  public adfRacineValue;
+  public iconBtnEdit
+  public fonctionTest
 
   // tslint:disable-next-line:max-line-length
   public formControl = [['autocomplete', 'NULL', 'Placeholder', ['OneT', 'Two', 'Three']], ['checkbox', 'NULL', 'Value'], ['datepicker', 'NULL', 'Placeholder'], ['input', 'NULL', 'Placeholder'], ['radiobutton', 'NULL', ['Option 1', 'Option 2']], ['select', 'NULL', 'Placeholder', ['Un', 'Deux', 'Trois']], ['slider', 'NULL'], ['slidetoggle', 'NULL']];
@@ -66,23 +73,28 @@ export class GenimhComponent implements OnInit {
   public button  = [['button','NULL','basic','basic','basic','Bouton'], ['buttontoggle','NULL'], ['chips','NULL',[['one',''],['two','primary'],['three','accent']]], ['icon','NULL','home'], ['progressspinner','NULL'], ['progressbar','NULL']];
   public modals: Array<string> = ['dialog', 'snackbar', 'tooltip'];
   public dataTable: Array<string> = ['paginator', 'sortheader', 'table'];
+  public alfresco = [['alfrescoadf','NULL',"","Racine"]]; //fc8d4fec-204e-428d-aa26-1295b6e8682c    f6b9f65c-33aa-4bc7-a560-babc93a30c89
   // tslint:disable-next-line:max-line-length
   public total: Array<string> = ['autocomplete', 'checkbox', 'datepicker', 'input', 'radiobutton', 'select', 'slider', 'slidetoggle', 'menu', 'sidenav', 'toolbar', 'card', 'list', 'tabs', 'stepper', 'button', 'buttontoggle', 'chips', 'icon', 'progressspinner', 'progressbar', 'dialog', 'snackbar', 'tooltip', 'paginator', 'sortheader', 'table'];
   public totalSave: Array<string> = ['autocomplete', 'checkbox', 'datepicker', 'input', 'radiobutton', 'select', 'slider', 'slidetoggle', 'menu', 'sidenav', 'toolbar', 'card', 'list', 'tabs', 'stepper', 'button', 'buttontoggle', 'chips', 'icon', 'progressspinner', 'progressbar', 'dialog', 'snackbar', 'tooltip', 'paginator', 'sortheader', 'table'];
+  showViewer: Boolean = false;
+  nodeId: String = null;
 
+  @ViewChild(DocumentListComponent)
+  documentList: DocumentListComponent;
 
+  constructor(public App: AppComponent,public notificationService: NotificationService,private _sanitizer: DomSanitizer, private dragulaService: DragulaService, public dialog: MatDialog, private sanitizer: DomSanitizer) {
 
-  constructor(public App: AppComponent,private _sanitizer: DomSanitizer, private dragulaService: DragulaService, public dialog: MatDialog, private sanitizer: DomSanitizer) {
     dragulaService.setOptions('page-bag', {
       accepts: function (el, target, source, sibling) {
 
         // tslint:disable-next-line:max-line-length
-        return target.id !== 'componentFrom' || target.id !== 'componentNav' || target.id !== 'componentTotal' || target.id !== 'componentLayout' || target.id !== 'componentButton' || target.id !== 'componentModals' || target.id !== 'componentDataTable' || target.id !== 'componentSearch'  ; // elements can be dropped only in 'to_drop_to' container
+        return target.id !== 'componentFrom' || target.id !== 'componentNav' || target.id !== 'componentTotal' || target.id !== 'componentLayout' || target.id !== 'componentButton' || target.id !== 'componentModals' || target.id !== 'componentDataTable' || target.id !== 'componentSearch'|| target.id !== 'componentAlfresco'  ; // elements can be dropped only in 'to_drop_to' container
       },
       copy: (el: Element, source: Element): boolean => {
         // elements are copied only if they are not already copied ones. That enables the 'removeOnSpill' to work
         // tslint:disable-next-line:max-line-length
-        return source.id === 'componentNav' ||  source.id === 'componentFrom' ||  source.id === 'componentTotal' ||  source.id === 'componentLayout' ||  source.id === 'componentButton' ||  source.id === 'componentModals' ||  source.id === 'componentDataTable'||  source.id === 'componentSearch';
+        return source.id === 'componentNav' ||  source.id === 'componentFrom' ||  source.id === 'componentTotal' ||  source.id === 'componentLayout' ||  source.id === 'componentButton' ||  source.id === 'componentModals' ||  source.id === 'componentDataTable'||  source.id === 'componentSearch'||  source.id === 'componentAlfresco';
       },
       removeOnSpill: true
     });
@@ -126,6 +138,8 @@ export class GenimhComponent implements OnInit {
     this.colorSelect = this._sanitizer.bypassSecurityTrustStyle('rgb(64, 0, 255)');
     this.colorNameClass = 'B2'
     this.classBtnDelete = 'button floatRight';
+    this.iconBtnEdit = 'add'
+    this.fonctionTest = function () {}
     // this.OptionSelect = [
     //   {value: 'Option-0', viewValue: 'Optiontt 1'},
     //   {value: 'Option-1', viewValue: 'Optionyy 2'},
@@ -161,6 +175,30 @@ export class GenimhComponent implements OnInit {
     crossAxis :  'center'
   };
 
+
+  /////////////////////////////////////////// ADF //////////////////////////////////////////////////////////////////////
+
+  uploadSuccess(event: any) {
+    this.notificationService.openSnackMessage('File uploaded');
+    this.documentList.reload();
+  }
+
+  showPreview(event) {
+    this.showViewer = false;
+    if (event.value.entry.isFile) {
+      this.nodeId = event.value.entry.id;
+      this.showViewer = true;
+    }
+  }
+
+  onGoBack(event: any) {
+    this.showViewer = false;
+    this.nodeId = null;
+  }
+
+
+  //////////////////////////////////////////// FIN ADF /////////////////////////////////////////////////////////////////////
+
   layoutAlign(id) {
       return `${this.optLayout[id].mainAxis} ${this.optLayout[id].crossAxis}`;
   }
@@ -194,7 +232,8 @@ export class GenimhComponent implements OnInit {
         container.id === 'componentButton' ||
         container.id === 'componentModals' ||
         container.id === 'componentDataTable'||
-        container.id === 'componentSearch' ) {
+        container.id === 'componentSearch'||
+        container.id === 'componentAlfresco' ) {
           el.remove();
         }
   }
@@ -270,6 +309,39 @@ export class GenimhComponent implements OnInit {
     }
   }
 
+  changeValueButton(event) {
+    const idDiv = this.idWebEdit.split('web');
+    const tabValue = this.allArray[idDiv[1]][1];
+
+    for (let i = 0; i < tabValue.length; i++) {
+      if (tabValue[i][1] === this.idElementEdit) {
+         tabValue[i][5] = event.target.value;
+      }
+    }
+  }
+
+  changeValueUIID(event) {
+    const idDiv = this.idWebEdit.split('web');
+    const tabValue = this.allArray[idDiv[1]][1];
+
+    for (let i = 0; i < tabValue.length; i++) {
+      if (tabValue[i][1] === this.idElementEdit) {
+         tabValue[i][2] = event.target.value;
+      }
+    }
+  }
+
+  changeValueADFRacine(event) {
+    const idDiv = this.idWebEdit.split('web');
+    const tabValue = this.allArray[idDiv[1]][1];
+
+    for (let i = 0; i < tabValue.length; i++) {
+      if (tabValue[i][1] === this.idElementEdit) {
+         tabValue[i][3] = event.target.value;
+      }
+    }
+  }
+
   changeValueDatePicker(event) {
     const idDiv = this.idWebEdit.split('web');
     const tabValue = this.allArray[idDiv[1]][1];
@@ -299,6 +371,19 @@ export class GenimhComponent implements OnInit {
     // alert(this.IDCONTAINER)
   }
 
+  changeFonction(event){
+    this.fonctionTest = eval("(function(){"+event.target.value+"})")
+    console.log(this.fonctionTest)
+  }
+  onSubmit(){
+    var submitTab = []
+    for(var i = 0; i < this.tiles[0].tab.length; i++){
+      if(this.tiles[0].tab[i][0] == "input"){
+        submitTab.push((<HTMLInputElement>document.getElementById(this.tiles[0].tab[i][1])).value)
+      }
+    }
+console.log(submitTab)
+  }
   removeValueTabEditItem(value) {
     for (let i = 0; i < this.options.length; i++) {
      if (this.options[i] === value) {
@@ -375,6 +460,14 @@ export class GenimhComponent implements OnInit {
         }
       }
     }
+    if (item === 'alfrescoadf') {
+      for (let i = 0; i < tabValue.length; i++) {
+        if (tabValue[i][1] === this.idElementEdit) {
+          this.UIIDadfValue = tabValue[i][2];
+        }
+      }
+    }
+
   }
 
   EditPlaceholder(event) {
@@ -418,7 +511,18 @@ export class GenimhComponent implements OnInit {
     const tabValue = this.allArray[idDiv[1]][1];
     for (let i = 0; i < tabValue.length; i++) {
       if (tabValue[i][1] === this.idElementEdit) {
-        tabValue[i][4] =  text;
+        tabValue[i][5] =  text;
+        this.iconBtnEdit = text
+      }
+    }
+  }
+  changeTextButtonID(event) {
+    const idDiv = this.idWebEdit.split('web');
+    const tabValue = this.allArray[idDiv[1]][1];
+    for (let i = 0; i < tabValue.length; i++) {
+      if (tabValue[i][1] === this.idElementEdit) {
+        tabValue[i][5] =  event.target.value;
+        this.iconBtnEdit = event.target.value
       }
     }
   }
@@ -824,3 +928,4 @@ export class DialogOverviewExampleDialogComponent {
   }
 
 }
+
