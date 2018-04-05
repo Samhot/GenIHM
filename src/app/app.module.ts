@@ -1,15 +1,19 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { DndModule } from 'ng2-dnd';
-import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 import { RouterModule, Routes } from '@angular/router';
 import { FileSelectDirective } from 'ng2-file-upload';
+import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
+
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 
 // ADF modules
 import { AdfModule } from './adf.module';
 import { AuthGuardBpm } from '@alfresco/adf-core';
 import { AuthGuardEcm } from '@alfresco/adf-core';
 
+import { ApiModule } from './api.module';
 
 // App components
 import { AppComponent } from './app.component';
@@ -17,13 +21,11 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { DocumentlistComponent } from './documentlist/documentlist.component';
 import { SearchDemoComponent } from './search/search-demo.component';
-import {GenimhComponent, DialogOverviewExampleDialogComponent} from 'app/genimh/genimh.component';
-import {AccordionModule} from 'ng2-accordion';
-import {MoteurGenIHMComponent} from "./moteurgenihm/moteur-genihm.component";
-import {VisionneuseGenIHMComponent} from "./visionneuseihm/visionneuse-genihm.component";
-import {GlobalService} from "./Services/GlobalService";
-import { NewComponent } from './new/new.component';
-
+import { GenimhComponent, DialogOverviewExampleDialogComponent } from 'app/genimh/genimh.component';
+import { MoteurGenIHMComponent } from './moteurgenihm/moteur-genihm.component';
+import { AccordionModule } from 'ng2-accordion';
+import { VisionneuseGenIHMComponent } from './visionneuseihm/visionneuse-genihm.component';
+import { GlobalService } from './Services/GlobalService';
 
 const appRoutes: Routes = [
   {
@@ -58,27 +60,20 @@ const appRoutes: Routes = [
     path: 'VisionneuseGenIHM/:id',
     component: VisionneuseGenIHMComponent,
     canActivate: [AuthGuardEcm]
-  },
-  {
-    path: 'test',
-    component: NewComponent
   }
 ];
 
 @NgModule({
   imports: [
     BrowserModule,
-    DndModule.forRoot(),
-    FroalaEditorModule.forRoot(),
-    FroalaViewModule.forRoot(),
     AccordionModule,
     RouterModule.forRoot(
       appRoutes // ,
       // { enableTracing: true } // <-- debugging purposes only
     ),
-
     // ADF modules
     AdfModule,
+    ApiModule
   ], entryComponents: [ DialogOverviewExampleDialogComponent],
   declarations: [
     AppComponent,
@@ -91,7 +86,6 @@ const appRoutes: Routes = [
     VisionneuseGenIHMComponent,
     MoteurGenIHMComponent,
     FileSelectDirective,
-    NewComponent
   ],
   providers: [GlobalService],
   bootstrap: [AppComponent]

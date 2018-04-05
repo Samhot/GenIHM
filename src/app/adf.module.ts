@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { DragulaModule } from 'ng2-dragula';
 import { FlexLayoutModule } from '@angular/flex-layout';
-
+import { AccordionModule } from 'ng2-accordion';
 
 // ADF modules
 import { ContentModule } from '@alfresco/adf-content-services';
@@ -83,6 +83,7 @@ export function modules() {
       MatTableModule,
       MatTabsModule,
       MatTooltipModule,
+      AccordionModule
   ];
 }
 

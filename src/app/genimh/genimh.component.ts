@@ -9,6 +9,10 @@ import { Component, OnInit, ViewChild,Inject } from '@angular/core';
 import { NotificationService } from '@alfresco/adf-core';
 import { DocumentListComponent } from '@alfresco/adf-content-services';
 
+import { Composant } from '../composant';
+import { Json } from '../json';
+import { HeroService } from '../hero.service';
+import { ContentActionListComponent } from '@alfresco/adf-content-services';
 
 @Component({
   selector: 'app-genimh',
@@ -70,7 +74,8 @@ export class GenimhComponent implements OnInit {
   public formControl = [['autocomplete', 'NULL', 'Placeholder', ['OneT', 'Two', 'Three']], ['checkbox', 'NULL', 'Value'], ['datepicker', 'NULL', 'Placeholder'], ['input', 'NULL', 'Placeholder'], ['radiobutton', 'NULL', ['Option 1', 'Option 2']], ['select', 'NULL', 'Placeholder', ['Un', 'Deux', 'Trois']], ['slider', 'NULL'], ['slidetoggle', 'NULL']];
   public navigation: Array<string> = ['menu', 'sidenav', 'toolbar'];
   public layout: Array<string> = ['card', 'list', 'tabs', 'stepper'];
-  public button  = [['button','NULL','basic','basic','basic','Bouton'], ['buttontoggle','NULL'], ['chips','NULL',[['one',''],['two','primary'],['three','accent']]], ['icon','NULL','home'], ['progressspinner','NULL'], ['progressbar','NULL']];
+  // tslint:disable-next-line:max-line-length
+  public button  = [['button', 'NULL', 'basic', 'basic', 'basic', 'Bouton'], ['buttontoggle', 'NULL'], ['chips', 'NULL', [['one', ''], ['two', 'primary'], ['three', 'accent']]], ['icon', 'NULL', 'home'], ['progressspinner', 'NULL'], ['progressbar', 'NULL']];
   public modals: Array<string> = ['dialog', 'snackbar', 'tooltip'];
   public dataTable: Array<string> = ['paginator', 'sortheader', 'table'];
   public alfresco = [['alfrescoadf','NULL',"","Racine"]]; //fc8d4fec-204e-428d-aa26-1295b6e8682c    f6b9f65c-33aa-4bc7-a560-babc93a30c89
@@ -80,10 +85,14 @@ export class GenimhComponent implements OnInit {
   showViewer: Boolean = false;
   nodeId: String = null;
 
+
   @ViewChild(DocumentListComponent)
   documentList: DocumentListComponent;
+  totaltest: Composant[];
+  jsons: Json[];
 
-  constructor(public App: AppComponent,public notificationService: NotificationService,private _sanitizer: DomSanitizer, private dragulaService: DragulaService, public dialog: MatDialog, private sanitizer: DomSanitizer) {
+  // tslint:disable-next-line:max-line-length
+  constructor(public App: AppComponent, public notificationService: NotificationService, private _sanitizer: DomSanitizer, private dragulaService: DragulaService, public dialog: MatDialog, private sanitizer: DomSanitizer, private heroService: HeroService) {
 
     dragulaService.setOptions('page-bag', {
       accepts: function (el, target, source, sibling) {
@@ -95,6 +104,7 @@ export class GenimhComponent implements OnInit {
         // elements are copied only if they are not already copied ones. That enables the 'removeOnSpill' to work
         // tslint:disable-next-line:max-line-length
         return source.id === 'componentNav' ||  source.id === 'componentFrom' ||  source.id === 'componentTotal' ||  source.id === 'componentLayout' ||  source.id === 'componentButton' ||  source.id === 'componentModals' ||  source.id === 'componentDataTable'||  source.id === 'componentSearch'||  source.id === 'componentAlfresco';
+
       },
       removeOnSpill: true
     });
@@ -136,7 +146,7 @@ export class GenimhComponent implements OnInit {
     this.styleButton2 = 'basic';
     this.deleteMode = 'Off';
     this.colorSelect = this._sanitizer.bypassSecurityTrustStyle('rgb(64, 0, 255)');
-    this.colorNameClass = 'B2'
+    this.colorNameClass = 'B2';
     this.classBtnDelete = 'button floatRight';
     this.iconBtnEdit = 'add'
     this.fonctionTest = function () {}
@@ -249,6 +259,21 @@ export class GenimhComponent implements OnInit {
 
   ngOnInit() {
     this.reset();
+    this.getComposants();
+  }
+
+  getComposants(): void {
+    this.heroService.getComposants()
+    .subscribe(composants => this.totaltest = composants);
+  }
+
+  addJson(content: string): void {
+    content = content.trim();
+    if (!content) { return; }
+    this.heroService.addJson({ content } as Json)
+      .subscribe(json => {
+        this.jsons.push(json);
+      });
   }
 
   addValueTabEditItem(value) {
@@ -268,13 +293,13 @@ export class GenimhComponent implements OnInit {
         if (event.index === 0) {
           tabValue[i][5] = 'Button';
 
-          tabValue[i][2] = 'basic'
-          this.typeButton =  tabValue[i][2]
+          tabValue[i][2] = 'basic';
+          this.typeButton =  tabValue[i][2];
         }
         if (event.index === 1) {
           tabValue[i][5] = 'add';
-          tabValue[i][2] = 'icon'
-          this.typeButton =  tabValue[i][2]
+          tabValue[i][2] = 'icon';
+          this.typeButton =  tabValue[i][2];
 
         }
       }
@@ -725,7 +750,7 @@ console.log(submitTab)
   fillMatrisVerif(matrice) {
     this.matrisVerif = [];
     this.matriceVerifColor = [];
-    console.log(matrice)
+    console.log(matrice);
     for ( let z = 0; z < matrice.length; z++) {
       // tslint:disable-next-line:radix
       this.matrisVerif.push(parseInt(matrice[z][0]));
@@ -765,7 +790,7 @@ console.log(submitTab)
   gridNameColor(color, colorNoOpa, colorNameclass) {
     this.colorSelect = this._sanitizer.bypassSecurityTrustStyle(colorNoOpa);
     this.gridColor = color;
-    this.colorNameClass = colorNameclass
+    this.colorNameClass = colorNameclass;
 
   }
 
@@ -805,18 +830,18 @@ console.log(submitTab)
             if (this.gridColonne.toString() > colonne.toString()) {
               if (this.gridLigne.toString() > ligne.toString()) {
                 // tslint:disable-next-line:max-line-length
-                this.matrice.push([ligne.toString() + colonne.toString(), this.gridLigne.toString() + this.gridColonne.toString(), colonneF, ligneF, this.gridColor,this.colorNameClass]);
+                this.matrice.push([ligne.toString() + colonne.toString(), this.gridLigne.toString() + this.gridColonne.toString(), colonneF, ligneF, this.gridColor, this.colorNameClass]);
               } else {
                 // tslint:disable-next-line:max-line-length
-                this.matrice.push([this.gridLigne.toString() + colonne.toString(), ligne.toString() + this.gridColonne.toString(), colonneF, ligneF, this.gridColor,this.colorNameClass]);
+                this.matrice.push([this.gridLigne.toString() + colonne.toString(), ligne.toString() + this.gridColonne.toString(), colonneF, ligneF, this.gridColor, this.colorNameClass]);
               }
             } else {
               if (this.gridLigne.toString() > ligne.toString()) {
                 // tslint:disable-next-line:max-line-length
-                this.matrice.push([ligne.toString() + this.gridColonne.toString(), this.gridLigne.toString() + colonne.toString(), colonneF, ligneF, this.gridColor,this.colorNameClass]);
+                this.matrice.push([ligne.toString() + this.gridColonne.toString(), this.gridLigne.toString() + colonne.toString(), colonneF, ligneF, this.gridColor, this.colorNameClass]);
               } else {
                 // tslint:disable-next-line:max-line-length
-                this.matrice.push([this.gridLigne.toString() + this.gridColonne.toString(), ligne.toString() + colonne.toString(), colonneF, ligneF, this.gridColor,this.colorNameClass]);
+                this.matrice.push([this.gridLigne.toString() + this.gridColonne.toString(), ligne.toString() + colonne.toString(), colonneF, ligneF, this.gridColor, this.colorNameClass]);
 
               }
             }
@@ -872,18 +897,18 @@ console.log(submitTab)
           if (this.gridColonne.toString() > colonne.toString()) {
             if (this.gridLigne.toString() > ligne.toString()) {
               // tslint:disable-next-line:max-line-length
-              this.saveRemove.push([ligne.toString() + colonne.toString(), this.gridLigne.toString() + this.gridColonne.toString(), colonneF, ligneF, this.gridColor],this.colorNameClass);
+              this.saveRemove.push([ligne.toString() + colonne.toString(), this.gridLigne.toString() + this.gridColonne.toString(), colonneF, ligneF, this.gridColor], this.colorNameClass);
             } else {
               // tslint:disable-next-line:max-line-length
-              this.saveRemove.push([this.gridLigne.toString() + colonne.toString(), ligne.toString() + this.gridColonne.toString(), colonneF, ligneF, this.gridColor,this.colorNameClass]);
+              this.saveRemove.push([this.gridLigne.toString() + colonne.toString(), ligne.toString() + this.gridColonne.toString(), colonneF, ligneF, this.gridColor, this.colorNameClass]);
             }
           } else {
             if (this.gridLigne.toString() > ligne.toString()) {
               // tslint:disable-next-line:max-line-length
-              this.saveRemove.push([ligne.toString() + this.gridColonne.toString(), this.gridLigne.toString() + colonne.toString(), colonneF, ligneF, this.gridColor,this.colorNameClass]);
+              this.saveRemove.push([ligne.toString() + this.gridColonne.toString(), this.gridLigne.toString() + colonne.toString(), colonneF, ligneF, this.gridColor, this.colorNameClass]);
             } else {
               // tslint:disable-next-line:max-line-length
-              this.saveRemove.push([this.gridLigne.toString() + this.gridColonne.toString(), ligne.toString() + colonne.toString(), colonneF, ligneF, this.gridColor,this.colorNameClass]);
+              this.saveRemove.push([this.gridLigne.toString() + this.gridColonne.toString(), ligne.toString() + colonne.toString(), colonneF, ligneF, this.gridColor, this.colorNameClass]);
             }
           }
           let DeleteM = false;

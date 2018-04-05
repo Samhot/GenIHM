@@ -5,7 +5,7 @@
     <a mat-button routerLink="/">ADF</a>
   </adf-toolbar-title>
 
-    <a mat-button href="" routerLink="/login"*ngIf=!checkIfLogged()>Login</a>
+    <a mat-button href="" routerLink="/login" *ngIf=!checkIfLogged()>Login</a>
     <a mat-button href="" routerLink="/documentlist">Documents</a>
     <a mat-button href="" routerLink="/genihm">GenIHM</a>
     <a mat-button href="" routerLink="/moteurGenihm">Moteur GenIHM</a>
@@ -21,24 +21,24 @@
       <h3>SIDEBAR</h3>
 
       <mat-tab-group>
-        <mat-tab label="Grid Option">
-
+        <mat-tab label="Onglet 1">
+          <h1>Some more tab content 1</h1>
+          <p>...</p>
         </mat-tab>
-        <mat-tab label="Dag Item Option">
-          <h1>Some more tab content</h1>
+        <mat-tab label="Onglet 2">
+          <h1>Some more tab content 2</h1>
           <p>...</p>
         </mat-tab>
       </mat-tab-group>
-      <button mat-button [matMenuTriggerFor]="appMenu" class="margin-top">Bouton menu exemple</button>
+      <button mat-button [matMenuTriggerFor]="appMenu" class="margin-top">Bouton menu exemple permanent</button>
     </mat-sidenav>
 
     <mat-menu #appMenu="matMenu">
-    <button mat-menu-item> Settings </button>
-    <button mat-menu-item> Help </button>
+      <button mat-menu-item> Settings </button>
+      <button mat-menu-item> Help </button>
     </mat-menu>
 
     <mat-sidenav-content class="full-height boxed">
-      <div id="TESTESTEST1"></div>
-        <router-outlet></router-outlet>
+      <router-outlet></router-outlet>
     </mat-sidenav-content>
   </mat-sidenav-container>
