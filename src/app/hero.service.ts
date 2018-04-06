@@ -16,7 +16,7 @@ const httpOptions = {
 @Injectable()
 export class HeroService {
 
-  private heroesUrl = 'http://127.0.0.1:5000';  // URL to web api
+  public heroesUrl = 'http://127.0.0.1:5000';  // URL to web api
 
   constructor(
     private http: HttpClient,
@@ -111,6 +111,7 @@ export class HeroService {
 
   /** POST: add a new hero to the server */
   addJson (json: Json): Observable<Json> {
+    console.log(json)
     return this.http.post<Json>(this.heroesUrl + '/json', json, httpOptions)
     .pipe(
       // tslint:disable-next-line:no-shadowed-variable

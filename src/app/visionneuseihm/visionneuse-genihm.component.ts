@@ -1,14 +1,10 @@
-<<<<<<< HEAD
+
 import {Component,OnInit, ViewEncapsulation, ElementRef, ViewChild} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {GlobalService} from "../Services/GlobalService";
 import { NotificationService } from '@alfresco/adf-core';
 import { DocumentListComponent } from '@alfresco/adf-content-services';
-=======
-import {Component, ViewEncapsulation, ElementRef, ViewChild, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
-import {GlobalService} from '../Services/GlobalService';
->>>>>>> a14790b2ddc2371a2d61b2a6055f3e630d26fdb2
+
 
 
 @Component({
@@ -21,7 +17,6 @@ import {GlobalService} from '../Services/GlobalService';
 export class VisionneuseGenIHMComponent implements OnInit {
   id: number;
   private sub: any;
-<<<<<<< HEAD
   public tiles
   public optLayout
   showViewer: Boolean = false;
@@ -32,12 +27,7 @@ export class VisionneuseGenIHMComponent implements OnInit {
 
 
   constructor(private notificationService: NotificationService,private route: ActivatedRoute,public global : GlobalService, public router: Router) {}
-=======
-  public tiles;
-  public optLayout;
 
-  constructor(private route: ActivatedRoute, public global: GlobalService, public router: Router) {}
->>>>>>> a14790b2ddc2371a2d61b2a6055f3e630d26fdb2
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {

@@ -20,7 +20,9 @@ import { ContentActionListComponent } from '@alfresco/adf-content-services';
   styleUrls: ['./genimh.component.scss']
 })
 
+
 export class GenimhComponent implements OnInit {
+
 
   public firstClick;
   public gridLigne;
@@ -390,15 +392,13 @@ export class GenimhComponent implements OnInit {
   }
 
   monContainer(idContainer) {
-
     this.idLayoutEdit = idContainer;
-    console.log(this.idLayoutEdit);
-    // alert(this.IDCONTAINER)
   }
-
+changeApi(event){
+    this.heroService.heroesUrl = event.target.value;
+}
   changeFonction(event){
     this.fonctionTest = eval("(function(){"+event.target.value+"})")
-    console.log(this.fonctionTest)
   }
   onSubmit(){
     var submitTab = []
@@ -407,7 +407,8 @@ export class GenimhComponent implements OnInit {
         submitTab.push((<HTMLInputElement>document.getElementById(this.tiles[0].tab[i][1])).value)
       }
     }
-console.log(submitTab)
+    console.log(this.heroService.heroesUrl)
+    this.addJson(submitTab.toString())
   }
   removeValueTabEditItem(value) {
     for (let i = 0; i < this.options.length; i++) {
