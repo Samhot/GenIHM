@@ -1,6 +1,6 @@
 <div style="padding-left: 3%;padding-top: 1%;">
     <h2>JSON</h2>
-  
+
     <div class="example-container">
     <!-- <span> -->
       <label>JSON :
@@ -12,7 +12,7 @@
       <button (click)="addJson(json.value); json.value=''">
         add
       </button>
-  
+
     <ul>
       <li *ngFor="let json of jsons">
           {{json.content}}
@@ -20,15 +20,15 @@
     </ul>
 </div>
 
-<h2>List of WODs</h2>
+<!-- <h2>List of WODs</h2>
 
 <div class="example-container">
-<!-- <span> -->
+<!-- <span>
     <label>Wod name:
         <input matInput placeholder="Nom du WOD" #heroName>
-    </label>
+    </label>-->
   <!-- </span> -->
-  <!-- (click) passes input value to add() and then clears the input -->
+  <!-- (click) passes input value to add() and then clears the input
 </div>
     <button (click)="addHero(heroName.value); heroName.value=''">
       add
@@ -41,4 +41,4 @@
     </a>
       <button class="delete" title="delete wod" (click)="deleteHero(hero)">x</button>
   </li>
-</ul>
+</ul>-->

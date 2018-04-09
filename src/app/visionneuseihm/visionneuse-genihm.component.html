@@ -1,184 +1,198 @@
+<div style="width: 100%; height: 1000px">
+  <form>
+    <mat-grid-list cols="4" rowHeight="100px">
+      <mat-grid-tile
+        *ngFor="let tile of tiles"
+        [colspan]="tile.cols"
+        [rowspan]="tile.rows">
+<!-- overflow:scroll; -->
+        <div *ngIf="tile.vide == 'true' " id={{tile.id}} style="width: 100%;height: 100%;"  [fxLayout]="optLayout[tile.optLayoutId].direction" [fxLayoutAlign]="layoutAlign(tile.optLayoutId)">
+          <div *ngFor='let text of tile.tab'>
 
-<form id="formGrid">
-  <mat-grid-list cols="4" rowHeight="100px">
-    <mat-grid-tile
-      *ngFor="let tile of tiles"
-      [colspan]="tile.cols"
-      [rowspan]="tile.rows">
+            <div *ngIf="text[0] == 'alfrescoadf' "  >
+              <adf-toolbar>
+                <adf-toolbar-title>
+                  <adf-breadcrumb
+                    class="files-breadcrumb"
+                    root= {{text[3]}}
+                    [target]="documentList"
+                    [folderNode]="documentList.folderNode">
+                  </adf-breadcrumb>
+                </adf-toolbar-title>
+                <adf-upload-button
+                  [rootFolderId]="documentList.currentFolderId || '-root-'"
+                  [adf-node-permission]="'create'"
+                  (success)="uploadSuccess($event)">
+                </adf-upload-button>
 
-      <div *ngIf="tile.vide == 'true' " id={{tile.id}} style="width: 100%;overflow:scroll;height: 100%;"  [fxLayout]="optLayout[tile.optLayoutId].direction" [fxLayoutAlign]="layoutAlign(tile.optLayoutId)">
-        <div *ngFor='let text of tile.tab'>
-          <div *ngIf="text[0] == 'alfrescoadf' " >
-            <adf-toolbar>
-              <adf-toolbar-title>
-                <adf-breadcrumb
-                  class="files-breadcrumb"
-                  root= {{text[3]}}
-                  [target]="documentList"
-                  [folderNode]="documentList.folderNode">
-                </adf-breadcrumb>
-              </adf-toolbar-title>
-              <adf-upload-button
-                [rootFolderId]="documentList.currentFolderId || '-root-'"
-                [adf-node-permission]="'create'"
-                (success)="uploadSuccess($event)">
-              </adf-upload-button>
+              </adf-toolbar>
 
-            </adf-toolbar>
-            <adf-document-list
-              #documentList
-              [currentFolderId]= text[2]
-              (preview)="showPreview($event)">
-            </adf-document-list>
 
-            <adf-viewer
-              [showViewer]="showViewer"
-              [overlayMode]="true"
-              [fileNodeId]="nodeId"
-              (goBack)="onGoBack($event)">
-            </adf-viewer>
-            <file-uploading-dialog></file-uploading-dialog>
-          </div>
+              <adf-document-list
+                #documentList
+                [currentFolderId]= text[2]
+                (preview)="showPreview($event)">
+              </adf-document-list>
 
-          <div *ngIf="text[0] == 'autocomplete' ">
-            <mat-form-field>
-              <input matInput class="w3-input w3-border w3-light-grey" type="text[0]" placeholder="{{text[2]}}" [matAutocomplete]="auto">
-              <mat-autocomplete #auto="matAutocomplete">
-                <mat-option *ngFor="let option of text[3]" [value]="option">
+              <adf-viewer
+                [showViewer]="showViewer"
+                [overlayMode]="true"
+                [fileNodeId]="nodeId"
+                (goBack)="onGoBack($event)">
+              </adf-viewer>
+              <file-uploading-dialog></file-uploading-dialog>
+            </div>
+
+            <div *ngIf="text[0] == 'autocomplete' "  >
+              <mat-form-field>
+                <input matInput class="w3-input w3-border w3-light-grey" type="text[0]" placeholder="{{text[2]}}" [matAutocomplete]="auto" >
+                <mat-autocomplete #auto="matAutocomplete">
+                  <mat-option *ngFor="let option of text[3]" [value]="option">
+                    {{ option }}
+                  </mat-option>
+                </mat-autocomplete>
+              </mat-form-field>
+            </div>
+
+            <div *ngIf="text[0] == 'select'" >
+              <mat-form-field>
+                <mat-select placeholder="{{text[2]}}">
+                  <mat-option *ngFor="let option of text[3]" [value]="option">
+                    {{ option }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+
+            <div *ngIf="text[0] == 'checkbox' " >
+              <mat-checkbox>{{text[2]}}</mat-checkbox>
+            </div>
+            <!----------------------------------------       GRID BUTTON  ---------------------------------------------------------->
+
+            <div *ngIf="text[0] == 'button' " >
+              <div *ngIf="text[2] == 'basic' ">
+                <div *ngIf="text[3] == 'basic' ">
+                  <button mat-button  *ngIf="text[4] == 'basic' "  (click)="onSubmit()">{{text[5]}}</button>
+                  <button mat-button color="accent" *ngIf="text[4] == 'accent' " (click)="onSubmit()">{{text[5]}}</button>
+                  <button mat-button color="warn"  *ngIf="text[4] == 'warn' " (click)="onSubmit()" >{{text[5]}}</button>
+                </div>
+
+                <div *ngIf="text[3] == 'raised' ">
+                  <button mat-raised-button  *ngIf="text[4] == 'basic' " (click)="onSubmit()">{{text[5]}}</button>
+                  <button mat-raised-button color="accent"  *ngIf="text[4] == 'accent' " (click)="onSubmit()">{{text[5]}}</button>
+                  <button mat-raised-button color="warn" *ngIf="text[4] == 'warn' " (click)="onSubmit()">{{text[5]}}</button>
+                </div>
+
+
+                <div *ngIf="text[3] == 'fab' ">
+                  <button mat-fab  *ngIf="text[4] == 'basic' "(click)="onSubmit()">{{text[5]}}</button>
+                  <button mat-fab color="accent"  *ngIf="text[4] == 'accent' " (click)="onSubmit()">{{text[5]}}</button>
+                  <button mat-fab color="warn" *ngIf="text[4] == 'warn' " (click)="onSubmit()">{{text[5]}}</button>
+                </div>
+
+
+                <div *ngIf="text[3] == 'minifab' ">
+                  <button mat-mini-fab  *ngIf="text[4] == 'basic' " (click)="onSubmit()">{{text[5]}}</button>
+                  <button mat-mini-fab color="accent"  *ngIf="text[4] == 'accent' " (click)="onSubmit()">{{text[5]}}</button>
+                  <button mat-mini-fab color="warn" *ngIf="text[4] == 'warn' " (click)="onSubmit()">{{text[5]}}</button>
+                </div>
+              </div>
+              <div *ngIf="text[2] == 'icon' ">
+                <div *ngIf="text[3] == 'icon' ">
+                  <button mat-icon-button  *ngIf="text[4] == 'basic' " (click)="onSubmit()">
+                    <mat-icon aria-label="Example icon-button with a heart icon">{{text[5]}}</mat-icon>
+                  </button>
+                  <button mat-icon-button color="accent"  *ngIf="text[4] == 'accent' " (click)="onSubmit()">
+                    <mat-icon aria-label="Example icon-button with a heart icon">{{text[5]}}</mat-icon>
+                  </button>
+                  <button mat-icon-button color="warn"  *ngIf="text[4] == 'warn' " (click)="onSubmit()">
+                    <mat-icon aria-label="Example icon-button with a heart icon">{{text[5]}}</mat-icon>
+                  </button>
+                </div>
+                <div *ngIf="text[3] == 'basic' ">
+                  <button mat-button  *ngIf="text[4] == 'basic' " (click)="onSubmit()">
+                    <mat-icon aria-label="Example icon-button with a heart icon">{{text[5]}}</mat-icon>
+                  </button>
+                  <button mat-button color="accent"  *ngIf="text[4] == 'accent' " (click)="onSubmit()">
+                    <mat-icon aria-label="Example icon-button with a heart icon">{{text[5]}}</mat-icon>
+                  </button>
+                  <button mat-button color="warn"  *ngIf="text[4] == 'warn' " (click)="onSubmit()">
+                    <mat-icon aria-label="Example icon-button with a heart icon">{{text[5]}}</mat-icon>
+                  </button>
+                </div>
+
+                <div *ngIf="text[3] == 'raised' ">
+                  <button mat-raised-button  *ngIf="text[4] == 'basic' " (click)="onSubmit()">
+                    <mat-icon aria-label="Example icon-button with a heart icon">{{text[5]}}</mat-icon>
+                  </button>
+                  <button mat-raised-button color="accent"  *ngIf="text[4] == 'accent' " (click)="onSubmit()">
+                    <mat-icon aria-label="Example icon-button with a heart icon">{{text[5]}}</mat-icon>
+                  </button>
+                  <button mat-raised-button color="warn"  *ngIf="text[4] == 'warn' " (click)="onSubmit()">
+                    <mat-icon aria-label="Example icon-button with a heart icon">{{text[5]}}</mat-icon>
+                  </button>
+                </div>
+
+                <div *ngIf="text[3] == 'fab' ">
+                  <button mat-fab  *ngIf="text[4] == 'basic' " (click)="onSubmit()">
+                    <mat-icon aria-label="Example icon-button with a heart icon">{{text[5]}}</mat-icon>
+                  </button>
+                  <button mat-fab color="warn"  *ngIf="text[4] == 'warn' " (click)="onSubmit()">
+                    <mat-icon aria-label="Example icon-button with a heart icon">{{text[5]}}</mat-icon>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <!----------------------------------------   FIN  BUTTON  ---------------------------------------------------------->
+
+            <!----------------------------------------       GRID ICON BUTTON  ---------------------------------------------------------->
+            <div *ngIf="text[0] == 'icon' " >
+              <mat-icon>{{text[2]}}</mat-icon>
+            </div>
+            <!----------------------------------------     FIN  GRID  ICON BUTTON  ---------------------------------------------------------->
+
+            <div *ngIf="text[0] == 'datepicker' " >
+              <mat-form-field>
+                <input matInput [matDatepicker]="picker" placeholder="{{ text[2] }}">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+            </div>
+
+            <div *ngIf="text[0] == 'input' " >
+              <mat-form-field>
+                <input matInput id="{{text[1]}}" placeholder="{{text[2]}}" >
+              </mat-form-field>
+            </div>
+
+
+            <div *ngIf="text[0] == 'chips' " >
+              <mat-chip-list>
+                <mat-chip *ngFor="let option of text[2]" color="{{option[1]}}" >{{option[0]}}</mat-chip>
+                <mat-chip color="primary" selected="true">Primary fish</mat-chip>
+              </mat-chip-list>
+            </div>
+
+            <div *ngIf="text[0] == 'radiobutton' ">
+              <mat-radio-group>
+                <mat-radio-button *ngFor="let option of text[2]" [value]="option" style="margin-right: 10px">
                   {{ option }}
-                </mat-option>
-              </mat-autocomplete>
-            </mat-form-field>
-          </div>
+                </mat-radio-button>
 
-          <div *ngIf="text[0] == 'checkbox' ">
-            <mat-checkbox>{{valueCheckbox}}</mat-checkbox>
-          </div>
-
-          <div *ngIf="text == 'button' ">
-            <div *ngIf="typeButton == 'basic' ">
-              <div *ngIf="styleButton == 'basic' ">
-                <button mat-button *ngIf="styleButton2 == 'basic' ">{{buttonValue}}</button>
-                <button mat-button color="accent" *ngIf="styleButton2 == 'accent' ">{{buttonValue}}</button>
-                <button mat-button color="warn"  *ngIf="styleButton2 == 'warn' ">{{buttonValue}}</button>
-              </div>
-
-              <div *ngIf="styleButton == 'raised' ">
-                <button mat-raised-button  *ngIf="styleButton2 == 'basic' ">{{buttonValue}}</button>
-                <button mat-raised-button color="accent"  *ngIf="styleButton2 == 'accent' ">{{buttonValue}}</button>
-                <button mat-raised-button color="warn" *ngIf="styleButton2 == 'warn' ">{{buttonValue}}</button>
-              </div>
-
-              <div *ngIf="styleButton == 'fab' ">
-                <button mat-fab  *ngIf="styleButton2 == 'basic' ">{{buttonValue}}</button>
-                <button mat-fab color="accent"  *ngIf="styleButton2 == 'accent' ">{{buttonValue}}</button>
-                <button mat-fab color="warn" *ngIf="styleButton2 == 'warn' ">{{buttonValue}}</button>
-              </div>
-
-              <div *ngIf="styleButton == 'minifab' ">
-                <button mat-mini-fab  *ngIf="styleButton2 == 'basic' ">{{buttonValue}}</button>
-                <button mat-mini-fab color="accent"  *ngIf="styleButton2 == 'accent' ">{{buttonValue}}</button>
-                <button mat-mini-fab color="warn" *ngIf="styleButton2 == 'warn' ">{{buttonValue}}</button>
-              </div>
+              </mat-radio-group>
             </div>
-            <div *ngIf="typeButton == 'icon' ">
-              <div *ngIf="styleButton == 'icon' ">
-                <button mat-icon-button  *ngIf="styleButton2 == 'basic' ">
-                  <mat-icon aria-label="Example icon-button with a heart icon">{{buttonValue}}</mat-icon>
-                </button>
-                <button mat-icon-button color="accent"  *ngIf="styleButton2 == 'accent' ">
-                  <mat-icon aria-label="Example icon-button with a heart icon">{{buttonValue}}</mat-icon>
-                </button>
-                <button mat-icon-button color="warn"  *ngIf="styleButton2 == 'warn' ">
-                  <mat-icon aria-label="Example icon-button with a heart icon">{{buttonValue}}</mat-icon>
-                </button>
-              </div>
-              <div *ngIf="styleButton == 'basic' ">
-                <button mat-button  *ngIf="styleButton2 == 'basic' ">
-                  <mat-icon aria-label="Example icon-button with a heart icon">{{buttonValue}}</mat-icon>
-                </button>
-                <button mat-button color="accent"  *ngIf="styleButton2 == 'accent' ">
-                  <mat-icon aria-label="Example icon-button with a heart icon">{{buttonValue}}</mat-icon>
-                </button>
-                <button mat-button color="warn"  *ngIf="styleButton2 == 'warn' ">
-                  <mat-icon aria-label="Example icon-button with a heart icon">{{buttonValue}}</mat-icon>
-                </button>
-              </div>
 
-              <div *ngIf="styleButton == 'raised' ">
-                <button mat-raised-button  *ngIf="styleButton2 == 'basic' ">
-                  <mat-icon aria-label="Example icon-button with a heart icon">{{buttonValue}}</mat-icon>
-                </button>
-                <button mat-raised-button color="accent"  *ngIf="styleButton2 == 'accent' ">
-                  <mat-icon aria-label="Example icon-button with a heart icon">{{buttonValue}}</mat-icon>
-                </button>
-                <button mat-raised-button color="warn"  *ngIf="styleButton2 == 'warn' ">
-                  <mat-icon aria-label="Example icon-button with a heart icon">{{buttonValue}}</mat-icon>
-                </button>
-              </div>
-
-              <div *ngIf="styleButton == 'fab' ">
-                <button mat-fab  *ngIf="styleButton2 == 'basic' ">
-                  <mat-icon aria-label="Example icon-button with a heart icon">{{buttonValue}}</mat-icon>
-                </button>
-                <button mat-fab color="warn"  *ngIf="styleButton2 == 'warn' ">
-                  <mat-icon aria-label="Example icon-button with a heart icon">{{buttonValue}}</mat-icon>
-                </button>
-              </div>
-
-              <div *ngIf="styleButton == 'minifab' ">
-                <button mat-mini-fab  *ngIf="styleButton2 == 'basic' ">
-                  <mat-icon aria-label="Example icon-button with a heart icon">{{buttonValue}}</mat-icon>
-                </button>
-                <button mat-mini-fab color="warn"  *ngIf="styleButton2 == 'warn' ">
-                  <mat-icon aria-label="Example icon-button with a heart icon">{{buttonValue}}</mat-icon>
-                </button>
-              </div>
+            <div *ngIf="text[0] == 'slider' ">
+              <mat-slider min="1" max="5" step="0.5" value="1.5"></mat-slider>
             </div>
-          </div>
 
-          <div *ngIf="text[0] == 'datepicker' ">
-            <mat-form-field>
-              <input matInput [matDatepicker]="picker" placeholder="Choose a date">
-              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-              <mat-datepicker #picker></mat-datepicker>
-            </mat-form-field>
-          </div>
+            <div *ngIf="text[0] == 'slidetoggle' ">
+              <mat-slide-toggle>Slide me!</mat-slide-toggle>
+            </div>
 
-
-          <div *ngIf="text[0] == 'input' ">
-            <mat-form-field>
-              <input matInput placeholder="{{text[2]}}" >
-            </mat-form-field>
-          </div>
-
-          <div *ngIf="text[0] == 'radiobutton' ">
-            <mat-radio-group>
-              <mat-radio-button value="1">Option 1</mat-radio-button>
-              <mat-radio-button value="2">Option 2</mat-radio-button>
-            </mat-radio-group>
-          </div>
-
-          <div *ngIf="text[0] == 'select' ">
-            <mat-form-field>
-              <mat-select placeholder="Your Option">
-                <mat-option *ngFor="let option of OptionSelect" [value]="option.value">
-                  {{ option.viewValue }}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-          </div>
-
-          <div *ngIf="text[0] == 'slider' ">
-            <mat-slider min="1" max="5" step="0.5" value="1.5"></mat-slider>
-          </div>
-
-          <div *ngIf="text[0] == 'slidetoggle' ">
-            <mat-slide-toggle>Slide me!</mat-slide-toggle>
           </div>
         </div>
-      </div>
-    </mat-grid-tile>
-  </mat-grid-list>
-
-</form>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </form>
+</div>

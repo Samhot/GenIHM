@@ -1,4 +1,4 @@
-<h1>Editeur GenIHM </h1>
+<h1>Designer GenIHM </h1>
  <button mat-button (click)="sidenav2.toggle()"><mat-icon>menu</mat-icon></button>
 <mat-sidenav-container>
   <mat-sidenav #sidenav2 mode="side" class="sidebar-left">
@@ -127,7 +127,7 @@
           <!--  ------------------------------------------  AUTOCOMPLETE ------------------------------------------  -->
 
             <div *ngIf="ItemEdit == 'autocomplete' " style="text-align: center">
-              <div style="display: inline-block;color: black" > Placeholder : <input  style="color: black" (input)="EditPlaceholder($event)" placeholder="{{resetInputAuto}}"></div>
+              <div style="display: inline-block;color: black" > Libellé : <input  style="color: black" (input)="EditPlaceholder($event)" placeholder="{{resetInputAuto}}"></div>
               <div *ngFor="let option of options"  style="display: inline-block;">
                 <input (change)="changeValueTabEditItem(option,$event)"  value="{{ option }}" style="  margin: 10px;">
                 <mat-icon mat-test color="warn" aria-label="Example icon-button with a heart icon" (click)="removeValueTabEditItem(option)" >cancel</mat-icon>
@@ -153,7 +153,7 @@
 
         <!--  ------------------------------------------  DATEPICKER ------------------------------------------  -->
           <div *ngIf="ItemEdit == 'datepicker' " >
-            <div style="display: inline-block;color: black; margin-bottom: 10px" > Placeholder : <input  style="color: black" (input)="changeValueDatePicker($event)"  [(ngModel)]="valueDatepicker"></div>
+            <div style="display: inline-block;color: black; margin-bottom: 10px" > Libellé : <input  style="color: black" (input)="changeValueDatePicker($event)"  [(ngModel)]="valueDatepicker"></div>
           </div>
         <!--  ------------------------------------------  FIN DATEPICKER ------------------------------------------  -->
 
@@ -222,7 +222,7 @@
           </mat-tab >
               <mat-tab label="Action bouton">
                 <div style="display: inline-block;color: black; margin-bottom: 10px" > API : <input  style="color: black" (input)="changeApi($event)" placeholder="https://MonApi/" ></div>
-                <div style="display: inline-block;color: black; margin-bottom: 10px" > Fonction : <input  style="color: black" (input)="changeFonction($event)" placeholder="function(){ }" ></div>
+                <div style="display: inline-block;color: black; margin-bottom: 10px" > Fonction : <input  style="color: black" (change)="changeFonction($event)" placeholder="ex : alert('Mon alert')" ></div>
 
               </mat-tab>
         </mat-tab-group>
@@ -232,7 +232,7 @@
         <!--  ------------------------------------------ INPUT  ------------------------------------------  -->
 
             <div *ngIf="ItemEdit == 'input' " >
-              <div style="display: inline-block;color: black; margin-bottom: 10px" > Placeholder : <input  style="color: black" (input)="EditPlaceholder($event)" placeholder="{{resetInputAuto}}"></div>
+              <div style="display: inline-block;color: black; margin-bottom: 10px" > Libellé : <input  style="color: black" (input)="EditPlaceholder($event)" [(ngModel)]="resetInputAuto"></div>
             </div>
 
           <!--  ------------------------------------------  FIN INPUT ------------------------------------------  -->
@@ -263,7 +263,7 @@
 
           <!--  ------------------------------------------  SELECT ------------------------------------------  -->
             <div *ngIf="ItemEdit == 'select' " >
-              <div style="display: inline-block;color: black; margin-bottom: 10px" > Placeholder : <input  style="color: black" (input)="changeValueSelect($event)"  placeholder="{{resetInputAuto}}" [(ngModel)]="valueSelect"></div>
+              <div style="display: inline-block;color: black; margin-bottom: 10px" > Libellé : <input  style="color: black" (input)="changeValueSelect($event)"  placeholder="{{resetInputAuto}}" [(ngModel)]="valueSelect"></div>
               <div *ngFor="let option of options" >
                   <input (change)="changeValueTabEditItem(option,$event)"  value="{{ option }}"><button mat-mini-fab color="warn">
                   <mat-icon aria-label="Example icon-button with a heart icon" (click)="removeValueTabEditItem(option)" >remove</mat-icon>

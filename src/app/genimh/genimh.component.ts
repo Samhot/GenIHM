@@ -73,7 +73,7 @@ export class GenimhComponent implements OnInit {
   public fonctionTest
 
   // tslint:disable-next-line:max-line-length
-  public formControl = [['autocomplete', 'NULL', 'Placeholder', ['OneT', 'Two', 'Three']], ['checkbox', 'NULL', 'Value'], ['datepicker', 'NULL', 'Placeholder'], ['input', 'NULL', 'Placeholder'], ['radiobutton', 'NULL', ['Option 1', 'Option 2']], ['select', 'NULL', 'Placeholder', ['Un', 'Deux', 'Trois']], ['slider', 'NULL'], ['slidetoggle', 'NULL']];
+  public formControl = [['autocomplete', 'NULL', 'Libellé', ['One', 'Two', 'Three']], ['checkbox', 'NULL', 'Value'], ['datepicker', 'NULL', 'Libellé'], ['input', 'NULL', 'Libellé'], ['radiobutton', 'NULL', ['Option 1', 'Option 2']], ['select', 'NULL', 'Libellé', ['Un', 'Deux', 'Trois']], ['slider', 'NULL'], ['slidetoggle', 'NULL']];
   public navigation: Array<string> = ['menu', 'sidenav', 'toolbar'];
   public layout: Array<string> = ['card', 'list', 'tabs', 'stepper'];
   // tslint:disable-next-line:max-line-length
@@ -219,9 +219,7 @@ export class GenimhComponent implements OnInit {
     if (args[0].nodeName === 'IMG') {
       const idDiv = args[1].id.split('web');
       const tabValue = this.allArray[idDiv[1]][1];
-      console.log(tabValue);
       for (let i = 0; i < tabValue.length; i++) {
-        console.log(tabValue[i][1]);
         if (tabValue[i][1] === 'NULL') {
           tabValue[i][1] = tabValue[i][0] + this.idElement;
           this.idElement = this.idElement + 1;
@@ -252,7 +250,6 @@ export class GenimhComponent implements OnInit {
 
   // (0 - bagname, 1 - el, 2 - target, 3 - source, 4 - sibling)
   private onDrop(value) {
-    console.log(value[1]);
     if (value[2] == null) {// dragged outside any of the bags
       return; }
     if (value[2].id === 'component' && value[2].id !== value[3].id) {// dragged to a container that should not add the element
@@ -274,7 +271,7 @@ export class GenimhComponent implements OnInit {
     if (!content) { return; }
     this.heroService.addJson({ content } as Json)
       .subscribe(json => {
-        this.jsons.push(json);
+       // this.jsons.push(json);
       });
   }
 
@@ -302,7 +299,6 @@ export class GenimhComponent implements OnInit {
           tabValue[i][5] = 'add';
           tabValue[i][2] = 'icon';
           this.typeButton =  tabValue[i][2];
-
         }
       }
     }
@@ -402,13 +398,20 @@ changeApi(event){
   }
   onSubmit(){
     var submitTab = []
-    for(var i = 0; i < this.tiles[0].tab.length; i++){
-      if(this.tiles[0].tab[i][0] == "input"){
-        submitTab.push((<HTMLInputElement>document.getElementById(this.tiles[0].tab[i][1])).value)
+    var data = {}
+    for(var z = 0; z < this.tiles.length; z++){
+      if(this.tiles[z].vide == 'true'){
+        for(var i = 0; i < this.tiles[z].tab.length; i++){
+          if(this.tiles[z].tab[i][0] == "input"){
+            let key = this.tiles[z].tab[i][2]
+            data[key] = (<HTMLInputElement>document.getElementById(this.tiles[z].tab[i][1])).value
+          }
+        }
       }
     }
+    console.log(JSON.stringify(data))
     console.log(this.heroService.heroesUrl)
-    this.addJson(submitTab.toString())
+    this.addJson(JSON.stringify(data))
   }
   removeValueTabEditItem(value) {
     for (let i = 0; i < this.options.length; i++) {
@@ -476,6 +479,13 @@ changeApi(event){
           this.resetInputAuto = tabValue[i][2];
         }
       }
+    }  if (item === 'input') {
+
+      for (let i = 0; i < tabValue.length; i++) {
+        if (tabValue[i][1] === this.idElementEdit) {
+          this.resetInputAuto = tabValue[i][2];
+        }
+      }
     }
 
     if (item === 'select') {
@@ -511,9 +521,7 @@ changeApi(event){
     const inputValue = event.target.value;
     const idDiv = this.idWebEdit.split('web');
     const tabValue = this.allArray[idDiv[1]][1];
-    console.log(tabValue);
     for (let i = 0; i < tabValue.length; i++) {
-      console.log(tabValue[i][1]);
       if (tabValue[i][1] === this.idElementEdit) {
         tabValue[i][2] =  inputValue;
       }
@@ -525,7 +533,6 @@ changeApi(event){
     const tabExport = [];
      tabExport.push(this.tiles);
      tabExport.push(this.optLayout);
-    console.log(tabExport);
     const theJSON = JSON.stringify(tabExport);
 
     const uri = this.sanitizer.bypassSecurityTrustUrl('data:text/json;charset=UTF-8,' + encodeURIComponent(theJSON));
@@ -564,15 +571,11 @@ changeApi(event){
   }
 
   back() {
-    console.log(this.lastAction[this.lastAction.length - 1]);
-    console.log(this.lastAction);
     if ( this.lastAction[this.lastAction.length - 1] === 'delete') {
       this.lastActionBack.push('add');
       this.lastAction.splice(this.lastAction.length - 1, 1);
       const forward =  this.saveRemove.splice(this.saveRemove.length - 1 , 1);
-      console.log(forward[0]);
       this.matrice.push(forward[0]);
-      console.log(this.matrice);
       this.main();
     }
     if ( this.lastAction[this.lastAction.length - 1] === 'add') {
@@ -613,8 +616,6 @@ changeApi(event){
   }
 
   forward() {
-    console.log(this.lastActionBack[this.lastActionBack.length - 1]);
-    console.log(this.lastActionBack);
     if ( this.lastActionBack[this.lastActionBack.length - 1] === 'delete') {
       this.lastActionBack.splice(this.lastActionBack.length - 1, 1);
       this.lastAction.push('add');
@@ -635,11 +636,9 @@ changeApi(event){
   DeleteMode() {
     if (this.deleteMode === 'Off') {
       this.deleteMode = 'On';
-      console.log(this.deleteMode);
       this.classBtnDelete = 'floatRight bColorred';
     }else {
       this.deleteMode = 'Off';
-      console.log(this.deleteMode);
       this.classBtnDelete = 'floatRight';
     }
   }
@@ -651,9 +650,7 @@ changeApi(event){
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
       this.animal = result;
-      console.log(this.animal);
     });
   }
 
@@ -691,8 +688,6 @@ changeApi(event){
       let verifFinMatrice = false;
       for ( let y = 0; y < matrice.length; y++) {
         if (matrice[y][0] > i ) {
-          console.log(matrice[y][0]);
-          console.log(i);
           verifFinMatrice = true;
         }
       }
@@ -751,7 +746,6 @@ changeApi(event){
   fillMatrisVerif(matrice) {
     this.matrisVerif = [];
     this.matriceVerifColor = [];
-    console.log(matrice);
     for ( let z = 0; z < matrice.length; z++) {
       // tslint:disable-next-line:radix
       this.matrisVerif.push(parseInt(matrice[z][0]));
