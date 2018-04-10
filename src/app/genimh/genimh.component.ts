@@ -5,7 +5,7 @@ import {MatDialog, MAT_DIALOG_DATA, MatDialogRef, MatTabChangeEvent} from '@angu
 import {AccordionModule} from 'ng2-accordion';
 import {DomSanitizer} from '@angular/platform-browser';
 import { Placeholder } from '@angular/compiler/src/i18n/i18n_ast';
-import { Component, OnInit, ViewChild,Inject } from '@angular/core';
+import { Component, OnInit, ViewChild, Inject } from '@angular/core';
 import { NotificationService } from '@alfresco/adf-core';
 import { DocumentListComponent } from '@alfresco/adf-content-services';
 
@@ -69,8 +69,8 @@ export class GenimhComponent implements OnInit {
   public colorNameClass;
   public UIIDadfValue;
   public adfRacineValue;
-  public iconBtnEdit
-  public fonctionTest
+  public iconBtnEdit;
+  public fonctionTest;
 
   // tslint:disable-next-line:max-line-length
   public formControl = [['autocomplete', 'NULL', 'Libellé', ['One', 'Two', 'Three']], ['checkbox', 'NULL', 'Value'], ['datepicker', 'NULL', 'Libellé'], ['input', 'NULL', 'Libellé'], ['radiobutton', 'NULL', ['Option 1', 'Option 2']], ['select', 'NULL', 'Libellé', ['Un', 'Deux', 'Trois']], ['slider', 'NULL'], ['slidetoggle', 'NULL']];
@@ -80,7 +80,7 @@ export class GenimhComponent implements OnInit {
   public button  = [['button', 'NULL', 'basic', 'basic', 'basic', 'Bouton'], ['buttontoggle', 'NULL'], ['chips', 'NULL', [['one', ''], ['two', 'primary'], ['three', 'accent']]], ['icon', 'NULL', 'home'], ['progressspinner', 'NULL'], ['progressbar', 'NULL']];
   public modals: Array<string> = ['dialog', 'snackbar', 'tooltip'];
   public dataTable: Array<string> = ['paginator', 'sortheader', 'table'];
-  public alfresco = [['alfrescoadf','NULL',"","Racine"]]; //fc8d4fec-204e-428d-aa26-1295b6e8682c    f6b9f65c-33aa-4bc7-a560-babc93a30c89
+  public alfresco = [['alfrescoadf', 'NULL', '', 'Racine']]; // fc8d4fec-204e-428d-aa26-1295b6e8682c    f6b9f65c-33aa-4bc7-a560-babc93a30c89
   // tslint:disable-next-line:max-line-length
   public total: Array<string> = ['autocomplete', 'checkbox', 'datepicker', 'input', 'radiobutton', 'select', 'slider', 'slidetoggle', 'menu', 'sidenav', 'toolbar', 'card', 'list', 'tabs', 'stepper', 'button', 'buttontoggle', 'chips', 'icon', 'progressspinner', 'progressbar', 'dialog', 'snackbar', 'tooltip', 'paginator', 'sortheader', 'table'];
   public totalSave: Array<string> = ['autocomplete', 'checkbox', 'datepicker', 'input', 'radiobutton', 'select', 'slider', 'slidetoggle', 'menu', 'sidenav', 'toolbar', 'card', 'list', 'tabs', 'stepper', 'button', 'buttontoggle', 'chips', 'icon', 'progressspinner', 'progressbar', 'dialog', 'snackbar', 'tooltip', 'paginator', 'sortheader', 'table'];
@@ -88,7 +88,7 @@ export class GenimhComponent implements OnInit {
   nodeId: String = null;
 
 
-  @ViewChild(DocumentListComponent)
+  @ViewChild('MyInstSideNav') MyInstSideNav: any;
   documentList: DocumentListComponent;
   totaltest: Composant[];
   jsons: Json[];
@@ -100,12 +100,12 @@ export class GenimhComponent implements OnInit {
       accepts: function (el, target, source, sibling) {
 
         // tslint:disable-next-line:max-line-length
-        return target.id !== 'componentFrom' || target.id !== 'componentNav' || target.id !== 'componentTotal' || target.id !== 'componentLayout' || target.id !== 'componentButton' || target.id !== 'componentModals' || target.id !== 'componentDataTable' || target.id !== 'componentSearch'|| target.id !== 'componentAlfresco'  ; // elements can be dropped only in 'to_drop_to' container
+        return target.id !== 'componentFrom' || target.id !== 'componentNav' || target.id !== 'componentTotal' || target.id !== 'componentLayout' || target.id !== 'componentButton' || target.id !== 'componentModals' || target.id !== 'componentDataTable' || target.id !== 'componentSearch' || target.id !== 'componentAlfresco'  ; // elements can be dropped only in 'to_drop_to' container
       },
       copy: (el: Element, source: Element): boolean => {
         // elements are copied only if they are not already copied ones. That enables the 'removeOnSpill' to work
         // tslint:disable-next-line:max-line-length
-        return source.id === 'componentNav' ||  source.id === 'componentFrom' ||  source.id === 'componentTotal' ||  source.id === 'componentLayout' ||  source.id === 'componentButton' ||  source.id === 'componentModals' ||  source.id === 'componentDataTable'||  source.id === 'componentSearch'||  source.id === 'componentAlfresco';
+        return source.id === 'componentNav' ||  source.id === 'componentFrom' ||  source.id === 'componentTotal' ||  source.id === 'componentLayout' ||  source.id === 'componentButton' ||  source.id === 'componentModals' ||  source.id === 'componentDataTable' ||  source.id === 'componentSearch' ||  source.id === 'componentAlfresco';
 
       },
       removeOnSpill: true
@@ -150,8 +150,8 @@ export class GenimhComponent implements OnInit {
     this.colorSelect = this._sanitizer.bypassSecurityTrustStyle('rgb(64, 0, 255)');
     this.colorNameClass = 'B2';
     this.classBtnDelete = 'button floatRight';
-    this.iconBtnEdit = 'add'
-    this.fonctionTest = function () {}
+    this.iconBtnEdit = 'add';
+    this.fonctionTest = function () {};
     // this.OptionSelect = [
     //   {value: 'Option-0', viewValue: 'Optiontt 1'},
     //   {value: 'Option-1', viewValue: 'Optionyy 2'},
@@ -241,8 +241,8 @@ export class GenimhComponent implements OnInit {
         container.id === 'componentLayout' ||
         container.id === 'componentButton' ||
         container.id === 'componentModals' ||
-        container.id === 'componentDataTable'||
-        container.id === 'componentSearch'||
+        container.id === 'componentDataTable' ||
+        container.id === 'componentSearch' ||
         container.id === 'componentAlfresco' ) {
           el.remove();
         }
@@ -259,6 +259,18 @@ export class GenimhComponent implements OnInit {
   ngOnInit() {
     this.reset();
     this.getComposants();
+  }
+
+  toggleSideNavSetOut: string = '';
+  toggleSideNavSetIn(toggleSideNavGet: string) {
+      if (this.MyInstSideNav.opened === false) {
+          this.toggleSideNavSetOut = toggleSideNavGet;
+          this.MyInstSideNav.toggle();
+      } else if (this.MyInstSideNav.opened === true && this.toggleSideNavSetOut !== toggleSideNavGet) {
+          this.toggleSideNavSetOut = toggleSideNavGet;
+      } else {
+          this.MyInstSideNav.toggle();
+      }
   }
 
   getComposants(): void {
@@ -390,28 +402,29 @@ export class GenimhComponent implements OnInit {
   monContainer(idContainer) {
     this.idLayoutEdit = idContainer;
   }
-changeApi(event){
+changeApi(event) {
     this.heroService.heroesUrl = event.target.value;
 }
-  changeFonction(event){
-    this.fonctionTest = eval("(function(){"+event.target.value+"})")
+  changeFonction(event) {
+    // tslint:disable-next-line:no-eval
+    this.fonctionTest = eval('(function(){"+event.target.value+"})');
   }
-  onSubmit(){
-    var submitTab = []
-    var data = {}
-    for(var z = 0; z < this.tiles.length; z++){
-      if(this.tiles[z].vide == 'true'){
-        for(var i = 0; i < this.tiles[z].tab.length; i++){
-          if(this.tiles[z].tab[i][0] == "input"){
-            let key = this.tiles[z].tab[i][2]
-            data[key] = (<HTMLInputElement>document.getElementById(this.tiles[z].tab[i][1])).value
+  onSubmit() {
+    const submitTab = [];
+    const data = {};
+    for (let z = 0; z < this.tiles.length; z++) {
+      if (this.tiles[z].vide === 'true') {
+        for (let i = 0; i < this.tiles[z].tab.length; i++) {
+          if (this.tiles[z].tab[i][0] === 'input') {
+            const key = this.tiles[z].tab[i][2];
+            data[key] = (<HTMLInputElement>document.getElementById(this.tiles[z].tab[i][1])).value;
           }
         }
       }
     }
-    console.log(JSON.stringify(data))
-    console.log(this.heroService.heroesUrl)
-    this.addJson(JSON.stringify(data))
+    console.log(JSON.stringify(data));
+    console.log(this.heroService.heroesUrl);
+    this.addJson(JSON.stringify(data));
   }
   removeValueTabEditItem(value) {
     for (let i = 0; i < this.options.length; i++) {
@@ -545,7 +558,7 @@ changeApi(event){
     for (let i = 0; i < tabValue.length; i++) {
       if (tabValue[i][1] === this.idElementEdit) {
         tabValue[i][5] =  text;
-        this.iconBtnEdit = text
+        this.iconBtnEdit = text;
       }
     }
   }
@@ -555,7 +568,7 @@ changeApi(event){
     for (let i = 0; i < tabValue.length; i++) {
       if (tabValue[i][1] === this.idElementEdit) {
         tabValue[i][5] =  event.target.value;
-        this.iconBtnEdit = event.target.value
+        this.iconBtnEdit = event.target.value;
       }
     }
   }

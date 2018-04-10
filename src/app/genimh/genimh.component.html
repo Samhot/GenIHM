@@ -1,9 +1,107 @@
-<h1>Designer GenIHM </h1>
- <button mat-button (click)="sidenav2.toggle()"><mat-icon>menu</mat-icon></button>
-<mat-sidenav-container>
-  <mat-sidenav #sidenav2 mode="side" class="sidebar-left">
-    <mat-tab-group>
-      <mat-tab label="Créer une page">
+<div style="display:flex;" fxlayout="row"><span fxLayoutAlign="start start"><h1>Designer GenIHM</h1></span><span fxLayoutAlign="end end">TEST</span></div>
+<div fxLayout="row">
+  <div fxLayout="column" style="width:auto;">
+    <button mat-button (click)="toggleSideNavSetIn('panelAll')"><div  fxLayout="column" style="align-items: center"><mat-icon>dashboard</mat-icon>Tous</div></button>
+    <button mat-button (click)="toggleSideNavSetIn('panelForm')"><div  fxLayout="column" style="align-items: center"><mat-icon>format_list_bulleted</mat-icon>Formulaire</div></button>
+    <button mat-button (click)="toggleSideNavSetIn('panelNav')"><div  fxLayout="column" style="align-items: center"><mat-icon>last_page</mat-icon>Navigation</div></button>
+    <button mat-button (click)="toggleSideNavSetIn('panelLayout')"><div  fxLayout="column" style="align-items: center"><mat-icon>picture_in_picture_alt</mat-icon>Mise en page</div></button>
+    <button mat-button (click)="toggleSideNavSetIn('panelButton')"><div  fxLayout="column" style="align-items: center"><mat-icon>all_out</mat-icon>Bouttons</div></button>
+    <button mat-button (click)="toggleSideNavSetIn('panelModal')"><div  fxLayout="column" style="align-items: center"><mat-icon>chrome_reader_mode</mat-icon>Modals</div></button>
+    <button mat-button (click)="toggleSideNavSetIn('panelDataTable')"><div  fxLayout="column" style="align-items: center"><mat-icon>view_array</mat-icon>Tableau</div></button>
+    <button mat-button (click)="toggleSideNavSetIn('panelAlfresco')"><div  fxLayout="column" style="align-items: center"><mat-icon>import_contacts</mat-icon>Alfresco</div></button>
+    <button mat-button (click)="toggleSideNavSetIn('panelGrid')"><div  fxLayout="column" style="align-items: center"><mat-icon>grid_on</mat-icon>Grid</div></button>
+    <button mat-button (click)="toggleSideNavSetIn('panelJson')"><div  fxLayout="column" style="align-items: center"><mat-icon>developer_board</mat-icon>JSON</div></button>
+    <button mat-button (click)="toggleSideNavSetIn('panelEdit')"><div  fxLayout="column" style="align-items: center"><mat-icon>keyboard</mat-icon>Edit</div></button>
+  </div>
+  <mat-sidenav-container style="width: 100%;">
+
+
+  <main></main>
+    <mat-sidenav #MyInstSideNav align="start" mode="side" opened="true" [ngSwitch]="toggleSideNavSetOut" >
+      <form class="example-form">
+          <mat-form-field>
+          <!-- <button mat-button><mat-icon>search</mat-icon></button> -->
+          <input matInput placeholder="Recherche">
+          <!-- <mat-form-field>
+            <input matInput placeholder="Recherche" (input)="changeSearch($event)">
+            <div [dragula]='"page-bag"' [dragulaModel]='dataTable' id="componentSearch">
+              <img *ngFor='let text of total' src="../../assets/iconeGENIHM/{{text}}.PNG" name="{{text}}" style="padding: 5px">
+            </div>-->
+          </mat-form-field> 
+      </form>
+      <div *ngSwitchCase="'panelAll'">
+        <div class='parent'>
+          <div class='wrapper'>
+            <div [dragula]='"page-bag"' [dragulaModel]='totalSave' id="totalSave">
+              <img *ngFor='let text of totalSave' src="../../assets/iconeGENIHM/{{text}}.PNG" name="{{text[0]}}" style="padding: 5px">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngSwitchCase="'panelForm'">
+        <div class='parent'>
+          <div class='wrapper'>
+            <div [dragula]='"page-bag"' [dragulaModel]='formControl' id="componentFrom">
+              <img *ngFor='let text of formControl' src="../../assets/iconeGENIHM/{{text[0]}}.PNG" name="{{text[0]}}" style="padding: 5px">
+            </div>
+          </div>
+        </div>            
+      </div>
+      <div *ngSwitchCase="'panelNav'"> 
+        <div class='parent'>
+            <div class='wrapper'>
+              <div [dragula]='"page-bag"' [dragulaModel]='navigation' id="componentNav">
+                <img *ngFor='let text of navigation' src="../../assets/iconeGENIHM/{{text}}.PNG" name="{{text}}" style="padding: 5px">
+              </div>
+            </div>
+          </div>
+      </div>
+      <div *ngSwitchCase="'panelLayout'">
+        <div class='parent'>
+            <div class='wrapper'>
+              <div [dragula]='"page-bag"' [dragulaModel]='layout' id="componentLayout">
+                <img *ngFor='let text of layout' src="../../assets/iconeGENIHM/{{text}}.PNG" name="{{text}}" style="padding: 5px">
+              </div>
+            </div>
+          </div>
+      </div>
+      <div *ngSwitchCase="'panelButton'">
+        <div class='parent'>
+            <div class='wrapper'>
+              <div [dragula]='"page-bag"' [dragulaModel]='button' id="componentButton">
+                <img *ngFor='let text of button' src="../../assets/iconeGENIHM/{{text[0]}}.PNG" name="{{text[0]}}" style="padding: 5px">
+              </div>
+            </div>
+          </div>
+      </div>
+      <div *ngSwitchCase="'panelModal'">
+        <div class='parent'>
+            <div class='wrapper'>
+              <div [dragula]='"page-bag"' [dragulaModel]='modals' id="componentModals">
+                <img *ngFor='let text of modals' src="../../assets/iconeGENIHM/{{text}}.PNG" name="{{text}}" style="padding: 5px">
+              </div>
+            </div>
+          </div>
+      </div>
+      <div *ngSwitchCase="'panelDataTable'">
+        <div class='parent'>
+            <div class='wrapper'>
+              <div [dragula]='"page-bag"' [dragulaModel]='dataTable' id="componentDataTable">
+                <img *ngFor='let text of dataTable' src="../../assets/iconeGENIHM/{{text}}.PNG" name="{{text}}" style="padding: 5px">
+              </div>
+            </div>
+          </div>
+      </div>
+      <div *ngSwitchCase="'panelAlfresco'">
+        <div class='parent'>
+            <div class='wrapper'>
+              <div [dragula]='"page-bag"' [dragulaModel]='alfresco' id="componentAlfresco">
+                <img *ngFor='let text of alfresco' src="../../assets/iconeGENIHM/{{text[0]}}.PNG" name="{{text}}" style="padding: 5px">
+              </div>
+            </div>
+          </div>
+      </div>
+      <div *ngSwitchCase="'panelGrid'">
         <div style="margin-top: 10px; margin-bottom: 40px; margin-right: 20px;text-align: center">
           <div (click)="gridNameColor('rgb(255, 0, 0,0.2)','rgb(255, 0, 0)','R0')" style="display: block;float: right; height:15px;width: 5%;border-right: 1px solid; border-bottom: 1px solid;border-top: 1px solid; background-color: rgb(255, 0, 0) "></div>
           <div (click)="gridNameColor('rgb(255, 64, 0,0.2)','rgb(255, 64, 0)','R1')" style="display: block;float: right; height:15px;width: 5%;border-bottom: 1px solid; border-top: 1px solid; background-color: rgb(255, 64, 0) "></div>
@@ -28,7 +126,6 @@
 
         <div style=" margin: 0 auto;border:  1px solid ;display: block;height:30px;width: 15%;" [style.background-color]="colorSelect">  </div>
 
-
         <div style="margin-bottom: 15px; margin-top: 10px;">
           <button mat-button (click)="back()"><mat-icon>arrow_back </mat-icon></button>
           <button mat-button (click)="reset()"><mat-icon >refresh </mat-icon></button>
@@ -37,397 +134,278 @@
             <button mat-button (click)="DeleteMode()"*ngIf="deleteMode == 'Off' " ><mat-icon>cancel</mat-icon></button>
             <button mat-button color="warn" (click)="DeleteMode()"*ngIf="deleteMode == 'On' " ><mat-icon>cancel</mat-icon></button>
           </div>
-
         </div>
 
-        <!---
-            <input (click)="back()" type="image"  class="button" src="../../assets/Fgauche.jpg" >
-            <input (click)="reset()" type="image" class="button" src="../../assets/reset.jpg">
-          <input (click)="forward()" type="image"  class="button" src="../../assets/Fdroite.jpg" >
-          <input (click)="DeleteMode()" type="image"  class="{{classBtnDelete}}" src="../../assets/suppr.png" >
-
-
-          <button (click)="gridNameColor('lightblue')" > Blue </button>
-          <button (click)="gridNameColor('red')" > Red</button>
-          <button (click)="gridNameColor('yellow')" > Yellow</button>
-          <button (click)="gridNameColor('green')" > Green</button>
-        --->
-
-
-          <div id="ligne1" style="display: block; ">
-            <div id="col14" (click)="gridSkull(1,4)"  class="{{backgroundColor[3]}}" ></div>
-            <div id="col13" (click)="gridSkull(1,3)"  class="{{backgroundColor[2]}}"></div>
-            <div id="col12" (click)="gridSkull(1,2)"  class="{{backgroundColor[1]}}"></div>
-            <div id="col11" (click)="gridSkull(1,1)"  class="{{backgroundColor[0]}}"></div>
-          </div>
-          <div id="ligne2" style="display: block;" >
-            <div id="col24" (click)="gridSkull(2,4)" class="{{backgroundColor[7]}}"></div>
-            <div id="col23" (click)="gridSkull(2,3)" class="{{backgroundColor[6]}}"></div>
-            <div id="col22" (click)="gridSkull(2,2)" class="{{backgroundColor[5]}}"></div>
-            <div id="col21" (click)="gridSkull(2,1)" class="{{backgroundColor[4]}}"></div>
-          </div>
-          <div id="ligne3" style="display: block;" >
-            <div id="col34" (click)="gridSkull(3,4)" class="{{backgroundColor[11]}}"></div>
-            <div id="col33" (click)="gridSkull(3,3)" class="{{backgroundColor[10]}}"></div>
-            <div id="col32" (click)="gridSkull(3,2)" class="{{backgroundColor[9]}}"></div>
-            <div id="col31" (click)="gridSkull(3,1)" class="{{backgroundColor[8]}}"></div>
-          </div>
-          <div id="ligne4" style="display: block;" >
-            <div id="col44" (click)="gridSkull(4,4)" class="{{backgroundColor[15]}}"></div>
-            <div id="col43" (click)="gridSkull(4,3)" class="{{backgroundColor[14]}}"></div>
-            <div id="col42" (click)="gridSkull(4,2)" class="{{backgroundColor[13]}}"></div>
-            <div id="col41" (click)="gridSkull(4,1)" class="{{backgroundColor[12]}}"></div>
-          </div>
-          <div id="ligne5" style="display: block;">
-            <div id="col54" (click)="gridSkull(5,4)" class="{{backgroundColor[19]}}"></div>
-            <div id="col53" (click)="gridSkull(5,3)" class="{{backgroundColor[18]}}"></div>
-            <div id="col52" (click)="gridSkull(5,2)" class="{{backgroundColor[17]}}"></div>
-            <div id="col51" (click)="gridSkull(5,1)" class="{{backgroundColor[16]}}"></div>
-          </div>
-          <div id="ligne6" style="display: block;" >
-            <div id="col64" (click)="gridSkull(6,4)" class="{{backgroundColor[23]}}"></div>
-            <div id="col63" (click)="gridSkull(6,3)" class="{{backgroundColor[22]}}"></div>
-            <div id="col62" (click)="gridSkull(6,2)" class="{{backgroundColor[21]}}"></div>
-            <div id="col61" (click)="gridSkull(6,1)" class="{{backgroundColor[20]}}"></div>
-          </div>
-          <div id="ligne7" style="display: block;" >
-            <div id="col74" (click)="gridSkull(7,4)" class="{{backgroundColor[27]}}"></div>
-            <div id="col73" (click)="gridSkull(7,3)" class="{{backgroundColor[26]}}"></div>
-            <div id="col72" (click)="gridSkull(7,2)" class="{{backgroundColor[25]}}"></div>
-            <div id="col71" (click)="gridSkull(7,1)" class="{{backgroundColor[24]}}"></div>
-          </div>
-          <div id="ligne8" style="display: block;"  >
-            <div id="col84" (click)="gridSkull(8,4)" class="{{backgroundColor[31]}}"></div>
-            <div id="col83" (click)="gridSkull(8,3)" class="{{backgroundColor[30]}}"></div>
-            <div id="col82" (click)="gridSkull(8,2)" class="{{backgroundColor[29]}}"></div>
-            <div id="col81" (click)="gridSkull(8,1)" class="{{backgroundColor[28]}}"></div>
-          </div>
-          <div id="ligne9" style="display: block;"  >
-            <div id="col94" (click)="gridSkull(9,4)" class="{{backgroundColor[35]}}"></div>
-            <div id="col93" (click)="gridSkull(9,3)" class="{{backgroundColor[34]}}"></div>
-            <div id="col92" (click)="gridSkull(9,2)" class="{{backgroundColor[33]}}"></div>
-            <div id="col91" (click)="gridSkull(9,1)" class="{{backgroundColor[32]}}"></div>
-          </div>
-          <!-- <div id="ligne10" style="display: block; padding-bottom: 900px" >
-            <div id="col104" (click)="gridSkull(10,4)" class="{{backgroundColor[39]}}"></div>
-            <div id="col103" (click)="gridSkull(10,3)" class="{{backgroundColor[38]}}"></div>
-            <div id="col102" (click)="gridSkull(10,2)" class="{{backgroundColor[37]}}"></div>
-            <div id="col101" (click)="gridSkull(10,1)" class="{{backgroundColor[36]}}"></div>
-        </div>-->
-
-
-      </mat-tab>
-      <mat-tab label="Editer la page" style="color: black">
-
+        <div id="ligne1" style="display: block; ">
+          <div id="col14" (click)="gridSkull(1,4)"  class="{{backgroundColor[3]}}" ></div>
+          <div id="col13" (click)="gridSkull(1,3)"  class="{{backgroundColor[2]}}"></div>
+          <div id="col12" (click)="gridSkull(1,2)"  class="{{backgroundColor[1]}}"></div>
+          <div id="col11" (click)="gridSkull(1,1)"  class="{{backgroundColor[0]}}"></div>
+        </div>
+        <div id="ligne2" style="display: block;" >
+          <div id="col24" (click)="gridSkull(2,4)" class="{{backgroundColor[7]}}"></div>
+          <div id="col23" (click)="gridSkull(2,3)" class="{{backgroundColor[6]}}"></div>
+          <div id="col22" (click)="gridSkull(2,2)" class="{{backgroundColor[5]}}"></div>
+          <div id="col21" (click)="gridSkull(2,1)" class="{{backgroundColor[4]}}"></div>
+        </div>
+        <div id="ligne3" style="display: block;" >
+          <div id="col34" (click)="gridSkull(3,4)" class="{{backgroundColor[11]}}"></div>
+          <div id="col33" (click)="gridSkull(3,3)" class="{{backgroundColor[10]}}"></div>
+          <div id="col32" (click)="gridSkull(3,2)" class="{{backgroundColor[9]}}"></div>
+          <div id="col31" (click)="gridSkull(3,1)" class="{{backgroundColor[8]}}"></div>
+        </div>
+        <div id="ligne4" style="display: block;" >
+          <div id="col44" (click)="gridSkull(4,4)" class="{{backgroundColor[15]}}"></div>
+          <div id="col43" (click)="gridSkull(4,3)" class="{{backgroundColor[14]}}"></div>
+          <div id="col42" (click)="gridSkull(4,2)" class="{{backgroundColor[13]}}"></div>
+          <div id="col41" (click)="gridSkull(4,1)" class="{{backgroundColor[12]}}"></div>
+        </div>
+        <div id="ligne5" style="display: block;">
+          <div id="col54" (click)="gridSkull(5,4)" class="{{backgroundColor[19]}}"></div>
+          <div id="col53" (click)="gridSkull(5,3)" class="{{backgroundColor[18]}}"></div>
+          <div id="col52" (click)="gridSkull(5,2)" class="{{backgroundColor[17]}}"></div>
+          <div id="col51" (click)="gridSkull(5,1)" class="{{backgroundColor[16]}}"></div>
+        </div>
+        <div id="ligne6" style="display: block;" >
+          <div id="col64" (click)="gridSkull(6,4)" class="{{backgroundColor[23]}}"></div>
+          <div id="col63" (click)="gridSkull(6,3)" class="{{backgroundColor[22]}}"></div>
+          <div id="col62" (click)="gridSkull(6,2)" class="{{backgroundColor[21]}}"></div>
+          <div id="col61" (click)="gridSkull(6,1)" class="{{backgroundColor[20]}}"></div>
+        </div>
+        <div id="ligne7" style="display: block;" >
+          <div id="col74" (click)="gridSkull(7,4)" class="{{backgroundColor[27]}}"></div>
+          <div id="col73" (click)="gridSkull(7,3)" class="{{backgroundColor[26]}}"></div>
+          <div id="col72" (click)="gridSkull(7,2)" class="{{backgroundColor[25]}}"></div>
+          <div id="col71" (click)="gridSkull(7,1)" class="{{backgroundColor[24]}}"></div>
+        </div>
+        <div id="ligne8" style="display: block;"  >
+          <div id="col84" (click)="gridSkull(8,4)" class="{{backgroundColor[31]}}"></div>
+          <div id="col83" (click)="gridSkull(8,3)" class="{{backgroundColor[30]}}"></div>
+          <div id="col82" (click)="gridSkull(8,2)" class="{{backgroundColor[29]}}"></div>
+          <div id="col81" (click)="gridSkull(8,1)" class="{{backgroundColor[28]}}"></div>
+        </div>
+        <div id="ligne9" style="display: block;"  >
+          <div id="col94" (click)="gridSkull(9,4)" class="{{backgroundColor[35]}}"></div>
+          <div id="col93" (click)="gridSkull(9,3)" class="{{backgroundColor[34]}}"></div>
+          <div id="col92" (click)="gridSkull(9,2)" class="{{backgroundColor[33]}}"></div>
+          <div id="col91" (click)="gridSkull(9,1)" class="{{backgroundColor[32]}}"></div>
+        </div>
+      </div>
+      <div *ngSwitchCase="'panelJson'">
+        <div *ngFor='let tile of tiles'>
+          <pre *ngIf="tile.vide == 'true' ">{{tile.tab | json}}</pre>
+        </div>
+        <a title="Download JSON" [href]="downloadJsonHref" download="export.json"><button mat-raised-button (mouseenter)="generateDownloadJsonUri()" color="accent">Exporter ma page</button></a>
+      </div>
+      <div *ngSwitchCase="'panelEdit'">
         <!--  ------------------------------------------  EDIT ITEM ------------------------------------------  -->
-
           <div style=" width: 100%; background-color: #AEB6BF; margin-bottom: 15px;margin-top: 10px; border: 1px solid;">
             <h4 style="text-align: center"><strong style="color: white">Modifier un élément</strong></h4>
             <mat-card>
-          <!--  ------------------------------------------  AUTOCOMPLETE ------------------------------------------  -->
-
-            <div *ngIf="ItemEdit == 'autocomplete' " style="text-align: center">
-              <div style="display: inline-block;color: black" > Libellé : <input  style="color: black" (input)="EditPlaceholder($event)" placeholder="{{resetInputAuto}}"></div>
-              <div *ngFor="let option of options"  style="display: inline-block;">
-                <input (change)="changeValueTabEditItem(option,$event)"  value="{{ option }}" style="  margin: 10px;">
-                <mat-icon mat-test color="warn" aria-label="Example icon-button with a heart icon" (click)="removeValueTabEditItem(option)" >cancel</mat-icon>
+              <!--  ------------------------------------------  AUTOCOMPLETE ------------------------------------------  -->
+    
+                <div *ngIf="ItemEdit == 'autocomplete' " style="text-align: center">
+                  <div style="display: inline-block;color: black" > Libellé : <input  style="color: black" (input)="EditPlaceholder($event)" placeholder="{{resetInputAuto}}"></div>
+                  <div *ngFor="let option of options"  style="display: inline-block;">
+                    <input (change)="changeValueTabEditItem(option,$event)"  value="{{ option }}" style="  margin: 10px;">
+                    <mat-icon mat-test color="warn" aria-label="Example icon-button with a heart icon" (click)="removeValueTabEditItem(option)" >cancel</mat-icon>
+                  </div>
+                    <div><mat-icon color="accent" aria-label="Example icon-button with a heart icon" (click)="addValueTabEditItem('')">add_box</mat-icon></div>
+                </div>
+    
+              <!--  ------------------------------------------  FIN AUTOCOMPLETE ------------------------------------------  -->
+    
+              <!--  ------------------------------------------   CHECKBOX ------------------------------------------  -->
+                <div *ngIf="ItemEdit == 'checkbox' " style="text-align: center">
+    
+                <div style="display: inline-block;color: black; margin-bottom: 10px" > Value : <input  style="color: black" (input)="changeValueCheckbox($event)" [(ngModel)]="valueCheckbox"></div>
               </div>
-                <div><mat-icon color="accent" aria-label="Example icon-button with a heart icon" (click)="addValueTabEditItem('')">add_box</mat-icon></div>
-            </div>
-
-          <!--  ------------------------------------------  FIN AUTOCOMPLETE ------------------------------------------  -->
-
-          <!--  ------------------------------------------   CHECKBOX ------------------------------------------  -->
-            <div *ngIf="ItemEdit == 'checkbox' " style="text-align: center">
-
-            <div style="display: inline-block;color: black; margin-bottom: 10px" > Value : <input  style="color: black" (input)="changeValueCheckbox($event)" [(ngModel)]="valueCheckbox"></div>
+            <!--  ------------------------------------------  FIN CHECKBOX ------------------------------------------  -->
+                <!--  ------------------------------------------   Alfresco ADF ------------------------------------------  -->
+              <div *ngIf="ItemEdit == 'alfrescoadf' " style="text-align: center">
+    
+                <div style="display: inline-block;color: black; margin-bottom: 10px" > UIID : <input  style="color: black" (input)="changeValueUIID($event)" [(ngModel)]="UIIDadfValue"></div>
+                <div style="display: inline-block;color: black; margin-bottom: 10px" > Nom dossier racine : <input  style="color: black" (input)="changeValueADFRacine($event)" [(ngModel)]="adfRacineValue"></div>
+              </div>
+            <!--  ------------------------------------------  FIN CHECKBOX ------------------------------------------  -->
+    
+            <!--  ------------------------------------------  DATEPICKER ------------------------------------------  -->
+              <div *ngIf="ItemEdit == 'datepicker' " >
+                <div style="display: inline-block;color: black; margin-bottom: 10px" > Libellé : <input  style="color: black" (input)="changeValueDatePicker($event)"  [(ngModel)]="valueDatepicker"></div>
+              </div>
+            <!--  ------------------------------------------  FIN DATEPICKER ------------------------------------------  -->
+    
+            <!--  ------------------------------------------  BUTTON ------------------------------------------  -->
+              <div *ngIf="ItemEdit == 'button' ">
+                <mat-tab-group (selectedTabChange)="onLinkClick($event)" >
+              <mat-tab label='Bouton texte' >
+                <div *ngIf="typeButton == 'basic' " style="text-align: center" >
+                  <div style="display: inline-block;color: black" > Texte : <input  style="color: black" (input)="changeValueButton($event)" [(ngModel)]="buttonValue"></div>
+    
+                  <div class="button-row">
+                    <button mat-button (click)="changeStyle('basic','basic') ">{{buttonValue}}</button>
+                    <button mat-button color="accent" (click)="changeStyle('basic','accent') ">{{buttonValue}}</button>
+                    <button mat-button color="warn" (click)="changeStyle('basic','warn') ">{{buttonValue}}</button>
+                  </div>
+                  <div class="button-row"  >
+                    <button mat-raised-button (click)="changeStyle('raised','basic') " >{{buttonValue}}</button>
+                    <button mat-raised-button color="accent" (click)="changeStyle('raised','accent') ">{{buttonValue}}</button>
+                    <button mat-raised-button color="warn" (click)="changeStyle('raised','warn') ">{{buttonValue}}</button>
+                  </div>
+                  <div class="button-row"  >
+                    <button mat-fab (click)="changeStyle('fab','basic') ">{{buttonValue}}</button>
+                    <button mat-fab color="warn" (click)="changeStyle('fab','warn') ">{{buttonValue}}</button>
+                  </div>
+                  <div class="button-row"  >
+                    <button mat-mini-fab (click)="changeStyle('minifab','warn')">{{buttonValue}}</button>
+                    <button mat-mini-fab color="warn" (click)="changeStyle('minifab','warn') ">{{buttonValue}}</button>
+                  </div>
+                </div>
+                  </mat-tab>
+              <mat-tab label="Bouton icon" (tabClicked)="changeTypeButton('icon')">
+                <div *ngIf="typeButton == 'icon' " style="text-align: center">
+                  <div class="button-row">
+                    <button mat-icon-button (click)="changeTextButton('favorite')">
+                      <mat-icon aria-label="Example icon-button with a heart icon">favorite</mat-icon>
+                    </button>
+                    <button mat-icon-button (click)="changeTextButton('add')">
+                      <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
+                    </button>
+                    <button mat-icon-button (click)="changeTextButton('remove')">
+                      <mat-icon aria-label="Example icon-button with a heart icon">remove</mat-icon>
+                    </button>
+                  <br/>
+                    <div style="display: inline-block;color: black; margin-bottom: 10px" > Code icon font : <input  style="color: black" (input)="changeTextButtonID($event)" placeholder="Code icon font" value="{{iconBtnEdit}}"></div>
+                    <a href="https://material.io/icons/" target="_blank">Liste Icon</a>
+                  </div>
+                  <div class="button-row">
+                    <button mat-button (click)="changeStyle('basic','basic')"> <mat-icon aria-label="Example icon-button with a heart icon">{{iconBtnEdit}}</mat-icon></button>
+                    <button mat-button color="accent" (click)="changeStyle('basic','accent')"> <mat-icon aria-label="Example icon-button with a heart icon">{{iconBtnEdit}}</mat-icon></button>
+                    <button mat-button color="warn" (click)="changeStyle('basic','warn')"> <mat-icon aria-label="Example icon-button with a heart icon">{{iconBtnEdit}}</mat-icon></button>
+                  </div>
+                  <div class="button-row">
+                    <button mat-raised-button (click)="changeStyle('raised','basic')"> <mat-icon aria-label="Example icon-button with a heart icon">{{iconBtnEdit}}</mat-icon></button>
+                    <button mat-raised-button color="accent" (click)="changeStyle('raised','accent')"> <mat-icon aria-label="Example icon-button with a heart icon">{{iconBtnEdit}}</mat-icon></button>
+                    <button mat-raised-button color="warn" (click)="changeStyle('raised','warn')"> <mat-icon aria-label="Example icon-button with a heart icon">{{iconBtnEdit}}</mat-icon></button>
+                  </div>
+                  <div class="button-row">
+                    <button mat-fab (click)="changeStyle('fab','basic')"><mat-icon aria-label="Example icon-button with a heart icon">{{iconBtnEdit}}</mat-icon></button>
+                    <button mat-fab color="warn" (click)="changeStyle('fab','warn')"><mat-icon aria-label="Example icon-button with a heart icon">{{iconBtnEdit}}</mat-icon></button>
+                  </div>
+                  <div class="button-row">
+                    <button mat-mini-fab (click)="changeStyle('minifab','basic')"><mat-icon aria-label="Example icon-button with a heart icon">{{iconBtnEdit}}</mat-icon></button>
+                    <button mat-mini-fab color="warn" (click)="changeStyle('fab','warn')"><mat-icon aria-label="Example icon-button with a heart icon">{{iconBtnEdit}}</mat-icon></button>
+                  </div>
+                </div>
+              </mat-tab >
+                  <mat-tab label="Action bouton">
+                    <div style="display: inline-block;color: black; margin-bottom: 10px" > API : <input  style="color: black" (input)="changeApi($event)" placeholder="https://MonApi/" ></div>
+                    <div style="display: inline-block;color: black; margin-bottom: 10px" > Fonction : <input  style="color: black" (change)="changeFonction($event)" placeholder="ex : alert('Mon alert')" ></div>
+    
+                  </mat-tab>
+            </mat-tab-group>
           </div>
-        <!--  ------------------------------------------  FIN CHECKBOX ------------------------------------------  -->
-            <!--  ------------------------------------------   Alfresco ADF ------------------------------------------  -->
-          <div *ngIf="ItemEdit == 'alfrescoadf' " style="text-align: center">
-
-            <div style="display: inline-block;color: black; margin-bottom: 10px" > UIID : <input  style="color: black" (input)="changeValueUIID($event)" [(ngModel)]="UIIDadfValue"></div>
-            <div style="display: inline-block;color: black; margin-bottom: 10px" > Nom dossier racine : <input  style="color: black" (input)="changeValueADFRacine($event)" [(ngModel)]="adfRacineValue"></div>
-          </div>
-        <!--  ------------------------------------------  FIN CHECKBOX ------------------------------------------  -->
-
-        <!--  ------------------------------------------  DATEPICKER ------------------------------------------  -->
-          <div *ngIf="ItemEdit == 'datepicker' " >
-            <div style="display: inline-block;color: black; margin-bottom: 10px" > Libellé : <input  style="color: black" (input)="changeValueDatePicker($event)"  [(ngModel)]="valueDatepicker"></div>
-          </div>
-        <!--  ------------------------------------------  FIN DATEPICKER ------------------------------------------  -->
-
-        <!--  ------------------------------------------  BUTTON ------------------------------------------  -->
-          <div *ngIf="ItemEdit == 'button' ">
-            <mat-tab-group (selectedTabChange)="onLinkClick($event)" >
-          <mat-tab label='Bouton texte' >
-            <div *ngIf="typeButton == 'basic' " style="text-align: center" >
-              <div style="display: inline-block;color: black" > Texte : <input  style="color: black" (input)="changeValueButton($event)" [(ngModel)]="buttonValue"></div>
-
-              <div class="button-row">
-                <button mat-button (click)="changeStyle('basic','basic') ">{{buttonValue}}</button>
-                <button mat-button color="accent" (click)="changeStyle('basic','accent') ">{{buttonValue}}</button>
-                <button mat-button color="warn" (click)="changeStyle('basic','warn') ">{{buttonValue}}</button>
-              </div>
-              <div class="button-row"  >
-                <button mat-raised-button (click)="changeStyle('raised','basic') " >{{buttonValue}}</button>
-                <button mat-raised-button color="accent" (click)="changeStyle('raised','accent') ">{{buttonValue}}</button>
-                <button mat-raised-button color="warn" (click)="changeStyle('raised','warn') ">{{buttonValue}}</button>
-              </div>
-              <div class="button-row"  >
-                <button mat-fab (click)="changeStyle('fab','basic') ">{{buttonValue}}</button>
-                <button mat-fab color="warn" (click)="changeStyle('fab','warn') ">{{buttonValue}}</button>
-              </div>
-              <div class="button-row"  >
-                <button mat-mini-fab (click)="changeStyle('minifab','warn')">{{buttonValue}}</button>
-                <button mat-mini-fab color="warn" (click)="changeStyle('minifab','warn') ">{{buttonValue}}</button>
-              </div>
+            <!--  ------------------------------------------  FIN BUTTON ------------------------------------------  -->
+    
+            <!--  ------------------------------------------ INPUT  ------------------------------------------  -->
+    
+                <div *ngIf="ItemEdit == 'input' " >
+                  <div style="display: inline-block;color: black; margin-bottom: 10px" > Libellé : <input  style="color: black" (input)="EditPlaceholder($event)" [(ngModel)]="resetInputAuto"></div>
+                </div>
+    
+              <!--  ------------------------------------------  FIN INPUT ------------------------------------------  -->
+    
+              <!--  ------------------------------------------ ICON BUTTON  ------------------------------------------  -->
+    
+                <div *ngIf="ItemEdit == 'icon' " >
+    
+                  <div style="display: inline-block;color: black; margin-bottom: 10px" > Code icon font : <input  style="color: black" (input)="EditPlaceholder($event)" placeholder="Code icon font" value="{{resetInputAuto}}"></div>
+                  <a href="https://material.io/icons/" target="_blank">Liste Icon</a>
+    
+                </div>
+    
+              <!--  ------------------------------------------  FIN ICON BUTTON  ------------------------------------------  -->
+    
+              <!--  ------------------------------------------  RADIO BUTTON ------------------------------------------  -->
+                <div *ngIf="ItemEdit == 'radiobutton' " >
+                  <div *ngFor="let option of options" >
+                    <input (change)="changeValueTabEditItem(option,$event)"  value="{{ option }}"><button mat-mini-fab color="warn">
+                    <mat-icon aria-label="Example icon-button with a heart icon" (click)="removeValueTabEditItem(option)" >remove</mat-icon>
+                  </button>
+                  </div>
+                  <button mat-mini-fab (click)="addValueTabEditItem('Option')">
+                    <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
+                  </button>
+                </div>
+              <!--  ------------------------------------------  FIN RADIO BUTTON ------------------------------------------  -->
+    
+              <!--  ------------------------------------------  SELECT ------------------------------------------  -->
+                <div *ngIf="ItemEdit == 'select' " >
+                  <div style="display: inline-block;color: black; margin-bottom: 10px" > Libellé : <input  style="color: black" (input)="changeValueSelect($event)"  placeholder="{{resetInputAuto}}" [(ngModel)]="valueSelect"></div>
+                  <div *ngFor="let option of options" >
+                      <input (change)="changeValueTabEditItem(option,$event)"  value="{{ option }}"><button mat-mini-fab color="warn">
+                      <mat-icon aria-label="Example icon-button with a heart icon" (click)="removeValueTabEditItem(option)" >remove</mat-icon>
+                    </button>
+                    </div>
+                    <button mat-mini-fab (click)="addValueTabEditItem('')">
+                      <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
+                    </button>
+                </div>
+              <!--------------------------------------------   FIN SELECT  ---------------------------------------->
+    
+              </mat-card>
             </div>
-              </mat-tab>
-          <mat-tab label="Bouton icon" (tabClicked)="changeTypeButton('icon')">
-            <div *ngIf="typeButton == 'icon' " style="text-align: center">
-              <div class="button-row">
-                <button mat-icon-button (click)="changeTextButton('favorite')">
-                  <mat-icon aria-label="Example icon-button with a heart icon">favorite</mat-icon>
-                </button>
-                <button mat-icon-button (click)="changeTextButton('add')">
-                  <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
-                </button>
-                <button mat-icon-button (click)="changeTextButton('remove')">
-                  <mat-icon aria-label="Example icon-button with a heart icon">remove</mat-icon>
-                </button>
-              <br/>
-                <div style="display: inline-block;color: black; margin-bottom: 10px" > Code icon font : <input  style="color: black" (input)="changeTextButtonID($event)" placeholder="Code icon font" value="{{iconBtnEdit}}"></div>
-                <a href="https://material.io/icons/" target="_blank">Liste Icon</a>
-              </div>
-              <div class="button-row">
-                <button mat-button (click)="changeStyle('basic','basic')"> <mat-icon aria-label="Example icon-button with a heart icon">{{iconBtnEdit}}</mat-icon></button>
-                <button mat-button color="accent" (click)="changeStyle('basic','accent')"> <mat-icon aria-label="Example icon-button with a heart icon">{{iconBtnEdit}}</mat-icon></button>
-                <button mat-button color="warn" (click)="changeStyle('basic','warn')"> <mat-icon aria-label="Example icon-button with a heart icon">{{iconBtnEdit}}</mat-icon></button>
-              </div>
-              <div class="button-row">
-                <button mat-raised-button (click)="changeStyle('raised','basic')"> <mat-icon aria-label="Example icon-button with a heart icon">{{iconBtnEdit}}</mat-icon></button>
-                <button mat-raised-button color="accent" (click)="changeStyle('raised','accent')"> <mat-icon aria-label="Example icon-button with a heart icon">{{iconBtnEdit}}</mat-icon></button>
-                <button mat-raised-button color="warn" (click)="changeStyle('raised','warn')"> <mat-icon aria-label="Example icon-button with a heart icon">{{iconBtnEdit}}</mat-icon></button>
-              </div>
-              <div class="button-row">
-                <button mat-fab (click)="changeStyle('fab','basic')"><mat-icon aria-label="Example icon-button with a heart icon">{{iconBtnEdit}}</mat-icon></button>
-                <button mat-fab color="warn" (click)="changeStyle('fab','warn')"><mat-icon aria-label="Example icon-button with a heart icon">{{iconBtnEdit}}</mat-icon></button>
-              </div>
-              <div class="button-row">
-                <button mat-mini-fab (click)="changeStyle('minifab','basic')"><mat-icon aria-label="Example icon-button with a heart icon">{{iconBtnEdit}}</mat-icon></button>
-                <button mat-mini-fab color="warn" (click)="changeStyle('fab','warn')"><mat-icon aria-label="Example icon-button with a heart icon">{{iconBtnEdit}}</mat-icon></button>
-              </div>
-            </div>
-          </mat-tab >
-              <mat-tab label="Action bouton">
-                <div style="display: inline-block;color: black; margin-bottom: 10px" > API : <input  style="color: black" (input)="changeApi($event)" placeholder="https://MonApi/" ></div>
-                <div style="display: inline-block;color: black; margin-bottom: 10px" > Fonction : <input  style="color: black" (change)="changeFonction($event)" placeholder="ex : alert('Mon alert')" ></div>
-
-              </mat-tab>
-        </mat-tab-group>
+          <!--------------------------------------------   FIN EDIT ITEM  ---------------------------------------->
+    
+          <!--------------------------------------------   EDIT BLOCK  ---------------------------------------->
+            <accordion>
+              <accordion-group heading="Modifier le block">
+                <div style=" width: 100%;background-color: #AEB6BF; margin-bottom: 15px;  border: 1px solid;">
+                    <h4 style="text-align: center"><strong style="color: white">Disposition des éléments</strong></h4>
+                    <div >
+                      <mat-card class="card-demo">
+                        <mat-card-actions fxHide="false" style="padding-left:20px">
+                          <form fxLayout="column" fxLayout.xs="column" class="demo_controls">
+                            <div>
+                              <div>Direction de mise en page</div>
+                              <mat-radio-group [(ngModel)]="optLayout[idLayoutEdit].direction" name="direction" fxLayout="column" style="padding: 10px 0px 10px 10px;">
+                                <mat-radio-button value="row">Ligne</mat-radio-button>
+                                <mat-radio-button value="column">Colonne</mat-radio-button>
+                              </mat-radio-group>
+                            </div>
+                            <div>
+                              <div>Alignement dans direction de mise en page</div>
+                              <mat-radio-group [(ngModel)]="optLayout[idLayoutEdit].mainAxis" name="mainAxis" fxLayout="column" style="padding: 10px 0px 10px 10px;">
+                                <mat-radio-button value="">Aucune</mat-radio-button>
+                                <mat-radio-button value="start">Par default</mat-radio-button>
+                                <mat-radio-button value="center">Centrer</mat-radio-button>
+                                <mat-radio-button value="end">Fin du block</mat-radio-button>
+                                <mat-radio-button value="space-around">Espacement autour</mat-radio-button>
+                                <mat-radio-button value="space-between">Espacement entre</mat-radio-button>
+                                <mat-radio-button value="space-evenly">Espacer uniformément</mat-radio-button>
+                              </mat-radio-group>
+                            </div>
+                            <div>
+                              <div>Alignement dans la direction perpendiculaire</div>
+                              <mat-radio-group [(ngModel)]="optLayout[idLayoutEdit].crossAxis" name="crossAxis" fxLayout="column" style="padding: 10px 0px 10px 10px;">
+                                <mat-radio-button value="none"><em>Aucune</em></mat-radio-button>
+                                <mat-radio-button value="stretch">Par default</mat-radio-button>
+                                <mat-radio-button value="start">Début de block</mat-radio-button>
+                                <mat-radio-button value="center">centrer</mat-radio-button>
+                                <mat-radio-button value="end">Fin de block</mat-radio-button>
+                              </mat-radio-group>
+                            </div>
+                          </form>
+                        </mat-card-actions>
+                      </mat-card>
+                    </div>
+                    </div>
+              </accordion-group>
+            </accordion>
+          <!--------------------------------------------   FIN EDIT BLOCK  ---------------------------------------->
+    
       </div>
-        <!--  ------------------------------------------  FIN BUTTON ------------------------------------------  -->
-
-        <!--  ------------------------------------------ INPUT  ------------------------------------------  -->
-
-            <div *ngIf="ItemEdit == 'input' " >
-              <div style="display: inline-block;color: black; margin-bottom: 10px" > Libellé : <input  style="color: black" (input)="EditPlaceholder($event)" [(ngModel)]="resetInputAuto"></div>
-            </div>
-
-          <!--  ------------------------------------------  FIN INPUT ------------------------------------------  -->
-
-          <!--  ------------------------------------------ ICON BUTTON  ------------------------------------------  -->
-
-            <div *ngIf="ItemEdit == 'icon' " >
-
-              <div style="display: inline-block;color: black; margin-bottom: 10px" > Code icon font : <input  style="color: black" (input)="EditPlaceholder($event)" placeholder="Code icon font" value="{{resetInputAuto}}"></div>
-              <a href="https://material.io/icons/" target="_blank">Liste Icon</a>
-
-            </div>
-
-          <!--  ------------------------------------------  FIN ICON BUTTON  ------------------------------------------  -->
-
-          <!--  ------------------------------------------  RADIO BUTTON ------------------------------------------  -->
-            <div *ngIf="ItemEdit == 'radiobutton' " >
-              <div *ngFor="let option of options" >
-                <input (change)="changeValueTabEditItem(option,$event)"  value="{{ option }}"><button mat-mini-fab color="warn">
-                <mat-icon aria-label="Example icon-button with a heart icon" (click)="removeValueTabEditItem(option)" >remove</mat-icon>
-              </button>
-              </div>
-              <button mat-mini-fab (click)="addValueTabEditItem('Option')">
-                <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
-              </button>
-            </div>
-          <!--  ------------------------------------------  FIN RADIO BUTTON ------------------------------------------  -->
-
-          <!--  ------------------------------------------  SELECT ------------------------------------------  -->
-            <div *ngIf="ItemEdit == 'select' " >
-              <div style="display: inline-block;color: black; margin-bottom: 10px" > Libellé : <input  style="color: black" (input)="changeValueSelect($event)"  placeholder="{{resetInputAuto}}" [(ngModel)]="valueSelect"></div>
-              <div *ngFor="let option of options" >
-                  <input (change)="changeValueTabEditItem(option,$event)"  value="{{ option }}"><button mat-mini-fab color="warn">
-                  <mat-icon aria-label="Example icon-button with a heart icon" (click)="removeValueTabEditItem(option)" >remove</mat-icon>
-                </button>
-                </div>
-                <button mat-mini-fab (click)="addValueTabEditItem('')">
-                  <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
-                </button>
-            </div>
-          <!--------------------------------------------   FIN SELECT  ---------------------------------------->
-
-          </mat-card>
-        </div>
-      <!--------------------------------------------   FIN EDIT ITEM  ---------------------------------------->
-
-      <!--------------------------------------------   EDIT BLOCK  ---------------------------------------->
-        <accordion>
-          <accordion-group heading="Modifier le block">
-            <div style=" width: 100%;background-color: #AEB6BF; margin-bottom: 15px;  border: 1px solid;">
-                <h4 style="text-align: center"><strong style="color: white">Disposition des éléments</strong></h4>
-                <div >
-                  <mat-card class="card-demo">
-                    <mat-card-actions fxHide="false" style="padding-left:20px">
-                      <form fxLayout="column" fxLayout.xs="column" class="demo_controls">
-                        <div>
-                          <div>Direction de mise en page</div>
-                          <mat-radio-group [(ngModel)]="optLayout[idLayoutEdit].direction" name="direction" fxLayout="column" style="padding: 10px 0px 10px 10px;">
-                            <mat-radio-button value="row">Ligne</mat-radio-button>
-                            <mat-radio-button value="column">Colonne</mat-radio-button>
-                          </mat-radio-group>
-                        </div>
-                        <div>
-                          <div>Alignement dans direction de mise en page</div>
-                          <mat-radio-group [(ngModel)]="optLayout[idLayoutEdit].mainAxis" name="mainAxis" fxLayout="column" style="padding: 10px 0px 10px 10px;">
-                            <mat-radio-button value="">Aucune</mat-radio-button>
-                            <mat-radio-button value="start">Par default</mat-radio-button>
-                            <mat-radio-button value="center">Centrer</mat-radio-button>
-                            <mat-radio-button value="end">Fin du block</mat-radio-button>
-                            <mat-radio-button value="space-around">Espacement autour</mat-radio-button>
-                            <mat-radio-button value="space-between">Espacement entre</mat-radio-button>
-                            <mat-radio-button value="space-evenly">Espacer uniformément</mat-radio-button>
-                          </mat-radio-group>
-                        </div>
-                        <div>
-                          <div>Alignement dans la direction perpendiculaire</div>
-                          <mat-radio-group [(ngModel)]="optLayout[idLayoutEdit].crossAxis" name="crossAxis" fxLayout="column" style="padding: 10px 0px 10px 10px;">
-                            <mat-radio-button value="none"><em>Aucune</em></mat-radio-button>
-                            <mat-radio-button value="stretch">Par default</mat-radio-button>
-                            <mat-radio-button value="start">Début de block</mat-radio-button>
-                            <mat-radio-button value="center">centrer</mat-radio-button>
-                            <mat-radio-button value="end">Fin de block</mat-radio-button>
-                          </mat-radio-group>
-                        </div>
-                      </form>
-                    </mat-card-actions>
-                  </mat-card>
-                </div>
-                </div>
-          </accordion-group>
-        </accordion>
-      <!--------------------------------------------   FIN EDIT BLOCK  ---------------------------------------->
-
-      <!--------------------------------------------   COMPOSANTS LIST  ---------------------------------------->
-        <div style="margin-top: 15px">
-        <accordion>
-          <accordion-group heading="Formulaire">
-            <div class='parent'>
-            <div class='wrapper'>
-              <div [dragula]='"page-bag"' [dragulaModel]='formControl' id="componentFrom">
-                <img *ngFor='let text of formControl' src="../../assets/iconeGENIHM/{{text[0]}}.PNG" name="{{text[0]}}" style="padding: 5px">
-              </div>
-            </div>
-            </div>
-          </accordion-group>
-          <accordion-group heading="Navigation" >
-            <div class='parent'>
-              <div class='wrapper'>
-                <div [dragula]='"page-bag"' [dragulaModel]='navigation' id="componentNav">
-                  <img *ngFor='let text of navigation' src="../../assets/iconeGENIHM/{{text}}.PNG" name="{{text}}" style="padding: 5px">
-                </div>
-              </div>
-            </div>
-          </accordion-group >
-          <accordion-group heading="Mise en page" >
-            <div class='parent'>
-              <div class='wrapper'>
-                <div [dragula]='"page-bag"' [dragulaModel]='layout' id="componentLayout">
-                  <img *ngFor='let text of layout' src="../../assets/iconeGENIHM/{{text}}.PNG" name="{{text}}" style="padding: 5px">
-                </div>
-              </div>
-            </div>
-          </accordion-group >
-          <accordion-group heading="Boutons et Indicateurs">
-
-            <div class='parent'>
-              <div class='wrapper'>
-                <div [dragula]='"page-bag"' [dragulaModel]='button' id="componentButton">
-                  <img *ngFor='let text of button' src="../../assets/iconeGENIHM/{{text[0]}}.PNG" name="{{text[0]}}" style="padding: 5px">
-                </div>
-              </div>
-            </div>
-          </accordion-group>
-          <accordion-group heading="Popups et Modals">
-            <div class='parent'>
-              <div class='wrapper'>
-                <div [dragula]='"page-bag"' [dragulaModel]='modals' id="componentModals">
-                  <img *ngFor='let text of modals' src="../../assets/iconeGENIHM/{{text}}.PNG" name="{{text}}" style="padding: 5px">
-                </div>
-              </div>
-            </div>
-          </accordion-group>
-          <accordion-group heading="Tableau">
-            <div class='parent'>
-              <div class='wrapper'>
-                <div [dragula]='"page-bag"' [dragulaModel]='dataTable' id="componentDataTable">
-                  <img *ngFor='let text of dataTable' src="../../assets/iconeGENIHM/{{text}}.PNG" name="{{text}}" style="padding: 5px">
-                </div>
-              </div>
-            </div>
-          </accordion-group>
-          <accordion-group heading="Alfresco module">
-            <div class='parent'>
-              <div class='wrapper'>
-                <div [dragula]='"page-bag"' [dragulaModel]='alfresco' id="componentAlfresco">
-                  <img *ngFor='let text of alfresco' src="../../assets/iconeGENIHM/{{text[0]}}.PNG" name="{{text}}" style="padding: 5px">
-                </div>
-              </div>
-            </div>
-          </accordion-group>
-        </accordion>
-        </div>
-      <!--------------------------------------------   FIN COMPOSANTS LIST  ---------------------------------------->
-        <div style="margin-top: 15px">
-        <accordion>
-          <accordion-group heading="Recherche" >
-            <div class='parent'>
-              <div class='wrapper'>
-                <input (input)="changeSearch($event)">
-                <div [dragula]='"page-bag"' [dragulaModel]='dataTable' id="componentSearch">
-                  <img *ngFor='let text of total' src="../../assets/iconeGENIHM/{{text}}.PNG" name="{{text}}" style="padding: 5px">
-                </div>
-              </div>
-            </div>
-          </accordion-group>
-        </accordion>
-        </div>
-
-        <div style="margin-top: 15px">
-        <accordion>
-          <accordion-group heading="Console">
-            <div *ngFor='let tile of tiles'>
-              <pre *ngIf="tile.vide == 'true' ">{{tile.tab | json}}</pre>
-            </div>
-          </accordion-group>
-        </accordion>
-        </div>
-
-        <div style="margin-top: 15px">
-        <a title="Download JSON" [href]="downloadJsonHref" download="export.json"><button mat-raised-button (mouseenter)="generateDownloadJsonUri()" color="accent">Exporter ma page</button></a>
-        </div>
-      </mat-tab>
-    </mat-tab-group>
-  </mat-sidenav>
-
+    </mat-sidenav>
 
   <!--------------------------------------------   GRID VIEW  ---------------------------------------->
 
@@ -633,4 +611,6 @@
       </form>
     </div>
   <!--------------------------------------------   GRID VIEW  ---------------------------------------->
+  
 </mat-sidenav-container>
+</div>

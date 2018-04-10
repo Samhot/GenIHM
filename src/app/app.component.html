@@ -1,7 +1,7 @@
 <!-- <p><mat-checkbox [(ngModel)]="opened">sidenav.opened</mat-checkbox></p> -->
 <adf-toolbar color="primary">
   <adf-toolbar-title>
-    <button mat-button (click)="sidenav.toggle()"><mat-icon>menu</mat-icon></button>
+    <!-- <button mat-button (click)="sidenav.toggle()"><mat-icon>menu</mat-icon></button> -->
     <a mat-button routerLink="/">ADF</a>
   </adf-toolbar-title>
 
@@ -12,7 +12,7 @@
 
   </adf-toolbar>
 
-  <mat-sidenav-container>
+  <!-- <mat-sidenav-container>
     <mat-sidenav #sidenav mode="side" class="sidebar-left">
 
       <h3>SIDEBAR</h3>
@@ -36,6 +36,7 @@
     </mat-menu>
 
     <mat-sidenav-content class="full-height boxed">
-      <router-outlet></router-outlet>
     </mat-sidenav-content>
-  </mat-sidenav-container>
+  </mat-sidenav-container> -->
+  
+  <router-outlet></router-outlet>
