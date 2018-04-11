@@ -691,7 +691,7 @@ changeApi(event) {
     this.matrisVerif = [];
     this.matrice = [];
     this.total.sort();
-    this.tiles.push({text: '', cols: 4, rows: 10, color: '#C0C0C0', vide: 'false', id: '0web'});
+    this.tiles.push({text: 'Veuillez créer une structure à partir du bouton ci-dessus.', cols: 4, rows: 1, color: 'rgba(255, 255, 255, 0.87)', vide: 'false', id: '0web'});
     this.backgroundColor = [];
     for (let i = 0; i < 40; i++) {
       this.backgroundColor.push('colTab');

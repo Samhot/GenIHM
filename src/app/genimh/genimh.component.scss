@@ -1,12 +1,16 @@
-.web-page{
-  height: 700px;
-}
+// .web-page{
+//   height: 700px;
+// }
 
 .selected {
   background-color: green !important;
 }
 .selecting {
   background-color: yellow !important;
+}
+
+#sidebar.material-icons {
+  font-size: 39px;
 }
 
 .colTab{
@@ -26,10 +30,14 @@
   padding-right: 20px;
   /* background-color: blue; */
 }
+
 mat-sidenav {
   width: min-content;
   background: white;
   border: solid 2px lightgray;
+}
+mat-sidenav-content {
+margin: 10%;
 }
 
 /*
@@ -77,9 +85,9 @@ mat-sidenav {
   border-radius: 0px;
 
 }
-.full-height{
-  height: 100%;
-}
+// .full-height{
+//   height: 100%;
+// }
 
 .margin-bottom{
   margin-bottom: 20px;
