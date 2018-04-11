@@ -74,16 +74,16 @@ export class GenimhComponent implements OnInit {
 
   // tslint:disable-next-line:max-line-length
   public formControl = [['autocomplete', 'NULL', 'Libellé', ['One', 'Two', 'Three']], ['checkbox', 'NULL', 'Value'], ['datepicker', 'NULL', 'Libellé'], ['input', 'NULL', 'Libellé'], ['radiobutton', 'NULL', ['Option 1', 'Option 2']], ['select', 'NULL', 'Libellé', ['Un', 'Deux', 'Trois']], ['slider', 'NULL'], ['slidetoggle', 'NULL']];
-  public navigation: Array<string> = ['menu', 'sidenav', 'toolbar'];
-  public layout: Array<string> = ['card', 'list', 'tabs', 'stepper'];
+  public navigation  = [['menu', 'NULL'], ['sidenav', 'NULL'], ['toolbar', 'NULL']];
+  public layout = [['card', 'NULL'], ['list', 'NULL'], ['tabs', 'NULL'], ['stepper', 'NULL']];
   // tslint:disable-next-line:max-line-length
   public button  = [['button', 'NULL', 'basic', 'basic', 'basic', 'Bouton'], ['buttontoggle', 'NULL'], ['chips', 'NULL', [['one', ''], ['two', 'primary'], ['three', 'accent']]], ['icon', 'NULL', 'home'], ['progressspinner', 'NULL'], ['progressbar', 'NULL']];
-  public modals: Array<string> = ['dialog', 'snackbar', 'tooltip'];
-  public dataTable: Array<string> = ['paginator', 'sortheader', 'table'];
+  public modals  = [['dialog', 'NULL'], ['snackbar', 'NULL'], ['tooltip', 'NULL']];
+  public dataTable  = [['paginator', 'NULL'], ['sortheader', 'NULL'], ['table', 'NULL']];
   public alfresco = [['alfrescoadf', 'NULL', '', 'Racine']]; // fc8d4fec-204e-428d-aa26-1295b6e8682c    f6b9f65c-33aa-4bc7-a560-babc93a30c89
   // tslint:disable-next-line:max-line-length
-  public total: Array<string> = ['autocomplete', 'checkbox', 'datepicker', 'input', 'radiobutton', 'select', 'slider', 'slidetoggle', 'menu', 'sidenav', 'toolbar', 'card', 'list', 'tabs', 'stepper', 'button', 'buttontoggle', 'chips', 'icon', 'progressspinner', 'progressbar', 'dialog', 'snackbar', 'tooltip', 'paginator', 'sortheader', 'table'];
-  public totalSave: Array<string> = ['autocomplete', 'checkbox', 'datepicker', 'input', 'radiobutton', 'select', 'slider', 'slidetoggle', 'menu', 'sidenav', 'toolbar', 'card', 'list', 'tabs', 'stepper', 'button', 'buttontoggle', 'chips', 'icon', 'progressspinner', 'progressbar', 'dialog', 'snackbar', 'tooltip', 'paginator', 'sortheader', 'table'];
+  public total = [['autocomplete', 'NULL', 'Libellé', ['One', 'Two', 'Three']],['button', 'NULL', 'basic', 'basic', 'basic', 'Bouton'],['buttontoggle', 'NULL'],['card', 'NULL'],  ['checkbox', 'NULL', 'Value'], ['chips', 'NULL', [['one', ''], ['two', 'primary'], ['three', 'accent']]], ['datepicker', 'NULL', 'Libellé'],['dialog', 'NULL'], ['icon', 'NULL', 'home'], ['input', 'NULL', 'Libellé'], ['list', 'NULL'], ['menu', 'NULL'],['paginator', 'NULL'],['progressbar', 'NULL'],['progressspinner', 'NULL'],['radiobutton', 'NULL', ['Option 1', 'Option 2']],  ['select', 'NULL', 'Libellé', ['Un', 'Deux', 'Trois']], ['sidenav', 'NULL'],['slider', 'NULL'], ['slidetoggle', 'NULL'], ['snackbar', 'NULL'],['sortheader', 'NULL'],['stepper', 'NULL'], ['table', 'NULL'],['tabs', 'NULL'],['toolbar', 'NULL'],['tooltip', 'NULL']];
+  public totalSave = [['autocomplete', 'NULL', 'Libellé', ['One', 'Two', 'Three']],['button', 'NULL', 'basic', 'basic', 'basic', 'Bouton'],['buttontoggle', 'NULL'],['card', 'NULL'],  ['checkbox', 'NULL', 'Value'], ['chips', 'NULL', [['one', ''], ['two', 'primary'], ['three', 'accent']]], ['datepicker', 'NULL', 'Libellé'],['dialog', 'NULL'], ['icon', 'NULL', 'home'], ['input', 'NULL', 'Libellé'], ['list', 'NULL'], ['menu', 'NULL'],['paginator', 'NULL'],['progressbar', 'NULL'],['progressspinner', 'NULL'],['radiobutton', 'NULL', ['Option 1', 'Option 2']],  ['select', 'NULL', 'Libellé', ['Un', 'Deux', 'Trois']], ['sidenav', 'NULL'],['slider', 'NULL'], ['slidetoggle', 'NULL'], ['snackbar', 'NULL'],['sortheader', 'NULL'],['stepper', 'NULL'], ['table', 'NULL'],['tabs', 'NULL'],['toolbar', 'NULL'],['tooltip', 'NULL']];
   showViewer: Boolean = false;
   nodeId: String = null;
 
@@ -259,18 +259,24 @@ export class GenimhComponent implements OnInit {
   ngOnInit() {
     this.reset();
     this.getComposants();
+    this.toggleSideNavSetIn('panelAll')
+    this.totalSave.sort()
   }
 
   toggleSideNavSetOut: string = '';
   toggleSideNavSetIn(toggleSideNavGet: string) {
+    if( this.total.length == this.totalSave.length){
       if (this.MyInstSideNav.opened === false) {
-          this.toggleSideNavSetOut = toggleSideNavGet;
-          this.MyInstSideNav.toggle();
+        this.toggleSideNavSetOut = toggleSideNavGet;
+        this.MyInstSideNav.toggle();
       } else if (this.MyInstSideNav.opened === true && this.toggleSideNavSetOut !== toggleSideNavGet) {
-          this.toggleSideNavSetOut = toggleSideNavGet;
+        this.toggleSideNavSetOut = toggleSideNavGet;
       } else {
-          this.MyInstSideNav.toggle();
+        this.MyInstSideNav.toggle();
       }
+    }else{
+      this.total = this.totalSave
+    }
   }
 
   getComposants(): void {
@@ -601,6 +607,9 @@ changeApi(event) {
   }
 
   changeSearch(event) {
+    if(this.toggleSideNavSetOut != "panelAll"){
+      this.toggleSideNavSetIn('panelAll')
+    }
     this.total = [];
     let search = event.target.value.toLowerCase();
 
@@ -616,7 +625,7 @@ changeApi(event) {
       for (let i = 0; i < this.totalSave.length; i++) {
         let verif = true;
         for ( let z = 0; z < search.length; z++) {
-          if (this.totalSave[i][z] !== search[z]) {
+          if (this.totalSave[i][0][z] !== search[z]) {
             verif = false;
           }
         }
