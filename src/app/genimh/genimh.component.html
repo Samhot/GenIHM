@@ -1,17 +1,17 @@
 <div style="display:flex;" fxlayout="row"><span fxLayoutAlign="start start"><h1>Designer GenIHM</h1></span><span fxLayoutAlign="end end">TEST</span></div>
 <div fxLayout="row">
   <div fxLayout="column" style="width:auto;">
-    <button mat-button (click)="toggleSideNavSetIn('panelAll')"><div  fxLayout="column" style="align-items: center"><mat-icon>dashboard</mat-icon>Tous</div></button>
-    <button mat-button (click)="toggleSideNavSetIn('panelForm')"><div  fxLayout="column" style="align-items: center"><mat-icon>format_list_bulleted</mat-icon>Formulaire</div></button>
-    <button mat-button (click)="toggleSideNavSetIn('panelNav')"><div  fxLayout="column" style="align-items: center"><mat-icon>last_page</mat-icon>Navigation</div></button>
-    <button mat-button (click)="toggleSideNavSetIn('panelLayout')"><div  fxLayout="column" style="align-items: center"><mat-icon>picture_in_picture_alt</mat-icon>Mise en page</div></button>
-    <button mat-button (click)="toggleSideNavSetIn('panelButton')"><div  fxLayout="column" style="align-items: center"><mat-icon>all_out</mat-icon>Bouttons</div></button>
-    <button mat-button (click)="toggleSideNavSetIn('panelModal')"><div  fxLayout="column" style="align-items: center"><mat-icon>chrome_reader_mode</mat-icon>Modals</div></button>
-    <button mat-button (click)="toggleSideNavSetIn('panelDataTable')"><div  fxLayout="column" style="align-items: center"><mat-icon>view_array</mat-icon>Tableau</div></button>
-    <button mat-button (click)="toggleSideNavSetIn('panelAlfresco')"><div  fxLayout="column" style="align-items: center"><mat-icon>import_contacts</mat-icon>Alfresco</div></button>
-    <button mat-button (click)="toggleSideNavSetIn('panelGrid')"><div  fxLayout="column" style="align-items: center"><mat-icon>grid_on</mat-icon>Grid</div></button>
-    <button mat-button (click)="toggleSideNavSetIn('panelJson')"><div  fxLayout="column" style="align-items: center"><mat-icon>developer_board</mat-icon>JSON</div></button>
-    <button mat-button (click)="toggleSideNavSetIn('panelEdit')"><div  fxLayout="column" style="align-items: center"><mat-icon>keyboard</mat-icon>Edit</div></button>
+    <button mat-button (click)="toggleSideNavSetIn('panelAll')" class="borderbtnRight borderbtnTop"><div  fxLayout="column" style="align-items: center"><mat-icon>dashboard</mat-icon>Tous</div></button>
+    <button mat-button (click)="toggleSideNavSetIn('panelForm')" class="borderbtnRight"><div  fxLayout="column" style="align-items: center"><mat-icon>format_list_bulleted</mat-icon>Formulaire</div></button>
+    <button mat-button (click)="toggleSideNavSetIn('panelNav')"class="borderbtnRight"><div  fxLayout="column" style="align-items: center"><mat-icon>last_page</mat-icon>Navigation</div></button>
+    <button mat-button (click)="toggleSideNavSetIn('panelLayout')"class="borderbtnRight"><div  fxLayout="column" style="align-items: center"><mat-icon>picture_in_picture_alt</mat-icon>Mise en page</div></button>
+    <button mat-button (click)="toggleSideNavSetIn('panelButton')" class="borderbtnRight"><div  fxLayout="column" style="align-items: center"><mat-icon>all_out</mat-icon>Bouttons</div></button>
+    <button mat-button (click)="toggleSideNavSetIn('panelModal')"class="borderbtnRight"><div  fxLayout="column" style="align-items: center"><mat-icon>chrome_reader_mode</mat-icon>Modals</div></button>
+    <button mat-button (click)="toggleSideNavSetIn('panelDataTable')"class="borderbtnRight"><div  fxLayout="column" style="align-items: center"><mat-icon>view_array</mat-icon>Tableau</div></button>
+    <button mat-button (click)="toggleSideNavSetIn('panelAlfresco')"class="borderbtnRight"><div  fxLayout="column" style="align-items: center"><mat-icon>import_contacts</mat-icon>Alfresco</div></button>
+    <button mat-button (click)="toggleSideNavSetIn('panelGrid')"class="borderbtnRight"><div  fxLayout="column" style="align-items: center"><mat-icon>grid_on</mat-icon>Grid</div></button>
+    <button mat-button (click)="toggleSideNavSetIn('panelJson')"class="borderbtnRight"><div  fxLayout="column" style="align-items: center"><mat-icon>developer_board</mat-icon>JSON</div></button>
+    <button mat-button (click)="toggleSideNavSetIn('panelEdit')"class="borderbtnRight borderbtnBottom"><div  fxLayout="column" style="align-items: center"><mat-icon>keyboard</mat-icon>Edit</div></button>
   </div>
   <mat-sidenav-container style="width: 100%;">
 
@@ -19,15 +19,18 @@
   <main></main>
     <mat-sidenav #MyInstSideNav align="start" mode="side" opened="true" [ngSwitch]="toggleSideNavSetOut" >
       <form class="example-form">
-          <mat-form-field>
+        <div  style="align-items: center">
+          <mat-form-field >
           <!-- <button mat-button><mat-icon>search</mat-icon></button> -->
-          <input matInput placeholder="Recherche">
+            <input matInput placeholder="Recherche">
+            <mat-icon matPrefix>search</mat-icon>
           <!-- <mat-form-field>
             <input matInput placeholder="Recherche" (input)="changeSearch($event)">
             <div [dragula]='"page-bag"' [dragulaModel]='dataTable' id="componentSearch">
               <img *ngFor='let text of total' src="../../assets/iconeGENIHM/{{text}}.PNG" name="{{text}}" style="padding: 5px">
             </div>-->
-          </mat-form-field> 
+          </mat-form-field>
+        </div>
       </form>
       <div *ngSwitchCase="'panelAll'">
         <div class='parent'>
@@ -45,9 +48,9 @@
               <img *ngFor='let text of formControl' src="../../assets/iconeGENIHM/{{text[0]}}.PNG" name="{{text[0]}}" style="padding: 5px">
             </div>
           </div>
-        </div>            
+        </div>
       </div>
-      <div *ngSwitchCase="'panelNav'"> 
+      <div *ngSwitchCase="'panelNav'">
         <div class='parent'>
             <div class='wrapper'>
               <div [dragula]='"page-bag"' [dragulaModel]='navigation' id="componentNav">
@@ -203,7 +206,7 @@
             <h4 style="text-align: center"><strong style="color: white">Modifier un élément</strong></h4>
             <mat-card>
               <!--  ------------------------------------------  AUTOCOMPLETE ------------------------------------------  -->
-    
+
                 <div *ngIf="ItemEdit == 'autocomplete' " style="text-align: center">
                   <div style="display: inline-block;color: black" > Libellé : <input  style="color: black" (input)="EditPlaceholder($event)" placeholder="{{resetInputAuto}}"></div>
                   <div *ngFor="let option of options"  style="display: inline-block;">
@@ -212,36 +215,36 @@
                   </div>
                     <div><mat-icon color="accent" aria-label="Example icon-button with a heart icon" (click)="addValueTabEditItem('')">add_box</mat-icon></div>
                 </div>
-    
+
               <!--  ------------------------------------------  FIN AUTOCOMPLETE ------------------------------------------  -->
-    
+
               <!--  ------------------------------------------   CHECKBOX ------------------------------------------  -->
                 <div *ngIf="ItemEdit == 'checkbox' " style="text-align: center">
-    
+
                 <div style="display: inline-block;color: black; margin-bottom: 10px" > Value : <input  style="color: black" (input)="changeValueCheckbox($event)" [(ngModel)]="valueCheckbox"></div>
               </div>
             <!--  ------------------------------------------  FIN CHECKBOX ------------------------------------------  -->
                 <!--  ------------------------------------------   Alfresco ADF ------------------------------------------  -->
               <div *ngIf="ItemEdit == 'alfrescoadf' " style="text-align: center">
-    
+
                 <div style="display: inline-block;color: black; margin-bottom: 10px" > UIID : <input  style="color: black" (input)="changeValueUIID($event)" [(ngModel)]="UIIDadfValue"></div>
                 <div style="display: inline-block;color: black; margin-bottom: 10px" > Nom dossier racine : <input  style="color: black" (input)="changeValueADFRacine($event)" [(ngModel)]="adfRacineValue"></div>
               </div>
             <!--  ------------------------------------------  FIN CHECKBOX ------------------------------------------  -->
-    
+
             <!--  ------------------------------------------  DATEPICKER ------------------------------------------  -->
               <div *ngIf="ItemEdit == 'datepicker' " >
                 <div style="display: inline-block;color: black; margin-bottom: 10px" > Libellé : <input  style="color: black" (input)="changeValueDatePicker($event)"  [(ngModel)]="valueDatepicker"></div>
               </div>
             <!--  ------------------------------------------  FIN DATEPICKER ------------------------------------------  -->
-    
+
             <!--  ------------------------------------------  BUTTON ------------------------------------------  -->
               <div *ngIf="ItemEdit == 'button' ">
                 <mat-tab-group (selectedTabChange)="onLinkClick($event)" >
               <mat-tab label='Bouton texte' >
                 <div *ngIf="typeButton == 'basic' " style="text-align: center" >
                   <div style="display: inline-block;color: black" > Texte : <input  style="color: black" (input)="changeValueButton($event)" [(ngModel)]="buttonValue"></div>
-    
+
                   <div class="button-row">
                     <button mat-button (click)="changeStyle('basic','basic') ">{{buttonValue}}</button>
                     <button mat-button color="accent" (click)="changeStyle('basic','accent') ">{{buttonValue}}</button>
@@ -301,31 +304,31 @@
                   <mat-tab label="Action bouton">
                     <div style="display: inline-block;color: black; margin-bottom: 10px" > API : <input  style="color: black" (input)="changeApi($event)" placeholder="https://MonApi/" ></div>
                     <div style="display: inline-block;color: black; margin-bottom: 10px" > Fonction : <input  style="color: black" (change)="changeFonction($event)" placeholder="ex : alert('Mon alert')" ></div>
-    
+
                   </mat-tab>
             </mat-tab-group>
           </div>
             <!--  ------------------------------------------  FIN BUTTON ------------------------------------------  -->
-    
+
             <!--  ------------------------------------------ INPUT  ------------------------------------------  -->
-    
+
                 <div *ngIf="ItemEdit == 'input' " >
                   <div style="display: inline-block;color: black; margin-bottom: 10px" > Libellé : <input  style="color: black" (input)="EditPlaceholder($event)" [(ngModel)]="resetInputAuto"></div>
                 </div>
-    
+
               <!--  ------------------------------------------  FIN INPUT ------------------------------------------  -->
-    
+
               <!--  ------------------------------------------ ICON BUTTON  ------------------------------------------  -->
-    
+
                 <div *ngIf="ItemEdit == 'icon' " >
-    
+
                   <div style="display: inline-block;color: black; margin-bottom: 10px" > Code icon font : <input  style="color: black" (input)="EditPlaceholder($event)" placeholder="Code icon font" value="{{resetInputAuto}}"></div>
                   <a href="https://material.io/icons/" target="_blank">Liste Icon</a>
-    
+
                 </div>
-    
+
               <!--  ------------------------------------------  FIN ICON BUTTON  ------------------------------------------  -->
-    
+
               <!--  ------------------------------------------  RADIO BUTTON ------------------------------------------  -->
                 <div *ngIf="ItemEdit == 'radiobutton' " >
                   <div *ngFor="let option of options" >
@@ -338,7 +341,7 @@
                   </button>
                 </div>
               <!--  ------------------------------------------  FIN RADIO BUTTON ------------------------------------------  -->
-    
+
               <!--  ------------------------------------------  SELECT ------------------------------------------  -->
                 <div *ngIf="ItemEdit == 'select' " >
                   <div style="display: inline-block;color: black; margin-bottom: 10px" > Libellé : <input  style="color: black" (input)="changeValueSelect($event)"  placeholder="{{resetInputAuto}}" [(ngModel)]="valueSelect"></div>
@@ -352,11 +355,11 @@
                     </button>
                 </div>
               <!--------------------------------------------   FIN SELECT  ---------------------------------------->
-    
+
               </mat-card>
             </div>
           <!--------------------------------------------   FIN EDIT ITEM  ---------------------------------------->
-    
+
           <!--------------------------------------------   EDIT BLOCK  ---------------------------------------->
             <accordion>
               <accordion-group heading="Modifier le block">
@@ -403,7 +406,7 @@
               </accordion-group>
             </accordion>
           <!--------------------------------------------   FIN EDIT BLOCK  ---------------------------------------->
-    
+
       </div>
     </mat-sidenav>
 
@@ -611,6 +614,6 @@
       </form>
     </div>
   <!--------------------------------------------   GRID VIEW  ---------------------------------------->
-  
+
 </mat-sidenav-container>
 </div>

@@ -27,8 +27,26 @@
   /* background-color: blue; */
 }
 mat-sidenav {
-  width: 20%;
-  background: gainsboro;
+  width: min-content;
+  background: white;
+  border-top: solid 1px lightgray;
+  border-right: solid 1px lightgray;
+  border-bottom: solid 1px lightgray;
+}
+.borderbtnRight{
+  border-right: solid 1px lightgray;
+  border-radius: 0px;
+
+}
+.borderbtnTop{
+  border-top: solid 1px lightgray;
+  border-radius: 0px;
+
+}
+.borderbtnBottom{
+  border-bottom: solid 1px lightgray;
+  border-radius: 0px;
+
 }
 .full-height{
   height: 100%;
