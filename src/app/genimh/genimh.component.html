@@ -1,22 +1,84 @@
-<mat-toolbar style="position: absolute; z-index:2;top: 64px;left: 0px;right: 0px;"><span><h1>Designer GenIHM</h1></span></mat-toolbar>
-<div fxLayout="row" style="flex-direction: row; box-sizing: border-box; display: flex; position: relative; top: 128px; left: 0px; right: 0px;">
-  <div fxLayout="column" style="width:auto; padding-top:20px;">
-    <button mat-button (click)="toggleSideNavSetIn('panelAll')"><div  fxLayout="column" style="align-items: center"><mat-icon>dashboard</mat-icon>Tous</div></button>
-    <button mat-button (click)="toggleSideNavSetIn('panelForm')"><div  fxLayout="column" style="align-items: center"><mat-icon>format_list_bulleted</mat-icon>Formulaire</div></button>
-    <button mat-button (click)="toggleSideNavSetIn('panelNav')"><div  fxLayout="column" style="align-items: center"><mat-icon>last_page</mat-icon>Navigation</div></button>
-    <button mat-button (click)="toggleSideNavSetIn('panelLayout')"><div  fxLayout="column" style="align-items: center"><mat-icon>picture_in_picture_alt</mat-icon>Mise en page</div></button>
-    <button mat-button (click)="toggleSideNavSetIn('panelButton')"><div  fxLayout="column" style="align-items: center"><mat-icon>all_out</mat-icon>Bouttons</div></button>
-    <button mat-button (click)="toggleSideNavSetIn('panelModal')"><div  fxLayout="column" style="align-items: center"><mat-icon>chrome_reader_mode</mat-icon>Modals</div></button>
-    <button mat-button (click)="toggleSideNavSetIn('panelDataTable')"><div  fxLayout="column" style="align-items: center"><mat-icon>view_array</mat-icon>Tableau</div></button>
-    <button mat-button (click)="toggleSideNavSetIn('panelAlfresco')"><div  fxLayout="column" style="align-items: center"><mat-icon>import_contacts</mat-icon>Alfresco</div></button>
-    <button mat-button (click)="toggleSideNavSetIn('panelGrid')"><div  fxLayout="column" style="align-items: center"><mat-icon>grid_on</mat-icon>Grid</div></button>
-    <button mat-button (click)="toggleSideNavSetIn('panelJson')"><div  fxLayout="column" style="align-items: center"><mat-icon>developer_board</mat-icon>JSON</div></button>
-    <button mat-button (click)="toggleSideNavSetIn('panelEdit')"><div  fxLayout="column" style="align-items: center"><mat-icon>keyboard</mat-icon>Edit</div></button>
-  </div>
-  <mat-sidenav-container style="width: 100%;">
+<mat-toolbar style="position: fixed; z-index:2;position: relative;">
+  <span>
+    <h1>Designer GenIHM</h1>
+  </span>
+  <span style="flex: 1 1 auto;"></span>
+  <button mat-icon-button (click)="toggleSideNavSetIn('panelGrid')"><mat-icon aria-label="Créer ou modifier la structure du grid">grid_on</mat-icon></button>
+  <button mat-raised-button>Primary</button>
+  <mat-icon style="padding: 0 14px;">settings_input_component</mat-icon>
+  <mat-icon style="padding: 0 14px;">pageview</mat-icon>
+  
+</mat-toolbar>
+<div fxLayout="row" >
 
-    <main></main>
-    <mat-sidenav #MyInstSideNav align="start" mode="side" opened="true" [ngSwitch]="toggleSideNavSetOut" >
+  <div id="sidebar" fxLayout="row" style="text-align: center;">
+    <ul style="list-style: none; -webkit-padding-start:0px;">
+      <li (click)="toggleSideNavSetIn('panelAll')">
+        <span style="font-size: 11px;display: flex;flex-direction: column;align-items: center; cursor: pointer;">
+          <mat-icon style="font-size:35px;height: 39px;width: 39px;">dashboard</mat-icon>
+          Tous
+        </span>
+      </li>
+      <li (click)="toggleSideNavSetIn('panelForm')">
+        <span style="font-size: 11px;display: flex;flex-direction: column;align-items: center; cursor: pointer;">
+          <mat-icon style="font-size:35px;height: 39px;width: 39px;">format_list_bulleted</mat-icon>
+          Formulaire
+        </span>
+      </li>
+      <li (click)="toggleSideNavSetIn('panelNav')">
+        <span style="font-size: 11px;display: flex;flex-direction: column;align-items: center; cursor: pointer;">
+          <mat-icon style="font-size:35px;height: 39px;width: 39px;">last_page</mat-icon>
+          Navigation
+        </span>
+      </li>
+      <li (click)="toggleSideNavSetIn('panelLayout')">
+        <span style="font-size: 11px;display: flex;flex-direction: column;align-items: center; cursor: pointer;">
+          <mat-icon style="font-size:35px;height: 39px;width: 39px;">picture_in_picture_alt</mat-icon>
+          Layout
+        </span>
+      </li>
+      <li (click)="toggleSideNavSetIn('panelButton')">
+        <span style="font-size: 11px;display: flex;flex-direction: column;align-items: center; cursor: pointer;">
+          <mat-icon style="font-size:35px;height: 39px;width: 39px;">all_out</mat-icon>
+          Boutons
+        </span>
+      </li>
+      <li (click)="toggleSideNavSetIn('panelModal')">
+        <span style="font-size: 11px;display: flex;flex-direction: column;align-items: center; cursor: pointer;">
+          <mat-icon style="font-size:35px;height: 39px;width: 39px;">chrome_reader_mode</mat-icon>
+          Modals
+        </span>
+      </li>
+      <li (click)="toggleSideNavSetIn('panelDataTable')">
+        <span style="font-size: 11px;display: flex;flex-direction: column;align-items: center; cursor: pointer;">
+          <mat-icon style="font-size:35px;height: 39px;width: 39px;">view_array</mat-icon>
+          Tableaux
+        </span>
+      </li>
+      <li (click)="toggleSideNavSetIn('panelAlfresco')">
+        <span style="font-size: 11px;display: flex;flex-direction: column;align-items: center; cursor: pointer;">
+          <mat-icon style="font-size:35px;height: 39px;width: 39px;">import_contacts</mat-icon>
+          Alfresco
+        </span>
+      </li>
+      <li (click)="toggleSideNavSetIn('panelJson')">
+        <span style="font-size: 11px;display: flex;flex-direction: column;align-items: center; cursor: pointer;">
+          <mat-icon style="font-size:35px;height: 39px;width: 39px;">developer_board</mat-icon>
+          Console
+        </span>
+      </li>
+      <li (click)="toggleSideNavSetIn('panelEdit')">
+        <span style="font-size: 11px;display: flex;flex-direction: column;align-items: center; cursor: pointer;">
+          <mat-icon style="font-size:35px;height: 39px;width: 39px;">keyboard</mat-icon>
+          Edit
+        </span>
+      </li>
+    </ul>
+  </div>
+
+  <mat-sidenav-container style="width: 100%;">
+    <!-- <main></main> -->
+    <mat-sidenav #MyInstSideNav align="start" mode="side" opened="false" [ngSwitch]="toggleSideNavSetOut" style="width:min-content;">
       <form class="example-form">
           <mat-form-field>
           <!-- <button mat-button><mat-icon>search</mat-icon></button> -->
@@ -394,205 +456,204 @@
     
       </div>
     </mat-sidenav>
-  <!--------------------------------------------   GRID VIEW  ---------------------------------------->
-    <div style="width: 100%; height: 1000px">
-      <form>
-        <mat-grid-list cols="4" rowHeight="63px">
-          <mat-grid-tile
-            *ngFor="let tile of tiles"
-            [colspan]="tile.cols"
-            [rowspan]="tile.rows"
-            [style.background]="tile.color">
+    <!--------------------------------------------   GRID VIEW  ---------------------------------------->
+      <mat-sidenav-content>
+        <div>
+          <form>
+            <mat-grid-list cols="4" rowHeight="100px">
+              <mat-grid-tile
+                *ngFor="let tile of tiles"
+                [colspan]="tile.cols"
+                [rowspan]="tile.rows"
+                [style.background]="tile.color">{{tile.text}}
+                <div *ngIf="tile.vide == 'true' "  [dragula]='"page-bag"' [dragulaModel]='tile.tab' id={{tile.id}} style="width: 100%;overflow:auto;height: 100%;"  [fxLayout]="optLayout[tile.optLayoutId].direction" [fxLayoutAlign]="layoutAlign(tile.optLayoutId)" (click)="monContainer(tile.optLayoutId)">
+                  <div *ngFor='let text of tile.tab'>
 
-            <div *ngIf="tile.vide == 'true' "  [dragula]='"page-bag"' [dragulaModel]='tile.tab' id={{tile.id}} style="width: 100%;overflow:scroll;height: 100%;"  [fxLayout]="optLayout[tile.optLayoutId].direction" [fxLayoutAlign]="layoutAlign(tile.optLayoutId)" (click)="monContainer(tile.optLayoutId)">
-              <div *ngFor='let text of tile.tab'>
+                    <div *ngIf="text[0] == 'alfrescoadf' " (click)="editItem('alfrescoadf',tile.id,text[1])" >
+                      <adf-toolbar>
+                        <adf-toolbar-title>
+                          <adf-breadcrumb
+                            class="files-breadcrumb"
+                            root= {{text[3]}}
+                            [target]="documentList"
+                            [folderNode]="documentList.folderNode">
+                          </adf-breadcrumb>
+                        </adf-toolbar-title>
+                        <adf-upload-button
+                          [rootFolderId]="documentList.currentFolderId || '-root-'"
+                          [adf-node-permission]="'create'"
+                          (success)="uploadSuccess($event)">
+                        </adf-upload-button>
+                      </adf-toolbar>
 
-                <div *ngIf="text[0] == 'alfrescoadf' " (click)="editItem('alfrescoadf',tile.id,text[1])" >
-                  <adf-toolbar>
-                    <adf-toolbar-title>
-                      <adf-breadcrumb
-                        class="files-breadcrumb"
-                        root= {{text[3]}}
-                        [target]="documentList"
-                        [folderNode]="documentList.folderNode">
-                      </adf-breadcrumb>
-                    </adf-toolbar-title>
-                    <adf-upload-button
-                      [rootFolderId]="documentList.currentFolderId || '-root-'"
-                      [adf-node-permission]="'create'"
-                      (success)="uploadSuccess($event)">
-                    </adf-upload-button>
+                      <adf-document-list
+                        #documentList
+                        [currentFolderId]= text[2]
+                        (preview)="showPreview($event)">
+                      </adf-document-list>
 
-                  </adf-toolbar>
-
-
-                  <adf-document-list
-                    #documentList
-                    [currentFolderId]= text[2]
-                    (preview)="showPreview($event)">
-                  </adf-document-list>
-
-                  <adf-viewer
-                    [showViewer]="showViewer"
-                    [overlayMode]="true"
-                    [fileNodeId]="nodeId"
-                    (goBack)="onGoBack($event)">
-                  </adf-viewer>
-                  <file-uploading-dialog></file-uploading-dialog>
-                </div>
-
-                <div *ngIf="text[0] == 'autocomplete' " (click)="editItem('autocomplete',tile.id,text[1])" >
-                  <mat-form-field>
-                    <input matInput class="w3-input w3-border w3-light-grey" type="text[0]" placeholder="{{text[2]}}" [matAutocomplete]="auto" >
-                    <mat-autocomplete #auto="matAutocomplete">
-                      <mat-option *ngFor="let option of text[3]" [value]="option">
-                        {{ option }}
-                      </mat-option>
-                    </mat-autocomplete>
-                  </mat-form-field>
-                </div>
-
-                <div *ngIf="text[0] == 'select' " (click)="editItem('select',tile.id,text[1])">
-                  <mat-form-field>
-                    <mat-select placeholder="{{text[2]}}">
-                      <mat-option *ngFor="let option of text[3]" [value]="option">
-                        {{ option }}
-                      </mat-option>
-                    </mat-select>
-                  </mat-form-field>
-                </div>
-
-                <div *ngIf="text[0] == 'checkbox' " (click)="editItem('checkbox',tile.id,text[1])">
-                  <mat-checkbox>{{text[2]}}</mat-checkbox>
-                </div>
-
-                <!----------------------------------------       GRID BUTTON  ---------------------------------------------------------->
-
-                  <div *ngIf="text[0] == 'button' " (click)="editItem('button',tile.id,text[1])">
-                    <div *ngIf="text[2] == 'basic' ">
-                      <div *ngIf="text[3] == 'basic' ">
-                        <button mat-button  *ngIf="text[4] == 'basic' "  (click)="fonctionTest()">{{text[5]}}</button>
-                        <button mat-button color="accent" *ngIf="text[4] == 'accent' " (click)="onSubmit()">{{text[5]}}</button>
-                        <button mat-button color="warn"  *ngIf="text[4] == 'warn' ">{{text[5]}}</button>
-                      </div>
-
-                      <div *ngIf="text[3] == 'raised' ">
-                        <button mat-raised-button  *ngIf="text[4] == 'basic' ">{{text[5]}}</button>
-                        <button mat-raised-button color="accent"  *ngIf="text[4] == 'accent' ">{{text[5]}}</button>
-                        <button mat-raised-button color="warn" *ngIf="text[4] == 'warn' ">{{text[5]}}</button>
-                      </div>
-
-                      <div *ngIf="text[3] == 'fab' ">
-                        <button mat-fab  *ngIf="text[4] == 'basic' ">{{text[5]}}</button>
-                        <button mat-fab color="accent"  *ngIf="text[4] == 'accent' ">{{text[5]}}</button>
-                        <button mat-fab color="warn" *ngIf="text[4] == 'warn' ">{{text[5]}}</button>
-                      </div>
-
-                      <div *ngIf="text[3] == 'minifab' ">
-                        <button mat-mini-fab  *ngIf="text[4] == 'basic' ">{{text[5]}}</button>
-                        <button mat-mini-fab color="accent"  *ngIf="text[4] == 'accent' ">{{text[5]}}</button>
-                        <button mat-mini-fab color="warn" *ngIf="text[4] == 'warn' ">{{text[5]}}</button>
-                      </div>
+                      <adf-viewer
+                        [showViewer]="showViewer"
+                        [overlayMode]="true"
+                        [fileNodeId]="nodeId"
+                        (goBack)="onGoBack($event)">
+                      </adf-viewer>
+                      <file-uploading-dialog></file-uploading-dialog>
                     </div>
 
-                    <div *ngIf="text[2] == 'icon' ">
-                      <div *ngIf="text[3] == 'icon' ">
-                      <button mat-icon-button  *ngIf="text[4] == 'basic' ">
-                        <mat-icon aria-label="Example icon-button with a heart icon">{{text[5]}}</mat-icon>
-                      </button>
-                      <button mat-icon-button color="accent"  *ngIf="text[4] == 'accent' ">
-                        <mat-icon aria-label="Example icon-button with a heart icon">{{text[5]}}</mat-icon>
-                      </button>
-                      <button mat-icon-button color="warn"  *ngIf="text[4] == 'warn' ">
-                        <mat-icon aria-label="Example icon-button with a heart icon">{{text[5]}}</mat-icon>
-                      </button>
-                      </div>
-                      <div *ngIf="text[3] == 'basic' ">
-                        <button mat-button  *ngIf="text[4] == 'basic' ">
-                          <mat-icon aria-label="Example icon-button with a heart icon">{{text[5]}}</mat-icon>
-                        </button>
-                        <button mat-button color="accent"  *ngIf="text[4] == 'accent' ">
-                          <mat-icon aria-label="Example icon-button with a heart icon">{{text[5]}}</mat-icon>
-                        </button>
-                        <button mat-button color="warn"  *ngIf="text[4] == 'warn' ">
-                          <mat-icon aria-label="Example icon-button with a heart icon">{{text[5]}}</mat-icon>
-                        </button>
-                      </div>
-
-                      <div *ngIf="text[3] == 'raised' ">
-                        <button mat-raised-button  *ngIf="text[4] == 'basic' ">
-                          <mat-icon aria-label="Example icon-button with a heart icon">{{text[5]}}</mat-icon>
-                        </button>
-                        <button mat-raised-button color="accent"  *ngIf="text[4] == 'accent' ">
-                          <mat-icon aria-label="Example icon-button with a heart icon">{{text[5]}}</mat-icon>
-                        </button>
-                        <button mat-raised-button color="warn"  *ngIf="text[4] == 'warn' ">
-                          <mat-icon aria-label="Example icon-button with a heart icon">{{text[5]}}</mat-icon>
-                        </button>
-                      </div>
-
-                      <div *ngIf="text[3] == 'fab' ">
-                        <button mat-fab  *ngIf="text[4] == 'basic' ">
-                          <mat-icon aria-label="Example icon-button with a heart icon">{{text[5]}}</mat-icon>
-                        </button>
-                        <button mat-fab color="warn"  *ngIf="text[4] == 'warn' ">
-                          <mat-icon aria-label="Example icon-button with a heart icon">{{text[5]}}</mat-icon>
-                        </button>
-                      </div>
+                    <div *ngIf="text[0] == 'autocomplete' " (click)="editItem('autocomplete',tile.id,text[1])" >
+                      <mat-form-field>
+                        <input matInput class="w3-input w3-border w3-light-grey" type="text[0]" placeholder="{{text[2]}}" [matAutocomplete]="auto" >
+                        <mat-autocomplete #auto="matAutocomplete">
+                          <mat-option *ngFor="let option of text[3]" [value]="option">
+                            {{ option }}
+                          </mat-option>
+                        </mat-autocomplete>
+                      </mat-form-field>
                     </div>
+
+                    <div *ngIf="text[0] == 'select' " (click)="editItem('select',tile.id,text[1])">
+                      <mat-form-field>
+                        <mat-select placeholder="{{text[2]}}">
+                          <mat-option *ngFor="let option of text[3]" [value]="option">
+                            {{ option }}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </div>
+
+                    <div *ngIf="text[0] == 'checkbox' " (click)="editItem('checkbox',tile.id,text[1])">
+                      <mat-checkbox>{{text[2]}}</mat-checkbox>
+                    </div>
+
+                    <!----------------------------------------       GRID BUTTON  ---------------------------------------------------------->
+
+                      <div *ngIf="text[0] == 'button' " (click)="editItem('button',tile.id,text[1])">
+                        <div *ngIf="text[2] == 'basic' ">
+                          <div *ngIf="text[3] == 'basic' ">
+                            <button mat-button  *ngIf="text[4] == 'basic' "  (click)="fonctionTest()">{{text[5]}}</button>
+                            <button mat-button color="accent" *ngIf="text[4] == 'accent' " (click)="onSubmit()">{{text[5]}}</button>
+                            <button mat-button color="warn"  *ngIf="text[4] == 'warn' ">{{text[5]}}</button>
+                          </div>
+
+                          <div *ngIf="text[3] == 'raised' ">
+                            <button mat-raised-button  *ngIf="text[4] == 'basic' ">{{text[5]}}</button>
+                            <button mat-raised-button color="accent"  *ngIf="text[4] == 'accent' ">{{text[5]}}</button>
+                            <button mat-raised-button color="warn" *ngIf="text[4] == 'warn' ">{{text[5]}}</button>
+                          </div>
+
+                          <div *ngIf="text[3] == 'fab' ">
+                            <button mat-fab  *ngIf="text[4] == 'basic' ">{{text[5]}}</button>
+                            <button mat-fab color="accent"  *ngIf="text[4] == 'accent' ">{{text[5]}}</button>
+                            <button mat-fab color="warn" *ngIf="text[4] == 'warn' ">{{text[5]}}</button>
+                          </div>
+
+                          <div *ngIf="text[3] == 'minifab' ">
+                            <button mat-mini-fab  *ngIf="text[4] == 'basic' ">{{text[5]}}</button>
+                            <button mat-mini-fab color="accent"  *ngIf="text[4] == 'accent' ">{{text[5]}}</button>
+                            <button mat-mini-fab color="warn" *ngIf="text[4] == 'warn' ">{{text[5]}}</button>
+                          </div>
+                        </div>
+
+                        <div *ngIf="text[2] == 'icon' ">
+                          <div *ngIf="text[3] == 'icon' ">
+                          <button mat-icon-button  *ngIf="text[4] == 'basic' ">
+                            <mat-icon aria-label="Example icon-button with a heart icon">{{text[5]}}</mat-icon>
+                          </button>
+                          <button mat-icon-button color="accent"  *ngIf="text[4] == 'accent' ">
+                            <mat-icon aria-label="Example icon-button with a heart icon">{{text[5]}}</mat-icon>
+                          </button>
+                          <button mat-icon-button color="warn"  *ngIf="text[4] == 'warn' ">
+                            <mat-icon aria-label="Example icon-button with a heart icon">{{text[5]}}</mat-icon>
+                          </button>
+                          </div>
+                          <div *ngIf="text[3] == 'basic' ">
+                            <button mat-button  *ngIf="text[4] == 'basic' ">
+                              <mat-icon aria-label="Example icon-button with a heart icon">{{text[5]}}</mat-icon>
+                            </button>
+                            <button mat-button color="accent"  *ngIf="text[4] == 'accent' ">
+                              <mat-icon aria-label="Example icon-button with a heart icon">{{text[5]}}</mat-icon>
+                            </button>
+                            <button mat-button color="warn"  *ngIf="text[4] == 'warn' ">
+                              <mat-icon aria-label="Example icon-button with a heart icon">{{text[5]}}</mat-icon>
+                            </button>
+                          </div>
+
+                          <div *ngIf="text[3] == 'raised' ">
+                            <button mat-raised-button  *ngIf="text[4] == 'basic' ">
+                              <mat-icon aria-label="Example icon-button with a heart icon">{{text[5]}}</mat-icon>
+                            </button>
+                            <button mat-raised-button color="accent"  *ngIf="text[4] == 'accent' ">
+                              <mat-icon aria-label="Example icon-button with a heart icon">{{text[5]}}</mat-icon>
+                            </button>
+                            <button mat-raised-button color="warn"  *ngIf="text[4] == 'warn' ">
+                              <mat-icon aria-label="Example icon-button with a heart icon">{{text[5]}}</mat-icon>
+                            </button>
+                          </div>
+
+                          <div *ngIf="text[3] == 'fab' ">
+                            <button mat-fab  *ngIf="text[4] == 'basic' ">
+                              <mat-icon aria-label="Example icon-button with a heart icon">{{text[5]}}</mat-icon>
+                            </button>
+                            <button mat-fab color="warn"  *ngIf="text[4] == 'warn' ">
+                              <mat-icon aria-label="Example icon-button with a heart icon">{{text[5]}}</mat-icon>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    <!----------------------------------------   FIN GRID BUTTON  ---------------------------------------------------------->
+
+                    <!----------------------------------------       GRID ICON BUTTON  ---------------------------------------------------------->
+                      <div *ngIf="text[0] == 'icon' " (click)="editItem('icon',tile.id,text[1])">
+                        <mat-icon>{{text[2]}}</mat-icon>
+                      </div>
+                    <!----------------------------------------     FIN  GRID  ICON BUTTON  ---------------------------------------------------------->
+
+                    <div *ngIf="text[0] == 'datepicker' " (click)="editItem('datepicker',tile.id,text[1])">
+                      <mat-form-field>
+                      <input matInput [matDatepicker]="picker" placeholder="{{ text[2] }}">
+                      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                      <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+
+                    <div *ngIf="text[0] == 'input' " (click)="editItem('input',tile.id,text[1])">
+                      <mat-form-field>
+                        <input matInput id="{{text[1]}}" placeholder="{{text[2]}}" >
+                      </mat-form-field>
+                    </div>
+
+                    <div *ngIf="text[0] == 'chips' " (click)="editItem('chips',tile.id,text[1])">
+                      <mat-chip-list>
+                      <mat-chip *ngFor="let option of text[2]" color="{{option[1]}}" >{{option[0]}}</mat-chip>
+                        <mat-chip color="primary" selected="true">Primary fish</mat-chip>
+                      </mat-chip-list>
+                    </div>
+
+                    <div *ngIf="text[0] == 'radiobutton' "(click)="editItem('radiobutton',tile.id,text[1])">
+                      <mat-radio-group>
+                        <mat-radio-button *ngFor="let option of text[2]" [value]="option" style="margin-right: 10px">
+                          {{ option }}
+                        </mat-radio-button>
+
+                      </mat-radio-group>
+                    </div>
+
+                    <div *ngIf="text[0] == 'slider' ">
+                      <mat-slider min="1" max="5" step="0.5" value="1.5"></mat-slider>
+                    </div>
+
+                    <div *ngIf="text[0] == 'slidetoggle' ">
+                      <mat-slide-toggle>Slide me!</mat-slide-toggle>
+                    </div>
+
                   </div>
-                <!----------------------------------------   FIN GRID BUTTON  ---------------------------------------------------------->
-
-                <!----------------------------------------       GRID ICON BUTTON  ---------------------------------------------------------->
-                  <div *ngIf="text[0] == 'icon' " (click)="editItem('icon',tile.id,text[1])">
-                    <mat-icon>{{text[2]}}</mat-icon>
-                  </div>
-                <!----------------------------------------     FIN  GRID  ICON BUTTON  ---------------------------------------------------------->
-
-                <div *ngIf="text[0] == 'datepicker' " (click)="editItem('datepicker',tile.id,text[1])">
-                  <mat-form-field>
-                  <input matInput [matDatepicker]="picker" placeholder="{{ text[2] }}">
-                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                  <mat-datepicker #picker></mat-datepicker>
-                    </mat-form-field>
                 </div>
-
-                <div *ngIf="text[0] == 'input' " (click)="editItem('input',tile.id,text[1])">
-                  <mat-form-field>
-                    <input matInput id="{{text[1]}}" placeholder="{{text[2]}}" >
-                  </mat-form-field>
-                </div>
-
-                <div *ngIf="text[0] == 'chips' " (click)="editItem('chips',tile.id,text[1])">
-                  <mat-chip-list>
-                  <mat-chip *ngFor="let option of text[2]" color="{{option[1]}}" >{{option[0]}}</mat-chip>
-                    <mat-chip color="primary" selected="true">Primary fish</mat-chip>
-                  </mat-chip-list>
-                </div>
-
-                <div *ngIf="text[0] == 'radiobutton' "(click)="editItem('radiobutton',tile.id,text[1])">
-                  <mat-radio-group>
-                    <mat-radio-button *ngFor="let option of text[2]" [value]="option" style="margin-right: 10px">
-                      {{ option }}
-                    </mat-radio-button>
-
-                  </mat-radio-group>
-                </div>
-
-                <div *ngIf="text[0] == 'slider' ">
-                  <mat-slider min="1" max="5" step="0.5" value="1.5"></mat-slider>
-                </div>
-
-                <div *ngIf="text[0] == 'slidetoggle' ">
-                  <mat-slide-toggle>Slide me!</mat-slide-toggle>
-                </div>
-
-              </div>
-            </div>
-          </mat-grid-tile>
-        </mat-grid-list>
-      </form>
-    </div>
-  <!--------------------------------------------  FIN GRID VIEW  ---------------------------------------->
+              </mat-grid-tile>
+            </mat-grid-list>
+          </form>
+        </div>
+      </mat-sidenav-content>
+    <!--------------------------------------------  FIN GRID VIEW  ---------------------------------------->
   </mat-sidenav-container>
 </div>
