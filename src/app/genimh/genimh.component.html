@@ -474,7 +474,11 @@
                 [colspan]="tile.cols"
                 [rowspan]="tile.rows"
                 [style.background]="tile.color" >
-                {{tile.text}}
+                <div fxLayout="colum" fxLayoutAlign ="center center" >
+                  {{tile.text}}
+                  <mat-icon aria-label="Créer ou modifier la structure du grid">grid_on</mat-icon>
+                </div>
+
                 <div *ngIf="tile.vide == 'true' "  [dragula]='"page-bag"' [dragulaModel]='tile.tab' id={{tile.id}} style="width: 100%;overflow:auto;height: 100%;"  [fxLayout]="optLayout[tile.optLayoutId].direction" [fxLayoutAlign]="layoutAlign(tile.optLayoutId)" (click)="monContainer(tile.optLayoutId)">
                   <div *ngFor='let text of tile.tab'>
 
