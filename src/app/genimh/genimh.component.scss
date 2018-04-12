@@ -31,15 +31,16 @@
   /* background-color: blue; */
 }
 
-mat-sidenav {
+#sidenav-container {
   width: min-content;
   background: white;
-  border: solid 2px lightgray;
+  border: solid lightgray;
+  border-width: 1px 0px 0px 1px;
 }
 
-mat-sidenav-content {
-  background: white;
-  border: solid 2px lightgray;
+#right-sidenav {
+  border: solid 1px lightgrey;
+  border-width: 0px 0px 0px 1px;
 }
 
 .paperBoard {
@@ -60,6 +61,7 @@ mat-sidenav-content {
 body{
   position: fixed;
 }
+
 #style-7::-webkit-scrollbar-track
 {
   -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);

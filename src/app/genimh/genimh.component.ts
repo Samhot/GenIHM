@@ -71,7 +71,7 @@ export class GenimhComponent implements OnInit {
   public adfRacineValue;
   public iconBtnEdit;
   public fonctionTest;
-  public gridViewOpen
+  public gridViewOpen;
 
   // tslint:disable-next-line:max-line-length
   public formControl = [['autocomplete', 'NULL', 'Libellé', ['One', 'Two', 'Three']], ['checkbox', 'NULL', 'Value'], ['datepicker', 'NULL', 'Libellé'], ['input', 'NULL', 'Libellé'], ['radiobutton', 'NULL', ['Option 1', 'Option 2']], ['select', 'NULL', 'Libellé', ['Un', 'Deux', 'Trois']], ['slider', 'NULL'], ['slidetoggle', 'NULL']];
@@ -83,13 +83,13 @@ export class GenimhComponent implements OnInit {
   public dataTable  = [['paginator', 'NULL'], ['sortheader', 'NULL'], ['table', 'NULL']];
   public alfresco = [['alfrescoadf', 'NULL', '', 'Racine']]; // fc8d4fec-204e-428d-aa26-1295b6e8682c    f6b9f65c-33aa-4bc7-a560-babc93a30c89
   // tslint:disable-next-line:max-line-length
-  public total = [['autocomplete', 'NULL', 'Libellé', ['One', 'Two', 'Three']],['button', 'NULL', 'basic', 'basic', 'basic', 'Bouton'],['buttontoggle', 'NULL'],['card', 'NULL'],  ['checkbox', 'NULL', 'Value'], ['chips', 'NULL', [['one', ''], ['two', 'primary'], ['three', 'accent']]], ['datepicker', 'NULL', 'Libellé'],['dialog', 'NULL'], ['icon', 'NULL', 'home'], ['input', 'NULL', 'Libellé'], ['list', 'NULL'], ['menu', 'NULL'],['paginator', 'NULL'],['progressbar', 'NULL'],['progressspinner', 'NULL'],['radiobutton', 'NULL', ['Option 1', 'Option 2']],  ['select', 'NULL', 'Libellé', ['Un', 'Deux', 'Trois']], ['sidenav', 'NULL'],['slider', 'NULL'], ['slidetoggle', 'NULL'], ['snackbar', 'NULL'],['sortheader', 'NULL'],['stepper', 'NULL'], ['table', 'NULL'],['tabs', 'NULL'],['toolbar', 'NULL'],['tooltip', 'NULL']];
-  public totalSave = [['autocomplete', 'NULL', 'Libellé', ['One', 'Two', 'Three']],['button', 'NULL', 'basic', 'basic', 'basic', 'Bouton'],['buttontoggle', 'NULL'],['card', 'NULL'],  ['checkbox', 'NULL', 'Value'], ['chips', 'NULL', [['one', ''], ['two', 'primary'], ['three', 'accent']]], ['datepicker', 'NULL', 'Libellé'],['dialog', 'NULL'], ['icon', 'NULL', 'home'], ['input', 'NULL', 'Libellé'], ['list', 'NULL'], ['menu', 'NULL'],['paginator', 'NULL'],['progressbar', 'NULL'],['progressspinner', 'NULL'],['radiobutton', 'NULL', ['Option 1', 'Option 2']],  ['select', 'NULL', 'Libellé', ['Un', 'Deux', 'Trois']], ['sidenav', 'NULL'],['slider', 'NULL'], ['slidetoggle', 'NULL'], ['snackbar', 'NULL'],['sortheader', 'NULL'],['stepper', 'NULL'], ['table', 'NULL'],['tabs', 'NULL'],['toolbar', 'NULL'],['tooltip', 'NULL']];
+  public total = [['autocomplete', 'NULL', 'Libellé', ['One', 'Two', 'Three']], ['button', 'NULL', 'basic', 'basic', 'basic', 'Bouton'], ['buttontoggle', 'NULL'], ['card', 'NULL'],  ['checkbox', 'NULL', 'Value'], ['chips', 'NULL', [['one', ''], ['two', 'primary'], ['three', 'accent']]], ['datepicker', 'NULL', 'Libellé'], ['dialog', 'NULL'], ['icon', 'NULL', 'home'], ['input', 'NULL', 'Libellé'], ['list', 'NULL'], ['menu', 'NULL'], ['paginator', 'NULL'], ['progressbar', 'NULL'], ['progressspinner', 'NULL'], ['radiobutton', 'NULL', ['Option 1', 'Option 2']], ['select', 'NULL', 'Libellé', ['Un', 'Deux', 'Trois']], ['sidenav', 'NULL'], ['slider', 'NULL'], ['slidetoggle', 'NULL'], ['snackbar', 'NULL'], ['sortheader', 'NULL'], ['stepper', 'NULL'], ['table', 'NULL'], ['tabs', 'NULL'], ['toolbar', 'NULL'], ['tooltip', 'NULL']];
+  public totalSave = [['autocomplete', 'NULL', 'Libellé', ['One', 'Two', 'Three']], ['button', 'NULL', 'basic', 'basic', 'basic', 'Bouton'], ['buttontoggle', 'NULL'], ['card', 'NULL'],  ['checkbox', 'NULL', 'Value'], ['chips', 'NULL', [['one', ''], ['two', 'primary'], ['three', 'accent']]], ['datepicker', 'NULL', 'Libellé'], ['dialog', 'NULL'], ['icon', 'NULL', 'home'], ['input', 'NULL', 'Libellé'], ['list', 'NULL'], ['menu', 'NULL'], ['paginator', 'NULL'], ['progressbar', 'NULL'], ['progressspinner', 'NULL'], ['radiobutton', 'NULL', ['Option 1', 'Option 2']],  ['select', 'NULL', 'Libellé', ['Un', 'Deux', 'Trois']], ['sidenav', 'NULL'], ['slider', 'NULL'], ['slidetoggle', 'NULL'], ['snackbar', 'NULL'], ['sortheader', 'NULL'], ['stepper', 'NULL'], ['table', 'NULL'], ['tabs', 'NULL'], ['toolbar', 'NULL'], ['tooltip', 'NULL']];
   showViewer: Boolean = false;
   nodeId: String = null;
 
 
-  @ViewChild('MyInstSideNav') MyInstSideNav: any;
+  @ViewChild('LeftSideNav') LeftSideNav: any;
   documentList: DocumentListComponent;
   totaltest: Composant[];
   jsons: Json[];
@@ -132,7 +132,7 @@ export class GenimhComponent implements OnInit {
     this.saveRemove = [];
     this.lastAction = [];
     this.lastActionBack = [];
-    this.gridViewOpen = false
+    this.gridViewOpen = false;
     // this.name;
     // this.animal;
     this.downloadJsonHref = {test: 'le test'};
@@ -189,6 +189,17 @@ export class GenimhComponent implements OnInit {
     crossAxis :  'center'
   };
 
+  testdirection(direction) {
+    this.optLayout[this.idLayoutEdit].direction = direction;
+  }
+
+  testmainAxis(mainAxis) {
+    this.optLayout[this.idLayoutEdit].mainAxis = mainAxis;
+  }
+
+  testcrossAxis(crossAxis) {
+    this.optLayout[this.idLayoutEdit].crossAxis = crossAxis;
+  }
 
   /////////////////////////////////////////// ADF //////////////////////////////////////////////////////////////////////
 
@@ -217,13 +228,13 @@ export class GenimhComponent implements OnInit {
       return `${this.optLayout[id].mainAxis} ${this.optLayout[id].crossAxis}`;
   }
 
-  openGridView(){
-    if(this.gridViewOpen == false){
-      this.gridViewOpen = true
-    }else{
-      this.gridViewOpen = false
+  openGridView() {
+    if (this.gridViewOpen === false) {
+      this.gridViewOpen = true;
+    }else {
+      this.gridViewOpen = false;
     }
-    console.log(<HTMLInputElement>document.getElementById("paperBoard"))
+    console.log(<HTMLInputElement>document.getElementById('paperBoard'));
   }
   private onDropModel(args: any): void {
     if (args[0].nodeName === 'IMG') {
@@ -269,23 +280,23 @@ export class GenimhComponent implements OnInit {
   ngOnInit() {
     this.reset();
     this.getComposants();
-    this.toggleSideNavSetIn('panelAll')
-    this.totalSave.sort()
+    this.toggleSideNavSetIn('panelAll');
+    this.totalSave.sort();
   }
 
   toggleSideNavSetOut: string = '';
   toggleSideNavSetIn(toggleSideNavGet: string) {
-    if( this.total.length == this.totalSave.length){
-      if (this.MyInstSideNav.opened === false) {
+    if ( this.total.length === this.totalSave.length) {
+      if (this.LeftSideNav.opened === false) {
         this.toggleSideNavSetOut = toggleSideNavGet;
-        this.MyInstSideNav.toggle();
-      } else if (this.MyInstSideNav.opened === true && this.toggleSideNavSetOut !== toggleSideNavGet) {
+        this.LeftSideNav.toggle();
+      } else if (this.LeftSideNav.opened === true && this.toggleSideNavSetOut !== toggleSideNavGet) {
         this.toggleSideNavSetOut = toggleSideNavGet;
       } else {
-        this.MyInstSideNav.toggle();
+        this.LeftSideNav.toggle();
       }
-    }else{
-      this.total = this.totalSave
+    }else {
+      this.total = this.totalSave;
     }
   }
 
@@ -617,8 +628,8 @@ changeApi(event) {
   }
 
   changeSearch(event) {
-    if(this.toggleSideNavSetOut != "panelAll"){
-      this.toggleSideNavSetIn('panelAll')
+    if (this.toggleSideNavSetOut !== 'panelAll') {
+      this.toggleSideNavSetIn('panelAll');
     }
     this.total = [];
     let search = event.target.value.toLowerCase();
