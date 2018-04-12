@@ -36,14 +36,30 @@ mat-sidenav {
   background: white;
   border: solid 2px lightgray;
 }
+
 mat-sidenav-content {
-margin: 10%;
+  background: white;
+  border: solid 2px lightgray;
+}
+
+.paperBoard {
+  margin-right: 18%;
+  margin-top: 5%;
+  margin-bottom: 10%;
+  margin-left: 30%;
+  box-shadow: 0 0px 20px 1px black;
+  width: 35%;
+  height: 75%;
+  background: white;
 }
 
 /*
  *  STYLE 7
  */
 
+body{
+  position: fixed;
+}
 #style-7::-webkit-scrollbar-track
 {
   -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
@@ -56,7 +72,9 @@ margin: 10%;
   width: 10px;
   background-color: #F5F5F5;
 }
-
+.height100px{
+  height: 100px;
+}
 #style-7::-webkit-scrollbar-thumb
 {
   border-radius: 10px;
@@ -101,10 +119,13 @@ margin: 10%;
   padding-left: 20px;
   padding-right: 20px;
 }
+mat-grid-list {
+  height: 634px;
+}
 .colTab{
   float: right;
   border: 1px solid;
-  height:60px;
+  height: 100%;
   width: 25%;
 }
 .backgroundColorGridR0{

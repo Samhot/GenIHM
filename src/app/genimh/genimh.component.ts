@@ -71,6 +71,7 @@ export class GenimhComponent implements OnInit {
   public adfRacineValue;
   public iconBtnEdit;
   public fonctionTest;
+  public gridViewOpen
 
   // tslint:disable-next-line:max-line-length
   public formControl = [['autocomplete', 'NULL', 'Libellé', ['One', 'Two', 'Three']], ['checkbox', 'NULL', 'Value'], ['datepicker', 'NULL', 'Libellé'], ['input', 'NULL', 'Libellé'], ['radiobutton', 'NULL', ['Option 1', 'Option 2']], ['select', 'NULL', 'Libellé', ['Un', 'Deux', 'Trois']], ['slider', 'NULL'], ['slidetoggle', 'NULL']];
@@ -131,6 +132,7 @@ export class GenimhComponent implements OnInit {
     this.saveRemove = [];
     this.lastAction = [];
     this.lastActionBack = [];
+    this.gridViewOpen = false
     // this.name;
     // this.animal;
     this.downloadJsonHref = {test: 'le test'};
@@ -215,6 +217,14 @@ export class GenimhComponent implements OnInit {
       return `${this.optLayout[id].mainAxis} ${this.optLayout[id].crossAxis}`;
   }
 
+  openGridView(){
+    if(this.gridViewOpen == false){
+      this.gridViewOpen = true
+    }else{
+      this.gridViewOpen = false
+    }
+    console.log(<HTMLInputElement>document.getElementById("paperBoard"))
+  }
   private onDropModel(args: any): void {
     if (args[0].nodeName === 'IMG') {
       const idDiv = args[1].id.split('web');
@@ -701,7 +711,7 @@ changeApi(event) {
 
   fillTiles(matrice) {
     this.tiles = [];
-    for ( let i = 11; i < 105; i++) {
+    for ( let i = 11; i < 95; i++) {
       if (i === 15 || i === 25 || i === 35 || i === 45 || i === 55 || i === 65 || i === 75 || i === 85 ) {
         i = i + 6;
       }
@@ -739,11 +749,10 @@ changeApi(event) {
             // tslint:disable-next-line:max-line-length
             this.tiles.push({text: '', cols: matrice[z][2] , rows: matrice[z][3], color: matrice[z][4] , vide: 'true', tab: this.allArray[this.allArray.length - 1][1] , id: 'web' + x, optLayoutId: x});
 
-
           }
         }
       }
-      if (verif === false && verifFinMatrice === true ) {
+      if (verif === false) {
         for ( let e = 0; e < this.matrisVerif.length; e++) {
           if (this.matrisVerif[e] === i) {
             matrisVerif = true;
