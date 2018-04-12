@@ -75,6 +75,9 @@ body{
 .height100px{
   height: 100px;
 }
+.iconblue{
+  background: rgb(73,125,189);
+}
 #style-7::-webkit-scrollbar-thumb
 {
   border-radius: 10px;
@@ -87,9 +90,14 @@ body{
 }
 
 
-
+.backGray{
+  background: lightgray;
+}
+.backWhite{
+  background: white;
+}
 .borderbtnRight{
-  border-right: solid 1px lightgray;
+  border-right: thick solid 1px lightgray;
   border-radius: 0px;
 
 }
