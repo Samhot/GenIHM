@@ -14,7 +14,7 @@
   <span style="flex: 1 1 auto;"></span>
   <button mat-icon-button (click)="openGridView()"><mat-icon aria-label="Créer ou modifier la structure du grid">grid_on</mat-icon></button> <!-- toggleSideNavSetIn('panelGrid') -->
   <button mat-raised-button>Primary</button>
-  <mat-icon style="padding: 0 14px;">settings_input_component</mat-icon>
+  <button mat-icon-button (click)="right.toggle()"><mat-icon aria-label="Ouvrir le panneau edit">settings_input_component</mat-icon></button>
   <mat-icon style="padding: 0 14px;">pageview</mat-icon>
 
 </mat-toolbar>
@@ -76,18 +76,12 @@
           Console
         </span>
       </li>
-      <li (click)="toggleSideNavSetIn('panelEdit')">
-        <span style="font-size: 11px;display: flex;flex-direction: column;align-items: center; cursor: pointer;">
-          <mat-icon style="font-size:35px;height: 39px;width: 39px;">keyboard</mat-icon>
-          Edit
-        </span>
-      </li>
     </ul>
   </div>
 
   <mat-sidenav-container style="width: 100%;">
     <!-- <main></main> -->
-    <mat-sidenav #MyInstSideNav align="start" mode="side" opened="true" [ngSwitch]="toggleSideNavSetOut" style="width:min-content;" id="style-7">
+    <mat-sidenav #MyInstSideNav align="start" position="end" mode="side" opened="true" [ngSwitch]="toggleSideNavSetOut" style="width:min-content;" id="style-7">
       <form class="example-form">
         <div fxLayoutAlign="center center">
           <mat-form-field >
@@ -205,10 +199,50 @@
         </div>
         <a title="Download JSON" [href]="downloadJsonHref" download="export.json"><button mat-raised-button (mouseenter)="generateDownloadJsonUri()" color="accent">Exporter ma page</button></a>
       </div>
-      <div *ngSwitchCase="'panelEdit'">
-        <!--  ------------------------------------------  EDIT ITEM ------------------------------------------  -->
-          <div style=" width: 100%; background-color: #AEB6BF; margin-bottom: 15px;margin-top: 10px; border: 1px solid;">
-            <h4 style="text-align: center"><strong style="color: white">Modifier un élément</strong></h4>
+    </mat-sidenav>
+
+    <mat-sidenav #right align="end" position="end" mode="side" opened="true" style="width:min-content;">
+
+      <!--------------------------------------------   EDIT BLOCK  ---------------------------------------->
+        <h4>Disposition du bloc</h4>
+        <div style=" width: 100%;background-color: lightgray;">
+          <form fxLayout="column" fxLayout.xs="column" class="demo_controls">
+            <div>
+              <h4>Alignement</h4>
+              <mat-radio-group [(ngModel)]="optLayout[idLayoutEdit].direction" name="direction" fxLayout="column" style="padding: 10px 0px 10px 10px;">
+                <mat-radio-button value="row">Ligne</mat-radio-button>
+                <mat-radio-button value="column">Colonne</mat-radio-button>
+              </mat-radio-group>
+            </div>
+            <div>
+              <h4>Alignement horizontal</h4>
+              <mat-radio-group [(ngModel)]="optLayout[idLayoutEdit].mainAxis" name="mainAxis" fxLayout="column" style="padding: 10px 0px 10px 10px;">
+                <!-- <mat-radio-button value=""><mat-icon>notifications_off</mat-icon></mat-radio-button> -->
+                <mat-radio-button value="start"><mat-icon>format_align_left</mat-icon></mat-radio-button>
+                <mat-radio-button value="center"><mat-icon>format_align_center</mat-icon></mat-radio-button>
+                <mat-radio-button value="space-around"><mat-icon>chevron_right</mat-icon></mat-radio-button>
+                <mat-radio-button value="space-between"><mat-icon>first_page</mat-icon></mat-radio-button>
+                <mat-radio-button value="space-evenly"><mat-icon>format_align_justify</mat-icon></mat-radio-button>
+                <mat-radio-button value="end"><mat-icon>format_align_right</mat-icon></mat-radio-button>
+              </mat-radio-group>
+            </div>
+            <div>
+              <h4>Alignement vertical</h4>
+              <mat-radio-group [(ngModel)]="optLayout[idLayoutEdit].crossAxis" name="crossAxis" fxLayout="column" style="padding: 10px 0px 10px 10px;">
+                <!-- <mat-radio-button value="none"><em>Aucune</em></mat-radio-button> -->
+                <mat-radio-button value="stretch"><mat-icon>format_line_spacing</mat-icon></mat-radio-button>
+                <mat-radio-button value="start"><mat-icon>vertical_align_top</mat-icon></mat-radio-button>
+                <mat-radio-button value="center"><mat-icon>vertical_align_center</mat-icon></mat-radio-button>
+                <mat-radio-button value="end"><mat-icon>vertical_align_bottom</mat-icon></mat-radio-button>
+              </mat-radio-group>
+            </div>
+          </form>
+        </div>
+      <!--------------------------------------------   FIN EDIT BLOCK  ---------------------------------------->
+
+      <!--  ------------------------------------------  EDIT ITEM ------------------------------------------  -->
+        <div style=" width: 100%; background-color: lightgray; margin-bottom: 15px;margin-top: 10px; border: 1px solid;">
+          <h4 style="text-align: center"><strong style="color: white">Modifier un élément</strong></h4>
             <mat-card>
               <!--  ------------------------------------------  AUTOCOMPLETE ------------------------------------------  -->
 
@@ -226,7 +260,7 @@
               <!--  ------------------------------------------   CHECKBOX ------------------------------------------  -->
                 <div *ngIf="ItemEdit == 'checkbox' " style="text-align: center">
 
-                 <div style="display: inline-block;color: black; margin-bottom: 10px" > Value : <input  style="color: black" (input)="changeValueCheckbox($event)" [(ngModel)]="valueCheckbox"></div>
+                  <div style="display: inline-block;color: black; margin-bottom: 10px" > Value : <input  style="color: black" (input)="changeValueCheckbox($event)" [(ngModel)]="valueCheckbox"></div>
 
                 </div>
               <!--  ------------------------------------------  FIN CHECKBOX ------------------------------------------  -->
@@ -355,57 +389,11 @@
                 </div>
               <!--------------------------------------------   FIN SELECT  ---------------------------------------->
             </mat-card>
-          </div>
-        <!--------------------------------------------   FIN EDIT ITEM  ---------------------------------------->
+        </div>
+      <!--------------------------------------------   FIN EDIT ITEM  ---------------------------------------->
 
-        <!--------------------------------------------   EDIT BLOCK  ---------------------------------------->
-          <accordion>
-            <accordion-group heading="Modifier le block">
-              <div style=" width: 100%;background-color: #AEB6BF; margin-bottom: 15px;  border: 1px solid;">
-                  <h4 style="text-align: center"><strong style="color: white">Disposition des éléments</strong></h4>
-                  <div >
-                    <mat-card class="card-demo">
-                      <mat-card-actions fxHide="false" style="padding-left:20px">
-                        <form fxLayout="column" fxLayout.xs="column" class="demo_controls">
-                          <div>
-                            <div>Direction de mise en page</div>
-                            <mat-radio-group [(ngModel)]="optLayout[idLayoutEdit].direction" name="direction" fxLayout="column" style="padding: 10px 0px 10px 10px;">
-                              <mat-radio-button value="row">Ligne</mat-radio-button>
-                              <mat-radio-button value="column">Colonne</mat-radio-button>
-                            </mat-radio-group>
-                          </div>
-                          <div>
-                            <div>Alignement dans direction de mise en page</div>
-                            <mat-radio-group [(ngModel)]="optLayout[idLayoutEdit].mainAxis" name="mainAxis" fxLayout="column" style="padding: 10px 0px 10px 10px;">
-                              <mat-radio-button value="">Aucune</mat-radio-button>
-                              <mat-radio-button value="start">Par default</mat-radio-button>
-                              <mat-radio-button value="center">Centrer</mat-radio-button>
-                              <mat-radio-button value="end">Fin du block</mat-radio-button>
-                              <mat-radio-button value="space-around">Espacement autour</mat-radio-button>
-                              <mat-radio-button value="space-between">Espacement entre</mat-radio-button>
-                              <mat-radio-button value="space-evenly">Espacer uniformément</mat-radio-button>
-                            </mat-radio-group>
-                          </div>
-                          <div>
-                            <div>Alignement dans la direction perpendiculaire</div>
-                            <mat-radio-group [(ngModel)]="optLayout[idLayoutEdit].crossAxis" name="crossAxis" fxLayout="column" style="padding: 10px 0px 10px 10px;">
-                              <mat-radio-button value="none"><em>Aucune</em></mat-radio-button>
-                              <mat-radio-button value="stretch">Par default</mat-radio-button>
-                              <mat-radio-button value="start">Début de block</mat-radio-button>
-                              <mat-radio-button value="center">centrer</mat-radio-button>
-                              <mat-radio-button value="end">Fin de block</mat-radio-button>
-                            </mat-radio-group>
-                          </div>
-                        </form>
-                      </mat-card-actions>
-                    </mat-card>
-                  </div>
-                  </div>
-            </accordion-group>
-          </accordion>
-        <!--------------------------------------------   FIN EDIT BLOCK  ---------------------------------------->
-      </div>
     </mat-sidenav>
+
     <!--------------------------------------------   GRID VIEW  ---------------------------------------->
 
       <mat-sidenav-content>
