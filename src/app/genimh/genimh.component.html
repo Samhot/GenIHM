@@ -2,6 +2,15 @@
   <span>
     <h1>Designer GenIHM</h1>
   </span>
+  <div *ngIf="gridViewOpen == true " style="margin-bottom: 15px; margin-top: 10px; width: 100%" fxLayoutAlign="center center">
+    <button mat-button (click)="back()"><mat-icon>arrow_back </mat-icon></button>
+    <button mat-button (click)="reset()"><mat-icon >refresh </mat-icon></button>
+    <button mat-button (click)="forward()"><mat-icon>arrow_forward</mat-icon></button>
+    <div style="float: right">
+      <button mat-button (click)="DeleteMode()"*ngIf="deleteMode == 'Off' " ><mat-icon>cancel</mat-icon></button>
+      <button mat-button color="warn" (click)="DeleteMode()"*ngIf="deleteMode == 'On' " ><mat-icon>cancel</mat-icon></button>
+    </div>
+  </div>
   <span style="flex: 1 1 auto;"></span>
   <button mat-icon-button (click)="openGridView()"><mat-icon aria-label="Créer ou modifier la structure du grid">grid_on</mat-icon></button> <!-- toggleSideNavSetIn('panelGrid') -->
   <button mat-raised-button>Primary</button>
@@ -189,16 +198,6 @@
         </div>
 
         <div style=" margin: 0 auto;border:  1px solid ;display: block;height:30px;width: 15%;" [style.background-color]="colorSelect">  </div>
-
-        <div style="margin-bottom: 15px; margin-top: 10px;">
-          <button mat-button (click)="back()"><mat-icon>arrow_back </mat-icon></button>
-          <button mat-button (click)="reset()"><mat-icon >refresh </mat-icon></button>
-          <button mat-button (click)="forward()"><mat-icon>arrow_forward</mat-icon></button>
-          <div style="float: right">
-            <button mat-button (click)="DeleteMode()"*ngIf="deleteMode == 'Off' " ><mat-icon>cancel</mat-icon></button>
-            <button mat-button color="warn" (click)="DeleteMode()"*ngIf="deleteMode == 'On' " ><mat-icon>cancel</mat-icon></button>
-          </div>
-        </div>
       </div>
       <div *ngSwitchCase="'panelJson'">
         <div *ngFor='let tile of tiles'>
