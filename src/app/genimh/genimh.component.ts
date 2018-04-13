@@ -78,6 +78,10 @@ export class GenimhComponent implements OnInit {
   public tabColorBtnMenu;
   public toggleSideNavSetOut;
   public firstStructure;
+  public rightSideNavOpen;
+  public blocAlignementDispo;
+  public blocHorizontalDispo;
+  public blocVerticalDispo;
 
   // tslint:disable-next-line:max-line-length
   public formControl = [['autocomplete', 'NULL', 'Libellé', ['One', 'Two', 'Three']], ['checkbox', 'NULL', 'Value'], ['datepicker', 'NULL', 'Libellé'], ['input', 'NULL', 'Libellé'], ['radiobutton', 'NULL', ['Option 1', 'Option 2']], ['select', 'NULL', 'Libellé', ['Un', 'Deux', 'Trois']], ['slider', 'NULL'], ['slidetoggle', 'NULL']];
@@ -140,17 +144,19 @@ export class GenimhComponent implements OnInit {
     this.lastActionBack = [];
     this.gridViewOpen = false;
     this.firstStructure = false;
+    this.blocAlignementDispo = "row";
     // this.name;
     // this.animal;
     this.downloadJsonHref = {test: 'le test'};
     // this.IDCONTAINER;
     this.optLayout = [{
-      direction :  'row',
-      mainAxis  : 'space-around',
+      direction :  'column',
+      mainAxis  :  'center',
       crossAxis :  'center'
     }];
     this.idElement = 0;
     this.idLayoutEdit = 0;
+    this.rightSideNavOpen = true;
     this.typeButton = 'basic';
     this.buttonValue = 'Button';
     this.styleButton = 'basic';
@@ -162,6 +168,7 @@ export class GenimhComponent implements OnInit {
     this.iconBtnEdit = 'add';
     this.nameProject = 'Nom de la page';
     this.nameProjectClick = false;
+    this.blocAlignementDispo = "column";
     this.fonctionTest = function () {};
     this.tabColorBtnMenu = ['', '', '', '', '', '', '', '', ''];
     this.toggleSideNavSetOut = '';
@@ -194,11 +201,6 @@ export class GenimhComponent implements OnInit {
     });
   }
 
-  options_layout = {
-    direction :  'column',
-    mainAxis  : 'space-around',
-    crossAxis :  'center'
-  };
 
   testdirection(direction) {
     this.optLayout[this.idLayoutEdit].direction = direction;
@@ -300,6 +302,8 @@ export class GenimhComponent implements OnInit {
     this.toggleSideNavSetIn('panelAll',0);
     this.totalSave.sort();
     this.gridViewOpen = true;
+    this.blocAlignementDispo = "row";
+    this.blocHorizontalDispo = "center";
 
   }
 
@@ -462,6 +466,9 @@ export class GenimhComponent implements OnInit {
 
   monContainer(idContainer) {
     this.idLayoutEdit = idContainer;
+    this.blocAlignementDispo = this.optLayout[this.idLayoutEdit].direction
+    this.blocHorizontalDispo = this.optLayout[this.idLayoutEdit].mainAxis
+    this.blocVerticalDispo = this.optLayout[this.idLayoutEdit].crossAxis
   }
 changeApi(event) {
     this.heroService.heroesUrl = event.target.value;
@@ -741,6 +748,9 @@ changeApi(event) {
   reset() {
     this.firstStructure = false
     this.tiles = [];
+    this.blocAlignementDispo = "column";
+    this.blocHorizontalDispo = "center";
+    this.blocVerticalDispo = "center";
     this.listID = 0;
     this.allArray = [];
     this.lastAction = [];
@@ -789,7 +799,7 @@ changeApi(event) {
             this.allArray.push(new Array((matrice[z][0]) + (matrice[z][1]), []));
             this.optLayout.push({
               direction :  'column',
-              mainAxis  : 'space-around',
+              mainAxis  : 'center',
               crossAxis :  'center'
             });
 
