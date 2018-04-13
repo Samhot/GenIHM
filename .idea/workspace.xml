@@ -31,8 +31,8 @@
       <file leaf-file-name="genimh.component.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/app/genimh/genimh.component.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="386">
-              <caret line="143" column="32" lean-forward="true" selection-start-line="143" selection-start-column="32" selection-end-line="143" selection-end-column="32" />
+            <state relative-caret-position="251">
+              <caret line="749" column="26" lean-forward="false" selection-start-line="749" selection-start-column="9" selection-end-line="749" selection-end-column="26" />
               <folding />
             </state>
           </provider>
@@ -68,17 +68,18 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="genimh.component.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="genimh.component.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/app/genimh/genimh.component.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="335">
-              <caret line="230" column="58" lean-forward="false" selection-start-line="230" selection-start-column="58" selection-end-line="230" selection-end-column="58" />
+            <state relative-caret-position="-3733">
+              <caret line="261" column="352" lean-forward="true" selection-start-line="261" selection-start-column="352" selection-end-line="261" selection-end-column="352" />
               <folding>
                 <element signature="n#style#0;n#mat-toolbar#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#mat-toolbar#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#div#0;n#mat-toolbar#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#1;n#mat-toolbar#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#span#2;n#mat-toolbar#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#ul#0;n#div#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#span#0;n#li#0;n#ul#0;n#div#0;n#div#0;n#!!top" expanded="true" />
@@ -135,11 +136,17 @@
                 <element signature="n#style#0;n#a#0;n#div#0;n#div#0;n#div#1;n#form#0;n#div#0;n#mat-sidenav#1;n#mat-sidenav-container#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#a#1;n#div#0;n#div#0;n#div#1;n#form#0;n#div#0;n#mat-sidenav#1;n#mat-sidenav-container#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#a#2;n#div#0;n#div#0;n#div#1;n#form#0;n#div#0;n#mat-sidenav#1;n#mat-sidenav-container#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#a#3;n#div#0;n#div#0;n#div#1;n#form#0;n#div#0;n#mat-sidenav#1;n#mat-sidenav-container#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#a#4;n#div#0;n#div#0;n#div#1;n#form#0;n#div#0;n#mat-sidenav#1;n#mat-sidenav-container#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#a#5;n#div#0;n#div#0;n#div#1;n#form#0;n#div#0;n#mat-sidenav#1;n#mat-sidenav-container#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#div#2;n#form#0;n#div#0;n#mat-sidenav#1;n#mat-sidenav-container#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#div#0;n#div#2;n#form#0;n#div#0;n#mat-sidenav#1;n#mat-sidenav-container#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#a#0;n#div#0;n#div#0;n#div#2;n#form#0;n#div#0;n#mat-sidenav#1;n#mat-sidenav-container#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#a#1;n#div#0;n#div#0;n#div#2;n#form#0;n#div#0;n#mat-sidenav#1;n#mat-sidenav-container#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#a#2;n#div#0;n#div#0;n#div#2;n#form#0;n#div#0;n#mat-sidenav#1;n#mat-sidenav-container#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#a#3;n#div#0;n#div#0;n#div#2;n#form#0;n#div#0;n#mat-sidenav#1;n#mat-sidenav-container#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#a#4;n#div#0;n#div#0;n#div#2;n#form#0;n#div#0;n#mat-sidenav#1;n#mat-sidenav-container#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#a#5;n#div#0;n#div#0;n#div#2;n#form#0;n#div#0;n#mat-sidenav#1;n#mat-sidenav-container#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#h4#1;n#mat-sidenav#1;n#mat-sidenav-container#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#1;n#mat-sidenav#1;n#mat-sidenav-container#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#mat-sidenav#1;n#mat-sidenav-container#0;n#div#0;n#!!top" expanded="true" />
@@ -191,11 +198,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="genimh.component.scss" pinned="false" current-in-tab="false">
+      <file leaf-file-name="genimh.component.scss" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/app/genimh/genimh.component.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="12">
-              <caret line="32" column="0" lean-forward="true" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+            <state relative-caret-position="268">
+              <caret line="136" column="15" lean-forward="true" selection-start-line="136" selection-start-column="15" selection-end-line="136" selection-end-column="15" />
               <folding />
             </state>
           </provider>
@@ -260,8 +267,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>menu</find>
-      <find>menu$$$</find>
       <find>search</find>
       <find>mat-sidenav-content</find>
       <find>mat-sidenav</find>
@@ -288,8 +293,10 @@
       <find>row</find>
       <find>optLayout</find>
       <find>direction :</find>
-      <find>paper</find>
+      <find>ngoni</find>
       <find>paperBoard</find>
+      <find>reset()</find>
+      <find>paper</find>
     </findStrings>
     <dirStrings>
       <dir>C:\Users\A644643\GenIHM\src</dir>
@@ -333,8 +340,8 @@
         <option value="$PROJECT_DIR$/src/app/heroes/heroes.component.html" />
         <option value="$PROJECT_DIR$/src/app/visionneuseihm/visionneuse-genihm.component.ts" />
         <option value="$PROJECT_DIR$/src/app/genimh/genimh.component.ts" />
-        <option value="$PROJECT_DIR$/src/app/genimh/genimh.component.scss" />
         <option value="$PROJECT_DIR$/src/app/genimh/genimh.component.html" />
+        <option value="$PROJECT_DIR$/src/app/genimh/genimh.component.scss" />
       </list>
     </option>
   </component>
@@ -959,12 +966,12 @@
       <workItem from="1523011505722" duration="7874000" />
       <workItem from="1523432393350" duration="4989000" />
       <workItem from="1523449272812" duration="10862000" />
-      <workItem from="1523519940674" duration="21656000" />
+      <workItem from="1523519940674" duration="24669000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="298841000" />
+    <option name="totallyTimeSpent" value="301854000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1608" y="-8" width="1616" height="916" extended-state="6" />
@@ -987,7 +994,7 @@
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20051414" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.013496144" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25637755" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25637755" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1333,30 +1340,23 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/app/genimh/genimh.component.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="386">
-          <caret line="143" column="32" lean-forward="true" selection-start-line="143" selection-start-column="32" selection-end-line="143" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/genimh/genimh.component.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="12">
-          <caret line="32" column="0" lean-forward="true" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+        <state relative-caret-position="251">
+          <caret line="749" column="26" lean-forward="false" selection-start-line="749" selection-start-column="9" selection-end-line="749" selection-end-column="26" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/app/genimh/genimh.component.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="335">
-          <caret line="230" column="58" lean-forward="false" selection-start-line="230" selection-start-column="58" selection-end-line="230" selection-end-column="58" />
+        <state relative-caret-position="-3733">
+          <caret line="261" column="352" lean-forward="true" selection-start-line="261" selection-start-column="352" selection-end-line="261" selection-end-column="352" />
           <folding>
             <element signature="n#style#0;n#mat-toolbar#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#mat-toolbar#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#0;n#mat-toolbar#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#1;n#mat-toolbar#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#span#2;n#mat-toolbar#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#ul#0;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#span#0;n#li#0;n#ul#0;n#div#0;n#div#0;n#!!top" expanded="true" />
@@ -1413,11 +1413,17 @@
             <element signature="n#style#0;n#a#0;n#div#0;n#div#0;n#div#1;n#form#0;n#div#0;n#mat-sidenav#1;n#mat-sidenav-container#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#a#1;n#div#0;n#div#0;n#div#1;n#form#0;n#div#0;n#mat-sidenav#1;n#mat-sidenav-container#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#a#2;n#div#0;n#div#0;n#div#1;n#form#0;n#div#0;n#mat-sidenav#1;n#mat-sidenav-container#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#3;n#div#0;n#div#0;n#div#1;n#form#0;n#div#0;n#mat-sidenav#1;n#mat-sidenav-container#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#4;n#div#0;n#div#0;n#div#1;n#form#0;n#div#0;n#mat-sidenav#1;n#mat-sidenav-container#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#5;n#div#0;n#div#0;n#div#1;n#form#0;n#div#0;n#mat-sidenav#1;n#mat-sidenav-container#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#2;n#form#0;n#div#0;n#mat-sidenav#1;n#mat-sidenav-container#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#0;n#div#2;n#form#0;n#div#0;n#mat-sidenav#1;n#mat-sidenav-container#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#a#0;n#div#0;n#div#0;n#div#2;n#form#0;n#div#0;n#mat-sidenav#1;n#mat-sidenav-container#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#a#1;n#div#0;n#div#0;n#div#2;n#form#0;n#div#0;n#mat-sidenav#1;n#mat-sidenav-container#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#a#2;n#div#0;n#div#0;n#div#2;n#form#0;n#div#0;n#mat-sidenav#1;n#mat-sidenav-container#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#3;n#div#0;n#div#0;n#div#2;n#form#0;n#div#0;n#mat-sidenav#1;n#mat-sidenav-container#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#4;n#div#0;n#div#0;n#div#2;n#form#0;n#div#0;n#mat-sidenav#1;n#mat-sidenav-container#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#5;n#div#0;n#div#0;n#div#2;n#form#0;n#div#0;n#mat-sidenav#1;n#mat-sidenav-container#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#h4#1;n#mat-sidenav#1;n#mat-sidenav-container#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#1;n#mat-sidenav#1;n#mat-sidenav-container#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#mat-sidenav#1;n#mat-sidenav-container#0;n#div#0;n#!!top" expanded="true" />
@@ -1465,6 +1471,14 @@
             <element signature="n#style#0;n#div#0;n#mat-grid-tile#0;n#mat-grid-list#0;n#form#0;n#div#1;n#div#0;n#mat-sidenav-content#0;n#mat-sidenav-container#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#mat-radio-button#0;n#mat-radio-group#0;n#div#9;n#div#0;n#div#0;n#mat-grid-tile#0;n#mat-grid-list#0;n#form#0;n#div#1;n#div#0;n#mat-sidenav-content#0;n#mat-sidenav-container#0;n#div#0;n#!!top" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/genimh/genimh.component.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="268">
+          <caret line="136" column="15" lean-forward="true" selection-start-line="136" selection-start-column="15" selection-end-line="136" selection-end-column="15" />
+          <folding />
         </state>
       </provider>
     </entry>

@@ -80,6 +80,8 @@ export class GenimhComponent implements OnInit {
   public firstStructure;
   public rightSideNavOpen;
   public blocAlignementDispo;
+  public blocHorizontalDispo;
+  public blocVerticalDispo;
 
   // tslint:disable-next-line:max-line-length
   public formControl = [['autocomplete', 'NULL', 'Libellé', ['One', 'Two', 'Three']], ['checkbox', 'NULL', 'Value'], ['datepicker', 'NULL', 'Libellé'], ['input', 'NULL', 'Libellé'], ['radiobutton', 'NULL', ['Option 1', 'Option 2']], ['select', 'NULL', 'Libellé', ['Un', 'Deux', 'Trois']], ['slider', 'NULL'], ['slidetoggle', 'NULL']];
@@ -300,6 +302,8 @@ export class GenimhComponent implements OnInit {
     this.toggleSideNavSetIn('panelAll',0);
     this.totalSave.sort();
     this.gridViewOpen = true;
+    this.blocAlignementDispo = "row";
+    this.blocHorizontalDispo = "center";
 
   }
 
@@ -741,6 +745,9 @@ changeApi(event) {
   reset() {
     this.firstStructure = false
     this.tiles = [];
+    this.blocAlignementDispo = "row";
+    this.blocHorizontalDispo = "center";
+    this.blocVerticalDispo = "center";
     this.listID = 0;
     this.allArray = [];
     this.lastAction = [];
