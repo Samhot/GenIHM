@@ -13,6 +13,7 @@ import { Composant } from '../composant';
 import { Json } from '../json';
 import { HeroService } from '../hero.service';
 import { ContentActionListComponent } from '@alfresco/adf-content-services';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-genimh',
@@ -72,6 +73,10 @@ export class GenimhComponent implements OnInit {
   public iconBtnEdit;
   public fonctionTest;
   public gridViewOpen;
+  public nameProject;
+  public nameProjectClick;
+  public tabColorBtnMenu;
+  public toggleSideNavSetOut;
 
   // tslint:disable-next-line:max-line-length
   public formControl = [['autocomplete', 'NULL', 'Libellé', ['One', 'Two', 'Three']], ['checkbox', 'NULL', 'Value'], ['datepicker', 'NULL', 'Libellé'], ['input', 'NULL', 'Libellé'], ['radiobutton', 'NULL', ['Option 1', 'Option 2']], ['select', 'NULL', 'Libellé', ['Un', 'Deux', 'Trois']], ['slider', 'NULL'], ['slidetoggle', 'NULL']];
@@ -95,7 +100,7 @@ export class GenimhComponent implements OnInit {
   jsons: Json[];
 
   // tslint:disable-next-line:max-line-length
-  constructor(public App: AppComponent, public notificationService: NotificationService, private _sanitizer: DomSanitizer, private dragulaService: DragulaService, public dialog: MatDialog, private sanitizer: DomSanitizer, private heroService: HeroService) {
+  constructor(public App: AppComponent, public router: Router, public notificationService: NotificationService, private _sanitizer: DomSanitizer, private dragulaService: DragulaService, public dialog: MatDialog, private sanitizer: DomSanitizer, private heroService: HeroService) {
 
     dragulaService.setOptions('page-bag', {
       accepts: function (el, target, source, sibling) {
@@ -153,7 +158,11 @@ export class GenimhComponent implements OnInit {
     this.colorNameClass = 'B2';
     this.classBtnDelete = 'button floatRight';
     this.iconBtnEdit = 'add';
+    this.nameProject = 'Nom du projet';
+    this.nameProjectClick = false;
     this.fonctionTest = function () {};
+    this.tabColorBtnMenu = ['', '', '', '', '', '', '', '', ''];
+    this.toggleSideNavSetOut = '';
     // this.OptionSelect = [
     //   {value: 'Option-0', viewValue: 'Optiontt 1'},
     //   {value: 'Option-1', viewValue: 'Optionyy 2'},
@@ -234,7 +243,6 @@ export class GenimhComponent implements OnInit {
     }else {
       this.gridViewOpen = false;
     }
-    console.log(<HTMLInputElement>document.getElementById('paperBoard'));
   }
   private onDropModel(args: any): void {
     if (args[0].nodeName === 'IMG') {
@@ -253,6 +261,7 @@ export class GenimhComponent implements OnInit {
   private onRemoveModel(args: any): void {
     const [el, source] = args;
   }
+
 
   private onOver(args) {
     const [el, container, source] = args;
@@ -276,22 +285,30 @@ export class GenimhComponent implements OnInit {
     if (value[2].id === 'component' && value[2].id !== value[3].id) {// dragged to a container that should not add the element
       value[1].remove(); }
   }
-
+  PreVisionneuse() {
+    const tabExport = [];
+    tabExport.push(this.tiles);
+    tabExport.push(this.optLayout);
+    const theJSON = JSON.stringify(tabExport);
+    localStorage.setItem('PreVisionneuse', theJSON );
+  }
   ngOnInit() {
     this.reset();
     this.getComposants();
-    this.toggleSideNavSetIn('panelAll');
+    this.toggleSideNavSetIn('panelAll', 0);
     this.totalSave.sort();
   }
 
-  toggleSideNavSetOut: string = '';
-  toggleSideNavSetIn(toggleSideNavGet: string) {
+  toggleSideNavSetIn(toggleSideNavGet: string, index) {
+    this.tabColorBtnMenu = ['Off', 'Off', 'Off', 'Off', 'Off', 'Off', 'Off', 'Off', 'Off'];
     if ( this.total.length === this.totalSave.length) {
       if (this.LeftSideNav.opened === false) {
         this.toggleSideNavSetOut = toggleSideNavGet;
+        this.tabColorBtnMenu[index] = 'On';
         this.LeftSideNav.toggle();
       } else if (this.LeftSideNav.opened === true && this.toggleSideNavSetOut !== toggleSideNavGet) {
         this.toggleSideNavSetOut = toggleSideNavGet;
+        this.tabColorBtnMenu[index] = 'On';
       } else {
         this.LeftSideNav.toggle();
       }
@@ -300,6 +317,19 @@ export class GenimhComponent implements OnInit {
     }
   }
 
+  enterNameProject() {
+    if (this.nameProjectClick === false) {
+      this.nameProjectClick = true;
+    }else {
+      this.nameProjectClick = false;
+    }
+  }
+  valideNameProject(event) {
+    if (event.key === 'Enter') {
+      this.nameProject = event.path[0].value;
+      this.enterNameProject();
+    }
+  }
   getComposants(): void {
     this.heroService.getComposants()
     .subscribe(composants => this.totaltest = composants);
@@ -568,6 +598,7 @@ changeApi(event) {
     }
   }
 
+
   generateDownloadJsonUri() {
 
     const tabExport = [];
@@ -629,7 +660,7 @@ changeApi(event) {
 
   changeSearch(event) {
     if (this.toggleSideNavSetOut !== 'panelAll') {
-      this.toggleSideNavSetIn('panelAll');
+      this.toggleSideNavSetIn('panelAll', 0);
     }
     this.total = [];
     let search = event.target.value.toLowerCase();
@@ -712,7 +743,7 @@ changeApi(event) {
     this.matrisVerif = [];
     this.matrice = [];
     this.total.sort();
-    this.tiles.push({text: 'Veuillez créer une structure à partir du bouton ci-dessus.', cols: 4, rows: 1, color: 'rgba(255, 255, 255, 0.87)', vide: 'false', id: '0web'});
+    this.tiles.push({text: 'Test.', cols: 4, rows: 1, color: 'rgba(255, 255, 255, 0.87)', vide: 'false', id: '0web'});
     this.backgroundColor = [];
     for (let i = 0; i < 40; i++) {
       this.backgroundColor.push('colTab');

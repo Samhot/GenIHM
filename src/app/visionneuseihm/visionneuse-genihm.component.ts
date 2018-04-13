@@ -38,15 +38,25 @@ export class VisionneuseGenIHMComponent implements OnInit {
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
       this.id = +params['id'];
-
     });
-    const local = localStorage.getItem('VisionneuseGenIHM').split('|$|');
-    if (local.length - 1 < this.id || local === [] || local == null) {
-      this.router.navigate(['/genihm']);
+    if(this.id == -1){
+      const local = localStorage.getItem('PreVisionneuse')
+      console.log(JSON.parse(local))
+      this.tiles = JSON.parse(local)[0];
+      this.optLayout = JSON.parse(local)[1];
+    }else{
+      const local = localStorage.getItem('VisionneuseGenIHM').split('|$|');
+      if (local.length - 1 < this.id || local === [] || local == null) {
+        this.router.navigate(['/genihm']);
+        console.log(local);
+        this.tiles = JSON.parse(local[this.id])[0];
+        this.optLayout = JSON.parse(local[this.id])[1];
+      }
     }
-    console.log(local);
-    this.tiles = JSON.parse(local[this.id])[0];
-    this.optLayout = JSON.parse(local[this.id])[1];
+
+
+
+
   }
   layoutAlign(id) {
     return `${this.optLayout[id].mainAxis} ${this.optLayout[id].crossAxis}`;
