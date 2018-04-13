@@ -150,8 +150,8 @@ export class GenimhComponent implements OnInit {
     this.downloadJsonHref = {test: 'le test'};
     // this.IDCONTAINER;
     this.optLayout = [{
-      direction :  'colum',
-      mainAxis  : 'space-around',
+      direction :  'column',
+      mainAxis  :  'center',
       crossAxis :  'center'
     }];
     this.idElement = 0;
@@ -168,7 +168,7 @@ export class GenimhComponent implements OnInit {
     this.iconBtnEdit = 'add';
     this.nameProject = 'Nom de la page';
     this.nameProjectClick = false;
-    this.blocAlignementDispo = "colum";
+    this.blocAlignementDispo = "column";
     this.fonctionTest = function () {};
     this.tabColorBtnMenu = ['', '', '', '', '', '', '', '', ''];
     this.toggleSideNavSetOut = '';
@@ -466,6 +466,9 @@ export class GenimhComponent implements OnInit {
 
   monContainer(idContainer) {
     this.idLayoutEdit = idContainer;
+    this.blocAlignementDispo = this.optLayout[this.idLayoutEdit].direction
+    this.blocHorizontalDispo = this.optLayout[this.idLayoutEdit].mainAxis
+    this.blocVerticalDispo = this.optLayout[this.idLayoutEdit].crossAxis
   }
 changeApi(event) {
     this.heroService.heroesUrl = event.target.value;
@@ -745,7 +748,7 @@ changeApi(event) {
   reset() {
     this.firstStructure = false
     this.tiles = [];
-    this.blocAlignementDispo = "row";
+    this.blocAlignementDispo = "column";
     this.blocHorizontalDispo = "center";
     this.blocVerticalDispo = "center";
     this.listID = 0;
@@ -795,8 +798,8 @@ changeApi(event) {
           if (allArrayVerif === false) {
             this.allArray.push(new Array((matrice[z][0]) + (matrice[z][1]), []));
             this.optLayout.push({
-              direction :  'colum',
-              mainAxis  : 'space-around',
+              direction :  'column',
+              mainAxis  : 'center',
               crossAxis :  'center'
             });
 

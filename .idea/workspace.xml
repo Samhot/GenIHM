@@ -28,11 +28,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="genimh.component.ts" pinned="false" current-in-tab="false">
+      <file leaf-file-name="genimh.component.ts" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/app/genimh/genimh.component.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="251">
-              <caret line="749" column="26" lean-forward="false" selection-start-line="749" selection-start-column="9" selection-end-line="749" selection-end-column="26" />
+            <state relative-caret-position="166">
+              <caret line="165" column="23" lean-forward="false" selection-start-line="165" selection-start-column="9" selection-end-line="165" selection-end-column="23" />
               <folding />
             </state>
           </provider>
@@ -71,8 +71,8 @@
       <file leaf-file-name="genimh.component.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/app/genimh/genimh.component.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-3733">
-              <caret line="261" column="352" lean-forward="true" selection-start-line="261" selection-start-column="352" selection-end-line="261" selection-end-column="352" />
+            <state relative-caret-position="194">
+              <caret line="432" column="46" lean-forward="false" selection-start-line="432" selection-start-column="36" selection-end-line="432" selection-end-column="46" />
               <folding>
                 <element signature="n#style#0;n#mat-toolbar#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#mat-toolbar#0;n#!!top" expanded="true" />
@@ -198,10 +198,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="genimh.component.scss" pinned="false" current-in-tab="true">
+      <file leaf-file-name="genimh.component.scss" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/app/genimh/genimh.component.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="268">
+            <state relative-caret-position="-344">
               <caret line="136" column="15" lean-forward="true" selection-start-line="136" selection-start-column="15" selection-end-line="136" selection-end-column="15" />
               <folding />
             </state>
@@ -267,11 +267,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>search</find>
-      <find>mat-sidenav-content</find>
-      <find>mat-sidenav</find>
-      <find>display:&quot; fl</find>
-      <find>body</find>
       <find>colt</find>
       <find>siden</find>
       <find>ngmodel</find>
@@ -290,13 +285,18 @@
       <find>liste icon</find>
       <find>delete</find>
       <find>RightSideNav</find>
-      <find>row</find>
       <find>optLayout</find>
       <find>direction :</find>
       <find>ngoni</find>
       <find>paperBoard</find>
       <find>reset()</find>
+      <find>colum</find>
+      <find>mon</find>
+      <find>row</find>
       <find>paper</find>
+      <find>mat-grid-list</find>
+      <find>gridColor</find>
+      <find>colorNameClass</find>
     </findStrings>
     <dirStrings>
       <dir>C:\Users\A644643\GenIHM\src</dir>
@@ -339,9 +339,9 @@
         <option value="$PROJECT_DIR$/src/app/visionneuseihm/visionneuse-genihm.component.html" />
         <option value="$PROJECT_DIR$/src/app/heroes/heroes.component.html" />
         <option value="$PROJECT_DIR$/src/app/visionneuseihm/visionneuse-genihm.component.ts" />
-        <option value="$PROJECT_DIR$/src/app/genimh/genimh.component.ts" />
-        <option value="$PROJECT_DIR$/src/app/genimh/genimh.component.html" />
         <option value="$PROJECT_DIR$/src/app/genimh/genimh.component.scss" />
+        <option value="$PROJECT_DIR$/src/app/genimh/genimh.component.html" />
+        <option value="$PROJECT_DIR$/src/app/genimh/genimh.component.ts" />
       </list>
     </option>
   </component>
@@ -966,12 +966,12 @@
       <workItem from="1523011505722" duration="7874000" />
       <workItem from="1523432393350" duration="4989000" />
       <workItem from="1523449272812" duration="10862000" />
-      <workItem from="1523519940674" duration="24669000" />
+      <workItem from="1523519940674" duration="26582000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="301854000" />
+    <option name="totallyTimeSpent" value="303767000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1608" y="-8" width="1616" height="916" extended-state="6" />
@@ -1338,18 +1338,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/genimh/genimh.component.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="251">
-          <caret line="749" column="26" lean-forward="false" selection-start-line="749" selection-start-column="9" selection-end-line="749" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/app/genimh/genimh.component.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3733">
-          <caret line="261" column="352" lean-forward="true" selection-start-line="261" selection-start-column="352" selection-end-line="261" selection-end-column="352" />
+        <state relative-caret-position="194">
+          <caret line="432" column="46" lean-forward="false" selection-start-line="432" selection-start-column="36" selection-end-line="432" selection-end-column="46" />
           <folding>
             <element signature="n#style#0;n#mat-toolbar#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#mat-toolbar#0;n#!!top" expanded="true" />
@@ -1476,8 +1468,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/app/genimh/genimh.component.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="268">
+        <state relative-caret-position="-344">
           <caret line="136" column="15" lean-forward="true" selection-start-line="136" selection-start-column="15" selection-end-line="136" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/genimh/genimh.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="166">
+          <caret line="165" column="23" lean-forward="false" selection-start-line="165" selection-start-column="9" selection-end-line="165" selection-end-column="23" />
           <folding />
         </state>
       </provider>
