@@ -207,11 +207,20 @@ export class GenimhComponent implements OnInit {
   }
 
   testmainAxis(mainAxis) {
-    this.optLayout[this.idLayoutEdit].mainAxis = mainAxis;
+    if(this.blocAlignementDispo == "column"){
+      this.optLayout[this.idLayoutEdit].crossAxis = mainAxis;
+    }else{
+      this.optLayout[this.idLayoutEdit].mainAxis = mainAxis;
+    }
   }
 
   testcrossAxis(crossAxis) {
-    this.optLayout[this.idLayoutEdit].crossAxis = crossAxis;
+    if(this.blocAlignementDispo == "column"){
+      this.optLayout[this.idLayoutEdit].mainAxis = crossAxis;
+    }else{
+      this.optLayout[this.idLayoutEdit].crossAxis = crossAxis;
+    }
+
   }
 
   /////////////////////////////////////////// ADF //////////////////////////////////////////////////////////////////////
@@ -302,8 +311,6 @@ export class GenimhComponent implements OnInit {
     this.toggleSideNavSetIn('panelAll',0);
     this.totalSave.sort();
     this.gridViewOpen = true;
-    this.blocAlignementDispo = "row";
-    this.blocHorizontalDispo = "center";
 
   }
 
