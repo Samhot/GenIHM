@@ -22,7 +22,7 @@
   </div>
   <span style="flex: 1 1 auto;"></span>
   <a title="Download JSON" [href]="downloadJsonHref" download="{{nameProject}}.json"><button mat-raised-button (mouseenter)="generateDownloadJsonUri()" color="accent">Exporter ma page</button></a>
-  <button mat-icon-button (click)="right.toggle()"><mat-icon aria-label="Ouvrir le panneau edit">settings_input_component</mat-icon></button>
+  <button mat-icon-button (click)="RightSideNav.toggle()"><mat-icon aria-label="Ouvrir le panneau edit">settings_input_component</mat-icon></button>
   <a href="/VisionneuseGenIHM/-1" target="_blank" ><button mat-icon-button (mouseenter)="PreVisionneuse()"><mat-icon>queue_play_next</mat-icon></button></a>
 
 </mat-toolbar>
@@ -96,9 +96,9 @@
     </ul>
   </div>
 
-  <mat-sidenav-container style="width: 100%;">
+  <mat-sidenav-container id="sidenav-container" style="width: 100%;">
     <!-- <main></main> -->
-    <mat-sidenav #MyInstSideNav align="start" position="end" mode="side" opened="true" [ngSwitch]="toggleSideNavSetOut" style="width:min-content;" id="style-7">
+    <mat-sidenav #LeftSideNav align="start" position="end" mode="side" opened="true" [ngSwitch]="toggleSideNavSetOut" style="width:min-content;" id="style-7">
       <form class="example-form">
         <div fxLayoutAlign="center center">
           <mat-form-field >
@@ -217,58 +217,64 @@
       </div>
     </mat-sidenav>
 
-    <mat-sidenav #right align="end" position="end" mode="side" opened="true" style="width:min-content;">
+    <mat-sidenav #RightSideNAv align="end" position="end" mode="side" opened="true" style="width:min-content;" id="right-sidenav">
 
       <!--------------------------------------------   EDIT BLOCK  ---------------------------------------->
-        <h4>Disposition du bloc</h4>
-        <div style=" width: 100%;background-color: lightgray;">
-          <form fxLayout="column" fxLayout.xs="column" class="demo_controls">
-            <div>
-              <h4>Alignement</h4>
-              <mat-radio-group [(ngModel)]="optLayout[idLayoutEdit].direction" name="direction" fxLayout="column" style="padding: 10px 0px 10px 10px;">
-                <mat-radio-button value="row">Ligne</mat-radio-button>
-                <mat-radio-button value="column">Colonne</mat-radio-button>
-              </mat-radio-group>
+        <h4 style="padding-left:20px;">Disposition du bloc</h4>
+        <div style="width: 100%;background-color: whitesmoke;font-size:small; padding:30px;">
+          <form fxLayout="column" fxLayout.xs="column" fxLayoutAlign="center space-between" class="demo_controls">
+            <div fxLayout="row" fxLayoutAlign="start center" style="margin-bottom:30px;">
+              <div fxLayout="row" fxLayoutAlign="space-between center" style="min-width:300px;">Alignement :
+                <div name="direction" style="display:flex; margin-left:10px;">
+                  <a style="border-radius: 0.2em 0 0 0.2em;border:1px solid black;padding: 2px 7px 0px 7px;cursor:pointer;" (click)="testdirection('row')">ligne</a>
+                  <a style="border-radius: 0 0.2em 0.2em 0;border:1px solid black;padding: 2px 4px 0px 4px;cursor:pointer;" (click)="testdirection('column')">colonne</a>
+                </div>
+              </div>
             </div>
-            <div>
-              <h4>Alignement horizontal</h4>
-              <mat-radio-group [(ngModel)]="optLayout[idLayoutEdit].mainAxis" name="mainAxis" fxLayout="column" style="padding: 10px 0px 10px 10px;">
-                <!-- <mat-radio-button value=""><mat-icon>notifications_off</mat-icon></mat-radio-button> -->
-                <mat-radio-button value="start"><mat-icon>format_align_left</mat-icon></mat-radio-button>
-                <mat-radio-button value="center"><mat-icon>format_align_center</mat-icon></mat-radio-button>
-                <mat-radio-button value="space-around"><mat-icon>chevron_right</mat-icon></mat-radio-button>
-                <mat-radio-button value="space-between"><mat-icon>first_page</mat-icon></mat-radio-button>
-                <mat-radio-button value="space-evenly"><mat-icon>format_align_justify</mat-icon></mat-radio-button>
-                <mat-radio-button value="end"><mat-icon>format_align_right</mat-icon></mat-radio-button>
-              </mat-radio-group>
+
+            <div fxLayout="row" fxLayoutAlign="start center" style="margin-bottom:30px;">
+              <div fxLayout="row" fxLayoutAlign="space-between center" style="min-width:300px;">Horizontal :
+                <div name="mainAxis" style="display:flex; margin-left:10px;">
+                  <!-- <mat-radio-button value=""><mat-icon>notifications_off</mat-icon></mat-radio-button> -->
+                  <a style="border-radius: 0.2em 0 0 0.2em;border:1px solid black;padding: 5px 4px 0px 4px;cursor:pointer;" (click)="testmainAxis('start')"><mat-icon>format_align_left</mat-icon></a>
+                  <a style="border:1px solid black;padding: 5px 4px 0px 4px;cursor:pointer;" (click)="testmainAxis('center')"><mat-icon>format_align_center</mat-icon></a>
+                  <!-- <a style="border:1px solid black;padding: 5px 4px 0px 4px;cursor:pointer;" (click)="testmainAxis('space-around')"><mat-icon>chevron_right</mat-icon></a>
+                  <a style="border:1px solid black;padding: 5px 4px 0px 4px;cursor:pointer;" (click)="testmainAxis('space-between')"><mat-icon>first_page</mat-icon></a>
+                  <a style="border:1px solid black;padding: 5px 4px 0px 4px;cursor:pointer;" (click)="testmainAxis('space-evenly')"><mat-icon>format_align_justify</mat-icon></a> -->
+                  <a style="border-radius: 0 0.2em 0.2em 0;border:1px solid black;padding: 5px 4px 0px 4px;cursor:pointer;" (click)="testmainAxis('end')"><mat-icon>format_align_right</mat-icon></a>
+                </div>
+              </div>
             </div>
-            <div>
-              <h4>Alignement vertical</h4>
-              <mat-radio-group [(ngModel)]="optLayout[idLayoutEdit].crossAxis" name="crossAxis" fxLayout="column" style="padding: 10px 0px 10px 10px;">
-                <!-- <mat-radio-button value="none"><em>Aucune</em></mat-radio-button> -->
-                <mat-radio-button value="stretch"><mat-icon>format_line_spacing</mat-icon></mat-radio-button>
-                <mat-radio-button value="start"><mat-icon>vertical_align_top</mat-icon></mat-radio-button>
-                <mat-radio-button value="center"><mat-icon>vertical_align_center</mat-icon></mat-radio-button>
-                <mat-radio-button value="end"><mat-icon>vertical_align_bottom</mat-icon></mat-radio-button>
-              </mat-radio-group>
+
+            <div fxLayout="row" fxLayoutAlign="start center">
+              <div fxLayout="row" fxLayoutAlign="space-between center" style="min-width:300px;">Vertical :
+                <div name="crossAxis" style="display:flex; margin-left:10px;">
+                  <!-- <mat-radio-button value="none"><em>Aucune</em></mat-radio-button> -->
+                  <!-- <a style="border-radius: 0.2em 0 0 0.2em;border:1px solid black;padding: 5px 4px 0px 4px;cursor:pointer;" (click)="testcrossAxis('stretch')"><mat-icon>format_line_spacing</mat-icon></a> -->
+                  <a style="border:1px solid black;padding: 5px 4px 0px 4px;cursor:pointer;" (click)="testcrossAxis('start')"><mat-icon>vertical_align_top</mat-icon></a>
+                  <a style="border:1px solid black;padding: 5px 4px 0px 4px;cursor:pointer;" (click)="testcrossAxis('center')"><mat-icon>vertical_align_center</mat-icon></a>
+                  <a style="border-radius: 0 0.2em 0.2em 0;border:1px solid black;padding: 5px 4px 0px 4px;cursor:pointer;" (click)="testcrossAxis('end')"><mat-icon>vertical_align_bottom</mat-icon></a>
+                </div>
+              </div>
             </div>
           </form>
         </div>
       <!--------------------------------------------   FIN EDIT BLOCK  ---------------------------------------->
 
       <!--  ------------------------------------------  EDIT ITEM ------------------------------------------  -->
-        <div style=" width: 100%; background-color: lightgray; margin-bottom: 15px;margin-top: 10px; border: 1px solid;">
-          <h4 style="text-align: center"><strong style="color: white">Modifier un élément</strong></h4>
-            <mat-card>
+        <h4 style="padding-left:20px;">Personnalisation de l'élement</h4>
+        <div style=" width: 100%; background-color: whitesmoke; padding-left:20px;">
               <!--  ------------------------------------------  AUTOCOMPLETE ------------------------------------------  -->
 
-                <div *ngIf="ItemEdit == 'autocomplete' " style="text-align: center">
-                  <div style="display: inline-block;color: black" > Libellé : <input  style="color: black" (input)="EditPlaceholder($event)" placeholder="{{resetInputAuto}}"></div>
-                  <div *ngFor="let option of options"  style="display: inline-block;">
-                    <input (change)="changeValueTabEditItem(option,$event)"  value="{{ option }}" style="  margin: 10px;">
-                    <mat-icon mat-test color="warn" aria-label="Example icon-button with a heart icon" (click)="removeValueTabEditItem(option)" >cancel</mat-icon>
+                <div *ngIf="ItemEdit == 'autocomplete'">
+                  <div fxLayout="column" fxLayoutAlign="end end" style="padding: 10px 30px;">
+                    <div fxLayout="row" fxLayoutAlign="space-between center" style="min-width:300px;">Libellé : <input (input)="EditPlaceholder($event)" placeholder="{{resetInputAuto}}"></div>
+                    <div *ngFor="let option of options">
+                      <mat-icon mat-test color="warn" aria-label="Example icon-button with a heart icon" (click)="removeValueTabEditItem(option)" style="cursor: pointer;">cancel</mat-icon>
+                      <input (change)="changeValueTabEditItem(option,$event)"  value="{{ option }}">
+                    </div>
+                    <div><mat-icon color="accent" aria-label="Example icon-button with a heart icon" (click)="addValueTabEditItem('')" style="cursor: pointer;">add_box</mat-icon></div>
                   </div>
-                    <div><mat-icon color="accent" aria-label="Example icon-button with a heart icon" (click)="addValueTabEditItem('')">add_box</mat-icon></div>
                 </div>
 
               <!--  ------------------------------------------  FIN AUTOCOMPLETE ------------------------------------------  -->
@@ -404,7 +410,7 @@
                     </button>
                 </div>
               <!--------------------------------------------   FIN SELECT  ---------------------------------------->
-            </mat-card>
+
         </div>
       <!--------------------------------------------   FIN EDIT ITEM  ---------------------------------------->
 
