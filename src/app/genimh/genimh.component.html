@@ -13,10 +13,14 @@
       <button mat-button (click)="DeleteMode()"*ngIf="deleteMode == 'Off' " ><mat-icon>cancel</mat-icon></button>
       <button mat-button color="warn" (click)="DeleteMode()"*ngIf="deleteMode == 'On' " ><mat-icon>cancel</mat-icon></button>
     </div>
+    <button mat-raised-button *ngIf="firstStructure == false " (click)="openGridView()" disabled="true"><mat-icon>done</mat-icon></button>
+    <button mat-button *ngIf="firstStructure == true " (click)="openGridView()" ><mat-icon color="accent">done</mat-icon></button>
+
+  </div>
+  <div *ngIf="gridViewOpen == false " style="margin-bottom: 15px; margin-top: 10px; width: 100%" fxLayoutAlign="center center">
+    <button mat-icon-button *ngIf="gridViewOpen == false "(click)="openGridView()"><mat-icon aria-label="Créer ou modifier la structure du grid">grid_on</mat-icon></button> <!-- toggleSideNavSetIn('panelGrid') -->
   </div>
   <span style="flex: 1 1 auto;"></span>
-  <button mat-icon-button *ngIf="gridViewOpen == false "(click)="openGridView()"><mat-icon aria-label="Créer ou modifier la structure du grid">grid_on</mat-icon></button> <!-- toggleSideNavSetIn('panelGrid') -->
-  <button mat-icon-button *ngIf="gridViewOpen == true " color="warn" (click)="openGridView()"><mat-icon aria-label="Créer ou modifier la structure du grid">grid_on</mat-icon></button> <!-- toggleSideNavSetIn('panelGrid') -->
   <a title="Download JSON" [href]="downloadJsonHref" download="{{nameProject}}.json"><button mat-raised-button (mouseenter)="generateDownloadJsonUri()" color="accent">Exporter ma page</button></a>
   <button mat-icon-button (click)="right.toggle()"><mat-icon aria-label="Ouvrir le panneau edit">settings_input_component</mat-icon></button>
   <a href="/VisionneuseGenIHM/-1" target="_blank" ><button mat-icon-button (mouseenter)="PreVisionneuse()"><mat-icon>queue_play_next</mat-icon></button></a>
@@ -409,6 +413,7 @@
     <!--------------------------------------------   GRID VIEW  ---------------------------------------->
 
       <mat-sidenav-content>
+
         <div class="paperBoard" id="paperBoard">
           <div *ngIf="gridViewOpen == true " style="height: 100%;" >
             <div id="ligne1" style="display: block; height: 11%;">
@@ -662,7 +667,9 @@
             </mat-grid-list>
           </form>
           </div>
+
         </div>
+
       </mat-sidenav-content>
     <!--------------------------------------------  FIN GRID VIEW  ---------------------------------------->
   </mat-sidenav-container>

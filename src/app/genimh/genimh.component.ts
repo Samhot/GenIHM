@@ -76,6 +76,7 @@ export class GenimhComponent implements OnInit {
   public nameProject
   public nameProjectClick
   public tabColorBtnMenu
+  public firstStructure
 
   // tslint:disable-next-line:max-line-length
   public formControl = [['autocomplete', 'NULL', 'Libellé', ['One', 'Two', 'Three']], ['checkbox', 'NULL', 'Value'], ['datepicker', 'NULL', 'Libellé'], ['input', 'NULL', 'Libellé'], ['radiobutton', 'NULL', ['Option 1', 'Option 2']], ['select', 'NULL', 'Libellé', ['Un', 'Deux', 'Trois']], ['slider', 'NULL'], ['slidetoggle', 'NULL']];
@@ -137,6 +138,7 @@ export class GenimhComponent implements OnInit {
     this.lastAction = [];
     this.lastActionBack = [];
     this.gridViewOpen = false
+    this.firstStructure = false
     // this.name;
     // this.animal;
     this.downloadJsonHref = {test: 'le test'};
@@ -157,7 +159,7 @@ export class GenimhComponent implements OnInit {
     this.colorNameClass = 'B2';
     this.classBtnDelete = 'button floatRight';
     this.iconBtnEdit = 'add';
-    this.nameProject = 'Nom du projet';
+    this.nameProject = 'Nom de la page';
     this.nameProjectClick = false;
     this.fonctionTest = function () {};
     this.tabColorBtnMenu = ["","","","","","","","",""]
@@ -225,6 +227,7 @@ export class GenimhComponent implements OnInit {
   }
 
   openGridView(){
+    this.firstStructure = true
     if(this.gridViewOpen == false){
       this.gridViewOpen = true
     }else{
@@ -284,6 +287,7 @@ export class GenimhComponent implements OnInit {
     this.getComposants();
     this.toggleSideNavSetIn('panelAll',0)
     this.totalSave.sort()
+    this.gridViewOpen = true
   }
 
   toggleSideNavSetOut: string = '';
@@ -723,6 +727,7 @@ changeApi(event) {
   }
 
   reset() {
+    this.firstStructure = false
     this.tiles = [];
     this.listID = 0;
     this.allArray = [];
@@ -870,9 +875,7 @@ changeApi(event) {
 
   gridSkull(ligne, colonne) {
       if (this.deleteMode === 'Off') {
-
         if (this.SelectedCase(ligne.toString() + colonne.toString()) === false) {
-
           let ligneF;
           let colonneF;
           if (this.firstClick === true) {
@@ -880,7 +883,9 @@ changeApi(event) {
             this.gridLigne = ligne;
             this.firstClick = false;
           }else {
-
+            if( this.firstStructure == false){
+              this.firstStructure = true
+            }
             colonneF = this.mathSignPlus(this.gridColonne - colonne) + 1;
             ligneF = this.mathSignPlus(this.gridLigne - ligne) + 1;
             if (this.gridColonne.toString() > colonne.toString()) {
@@ -986,6 +991,11 @@ changeApi(event) {
             alert('Impossible de supprimer cet element');
           }else {
             this.lastAction.push('delete');
+          }
+          console.log(this.allArray)
+          console.log(this.matrice)
+          if(this.matrice.length == 0){
+            this.firstStructure = false
           }
           this.main();
           this.firstClick = true;
