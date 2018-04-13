@@ -78,6 +78,8 @@ export class GenimhComponent implements OnInit {
   public tabColorBtnMenu;
   public toggleSideNavSetOut;
   public firstStructure;
+  public rightSideNavOpen;
+  public blocAlignementDispo;
 
   // tslint:disable-next-line:max-line-length
   public formControl = [['autocomplete', 'NULL', 'Libellé', ['One', 'Two', 'Three']], ['checkbox', 'NULL', 'Value'], ['datepicker', 'NULL', 'Libellé'], ['input', 'NULL', 'Libellé'], ['radiobutton', 'NULL', ['Option 1', 'Option 2']], ['select', 'NULL', 'Libellé', ['Un', 'Deux', 'Trois']], ['slider', 'NULL'], ['slidetoggle', 'NULL']];
@@ -140,17 +142,19 @@ export class GenimhComponent implements OnInit {
     this.lastActionBack = [];
     this.gridViewOpen = false;
     this.firstStructure = false;
+    this.blocAlignementDispo = "row";
     // this.name;
     // this.animal;
     this.downloadJsonHref = {test: 'le test'};
     // this.IDCONTAINER;
     this.optLayout = [{
-      direction :  'row',
+      direction :  'colum',
       mainAxis  : 'space-around',
       crossAxis :  'center'
     }];
     this.idElement = 0;
     this.idLayoutEdit = 0;
+    this.rightSideNavOpen = true;
     this.typeButton = 'basic';
     this.buttonValue = 'Button';
     this.styleButton = 'basic';
@@ -162,6 +166,7 @@ export class GenimhComponent implements OnInit {
     this.iconBtnEdit = 'add';
     this.nameProject = 'Nom de la page';
     this.nameProjectClick = false;
+    this.blocAlignementDispo = "colum";
     this.fonctionTest = function () {};
     this.tabColorBtnMenu = ['', '', '', '', '', '', '', '', ''];
     this.toggleSideNavSetOut = '';
@@ -194,11 +199,6 @@ export class GenimhComponent implements OnInit {
     });
   }
 
-  options_layout = {
-    direction :  'column',
-    mainAxis  : 'space-around',
-    crossAxis :  'center'
-  };
 
   testdirection(direction) {
     this.optLayout[this.idLayoutEdit].direction = direction;
@@ -788,7 +788,7 @@ changeApi(event) {
           if (allArrayVerif === false) {
             this.allArray.push(new Array((matrice[z][0]) + (matrice[z][1]), []));
             this.optLayout.push({
-              direction :  'column',
+              direction :  'colum',
               mainAxis  : 'space-around',
               crossAxis :  'center'
             });
