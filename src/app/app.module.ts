@@ -5,15 +5,16 @@ import { FileSelectDirective } from 'ng2-file-upload';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
-
 // ADF modules
 import { AdfModule } from './adf.module';
 import { AuthGuardBpm } from '@alfresco/adf-core';
 import { AuthGuardEcm } from '@alfresco/adf-core';
 
 import { ApiModule } from './api.module';
+
+import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
+import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
+import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 
 // App components
 import { AppComponent } from './app.component';
@@ -63,6 +64,9 @@ const appRoutes: Routes = [
   }
 ];
 
+const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
+  suppressScrollX: true
+};
 @NgModule({
   imports: [
     BrowserModule,
@@ -73,7 +77,8 @@ const appRoutes: Routes = [
     ),
     // ADF modules
     AdfModule,
-    ApiModule
+    ApiModule,
+    PerfectScrollbarModule
   ], entryComponents: [ DialogOverviewExampleDialogComponent],
   declarations: [
     AppComponent,
@@ -87,7 +92,7 @@ const appRoutes: Routes = [
     MoteurGenIHMComponent,
     FileSelectDirective,
   ],
-  providers: [GlobalService],
+  providers: [GlobalService, {provide: PERFECT_SCROLLBAR_CONFIG, useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

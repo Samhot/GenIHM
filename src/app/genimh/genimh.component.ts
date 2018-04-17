@@ -15,6 +15,9 @@ import { HeroService } from '../hero.service';
 import { ContentActionListComponent } from '@alfresco/adf-content-services';
 import { ActivatedRoute, Router } from '@angular/router';
 
+import { PerfectScrollbarConfigInterface,
+  PerfectScrollbarComponent, PerfectScrollbarDirective } from 'ngx-perfect-scrollbar';
+
 @Component({
   selector: 'app-genimh',
   templateUrl: './genimh.component.html',

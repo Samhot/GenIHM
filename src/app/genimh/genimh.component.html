@@ -1,4 +1,4 @@
-<mat-toolbar style="position: fixed; z-index:2;min-width: 100%;" fxLayout="row" fxLayoutAlign="space-between center">
+<mat-toolbar id="header-genihm" fxLayout="row" fxLayoutAlign="space-between center">
     <span *ngIf="nameProjectClick == false" (click)="enterNameProject()">
       <h1>{{nameProject}}</h1>
     </span>
@@ -19,7 +19,7 @@
     <span *ngIf="gridViewOpen == false">
       <button mat-icon-button *ngIf="gridViewOpen == false "(click)="openGridView()"><mat-icon aria-label="Créer ou modifier la structure du grid">grid_on</mat-icon></button> <!-- toggleSideNavSetIn('panelGrid') -->
     </span>
-    <span fxLayout="row" fxLayoutAlign="space-around center" style="width: 300px;">
+    <span fxLayout="row" fxLayoutAlign="space-around center" class="right-tools">
       <a title="Download JSON" [href]="downloadJsonHref" download="{{nameProject}}.json"><button mat-raised-button (mouseenter)="generateDownloadJsonUri()" color="accent">Exporter ma page</button></a>
       <button *ngIf="rightSideNavOpen == true " mat-icon-button (click)="RightSideNav.toggle();rightSideNavOpen = false"><mat-icon color="accent" aria-label="Ouvrir le panneau edit">settings_input_component</mat-icon></button>
       <button *ngIf="rightSideNavOpen == false "mat-icon-button (click)="RightSideNav.toggle();rightSideNavOpen = true"><mat-icon aria-label="Ouvrir le panneau edit">settings_input_component</mat-icon></button>
@@ -27,164 +27,141 @@
     </span>
 </mat-toolbar>
 
-<div fxLayout="row" style="position: fixed;top: 128px;bottom: 0px;min-width: 100%;">
+<div fxLayout="row" class="page-container">
 
-  <div id="sidebar" fxLayout="row" style="text-align: center;height: -webkit-fill-available; padding-right: 1%;padding-left: 1%; ">
-    <ul style="list-style: none;padding-left: 0px;">
+  <div class="sidenav-container" fxLayout="row">
+    <ul class="sidenav-list">
       <li (click)="toggleSideNavSetIn('panelAll',0)"  >
-        <span style="font-size: 11px;display: flex;flex-direction: column;align-items: center; cursor: pointer;">
-          <mat-icon *ngIf="tabColorBtnMenu[0] == 'Off' " style="font-size:35px;height: 39px;width: 39px;" >dashboard</mat-icon>
-          <mat-icon *ngIf="tabColorBtnMenu[0] == 'On' "color="accent" style="font-size:35px;height: 39px;width: 39px;" >dashboard</mat-icon>
+        <span class="toggle-side-nav">
+          <mat-icon *ngIf="tabColorBtnMenu[0] == 'Off'" class="side-nav-icon" >dashboard</mat-icon>
+          <mat-icon *ngIf="tabColorBtnMenu[0] == 'On'"color="accent" class="side-nav-icon" >dashboard</mat-icon>
           Tous
         </span>
       </li>
       <li (click)="toggleSideNavSetIn('panelForm',1)"  >
-        <span style="font-size: 11px;display: flex;flex-direction: column;align-items: center; cursor: pointer;">
-          <mat-icon *ngIf="tabColorBtnMenu[1] == 'Off' "style="font-size:35px;height: 39px;width: 39px;" >format_list_bulleted</mat-icon>
-          <mat-icon *ngIf="tabColorBtnMenu[1] == 'On' " color="accent"style="font-size:35px;height: 39px;width: 39px;" >format_list_bulleted</mat-icon>
+        <span class="toggle-side-nav">
+          <mat-icon *ngIf="tabColorBtnMenu[1] == 'Off'"class="side-nav-icon" >format_list_bulleted</mat-icon>
+          <mat-icon *ngIf="tabColorBtnMenu[1] == 'On'" color="accent"class="side-nav-icon" >format_list_bulleted</mat-icon>
           Formulaire
         </span>
       </li>
       <li (click)="toggleSideNavSetIn('panelNav',2)" >
-        <span style="font-size: 11px;display: flex;flex-direction: column;align-items: center; cursor: pointer;">
-          <mat-icon *ngIf="tabColorBtnMenu[2] == 'Off' " style="font-size:35px;height: 39px;width: 39px;" >last_page</mat-icon>
-          <mat-icon *ngIf="tabColorBtnMenu[2] == 'On' " color="accent" style="font-size:35px;height: 39px;width: 39px;">last_page</mat-icon>
+        <span class="toggle-side-nav">
+          <mat-icon *ngIf="tabColorBtnMenu[2] == 'Off'" class="side-nav-icon" >last_page</mat-icon>
+          <mat-icon *ngIf="tabColorBtnMenu[2] == 'On'" color="accent" class="side-nav-icon">last_page</mat-icon>
           Navigation
         </span>
       </li>
       <li (click)="toggleSideNavSetIn('panelLayout',3)" class="{{tabColorBtnMenu[3]}}">
-        <span style="font-size: 11px;display: flex;flex-direction: column;align-items: center; cursor: pointer;">
-          <mat-icon *ngIf="tabColorBtnMenu[3] == 'Off' "style="font-size:35px;height: 39px;width: 39px;">picture_in_picture_alt</mat-icon>
-          <mat-icon *ngIf="tabColorBtnMenu[3] == 'On' " color="accent" style="font-size:35px;height: 39px;width: 39px;">picture_in_picture_alt</mat-icon>
+        <span class="toggle-side-nav">
+          <mat-icon *ngIf="tabColorBtnMenu[3] == 'Off'"class="side-nav-icon">picture_in_picture_alt</mat-icon>
+          <mat-icon *ngIf="tabColorBtnMenu[3] == 'On'" color="accent" class="side-nav-icon">picture_in_picture_alt</mat-icon>
           Layout
         </span>
       </li>
       <li (click)="toggleSideNavSetIn('panelButton',4)" class="{{tabColorBtnMenu[4]}}">
-        <span style="font-size: 11px;display: flex;flex-direction: column;align-items: center; cursor: pointer;">
-          <mat-icon *ngIf="tabColorBtnMenu[4] == 'Off' " style="font-size:35px;height: 39px;width: 39px;">all_out</mat-icon>
-          <mat-icon *ngIf="tabColorBtnMenu[4] == 'On' " color="accent" style="font-size:35px;height: 39px;width: 39px;">all_out</mat-icon>
+        <span class="toggle-side-nav">
+          <mat-icon *ngIf="tabColorBtnMenu[4] == 'Off'" class="side-nav-icon">all_out</mat-icon>
+          <mat-icon *ngIf="tabColorBtnMenu[4] == 'On'" color="accent" class="side-nav-icon">all_out</mat-icon>
           Boutons
         </span>
       </li>
       <li (click)="toggleSideNavSetIn('panelModal',5)" class="{{tabColorBtnMenu[5]}}">
-        <span style="font-size: 11px;display: flex;flex-direction: column;align-items: center; cursor: pointer;">
-          <mat-icon *ngIf="tabColorBtnMenu[5] == 'Off' " style="font-size:35px;height: 39px;width: 39px;">chrome_reader_mode</mat-icon>
-          <mat-icon *ngIf="tabColorBtnMenu[5] == 'On' " color="accent" style="font-size:35px;height: 39px;width: 39px;">chrome_reader_mode</mat-icon>
+        <span class="toggle-side-nav">
+          <mat-icon *ngIf="tabColorBtnMenu[5] == 'Off'" class="side-nav-icon">chrome_reader_mode</mat-icon>
+          <mat-icon *ngIf="tabColorBtnMenu[5] == 'On'" color="accent" class="side-nav-icon">chrome_reader_mode</mat-icon>
           Modals
         </span>
       </li>
       <li (click)="toggleSideNavSetIn('panelDataTable',6)" class="{{tabColorBtnMenu[6]}}">
-        <span style="font-size: 11px;display: flex;flex-direction: column;align-items: center; cursor: pointer;">
-          <mat-icon *ngIf="tabColorBtnMenu[6] == 'Off' " style="font-size:35px;height: 39px;width: 39px;">view_array</mat-icon>
-          <mat-icon *ngIf="tabColorBtnMenu[6] == 'On' " color="accent" style="font-size:35px;height: 39px;width: 39px;">view_array</mat-icon>
+        <span class="toggle-side-nav">
+          <mat-icon *ngIf="tabColorBtnMenu[6] == 'Off'" class="side-nav-icon">view_array</mat-icon>
+          <mat-icon *ngIf="tabColorBtnMenu[6] == 'On'" color="accent" class="side-nav-icon">view_array</mat-icon>
           Tableaux
         </span>
       </li>
       <li (click)="toggleSideNavSetIn('panelAlfresco',7)" class="{{tabColorBtnMenu[7]}}">
-        <span style="font-size: 11px;display: flex;flex-direction: column;align-items: center; cursor: pointer;">
-          <mat-icon *ngIf="tabColorBtnMenu[7] == 'Off' " style="font-size:35px;height: 39px;width: 39px;">import_contacts</mat-icon>
-          <mat-icon *ngIf="tabColorBtnMenu[7] == 'On' " color="accent" style="font-size:35px;height: 39px;width: 39px;">import_contacts</mat-icon>
+        <span class="toggle-side-nav">
+          <mat-icon *ngIf="tabColorBtnMenu[7] == 'Off'" class="side-nav-icon">import_contacts</mat-icon>
+          <mat-icon *ngIf="tabColorBtnMenu[7] == 'On'" color="accent" class="side-nav-icon">import_contacts</mat-icon>
           Alfresco
         </span>
       </li>
       <li (click)="toggleSideNavSetIn('panelJson',8)" class="{{tabColorBtnMenu[8]}}">
-        <span style="font-size: 11px;display: flex;flex-direction: column;align-items: center; cursor: pointer;">
-          <mat-icon *ngIf="tabColorBtnMenu[8] == 'Off' " style="font-size:35px;height: 39px;width: 39px;">developer_board</mat-icon>
-          <mat-icon *ngIf="tabColorBtnMenu[8] == 'On' " color="accent" style="font-size:35px;height: 39px;width: 39px;">developer_board</mat-icon>
+        <span class="toggle-side-nav">
+          <mat-icon *ngIf="tabColorBtnMenu[8] == 'Off'" class="side-nav-icon">developer_board</mat-icon>
+          <mat-icon *ngIf="tabColorBtnMenu[8] == 'On'" color="accent" class="side-nav-icon">developer_board</mat-icon>
           Console
         </span>
       </li>
     </ul>
   </div>
 
-  <mat-sidenav-container id="sidenav-container" style="width: 100%;">
-    <!-- <main></main> -->
-    <mat-sidenav #LeftSideNav align="start" position="end" mode="side" opened="true" [ngSwitch]="toggleSideNavSetOut" style="width:min-content;" id="style-7">
+  <mat-sidenav-container id="sidenav-container">
+    <mat-sidenav #LeftSideNav align="start" position="end" mode="side" opened="true" [ngSwitch]="toggleSideNavSetOut" id="left-sidenav">
       <form class="example-form">
-        <div fxLayoutAlign="center center">
+        <div fxLayoutAlign="start center">
           <mat-form-field >
-          <!-- <button mat-button><mat-icon>search</mat-icon></button> -->
             <input matInput placeholder="Recherche" (input)="changeSearch($event)">
             <mat-icon matPrefix>search</mat-icon>
-          <!-- <mat-form-field>
-            <input matInput placeholder="Recherche" (input)="changeSearch($event)">
-            <div [dragula]='"page-bag"' [dragulaModel]='dataTable' id="componentSearch">
-              <img *ngFor='let text of total' src="../../assets/iconeGENIHM/{{text}}.PNG" name="{{text}}" style="padding: 5px">
-            </div>-->
           </mat-form-field>
         </div>
       </form>
-      <div *ngSwitchCase="'panelAll'" style=" padding-right: 5%; padding-left: 5%">
-        <div class='parent'>
-          <div class='wrapper'>
-            <div [dragula]='"page-bag"' [dragulaModel]='total' id="componentTotal" >
-               <img *ngFor='let text of total' src="../../assets/iconeGENIHM/{{text[0]}}.PNG" name="{{text[0]}}">
-             </div>
+      <div *ngSwitchCase="'panelAll'" class="panelSwitch">
+        <perfect-scrollbar [scrollIndicators]="true">
+          <div [dragula]='"page-bag"' [dragulaModel]='total' id="componentTotal" >
+            <img *ngFor='let text of total' src="../../assets/iconeGENIHM/{{text[0]}}.PNG" name="{{text[0]}}">
           </div>
-        </div>
+        </perfect-scrollbar>
       </div>
-      <div *ngSwitchCase="'panelForm'"  style=" padding-right: 5%; padding-left: 5%">
-        <div class='parent'>
-          <div class='wrapper'>
-            <div [dragula]='"page-bag"' [dragulaModel]='formControl' id="componentFrom">
-              <img *ngFor='let text of formControl' src="../../assets/iconeGENIHM/{{text[0]}}.PNG" name="{{text[0]}}">
-            </div>
+      <div *ngSwitchCase="'panelForm'" class="panelSwitch">
+        <perfect-scrollbar [scrollIndicators]="true">
+          <div [dragula]='"page-bag"' [dragulaModel]='formControl' id="componentFrom">
+            <img *ngFor='let text of formControl' src="../../assets/iconeGENIHM/{{text[0]}}.PNG" name="{{text[0]}}">
           </div>
-        </div>
+        </perfect-scrollbar>
       </div>
-      <div *ngSwitchCase="'panelNav'" style=" padding-right: 5%; padding-left: 5%">
-        <div class='parent'>
-            <div class='wrapper'>
-              <div [dragula]='"page-bag"' [dragulaModel]='navigation' id="componentNav">
-                <img *ngFor='let text of navigation' src="../../assets/iconeGENIHM/{{text[0]}}.PNG" name="{{text[0]}}" >
-              </div>
-            </div>
+      <div *ngSwitchCase="'panelNav'" class="panelSwitch">
+        <perfect-scrollbar [scrollIndicators]="true">
+          <div [dragula]='"page-bag"' [dragulaModel]='navigation' id="componentNav">
+            <img *ngFor='let text of navigation' src="../../assets/iconeGENIHM/{{text[0]}}.PNG" name="{{text[0]}}" >
           </div>
+        </perfect-scrollbar>
       </div>
-      <div *ngSwitchCase="'panelLayout'" style=" padding-right: 5%; padding-left: 5%">
-        <div class='parent'>
-            <div class='wrapper'>
-              <div [dragula]='"page-bag"' [dragulaModel]='layout' id="componentLayout">
-                <img *ngFor='let text of layout' src="../../assets/iconeGENIHM/{{text[0]}}.PNG" name="{{text[0]}}" >
-              </div>
-            </div>
+      <div *ngSwitchCase="'panelLayout'" class="panelSwitch">
+        <perfect-scrollbar [scrollIndicators]="true">
+          <div [dragula]='"page-bag"' [dragulaModel]='layout' id="componentLayout">
+            <img *ngFor='let text of layout' src="../../assets/iconeGENIHM/{{text[0]}}.PNG" name="{{text[0]}}" >
           </div>
+        </perfect-scrollbar>
       </div>
-      <div *ngSwitchCase="'panelButton'" style=" padding-right: 5%; padding-left: 5%">
-        <div class='parent'>
-            <div class='wrapper'>
-              <div [dragula]='"page-bag"' [dragulaModel]='button' id="componentButton">
-                <img *ngFor='let text of button' src="../../assets/iconeGENIHM/{{text[0]}}.PNG" name="{{text[0]}}" >
-              </div>
-            </div>
+      <div *ngSwitchCase="'panelButton'" class="panelSwitch">
+        <perfect-scrollbar [scrollIndicators]="true">
+          <div [dragula]='"page-bag"' [dragulaModel]='button' id="componentButton">
+            <img *ngFor='let text of button' src="../../assets/iconeGENIHM/{{text[0]}}.PNG" name="{{text[0]}}" >
           </div>
+        </perfect-scrollbar>
       </div>
-      <div *ngSwitchCase="'panelModal'" style=" padding-right: 5%; padding-left: 5%">
-        <div class='parent'>
-            <div class='wrapper'>
-              <div [dragula]='"page-bag"' [dragulaModel]='modals' id="componentModals">
-                <img *ngFor='let text of modals' src="../../assets/iconeGENIHM/{{text[0]}}.PNG" name="{{text[0]}}" >
-              </div>
-            </div>
+      <div *ngSwitchCase="'panelModal'" class="panelSwitch">
+        <perfect-scrollbar [scrollIndicators]="true">
+          <div [dragula]='"page-bag"' [dragulaModel]='modals' id="componentModals">
+            <img *ngFor='let text of modals' src="../../assets/iconeGENIHM/{{text[0]}}.PNG" name="{{text[0]}}" >
           </div>
+        </perfect-scrollbar>
       </div>
-      <div *ngSwitchCase="'panelDataTable'" style=" padding-right: 5%; padding-left: 5%">
-        <div class='parent'>
-            <div class='wrapper'>
-              <div [dragula]='"page-bag"' [dragulaModel]='dataTable' id="componentDataTable">
-                <img *ngFor='let text of dataTable' src="../../assets/iconeGENIHM/{{text[0]}}.PNG" name="{{text[0]}}" >
-              </div>
-            </div>
+      <div *ngSwitchCase="'panelDataTable'" class="panelSwitch">
+        <perfect-scrollbar [scrollIndicators]="true">
+          <div [dragula]='"page-bag"' [dragulaModel]='dataTable' id="componentDataTable">
+            <img *ngFor='let text of dataTable' src="../../assets/iconeGENIHM/{{text[0]}}.PNG" name="{{text[0]}}" >
           </div>
+        </perfect-scrollbar>
       </div>
-      <div *ngSwitchCase="'panelAlfresco'" style=" padding-right: 5%; padding-left: 5%">
-        <div class='parent'>
-            <div class='wrapper'>
-              <div [dragula]='"page-bag"' [dragulaModel]='alfresco' id="componentAlfresco">
-                <img *ngFor='let text of alfresco' src="../../assets/iconeGENIHM/{{text[0]}}.PNG" name="{{text[0]}}" >
-              </div>
-            </div>
+      <div *ngSwitchCase="'panelAlfresco'" class="panelSwitch">
+        <perfect-scrollbar [scrollIndicators]="true">
+          <div [dragula]='"page-bag"' [dragulaModel]='alfresco' id="componentAlfresco">
+            <img *ngFor='let text of alfresco' src="../../assets/iconeGENIHM/{{text[0]}}.PNG" name="{{text[0]}}" >
           </div>
+        </perfect-scrollbar>
       </div>
       <!-- <div *ngSwitchCase="'panelGrid'">
         <div style="margin-top: 10px; margin-bottom: 40px; margin-right: 20px;text-align: center">
@@ -211,59 +188,55 @@
         <div style=" margin: 0 auto;border:  1px solid ;display: block;height:30px;width: 15%;" [style.background-color]="colorSelect">  </div>
       </div> -->
 
-      <div *ngSwitchCase="'panelJson'">
-        <div *ngFor='let tile of tiles'>
-          <pre *ngIf="tile.vide == 'true' ">{{tile.tab | json}}</pre>
-        </div>
+      <div *ngSwitchCase="'panelJson'" class="panelSwitch">
+        <perfect-scrollbar [scrollIndicators]="true">
+          <div *ngFor='let tile of tiles'>
+            <pre *ngIf="tile.vide == 'true' ">{{tile.tab | json}}</pre>
+          </div>
+        </perfect-scrollbar>
       </div>
     </mat-sidenav>
 
-    <mat-sidenav #RightSideNav align="end" position="end" mode="side" opened="true" style="width:min-content;" id="right-sidenav">
+    <mat-sidenav #RightSideNav align="end" position="end" mode="side" opened="true" id="right-sidenav">
 
       <!--------------------------------------------   EDIT BLOCK  ---------------------------------------->
-        <h4 style="padding-left:20px;">Disposition du bloc</h4>
-        <div style="width: 100%;background-color: whitesmoke;font-size:small; padding:30px;">
+        <h4>Disposition du bloc</h4>
+        <div class="edit-block">
           <form fxLayout="column" fxLayout.xs="column" fxLayoutAlign="center space-between" class="demo_controls">
-            <div fxLayout="row" fxLayoutAlign="start center" style="margin-bottom:30px;">
-              <div fxLayout="row" fxLayoutAlign="space-between center" style="min-width:300px;">Alignement :
-                <div name="direction" style="display:flex; margin-left:10px;">
-                  <a *ngIf="blocAlignementDispo == 'row' " style="background: #e4e4e4; text-decoration: none;border-radius: 0.2em 0 0 0.2em;border:1px solid black;padding: 2px 7px 0px 7px;cursor:pointer;" (click)="testdirection('row'); ">ligne</a>
-                  <a *ngIf="blocAlignementDispo == 'column' " style="text-decoration: none;border-radius: 0.2em 0 0 0.2em;border:1px solid black;padding: 2px 7px 0px 7px;cursor:pointer;" (click)="testdirection('row'); blocAlignementDispo = 'row'">ligne</a>
-                  <a *ngIf="blocAlignementDispo == 'column' " style="background: #e4e4e4; text-decoration: none;border-radius: 0 0.2em 0.2em 0;border:1px solid black;padding: 2px 4px 0px 4px;cursor:pointer;" (click)="testdirection('column')">colonne</a>
-                  <a *ngIf="blocAlignementDispo == 'row' " style="text-decoration: none;border-radius: 0 0.2em 0.2em 0;border:1px solid black;padding: 2px 4px 0px 4px;cursor:pointer;" (click)="testdirection('column');blocAlignementDispo = 'column'">colonne</a>
+            <div fxLayout="row" fxLayoutAlign="start center" class="edit-block-row">
+              <div fxLayout="row" fxLayoutAlign="space-between center" class="edit-block-row-row">Disposition :
+                <div name="direction" class="flex">
+                  <a *ngIf="blocAlignementDispo == 'row' " class="alignement ligne selected" (click)="testdirection('row'); ">ligne</a>
+                  <a *ngIf="blocAlignementDispo == 'column'" class="alignement ligne" (click)="testdirection('row'); blocAlignementDispo = 'row'">ligne</a>
+                  <a *ngIf="blocAlignementDispo == 'column' " class="alignement column selected" (click)="testdirection('column')">colonne</a>
+                  <a *ngIf="blocAlignementDispo == 'row'" class="alignement column" (click)="testdirection('column');blocAlignementDispo = 'column'">colonne</a>
                 </div>
               </div>
             </div>
 
-            <div fxLayout="row" fxLayoutAlign="start center" style="margin-bottom:30px;">
-              <div fxLayout="row" fxLayoutAlign="space-between center" style="min-width:300px;">Horizontal :
-                <div name="mainAxis" style="display:flex; margin-left:10px;">
-                  <!-- <mat-radio-button value=""><mat-icon>notifications_off</mat-icon></mat-radio-button> -->
-                  <!-- <a style="border:1px solid black;padding: 5px 4px 0px 4px;cursor:pointer;" (click)="testmainAxis('space-around')"><mat-icon>chevron_right</mat-icon></a>
-                  <a style="border:1px solid black;padding: 5px 4px 0px 4px;cursor:pointer;" (click)="testmainAxis('space-between')"><mat-icon>first_page</mat-icon></a>
-                  <a style="border:1px solid black;padding: 5px 4px 0px 4px;cursor:pointer;" (click)="testmainAxis('space-evenly')"><mat-icon>format_align_justify</mat-icon></a> -->
-                  <a *ngIf="blocHorizontalDispo == 'start' "  style="background: #e4e4e4; border-radius: 0.2em 0 0 0.2em;border:1px solid black;padding: 5px 4px 0px 4px;cursor:pointer;" (click)="testmainAxis('start')"><mat-icon >format_align_left</mat-icon> </a>
-                  <a *ngIf="blocHorizontalDispo != 'start' "  style="border-radius: 0.2em 0 0 0.2em;border:1px solid black;padding: 5px 4px 0px 4px;cursor:pointer;" (click)="testmainAxis('start'); blocHorizontalDispo = 'start'"><mat-icon >format_align_left</mat-icon> </a>
-                  <a *ngIf="blocHorizontalDispo == 'center' " style="background: #e4e4e4; border:1px solid black;padding: 5px 4px 0px 4px;cursor:pointer;" (click)="testmainAxis('center')"><mat-icon>format_align_center</mat-icon></a>
-                  <a *ngIf="blocHorizontalDispo != 'center' " style="border:1px solid black;padding: 5px 4px 0px 4px;cursor:pointer;" (click)="testmainAxis('center'); blocHorizontalDispo = 'center' "><mat-icon >format_align_center</mat-icon></a>
-                  <a *ngIf="blocHorizontalDispo == 'end' " style="background: #e4e4e4; border-radius: 0 0.2em 0.2em 0;border:1px solid black;padding: 5px 4px 0px 4px;cursor:pointer;" (click)="testmainAxis('end')"><mat-icon >format_align_right</mat-icon> </a>
-                  <a *ngIf="blocHorizontalDispo != 'end' " style="border-radius: 0 0.2em 0.2em 0;border:1px solid black;padding: 5px 4px 0px 4px;cursor:pointer;" (click)="testmainAxis('end'); blocHorizontalDispo = 'end'"><mat-icon>format_align_right</mat-icon></a>
+            <div fxLayout="row" fxLayoutAlign="start center" class="edit-block-row">
+              <div fxLayout="row" fxLayoutAlign="space-between center" class="edit-block-row-row">Horizontal :
+                <div name="mainAxis" class="flex">
+                  <a *ngIf="blocHorizontalDispo == 'start' " class="alignement selected border-radius-left" (click)="testmainAxis('start')"><mat-icon >format_align_left</mat-icon> </a>
+                  <a *ngIf="blocHorizontalDispo != 'start' " class="alignement border-radius-left" (click)="testmainAxis('start'); blocHorizontalDispo = 'start'"><mat-icon >format_align_left</mat-icon> </a>
+                  <a *ngIf="blocHorizontalDispo == 'center' " class="alignement selected" (click)="testmainAxis('center')"><mat-icon>format_align_center</mat-icon></a>
+                  <a *ngIf="blocHorizontalDispo != 'center' " class="alignement" (click)="testmainAxis('center'); blocHorizontalDispo = 'center' "><mat-icon >format_align_center</mat-icon></a>
+                  <a *ngIf="blocHorizontalDispo == 'end' " class="alignement selected border-radius-right" (click)="testmainAxis('end')"><mat-icon >format_align_right</mat-icon> </a>
+                  <a *ngIf="blocHorizontalDispo != 'end' " class="alignement border-radius-right" (click)="testmainAxis('end'); blocHorizontalDispo = 'end'"><mat-icon>format_align_right</mat-icon></a>
                 </div>
               </div>
             </div>
 
-            <div fxLayout="row" fxLayoutAlign="start center">
-              <div fxLayout="row" fxLayoutAlign="space-between center" style="min-width:300px;"> Vertical :
-                <div name="crossAxis" style="display:flex; margin-left:10px;">
+            <div fxLayout="row" fxLayoutAlign="start center" class="edit-block-row">
+              <div fxLayout="row" fxLayoutAlign="space-between center" class="edit-block-row-row"> Vertical :
+                <div name="crossAxis" class="flex">
 
-                  <!-- <mat-radio-button value="none"><em>Aucune</em></mat-radio-button> -->
-                  <!-- <a style="border-radius: 0.2em 0 0 0.2em;border:1px solid black;padding: 5px 4px 0px 4px;cursor:pointer;" (click)="testcrossAxis('stretch')"><mat-icon>format_line_spacing</mat-icon></a> -->
-                  <a *ngIf="blocVerticalDispo == 'start' " style="background: #e4e4e4;border:1px solid black;padding: 5px 4px 0px 4px;cursor:pointer;" (click)="testcrossAxis('start')"><mat-icon>vertical_align_top</mat-icon>  </a>
-                  <a *ngIf="blocVerticalDispo != 'start' " style="border:1px solid black;padding: 5px 4px 0px 4px;cursor:pointer;" (click)="testcrossAxis('start'); blocVerticalDispo = 'start'"><mat-icon >vertical_align_top</mat-icon></a>
-                  <a *ngIf="blocVerticalDispo == 'center' " style="background: #e4e4e4;border:1px solid black;padding: 5px 4px 0px 4px;cursor:pointer;" (click)="testcrossAxis('center')"><mat-icon >vertical_align_center</mat-icon> </a>
-                  <a *ngIf="blocVerticalDispo != 'center' " style="border:1px solid black;padding: 5px 4px 0px 4px;cursor:pointer;" (click)="testcrossAxis('center'); blocVerticalDispo = 'center'"><mat-icon >vertical_align_center</mat-icon> </a>
-                  <a *ngIf="blocVerticalDispo == 'end' " style="background: #e4e4e4;border-radius: 0 0.2em 0.2em 0;border:1px solid black;padding: 5px 4px 0px 4px;cursor:pointer;" (click)="testcrossAxis('end')"><mat-icon >vertical_align_bottom</mat-icon>  </a>
-                  <a *ngIf="blocVerticalDispo != 'end' " style="border-radius: 0 0.2em 0.2em 0;border:1px solid black;padding: 5px 4px 0px 4px;cursor:pointer;" (click)="testcrossAxis('end'); blocVerticalDispo = 'end'"><mat-icon>vertical_align_bottom</mat-icon> </a>
+                  <a *ngIf="blocVerticalDispo == 'start' " class="alignement selected border-radius-left" (click)="testcrossAxis('start')"><mat-icon>vertical_align_top</mat-icon>  </a>
+                  <a *ngIf="blocVerticalDispo != 'start' " class="alignement border-radius-left" (click)="testcrossAxis('start'); blocVerticalDispo = 'start'"><mat-icon >vertical_align_top</mat-icon></a>
+                  <a *ngIf="blocVerticalDispo == 'center' " class="alignement selected" (click)="testcrossAxis('center')"><mat-icon >vertical_align_center</mat-icon> </a>
+                  <a *ngIf="blocVerticalDispo != 'center' " class="alignement" (click)="testcrossAxis('center'); blocVerticalDispo = 'center'"><mat-icon >vertical_align_center</mat-icon> </a>
+                  <a *ngIf="blocVerticalDispo == 'end' " class="alignement selected border-radius-right" (click)="testcrossAxis('end')"><mat-icon >vertical_align_bottom</mat-icon>  </a>
+                  <a *ngIf="blocVerticalDispo != 'end' " class="alignement border-radius-right" (click)="testcrossAxis('end'); blocVerticalDispo = 'end'"><mat-icon>vertical_align_bottom</mat-icon> </a>
                 </div>
               </div>
             </div>
@@ -272,8 +245,8 @@
       <!--------------------------------------------   FIN EDIT BLOCK  ---------------------------------------->
 
       <!--  ------------------------------------------  EDIT ITEM ------------------------------------------  -->
-        <h4 style="padding-left:20px;">Personnalisation de l'élement</h4>
-        <div style=" width: 100%; background-color: whitesmoke; padding-left:20px;">
+        <h4>Personnalisation de l'élement</h4>
+        <div class="edit-item">
               <!--  ------------------------------------------  AUTOCOMPLETE ------------------------------------------  -->
 
                 <div *ngIf="ItemEdit == 'autocomplete'">
@@ -431,259 +404,256 @@
       <mat-sidenav-content>
 
         <div class="paperBoard" id="paperBoard">
-          <div *ngIf="gridViewOpen == true " style="height: 100%;" >
-            <div id="ligne1" style="display: block; height: 11%;">
+          <div *ngIf="gridViewOpen == true " class="gridView" >
+            <div id="ligne1" class="ligneGrid11">
               <div id="col14" (click)="gridSkull(1,4)"  class="{{backgroundColor[3]}}" ></div>
               <div id="col13" (click)="gridSkull(1,3)"  class="{{backgroundColor[2]}}"></div>
               <div id="col12" (click)="gridSkull(1,2)"  class="{{backgroundColor[1]}}"></div>
               <div id="col11" (click)="gridSkull(1,1)"  class="{{backgroundColor[0]}}"></div>
             </div>
-            <div id="ligne2" style="display: block;height: 11%" >
+            <div id="ligne2" class="ligneGrid11" >
               <div id="col24" (click)="gridSkull(2,4)" class="{{backgroundColor[7]}}"></div>
               <div id="col23" (click)="gridSkull(2,3)" class="{{backgroundColor[6]}}"></div>
               <div id="col22" (click)="gridSkull(2,2)" class="{{backgroundColor[5]}}"></div>
               <div id="col21" (click)="gridSkull(2,1)" class="{{backgroundColor[4]}}"></div>
             </div>
-            <div id="ligne3" style="display: block;height: 11%" >
+            <div id="ligne3" class="ligneGrid11" >
               <div id="col34" (click)="gridSkull(3,4)" class="{{backgroundColor[11]}}"></div>
               <div id="col33" (click)="gridSkull(3,3)" class="{{backgroundColor[10]}}"></div>
               <div id="col32" (click)="gridSkull(3,2)" class="{{backgroundColor[9]}}"></div>
               <div id="col31" (click)="gridSkull(3,1)" class="{{backgroundColor[8]}}"></div>
             </div>
-            <div id="ligne4" style="display: block;height: 11%" >
+            <div id="ligne4" class="ligneGrid11" >
               <div id="col44" (click)="gridSkull(4,4)" class="{{backgroundColor[15]}}"></div>
               <div id="col43" (click)="gridSkull(4,3)" class="{{backgroundColor[14]}}"></div>
               <div id="col42" (click)="gridSkull(4,2)" class="{{backgroundColor[13]}}"></div>
               <div id="col41" (click)="gridSkull(4,1)" class="{{backgroundColor[12]}}"></div>
             </div>
-            <div id="ligne5" style="display: block;height: 11%">
+            <div id="ligne5" class="ligneGrid11">
               <div id="col54" (click)="gridSkull(5,4)" class="{{backgroundColor[19]}}"></div>
               <div id="col53" (click)="gridSkull(5,3)" class="{{backgroundColor[18]}}"></div>
               <div id="col52" (click)="gridSkull(5,2)" class="{{backgroundColor[17]}}"></div>
               <div id="col51" (click)="gridSkull(5,1)" class="{{backgroundColor[16]}}"></div>
             </div>
-            <div id="ligne6" style="display: block;height: 11%" >
+            <div id="ligne6" class="ligneGrid11" >
               <div id="col64" (click)="gridSkull(6,4)" class="{{backgroundColor[23]}}"></div>
               <div id="col63" (click)="gridSkull(6,3)" class="{{backgroundColor[22]}}"></div>
               <div id="col62" (click)="gridSkull(6,2)" class="{{backgroundColor[21]}}"></div>
               <div id="col61" (click)="gridSkull(6,1)" class="{{backgroundColor[20]}}"></div>
             </div>
-            <div id="ligne7" style="display: block;height: 11%" >
+            <div id="ligne7" class="ligneGrid11" >
               <div id="col74" (click)="gridSkull(7,4)" class="{{backgroundColor[27]}}"></div>
               <div id="col73" (click)="gridSkull(7,3)" class="{{backgroundColor[26]}}"></div>
               <div id="col72" (click)="gridSkull(7,2)" class="{{backgroundColor[25]}}"></div>
               <div id="col71" (click)="gridSkull(7,1)" class="{{backgroundColor[24]}}"></div>
             </div>
-            <div id="ligne8" style="display: block;height: 11%"  >
+            <div id="ligne8" class="ligneGrid11"  >
               <div id="col84" (click)="gridSkull(8,4)" class="{{backgroundColor[31]}}"></div>
               <div id="col83" (click)="gridSkull(8,3)" class="{{backgroundColor[30]}}"></div>
               <div id="col82" (click)="gridSkull(8,2)" class="{{backgroundColor[29]}}"></div>
               <div id="col81" (click)="gridSkull(8,1)" class="{{backgroundColor[28]}}"></div>
             </div>
-            <div id="ligne9" style="display: block;height: 12%"  >
+            <div id="ligne9" class="ligneGrid12">
               <div id="col94" (click)="gridSkull(9,4)" class="{{backgroundColor[35]}}"></div>
               <div id="col93" (click)="gridSkull(9,3)" class="{{backgroundColor[34]}}"></div>
               <div id="col92" (click)="gridSkull(9,2)" class="{{backgroundColor[33]}}"></div>
               <div id="col91" (click)="gridSkull(9,1)" class="{{backgroundColor[32]}}"></div>
             </div>
           </div>
-          <div *ngIf="gridViewOpen == false" style="height: 100%">
-          <form style="height: 100%;">
-            <mat-grid-list cols="4" rowHeight="fit">
-              <mat-grid-tile
-                *ngFor="let tile of tiles"
-                [colspan]="tile.cols"
-                [rowspan]="tile.rows"
-                [style.background]="tile.color" >
-                  {{tile.text}}
-                <div *ngIf="tile.vide == 'true' "  [dragula]='"page-bag"' [dragulaModel]='tile.tab' id={{tile.id}} style="width: 100%;overflow:auto;height: 100%;"  [fxLayout]="optLayout[tile.optLayoutId].direction" [fxLayoutAlign]="layoutAlign(tile.optLayoutId)" (click)="monContainer(tile.optLayoutId)">
-                  <div *ngFor='let text of tile.tab'>
+          <div *ngIf="gridViewOpen == false" class="gridView">
+            <form class="gridView">
+              <mat-grid-list cols="4" rowHeight="fit">
+                <mat-grid-tile
+                  *ngFor="let tile of tiles"
+                  [colspan]="tile.cols"
+                  [rowspan]="tile.rows"
+                  [style.background]="tile.color" >
+                    {{tile.text}}
+                  <div *ngIf="tile.vide == 'true'" [dragula]='"page-bag"' [dragulaModel]='tile.tab' id={{tile.id}} class="tile" [fxLayout]="optLayout[tile.optLayoutId].direction" [fxLayoutAlign]="layoutAlign(tile.optLayoutId)" (click)="monContainer(tile.optLayoutId)">
+                    <div *ngFor='let text of tile.tab'>
+                      <div *ngIf="text[0] == 'alfrescoadf' " (click)="editItem('alfrescoadf',tile.id,text[1])" >
+                        <adf-toolbar>
+                          <adf-toolbar-title>
+                            <adf-breadcrumb
+                              class="files-breadcrumb"
+                              root= {{text[3]}}
+                              [target]="documentList"
+                              [folderNode]="documentList.folderNode">
+                            </adf-breadcrumb>
+                          </adf-toolbar-title>
+                          <adf-upload-button
+                            [rootFolderId]="documentList.currentFolderId || '-root-'"
+                            [adf-node-permission]="'create'"
+                            (success)="uploadSuccess($event)">
+                          </adf-upload-button>
+                        </adf-toolbar>
 
-                    <div *ngIf="text[0] == 'alfrescoadf' " (click)="editItem('alfrescoadf',tile.id,text[1])" >
-                      <adf-toolbar>
-                        <adf-toolbar-title>
-                          <adf-breadcrumb
-                            class="files-breadcrumb"
-                            root= {{text[3]}}
-                            [target]="documentList"
-                            [folderNode]="documentList.folderNode">
-                          </adf-breadcrumb>
-                        </adf-toolbar-title>
-                        <adf-upload-button
-                          [rootFolderId]="documentList.currentFolderId || '-root-'"
-                          [adf-node-permission]="'create'"
-                          (success)="uploadSuccess($event)">
-                        </adf-upload-button>
-                      </adf-toolbar>
+                        <adf-document-list
+                          #documentList
+                          [currentFolderId]= text[2]
+                          (preview)="showPreview($event)">
+                        </adf-document-list>
 
-                      <adf-document-list
-                        #documentList
-                        [currentFolderId]= text[2]
-                        (preview)="showPreview($event)">
-                      </adf-document-list>
-
-                      <adf-viewer
-                        [showViewer]="showViewer"
-                        [overlayMode]="true"
-                        [fileNodeId]="nodeId"
-                        (goBack)="onGoBack($event)">
-                      </adf-viewer>
-                      <file-uploading-dialog></file-uploading-dialog>
-                    </div>
-
-                    <div *ngIf="text[0] == 'autocomplete' " (click)="editItem('autocomplete',tile.id,text[1])" >
-                      <mat-form-field>
-                        <input matInput class="w3-input w3-border w3-light-grey" type="text[0]" placeholder="{{text[2]}}" [matAutocomplete]="auto" >
-                        <mat-autocomplete #auto="matAutocomplete">
-                          <mat-option *ngFor="let option of text[3]" [value]="option">
-                            {{ option }}
-                          </mat-option>
-                        </mat-autocomplete>
-                      </mat-form-field>
-                    </div>
-
-                    <div *ngIf="text[0] == 'select' " (click)="editItem('select',tile.id,text[1])">
-                      <mat-form-field>
-                        <mat-select placeholder="{{text[2]}}">
-                          <mat-option *ngFor="let option of text[3]" [value]="option">
-                            {{ option }}
-                          </mat-option>
-                        </mat-select>
-                      </mat-form-field>
-                    </div>
-
-                    <div *ngIf="text[0] == 'checkbox' " (click)="editItem('checkbox',tile.id,text[1])">
-                      <mat-checkbox>{{text[2]}}</mat-checkbox>
-                    </div>
-
-                    <!----------------------------------------       GRID BUTTON  ---------------------------------------------------------->
-
-                      <div *ngIf="text[0] == 'button' " (click)="editItem('button',tile.id,text[1])">
-                        <div *ngIf="text[2] == 'basic' ">
-                          <div *ngIf="text[3] == 'basic' ">
-                            <button mat-button  *ngIf="text[4] == 'basic' "  (click)="fonctionTest()">{{text[5]}}</button>
-                            <button mat-button color="accent" *ngIf="text[4] == 'accent' " (click)="onSubmit()">{{text[5]}}</button>
-                            <button mat-button color="warn"  *ngIf="text[4] == 'warn' ">{{text[5]}}</button>
-                          </div>
-
-                          <div *ngIf="text[3] == 'raised' ">
-                            <button mat-raised-button  *ngIf="text[4] == 'basic' ">{{text[5]}}</button>
-                            <button mat-raised-button color="accent"  *ngIf="text[4] == 'accent' ">{{text[5]}}</button>
-                            <button mat-raised-button color="warn" *ngIf="text[4] == 'warn' ">{{text[5]}}</button>
-                          </div>
-
-                          <div *ngIf="text[3] == 'fab' ">
-                            <button mat-fab  *ngIf="text[4] == 'basic' ">{{text[5]}}</button>
-                            <button mat-fab color="accent"  *ngIf="text[4] == 'accent' ">{{text[5]}}</button>
-                            <button mat-fab color="warn" *ngIf="text[4] == 'warn' ">{{text[5]}}</button>
-                          </div>
-
-                          <div *ngIf="text[3] == 'minifab' ">
-                            <button mat-mini-fab  *ngIf="text[4] == 'basic' ">{{text[5]}}</button>
-                            <button mat-mini-fab color="accent"  *ngIf="text[4] == 'accent' ">{{text[5]}}</button>
-                            <button mat-mini-fab color="warn" *ngIf="text[4] == 'warn' ">{{text[5]}}</button>
-                          </div>
-                        </div>
-
-                        <div *ngIf="text[2] == 'icon' ">
-                          <div *ngIf="text[3] == 'icon' ">
-                          <button mat-icon-button  *ngIf="text[4] == 'basic' ">
-                            <mat-icon aria-label="Example icon-button with a heart icon">{{text[5]}}</mat-icon>
-                          </button>
-                          <button mat-icon-button color="accent"  *ngIf="text[4] == 'accent' ">
-                            <mat-icon aria-label="Example icon-button with a heart icon">{{text[5]}}</mat-icon>
-                          </button>
-                          <button mat-icon-button color="warn"  *ngIf="text[4] == 'warn' ">
-                            <mat-icon aria-label="Example icon-button with a heart icon">{{text[5]}}</mat-icon>
-                          </button>
-                          </div>
-                          <div *ngIf="text[3] == 'basic' ">
-                            <button mat-button  *ngIf="text[4] == 'basic' ">
-                              <mat-icon aria-label="Example icon-button with a heart icon">{{text[5]}}</mat-icon>
-                            </button>
-                            <button mat-button color="accent"  *ngIf="text[4] == 'accent' ">
-                              <mat-icon aria-label="Example icon-button with a heart icon">{{text[5]}}</mat-icon>
-                            </button>
-                            <button mat-button color="warn"  *ngIf="text[4] == 'warn' ">
-                              <mat-icon aria-label="Example icon-button with a heart icon">{{text[5]}}</mat-icon>
-                            </button>
-                          </div>
-
-                          <div *ngIf="text[3] == 'raised' ">
-                            <button mat-raised-button  *ngIf="text[4] == 'basic' ">
-                              <mat-icon aria-label="Example icon-button with a heart icon">{{text[5]}}</mat-icon>
-                            </button>
-                            <button mat-raised-button color="accent"  *ngIf="text[4] == 'accent' ">
-                              <mat-icon aria-label="Example icon-button with a heart icon">{{text[5]}}</mat-icon>
-                            </button>
-                            <button mat-raised-button color="warn"  *ngIf="text[4] == 'warn' ">
-                              <mat-icon aria-label="Example icon-button with a heart icon">{{text[5]}}</mat-icon>
-                            </button>
-                          </div>
-
-                          <div *ngIf="text[3] == 'fab' ">
-                            <button mat-fab  *ngIf="text[4] == 'basic' ">
-                              <mat-icon aria-label="Example icon-button with a heart icon">{{text[5]}}</mat-icon>
-                            </button>
-                            <button mat-fab color="warn"  *ngIf="text[4] == 'warn' ">
-                              <mat-icon aria-label="Example icon-button with a heart icon">{{text[5]}}</mat-icon>
-                            </button>
-                          </div>
-                        </div>
+                        <adf-viewer
+                          [showViewer]="showViewer"
+                          [overlayMode]="true"
+                          [fileNodeId]="nodeId"
+                          (goBack)="onGoBack($event)">
+                        </adf-viewer>
+                        <file-uploading-dialog></file-uploading-dialog>
                       </div>
-                    <!----------------------------------------   FIN GRID BUTTON  ---------------------------------------------------------->
 
-                    <!----------------------------------------       GRID ICON BUTTON  ---------------------------------------------------------->
-                      <div *ngIf="text[0] == 'icon' " (click)="editItem('icon',tile.id,text[1])">
-                        <mat-icon>{{text[2]}}</mat-icon>
-                      </div>
-                    <!----------------------------------------     FIN  GRID  ICON BUTTON  ---------------------------------------------------------->
-
-                    <div *ngIf="text[0] == 'datepicker' " (click)="editItem('datepicker',tile.id,text[1])">
-                      <mat-form-field>
-                      <input matInput [matDatepicker]="picker" placeholder="{{ text[2] }}">
-                      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                      <mat-datepicker #picker></mat-datepicker>
+                      <div *ngIf="text[0] == 'autocomplete' " (click)="editItem('autocomplete',tile.id,text[1])" >
+                        <mat-form-field>
+                          <input matInput class="w3-input w3-border w3-light-grey" type="text[0]" placeholder="{{text[2]}}" [matAutocomplete]="auto" >
+                          <mat-autocomplete #auto="matAutocomplete">
+                            <mat-option *ngFor="let option of text[3]" [value]="option">
+                              {{ option }}
+                            </mat-option>
+                          </mat-autocomplete>
                         </mat-form-field>
+                      </div>
+
+                      <div *ngIf="text[0] == 'select' " (click)="editItem('select',tile.id,text[1])">
+                        <mat-form-field>
+                          <mat-select placeholder="{{text[2]}}">
+                            <mat-option *ngFor="let option of text[3]" [value]="option">
+                              {{ option }}
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                      </div>
+
+                      <div *ngIf="text[0] == 'checkbox' " (click)="editItem('checkbox',tile.id,text[1])">
+                        <mat-checkbox>{{text[2]}}</mat-checkbox>
+                      </div>
+
+                      <!----------------------------------------       GRID BUTTON  ---------------------------------------------------------->
+
+                        <div *ngIf="text[0] == 'button' " (click)="editItem('button',tile.id,text[1])">
+                          <div *ngIf="text[2] == 'basic' ">
+                            <div *ngIf="text[3] == 'basic' ">
+                              <button mat-button  *ngIf="text[4] == 'basic' "  (click)="fonctionTest()">{{text[5]}}</button>
+                              <button mat-button color="accent" *ngIf="text[4] == 'accent' " (click)="onSubmit()">{{text[5]}}</button>
+                              <button mat-button color="warn"  *ngIf="text[4] == 'warn' ">{{text[5]}}</button>
+                            </div>
+
+                            <div *ngIf="text[3] == 'raised' ">
+                              <button mat-raised-button  *ngIf="text[4] == 'basic' ">{{text[5]}}</button>
+                              <button mat-raised-button color="accent"  *ngIf="text[4] == 'accent' ">{{text[5]}}</button>
+                              <button mat-raised-button color="warn" *ngIf="text[4] == 'warn' ">{{text[5]}}</button>
+                            </div>
+
+                            <div *ngIf="text[3] == 'fab' ">
+                              <button mat-fab  *ngIf="text[4] == 'basic' ">{{text[5]}}</button>
+                              <button mat-fab color="accent"  *ngIf="text[4] == 'accent' ">{{text[5]}}</button>
+                              <button mat-fab color="warn" *ngIf="text[4] == 'warn' ">{{text[5]}}</button>
+                            </div>
+
+                            <div *ngIf="text[3] == 'minifab' ">
+                              <button mat-mini-fab  *ngIf="text[4] == 'basic' ">{{text[5]}}</button>
+                              <button mat-mini-fab color="accent"  *ngIf="text[4] == 'accent' ">{{text[5]}}</button>
+                              <button mat-mini-fab color="warn" *ngIf="text[4] == 'warn' ">{{text[5]}}</button>
+                            </div>
+                          </div>
+
+                          <div *ngIf="text[2] == 'icon' ">
+                            <div *ngIf="text[3] == 'icon' ">
+                            <button mat-icon-button  *ngIf="text[4] == 'basic' ">
+                              <mat-icon aria-label="Example icon-button with a heart icon">{{text[5]}}</mat-icon>
+                            </button>
+                            <button mat-icon-button color="accent"  *ngIf="text[4] == 'accent' ">
+                              <mat-icon aria-label="Example icon-button with a heart icon">{{text[5]}}</mat-icon>
+                            </button>
+                            <button mat-icon-button color="warn"  *ngIf="text[4] == 'warn' ">
+                              <mat-icon aria-label="Example icon-button with a heart icon">{{text[5]}}</mat-icon>
+                            </button>
+                            </div>
+                            <div *ngIf="text[3] == 'basic' ">
+                              <button mat-button  *ngIf="text[4] == 'basic' ">
+                                <mat-icon aria-label="Example icon-button with a heart icon">{{text[5]}}</mat-icon>
+                              </button>
+                              <button mat-button color="accent"  *ngIf="text[4] == 'accent' ">
+                                <mat-icon aria-label="Example icon-button with a heart icon">{{text[5]}}</mat-icon>
+                              </button>
+                              <button mat-button color="warn"  *ngIf="text[4] == 'warn' ">
+                                <mat-icon aria-label="Example icon-button with a heart icon">{{text[5]}}</mat-icon>
+                              </button>
+                            </div>
+
+                            <div *ngIf="text[3] == 'raised' ">
+                              <button mat-raised-button  *ngIf="text[4] == 'basic' ">
+                                <mat-icon aria-label="Example icon-button with a heart icon">{{text[5]}}</mat-icon>
+                              </button>
+                              <button mat-raised-button color="accent"  *ngIf="text[4] == 'accent' ">
+                                <mat-icon aria-label="Example icon-button with a heart icon">{{text[5]}}</mat-icon>
+                              </button>
+                              <button mat-raised-button color="warn"  *ngIf="text[4] == 'warn' ">
+                                <mat-icon aria-label="Example icon-button with a heart icon">{{text[5]}}</mat-icon>
+                              </button>
+                            </div>
+
+                            <div *ngIf="text[3] == 'fab' ">
+                              <button mat-fab  *ngIf="text[4] == 'basic' ">
+                                <mat-icon aria-label="Example icon-button with a heart icon">{{text[5]}}</mat-icon>
+                              </button>
+                              <button mat-fab color="warn"  *ngIf="text[4] == 'warn' ">
+                                <mat-icon aria-label="Example icon-button with a heart icon">{{text[5]}}</mat-icon>
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      <!----------------------------------------   FIN GRID BUTTON  ---------------------------------------------------------->
+
+                      <!----------------------------------------       GRID ICON BUTTON  ---------------------------------------------------------->
+                        <div *ngIf="text[0] == 'icon' " (click)="editItem('icon',tile.id,text[1])">
+                          <mat-icon>{{text[2]}}</mat-icon>
+                        </div>
+                      <!----------------------------------------     FIN  GRID  ICON BUTTON  ---------------------------------------------------------->
+
+                      <div *ngIf="text[0] == 'datepicker' " (click)="editItem('datepicker',tile.id,text[1])">
+                        <mat-form-field>
+                          <input matInput [matDatepicker]="picker" placeholder="{{ text[2] }}">
+                          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                          <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field>
+                      </div>
+
+                      <div *ngIf="text[0] == 'input' " (click)="editItem('input',tile.id,text[1])">
+                        <mat-form-field>
+                          <input matInput id="{{text[1]}}" placeholder="{{text[2]}}" >
+                        </mat-form-field>
+                      </div>
+
+                      <div *ngIf="text[0] == 'chips' " (click)="editItem('chips',tile.id,text[1])">
+                        <mat-chip-list>
+                        <mat-chip *ngFor="let option of text[2]" color="{{option[1]}}" >{{option[0]}}</mat-chip>
+                          <mat-chip color="primary" selected="true">Primary fish</mat-chip>
+                        </mat-chip-list>
+                      </div>
+
+                      <div *ngIf="text[0] == 'radiobutton' "(click)="editItem('radiobutton',tile.id,text[1])">
+                        <mat-radio-group>
+                          <mat-radio-button *ngFor="let option of text[2]" [value]="option" style="margin-right: 10px">
+                            {{ option }}
+                          </mat-radio-button>
+                        </mat-radio-group>
+                      </div>
+
+                      <div *ngIf="text[0] == 'slider' ">
+                        <mat-slider min="1" max="5" step="0.5" value="1.5"></mat-slider>
+                      </div>
+
+                      <div *ngIf="text[0] == 'slidetoggle' ">
+                        <mat-slide-toggle>Slide me!</mat-slide-toggle>
+                      </div>
+
                     </div>
-
-                    <div *ngIf="text[0] == 'input' " (click)="editItem('input',tile.id,text[1])">
-                      <mat-form-field>
-                        <input matInput id="{{text[1]}}" placeholder="{{text[2]}}" >
-                      </mat-form-field>
-                    </div>
-
-                    <div *ngIf="text[0] == 'chips' " (click)="editItem('chips',tile.id,text[1])">
-                      <mat-chip-list>
-                      <mat-chip *ngFor="let option of text[2]" color="{{option[1]}}" >{{option[0]}}</mat-chip>
-                        <mat-chip color="primary" selected="true">Primary fish</mat-chip>
-                      </mat-chip-list>
-                    </div>
-
-                    <div *ngIf="text[0] == 'radiobutton' "(click)="editItem('radiobutton',tile.id,text[1])">
-                      <mat-radio-group>
-                        <mat-radio-button *ngFor="let option of text[2]" [value]="option" style="margin-right: 10px">
-                          {{ option }}
-                        </mat-radio-button>
-
-                      </mat-radio-group>
-                    </div>
-
-                    <div *ngIf="text[0] == 'slider' ">
-                      <mat-slider min="1" max="5" step="0.5" value="1.5"></mat-slider>
-                    </div>
-
-                    <div *ngIf="text[0] == 'slidetoggle' ">
-                      <mat-slide-toggle>Slide me!</mat-slide-toggle>
-                    </div>
-
                   </div>
-                </div>
-              </mat-grid-tile>
-            </mat-grid-list>
-          </form>
+                </mat-grid-tile>
+              </mat-grid-list>
+            </form>
           </div>
-
         </div>
 
       </mat-sidenav-content>

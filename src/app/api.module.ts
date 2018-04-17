@@ -5,10 +5,6 @@ import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
-
-
 // App components
 import { HeroService } from './hero.service';
 import { HeroesComponent } from './heroes/heroes.component';
