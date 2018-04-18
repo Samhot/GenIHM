@@ -33,6 +33,7 @@ h4 {
 #left-sidenav {
   width:min-content;
   padding: 0px 15px 0px 15px;
+  border-right: solid 1px lightgrey;
 }
 
 .sidenav-container {
@@ -110,11 +111,8 @@ h4 {
   padding:30px 30px 0px 30px;
 }
 
-.edit-block-row {
-  margin-bottom:30px;
-}
-
-.edit-block-row-row {
+.edit-row {
+  padding-bottom:30px;
   min-width: 300px;
 }
 

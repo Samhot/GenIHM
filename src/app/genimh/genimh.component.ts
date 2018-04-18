@@ -91,13 +91,13 @@ export class GenimhComponent implements OnInit {
   public navigation  = [['menu', 'NULL'], ['sidenav', 'NULL'], ['toolbar', 'NULL']];
   public layout = [['card', 'NULL'], ['list', 'NULL'], ['tabs', 'NULL'], ['stepper', 'NULL']];
   // tslint:disable-next-line:max-line-length
-  public button  = [['button', 'NULL', 'basic', 'basic', 'basic', 'Bouton'], ['buttontoggle', 'NULL'], ['chips', 'NULL', [['one', ''], ['two', 'primary'], ['three', 'accent']]], ['icon', 'NULL', 'home'], ['progressspinner', 'NULL'], ['progressbar', 'NULL']];
+  public button  = [['button', 'NULL', 'basic', 'basic', 'basic', 'Bouton', 'text'], ['buttontoggle', 'NULL'], ['chips', 'NULL', [['one', ''], ['two', 'primary'], ['three', 'accent']]], ['icon', 'NULL', 'home'], ['progressspinner', 'NULL'], ['progressbar', 'NULL']];
   public modals  = [['dialog', 'NULL'], ['snackbar', 'NULL'], ['tooltip', 'NULL']];
   public dataTable  = [['paginator', 'NULL'], ['sortheader', 'NULL'], ['table', 'NULL']];
   public alfresco = [['alfrescoadf', 'NULL', '', 'Racine']]; // fc8d4fec-204e-428d-aa26-1295b6e8682c    f6b9f65c-33aa-4bc7-a560-babc93a30c89
   // tslint:disable-next-line:max-line-length
-  public total = [['autocomplete', 'NULL', 'Libellé', ['One', 'Two', 'Three']], ['button', 'NULL', 'basic', 'basic', 'basic', 'Bouton'], ['buttontoggle', 'NULL'], ['card', 'NULL'],  ['checkbox', 'NULL', 'Value'], ['chips', 'NULL', [['one', ''], ['two', 'primary'], ['three', 'accent']]], ['datepicker', 'NULL', 'Libellé'], ['dialog', 'NULL'], ['icon', 'NULL', 'home'], ['input', 'NULL', 'Libellé'], ['list', 'NULL'], ['menu', 'NULL'], ['paginator', 'NULL'], ['progressbar', 'NULL'], ['progressspinner', 'NULL'], ['radiobutton', 'NULL', ['Option 1', 'Option 2']], ['select', 'NULL', 'Libellé', ['Un', 'Deux', 'Trois']], ['sidenav', 'NULL'], ['slider', 'NULL'], ['slidetoggle', 'NULL'], ['snackbar', 'NULL'], ['sortheader', 'NULL'], ['stepper', 'NULL'], ['table', 'NULL'], ['tabs', 'NULL'], ['toolbar', 'NULL'], ['tooltip', 'NULL']];
-  public totalSave = [['autocomplete', 'NULL', 'Libellé', ['One', 'Two', 'Three']], ['button', 'NULL', 'basic', 'basic', 'basic', 'Bouton'], ['buttontoggle', 'NULL'], ['card', 'NULL'],  ['checkbox', 'NULL', 'Value'], ['chips', 'NULL', [['one', ''], ['two', 'primary'], ['three', 'accent']]], ['datepicker', 'NULL', 'Libellé'], ['dialog', 'NULL'], ['icon', 'NULL', 'home'], ['input', 'NULL', 'Libellé'], ['list', 'NULL'], ['menu', 'NULL'], ['paginator', 'NULL'], ['progressbar', 'NULL'], ['progressspinner', 'NULL'], ['radiobutton', 'NULL', ['Option 1', 'Option 2']],  ['select', 'NULL', 'Libellé', ['Un', 'Deux', 'Trois']], ['sidenav', 'NULL'], ['slider', 'NULL'], ['slidetoggle', 'NULL'], ['snackbar', 'NULL'], ['sortheader', 'NULL'], ['stepper', 'NULL'], ['table', 'NULL'], ['tabs', 'NULL'], ['toolbar', 'NULL'], ['tooltip', 'NULL']];
+  public total = [['autocomplete', 'NULL', 'Libellé', ['One', 'Two', 'Three']], ['button', 'NULL', 'basic', 'basic', 'basic', 'Bouton', 'text'], ['buttontoggle', 'NULL'], ['card', 'NULL'],  ['checkbox', 'NULL', 'Value'], ['chips', 'NULL', [['one', ''], ['two', 'primary'], ['three', 'accent']]], ['datepicker', 'NULL', 'Libellé'], ['dialog', 'NULL'], ['icon', 'NULL', 'home'], ['input', 'NULL', 'Libellé'], ['list', 'NULL'], ['menu', 'NULL'], ['paginator', 'NULL'], ['progressbar', 'NULL'], ['progressspinner', 'NULL'], ['radiobutton', 'NULL', ['Option 1', 'Option 2']], ['select', 'NULL', 'Libellé', ['Un', 'Deux', 'Trois']], ['sidenav', 'NULL'], ['slider', 'NULL'], ['slidetoggle', 'NULL'], ['snackbar', 'NULL'], ['sortheader', 'NULL'], ['stepper', 'NULL'], ['table', 'NULL'], ['tabs', 'NULL'], ['toolbar', 'NULL'], ['tooltip', 'NULL']];
+  public totalSave = [['autocomplete', 'NULL', 'Libellé', ['One', 'Two', 'Three']], ['button', 'NULL', 'basic', 'basic', 'basic', 'Bouton', 'text'], ['buttontoggle', 'NULL'], ['card', 'NULL'],  ['checkbox', 'NULL', 'Value'], ['chips', 'NULL', [['one', ''], ['two', 'primary'], ['three', 'accent']]], ['datepicker', 'NULL', 'Libellé'], ['dialog', 'NULL'], ['icon', 'NULL', 'home'], ['input', 'NULL', 'Libellé'], ['list', 'NULL'], ['menu', 'NULL'], ['paginator', 'NULL'], ['progressbar', 'NULL'], ['progressspinner', 'NULL'], ['radiobutton', 'NULL', ['Option 1', 'Option 2']],  ['select', 'NULL', 'Libellé', ['Un', 'Deux', 'Trois']], ['sidenav', 'NULL'], ['slider', 'NULL'], ['slidetoggle', 'NULL'], ['snackbar', 'NULL'], ['sortheader', 'NULL'], ['stepper', 'NULL'], ['table', 'NULL'], ['tabs', 'NULL'], ['toolbar', 'NULL'], ['tooltip', 'NULL']];
   showViewer: Boolean = false;
   nodeId: String = null;
 
@@ -147,7 +147,7 @@ export class GenimhComponent implements OnInit {
     this.lastActionBack = [];
     this.gridViewOpen = false;
     this.firstStructure = false;
-    this.blocAlignementDispo = "row";
+    this.blocAlignementDispo = 'row';
     // this.name;
     // this.animal;
     this.downloadJsonHref = {test: 'le test'};
@@ -168,10 +168,10 @@ export class GenimhComponent implements OnInit {
     this.colorSelect = this._sanitizer.bypassSecurityTrustStyle('rgb(64, 0, 255)');
     this.colorNameClass = 'B2';
     this.classBtnDelete = 'button floatRight';
-    this.iconBtnEdit = 'add';
+    this.iconBtnEdit = '';
     this.nameProject = 'Nom de la page';
     this.nameProjectClick = false;
-    this.blocAlignementDispo = "column";
+    this.blocAlignementDispo = 'column';
     this.fonctionTest = function () {};
     this.tabColorBtnMenu = ['', '', '', '', '', '', '', '', ''];
     this.toggleSideNavSetOut = '';
@@ -210,17 +210,17 @@ export class GenimhComponent implements OnInit {
   }
 
   testmainAxis(mainAxis) {
-    if(this.blocAlignementDispo == "column"){
+    if (this.blocAlignementDispo === 'column') {
       this.optLayout[this.idLayoutEdit].crossAxis = mainAxis;
-    }else{
+    }else {
       this.optLayout[this.idLayoutEdit].mainAxis = mainAxis;
     }
   }
 
   testcrossAxis(crossAxis) {
-    if(this.blocAlignementDispo == "column"){
+    if (this.blocAlignementDispo === 'column') {
       this.optLayout[this.idLayoutEdit].mainAxis = crossAxis;
-    }else{
+    }else {
       this.optLayout[this.idLayoutEdit].crossAxis = crossAxis;
     }
 
@@ -311,7 +311,7 @@ export class GenimhComponent implements OnInit {
   ngOnInit() {
     this.reset();
     this.getComposants();
-    this.toggleSideNavSetIn('panelAll',0);
+    this.toggleSideNavSetIn('panelAll', 0);
     this.totalSave.sort();
     this.gridViewOpen = true;
 
@@ -476,9 +476,9 @@ export class GenimhComponent implements OnInit {
 
   monContainer(idContainer) {
     this.idLayoutEdit = idContainer;
-    this.blocAlignementDispo = this.optLayout[this.idLayoutEdit].direction
-    this.blocHorizontalDispo = this.optLayout[this.idLayoutEdit].mainAxis
-    this.blocVerticalDispo = this.optLayout[this.idLayoutEdit].crossAxis
+    this.blocAlignementDispo = this.optLayout[this.idLayoutEdit].direction;
+    this.blocHorizontalDispo = this.optLayout[this.idLayoutEdit].mainAxis;
+    this.blocVerticalDispo = this.optLayout[this.idLayoutEdit].crossAxis;
   }
 changeApi(event) {
     this.heroService.heroesUrl = event.target.value;
@@ -651,13 +651,33 @@ changeApi(event) {
       }
     }
   }
-  changeStyle(style, style2) {
+
+  changeStyle(style) {
     const idDiv = this.idWebEdit.split('web');
     const tabValue = this.allArray[idDiv[1]][1];
     for (let i = 0; i < tabValue.length; i++) {
       if (tabValue[i][1] === this.idElementEdit) {
-        tabValue[i][3] =  style;
-        tabValue[i][4] =  style2;
+        tabValue[i][3] = style;
+      }
+    }
+  }
+
+  changeColor(color) {
+    const idDiv = this.idWebEdit.split('web');
+    const tabValue = this.allArray[idDiv[1]][1];
+    for (let i = 0; i < tabValue.length; i++) {
+      if (tabValue[i][1] === this.idElementEdit) {
+        tabValue[i][4] = color;
+      }
+    }
+  }
+
+  changeContent(content) {
+    const idDiv = this.idWebEdit.split('web');
+    const tabValue = this.allArray[idDiv[1]][1];
+    for (let i = 0; i < tabValue.length; i++) {
+      if (tabValue[i][1] === this.idElementEdit) {
+        tabValue[i][6] = content;
       }
     }
   }
@@ -756,11 +776,11 @@ changeApi(event) {
   }
 
   reset() {
-    this.firstStructure = false
+    this.firstStructure = false;
     this.tiles = [];
-    this.blocAlignementDispo = "column";
-    this.blocHorizontalDispo = "center";
-    this.blocVerticalDispo = "center";
+    this.blocAlignementDispo = 'column';
+    this.blocHorizontalDispo = 'center';
+    this.blocVerticalDispo = 'center';
     this.listID = 0;
     this.allArray = [];
     this.lastAction = [];
@@ -915,8 +935,8 @@ changeApi(event) {
             this.gridLigne = ligne;
             this.firstClick = false;
           }else {
-            if( this.firstStructure == false){
-              this.firstStructure = true
+            if ( this.firstStructure === false) {
+              this.firstStructure = true;
             }
             colonneF = this.mathSignPlus(this.gridColonne - colonne) + 1;
             ligneF = this.mathSignPlus(this.gridLigne - ligne) + 1;
@@ -1024,10 +1044,10 @@ changeApi(event) {
           }else {
             this.lastAction.push('delete');
           }
-          console.log(this.allArray)
-          console.log(this.matrice)
-          if(this.matrice.length == 0){
-            this.firstStructure = false
+          console.log(this.allArray);
+          console.log(this.matrice);
+          if (this.matrice.length === 0) {
+            this.firstStructure = false;
           }
           this.main();
           this.firstClick = true;
