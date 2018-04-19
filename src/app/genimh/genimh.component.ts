@@ -92,7 +92,7 @@ export class GenimhComponent implements OnInit {
   public navigation  = [['menu', 'NULL'], ['sidenav', 'NULL'], ['toolbar', 'NULL']];
   public layout = [['card', 'NULL'], ['list', 'NULL'], ['tabs', 'NULL'], ['stepper', 'NULL']];
   // tslint:disable-next-line:max-line-length
-  // public button  = [['button', 'NULL', 'basic', 'basic', 'basic', 'Bouton', 'text'], ['buttontoggle', 'NULL'], ['chips', 'NULL', [['one', ''], ['two', 'primary'], ['three', 'accent']]], ['icon', 'NULL', 'home'], ['progressspinner', 'NULL'], ['progressbar', 'NULL']];
+  public button  = [['button', 'NULL', 'basic', 'basic', 'basic', 'Bouton', 'text'], ['buttontoggle', 'NULL'], ['chips', 'NULL', [['one', ''], ['two', 'primary'], ['three', 'accent']]], ['icon', 'NULL', 'home'], ['progressspinner', 'NULL'], ['progressbar', 'NULL']];
   public modals  = [['dialog', 'NULL'], ['snackbar', 'NULL'], ['tooltip', 'NULL']];
   public dataTable  = [['paginator', 'NULL'], ['sortheader', 'NULL'], ['table', 'NULL']];
   public alfresco = [['alfrescoadf', 'NULL', '', 'Racine']]; // fc8d4fec-204e-428d-aa26-1295b6e8682c    f6b9f65c-33aa-4bc7-a560-babc93a30c89
@@ -115,7 +115,8 @@ export class GenimhComponent implements OnInit {
       accepts: function (el, target, source, sibling) {
 
         // tslint:disable-next-line:max-line-length
-        return target.id !== 'componentFrom' || target.id !== 'componentNav' || target.id !== 'componentTotal' || target.id !== 'componentLayout' || target.id !== 'componentButton' || target.id !== 'componentModals' || target.id !== 'componentDataTable' || target.id !== 'componentSearch' || target.id !== 'componentAlfresco'  ; // elements can be dropped only in 'to_drop_to' container
+        return target.id !== 'componentFrom' && target.id !== 'componentNav' && target.id !== 'componentTotal' && target.id !== 'componentLayout' && target.id !== 'componentButton' && target.id !== 'componentModals' && target.id !== 'componentDataTable' && target.id !== 'componentSearch' && target.id !== 'componentAlfresco'  ; // elements can be dropped only in 'to_drop_to' container
+        //  || target.id !== 'componentNav' || target.id !== 'componentTotal' || target.id !== 'componentLayout' || target.id !== 'componentButton' || target.id !== 'componentModals' || target.id !== 'componentDataTable' || target.id !== 'componentSearch' || target.id !== 'componentAlfresco'  ; // elements can be dropped only in 'to_drop_to' container
       },
       copy: (el: Element, source: Element): boolean => {
         // elements are copied only if they are not already copied ones. That enables the 'removeOnSpill' to work
