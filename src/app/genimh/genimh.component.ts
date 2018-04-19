@@ -85,13 +85,14 @@ export class GenimhComponent implements OnInit {
   public blocAlignementDispo;
   public blocHorizontalDispo;
   public blocVerticalDispo;
+  public inputType;
 
   // tslint:disable-next-line:max-line-length
   public formControl = [['autocomplete', 'NULL', 'Libellé', ['One', 'Two', 'Three']], ['checkbox', 'NULL', 'Value'], ['datepicker', 'NULL', 'Libellé'], ['input', 'NULL', 'Libellé'], ['radiobutton', 'NULL', ['Option 1', 'Option 2']], ['select', 'NULL', 'Libellé', ['Un', 'Deux', 'Trois']], ['slider', 'NULL'], ['slidetoggle', 'NULL']];
   public navigation  = [['menu', 'NULL'], ['sidenav', 'NULL'], ['toolbar', 'NULL']];
   public layout = [['card', 'NULL'], ['list', 'NULL'], ['tabs', 'NULL'], ['stepper', 'NULL']];
   // tslint:disable-next-line:max-line-length
-  public button  = [['button', 'NULL', 'basic', 'basic', 'basic', 'Bouton', 'text'], ['buttontoggle', 'NULL'], ['chips', 'NULL', [['one', ''], ['two', 'primary'], ['three', 'accent']]], ['icon', 'NULL', 'home'], ['progressspinner', 'NULL'], ['progressbar', 'NULL']];
+  // public button  = [['button', 'NULL', 'basic', 'basic', 'basic', 'Bouton', 'text'], ['buttontoggle', 'NULL'], ['chips', 'NULL', [['one', ''], ['two', 'primary'], ['three', 'accent']]], ['icon', 'NULL', 'home'], ['progressspinner', 'NULL'], ['progressbar', 'NULL']];
   public modals  = [['dialog', 'NULL'], ['snackbar', 'NULL'], ['tooltip', 'NULL']];
   public dataTable  = [['paginator', 'NULL'], ['sortheader', 'NULL'], ['table', 'NULL']];
   public alfresco = [['alfrescoadf', 'NULL', '', 'Racine']]; // fc8d4fec-204e-428d-aa26-1295b6e8682c    f6b9f65c-33aa-4bc7-a560-babc93a30c89
@@ -125,12 +126,9 @@ export class GenimhComponent implements OnInit {
       removeOnSpill: true
     });
 
-    this.tiles = [
-      /* {text: 'One', cols: 3, rows: 1, color: 'lightblue'},
-       {text: 'Twoivgyguiguyghibuhbvguvbihyb jkbn jbihbjinkn,', cols: 1, rows: 2, color: 'lightgreen'},
-       {text: 'Three', cols: 1, rows: 1, color: 'lightpink'},
-       {text: 'Four', cols: 2, rows: 1, color: '#DDBDF1'},*/
-    ];
+    this.tiles = [];
+    this.ItemEdit = '';
+    this.inputType = 'text';
     this.firstClick = true;
     this.gridLigne = 0;
     this.gridColonne = 0;
@@ -168,7 +166,7 @@ export class GenimhComponent implements OnInit {
     this.colorSelect = this._sanitizer.bypassSecurityTrustStyle('rgb(64, 0, 255)');
     this.colorNameClass = 'B2';
     this.classBtnDelete = 'button floatRight';
-    this.iconBtnEdit = '';
+    this.iconBtnEdit = 'home';
     this.nameProject = 'Nom de la page';
     this.nameProjectClick = false;
     this.blocAlignementDispo = 'column';
@@ -314,7 +312,6 @@ export class GenimhComponent implements OnInit {
     this.toggleSideNavSetIn('panelAll', 0);
     this.totalSave.sort();
     this.gridViewOpen = true;
-
   }
 
   toggleSideNavSetIn(toggleSideNavGet: string, index) {
@@ -594,7 +591,7 @@ changeApi(event) {
         }
       }
     }
-
+    return this.ItemEdit;
   }
 
   EditPlaceholder(event) {

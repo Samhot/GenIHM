@@ -202,7 +202,7 @@
       <!--------------------------------------------   EDIT BLOCK  ---------------------------------------->
         <h4>Disposition du bloc</h4>
         <div class="edit-block">
-          <form fxLayout="column" fxLayout.xs="column" fxLayoutAlign="center space-between" class="demo_controls">
+          <form fxLayout="column" fxLayout.xs="column" fxLayoutAlign="center space-between">
             <div fxLayout="row" fxLayoutAlign="start center">
               <div fxLayout="row" fxLayoutAlign="space-between center" class="edit-row">Disposition :
                 <div name="direction" class="flex">
@@ -246,9 +246,10 @@
 
       <!--  ------------------------------------------  EDIT ITEM ------------------------------------------  -->
       <h4>Personnalisation de l'élement</h4>
-      <div class="edit-item">
+      <div [ngSwitch]="ItemEdit" class="edit-item">
         <!--  ------------------------------------------  AUTOCOMPLETE ------------------------------------------  -->
-        <div *ngIf="ItemEdit == 'autocomplete'">
+        <div *ngSwitchCase="'autocomplete'">
+          TEST
           <div fxLayout="column" fxLayoutAlign="end end">
             <div fxLayout="row" fxLayoutAlign="space-between center" class="edit-row">Libellé : <input (input)="EditPlaceholder($event)" placeholder="{{resetInputAuto}}"></div>
             <div *ngFor="let option of options">
@@ -261,143 +262,101 @@
         <!--  ------------------------------------------  FIN AUTOCOMPLETE ------------------------------------------  -->
 
         <!--  ------------------------------------------   CHECKBOX ------------------------------------------  -->
-        <div *ngIf="ItemEdit == 'checkbox'">
+        <div *ngSwitchCase="'checkbox'">
           <div fxLayout="row" fxLayoutAlign="space-between center" class="edit-row"> Libellé : <input (input)="changeValueCheckbox($event)" [(ngModel)]="valueCheckbox"></div>
         </div>
         <!--  ------------------------------------------  FIN CHECKBOX ------------------------------------------  -->
 
         <!--  ------------------------------------------   ALFRESCO ADF ------------------------------------------  -->
-        <div *ngIf="ItemEdit == 'alfrescoadf' " style="text-align: center">
+        <div *ngSwitchCase="'alfrescoadf'">
           <div style="display: inline-block;color: black; margin-bottom: 10px" > UIID : <input  style="color: black" (input)="changeValueUIID($event)" [(ngModel)]="UIIDadfValue"></div>
           <div style="display: inline-block;color: black; margin-bottom: 10px" > Nom dossier racine : <input  style="color: black" (input)="changeValueADFRacine($event)" [(ngModel)]="adfRacineValue"></div>
         </div>
         <!--  ------------------------------------------  FIN ALFRESCO ------------------------------------------  -->
 
         <!--  ------------------------------------------  DATEPICKER ------------------------------------------  -->
-        <div *ngIf="ItemEdit == 'datepicker' " >
+        <div *ngSwitchCase="'datepicker'">
           <div style="display: inline-block;color: black; margin-bottom: 10px" > Libellé : <input  style="color: black" (input)="changeValueDatePicker($event)"  [(ngModel)]="valueDatepicker"></div>
         </div>
         <!--  ------------------------------------------  FIN DATEPICKER ------------------------------------------  -->
 
         <!--  ------------------------------------------  BUTTON ------------------------------------------  -->
-        <!-- <div *ngIf="ItemEdit == 'button' ">
-          <mat-tab-group (selectedTabChange)="onLinkClick($event)" >
-            <mat-tab label='Bouton texte' >
-              <div *ngIf="typeButton == 'basic' " style="text-align: center" >
-                <div style="display: inline-block;color: black" > Texte : <input  style="color: black" (input)="changeValueButton($event)" [(ngModel)]="buttonValue"></div>
-                <div class="button-row">
-                  <button mat-button (click)="changeStyle('basic','basic') ">{{buttonValue}}</button>
-                  <button mat-button color="accent" (click)="changeStyle('basic','accent') ">{{buttonValue}}</button>
-                  <button mat-button color="warn" (click)="changeStyle('basic','warn') ">{{buttonValue}}</button>
-                </div>
-                <div class="button-row"  >
-                  <button mat-raised-button (click)="changeStyle('raised','basic') " >{{buttonValue}}</button>
-                  <button mat-raised-button color="accent" (click)="changeStyle('raised','accent') ">{{buttonValue}}</button>
-                  <button mat-raised-button color="warn" (click)="changeStyle('raised','warn') ">{{buttonValue}}</button>
-                </div>
-                <div class="button-row"  >
-                  <button mat-fab (click)="changeStyle('fab','basic') ">{{buttonValue}}</button>
-                  <button mat-fab color="warn" (click)="changeStyle('fab','warn') ">{{buttonValue}}</button>
-                </div>
-                <div class="button-row"  >
-                  <button mat-mini-fab (click)="changeStyle('minifab','warn')">{{buttonValue}}</button>
-                  <button mat-mini-fab color="warn" (click)="changeStyle('minifab','warn') ">{{buttonValue}}</button>
-                </div>
-              </div>
-            </mat-tab>
-            <mat-tab label="Bouton icon" (tabClicked)="changeTypeButton('icon')">
-              <div *ngIf="typeButton == 'icon' " style="text-align: center">
-                <div class="button-row">
-                  <button mat-icon-button (click)="changeTextButton('favorite')">
-                    <mat-icon aria-label="Example icon-button with a heart icon">favorite</mat-icon>
-                  </button>
-                  <button mat-icon-button (click)="changeTextButton('add')">
-                    <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
-                  </button>
-                  <button mat-icon-button (click)="changeTextButton('remove')">
-                    <mat-icon aria-label="Example icon-button with a heart icon">remove</mat-icon>
-                  </button>
-                <br/>
-                  <div style="display: inline-block;color: black; margin-bottom: 10px" > Code icon font : <input  style="color: black" (input)="changeTextButtonID($event)" placeholder="Code icon font" value="{{iconBtnEdit}}"></div>
-                  <a href="https://material.io/icons/" target="_blank">Liste Icon</a>
-                </div>
-                <div class="button-row">
-                  <button mat-button (click)="changeStyle('basic','basic')"> <mat-icon aria-label="Example icon-button with a heart icon">{{iconBtnEdit}}</mat-icon></button>
-                  <button mat-button color="accent" (click)="changeStyle('basic','accent')"> <mat-icon aria-label="Example icon-button with a heart icon">{{iconBtnEdit}}</mat-icon></button>
-                  <button mat-button color="warn" (click)="changeStyle('basic','warn')"> <mat-icon aria-label="Example icon-button with a heart icon">{{iconBtnEdit}}</mat-icon></button>
-                </div>
-                <div class="button-row">
-                  <button mat-raised-button (click)="changeStyle('raised','basic')"> <mat-icon aria-label="Example icon-button with a heart icon">{{iconBtnEdit}}</mat-icon></button>
-                  <button mat-raised-button color="accent" (click)="changeStyle('raised','accent')"> <mat-icon aria-label="Example icon-button with a heart icon">{{iconBtnEdit}}</mat-icon></button>
-                  <button mat-raised-button color="warn" (click)="changeStyle('raised','warn')"> <mat-icon aria-label="Example icon-button with a heart icon">{{iconBtnEdit}}</mat-icon></button>
-                </div>
-                <div class="button-row">
-                  <button mat-fab (click)="changeStyle('fab','basic')"><mat-icon aria-label="Example icon-button with a heart icon">{{iconBtnEdit}}</mat-icon></button>
-                  <button mat-fab color="warn" (click)="changeStyle('fab','warn')"><mat-icon aria-label="Example icon-button with a heart icon">{{iconBtnEdit}}</mat-icon></button>
-                </div>
-                <div class="button-row">
-                  <button mat-mini-fab (click)="changeStyle('minifab','basic')"><mat-icon aria-label="Example icon-button with a heart icon">{{iconBtnEdit}}</mat-icon></button>
-                  <button mat-mini-fab color="warn" (click)="changeStyle('fab','warn')"><mat-icon aria-label="Example icon-button with a heart icon">{{iconBtnEdit}}</mat-icon></button>
-                </div>
-              </div>
-            </mat-tab >
-            <mat-tab label="Action bouton">
-              <div style="display: inline-block;color: black; margin-bottom: 10px" > API : <input  style="color: black" (input)="changeApi($event)" placeholder="https://MonApi/" ></div>
-              <div style="display: inline-block;color: black; margin-bottom: 10px" > Fonction : <input  style="color: black" (change)="changeFonction($event)" placeholder="ex : alert('Mon alert')" ></div>
-            </mat-tab>
-          </mat-tab-group>
-        </div> -->
-        <div *ngIf="ItemEdit == 'button'">
-          <div>
-            <div fxLayout="row" fxLayoutAlign="start center">
-              <div fxLayout="row" fxLayoutAlign="space-between center" class="edit-row">Couleur :
-                <div name="direction" class="flex">
-                  <a class="alignement border-radius-left" (click)="changeColor('basic')"><mat-icon color="primary">lens</mat-icon></a>
-                  <a class="alignement" (click)="changeColor('accent')"><mat-icon color="accent">lens</mat-icon></a>
-                  <a class="alignement border-radius-right" (click)="changeColor('warn')"><mat-icon color="warn">lens</mat-icon></a>
-                </div>
+        <div *ngSwitchCase="'button'">
+          <div fxLayout="row" fxLayoutAlign="start center">
+            <div fxLayout="row" fxLayoutAlign="space-between center" class="edit-row-item">Couleur :
+              <div name="direction" class="flex">
+                <a class="alignement border-radius-left" (click)="changeColor('basic')"><mat-icon color="primary">lens</mat-icon></a>
+                <a class="alignement" (click)="changeColor('accent')"><mat-icon color="accent">lens</mat-icon></a>
+                <a class="alignement border-radius-right" (click)="changeColor('warn')"><mat-icon color="warn">lens</mat-icon></a>
               </div>
             </div>
-            <div fxLayout="row" fxLayoutAlign="start center">
-              <div fxLayout="row" fxLayoutAlign="space-between center" class="edit-row">Style de bouton :
-                <div name="direction" class="flex">
-                  <a class="alignement border-radius-left" (click)="changeStyle('basic')"><mat-icon>vignette</mat-icon></a>
-                  <a class="alignement" (click)="changeStyle('icon')"><mat-icon>tag_faces</mat-icon></a>
-                  <a class="alignement" (click)="changeStyle('raised')"><mat-icon>crop_square</mat-icon></a>
-                  <a class="alignement" (click)="changeStyle('fab')"><mat-icon>brightness_1</mat-icon></a>
-                  <a class="alignement border-radius-right" (click)="changeStyle('minifab')"><mat-icon>adjust</mat-icon></a>
-                </div>
-              </div>
-            </div>
-            <div fxLayout="row" fxLayoutAlign="start center">
-              <div fxLayout="row" fxLayoutAlign="space-between center" class="edit-row">Contenu :
-                <div name="direction" class="flex">
-                  <a class="alignement border-radius-left" (click)="changeContent('text')"><mat-icon>text_fields</mat-icon></a>
-                  <a class="alignement border-radius-right" (click)="changeContent('icon')"><mat-icon>face</mat-icon></a>
-                </div>
-              </div>
-            </div>
-            <!-- <div style="display: inline-block;"> Texte : <input  style="color: black" (input)="changeValueButton($event)" [(ngModel)]="buttonValue"></div> -->
-            <div style="display: inline-block;"> Icone : <input  style="color: black" (input)="changeTextButtonID($event)" placeholder="Texte ou code icone" value="{{iconBtnEdit}}"></div>
           </div>
+          <div fxLayout="row" fxLayoutAlign="start center">
+            <!-- <div fxLayout="row" fxLayoutAlign="space-between center" class="edit-row">Style de bouton :
+              <div name="direction" class="flex">
+                <a class="alignement border-radius-left" (click)="changeStyle('basic')"><mat-icon>vignette</mat-icon></a>
+                <a class="alignement" (click)="changeStyle('icon')"><mat-icon>tag_faces</mat-icon></a>
+                <a class="alignement" (click)="changeStyle('raised')"><mat-icon>crop_square</mat-icon></a>
+                <a class="alignement" (click)="changeStyle('fab')"><mat-icon>brightness_1</mat-icon></a>
+                <a class="alignement border-radius-right" (click)="changeStyle('minifab')"><mat-icon>adjust</mat-icon></a>
+              </div>
+            </div> -->
+            <mat-form-field>
+              <mat-select placeholder="Style de bouton">
+                <!-- <mat-option *ngFor="let food of foods" [value]="food.value">
+                  {{ food.viewValue }}
+                </mat-option> -->
+                <mat-option (click)="changeStyle('basic')">
+                  <mat-icon>vignette</mat-icon>
+                </mat-option>
+                <mat-option (click)="changeStyle('icon')">
+                  <mat-icon>tag_faces</mat-icon>
+                </mat-option>
+                <mat-option (click)="changeStyle('raised')">
+                  <mat-icon>brightness_1</mat-icon>
+                </mat-option>
+                <mat-option (click)="changeStyle('fab')">
+                  <mat-icon>adjust</mat-icon>
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div fxLayout="row" fxLayoutAlign="start center">
+            <div fxLayout="row" fxLayoutAlign="space-between center" class="edit-row-item">Contenu :
+              <div name="direction" class="flex">
+                <a class="alignement border-radius-left" (click)="changeContent('text'); inputType='text'"><mat-icon>text_fields</mat-icon></a>
+                <a class="alignement border-radius-right" (click)="changeContent('icon'); inputType='icon'"><mat-icon>face</mat-icon></a>
+              </div>
+            </div>
+          </div>
+          <div *ngIf="inputType=='text'" class="edit-row-item">
+          <mat-form-field>
+            <input matInput (input)="changeTextButtonID($event)" placeholder="Texte" value="{{iconBtnEdit}}">
+          </mat-form-field>
+        </div>
+        <div *ngIf="inputType=='icon'">
+          <mat-form-field>
+            <input matInput (input)="changeTextButtonID($event)" placeholder="Code icone" value="{{iconBtnEdit}}">
+          </mat-form-field>
+        </div>
         </div>
         <!--  ------------------------------------------  FIN BUTTON ------------------------------------------  -->
 
         <!--  ------------------------------------------ INPUT  ------------------------------------------  -->
-        <div *ngIf="ItemEdit == 'input' " >
+        <div *ngSwitchCase="'input'">
           <div style="display: inline-block;color: black; margin-bottom: 10px" > Libellé : <input (input)="EditPlaceholder($event)" [(ngModel)]="resetInputAuto"></div>
         </div>
         <!--  ------------------------------------------  FIN INPUT ------------------------------------------  -->
 
         <!--  ------------------------------------------ ICON BUTTON  ------------------------------------------  -->
-        <div *ngIf="ItemEdit == 'icon' " >
+        <div *ngSwitchCase="'icon-button'">
           <div style="display: inline-block;color: black; margin-bottom: 10px" > Code icon font : <input  style="color: black" (input)="EditPlaceholder($event)" placeholder="Code icon font" value="{{resetInputAuto}}"></div>
           <a href="https://material.io/icons/" target="_blank">Liste Icon</a>
         </div>
         <!--  ------------------------------------------  FIN ICON BUTTON  ------------------------------------------  -->
 
         <!--  ------------------------------------------  RADIO BUTTON ------------------------------------------  -->
-        <div *ngIf="ItemEdit == 'radiobutton' " >
+        <div *ngSwitchCase="'radiobutton'">
           <div *ngFor="let option of options" >
             <input (change)="changeValueTabEditItem(option,$event)"  value="{{ option }}"><button mat-mini-fab color="warn">
             <mat-icon aria-label="Example icon-button with a heart icon" (click)="removeValueTabEditItem(option)" >remove</mat-icon>
@@ -410,7 +369,7 @@
         <!--  ------------------------------------------  FIN RADIO BUTTON ------------------------------------------  -->
 
         <!--  ------------------------------------------  SELECT ------------------------------------------  -->
-        <div *ngIf="ItemEdit == 'select' " >
+        <div *ngSwitchCase="'select'" >
           <div style="display: inline-block;color: black; margin-bottom: 10px" > Libellé : <input  style="color: black" (input)="changeValueSelect($event)"  placeholder="{{resetInputAuto}}" [(ngModel)]="valueSelect"></div>
           <div *ngFor="let option of options" >
               <input (change)="changeValueTabEditItem(option,$event)"  value="{{ option }}"><button mat-mini-fab color="warn">
@@ -422,6 +381,11 @@
             </button>
         </div>
         <!--------------------------------------------   FIN SELECT  ---------------------------------------->
+        <div *ngSwitchDefault>
+          <h4>
+            Cliquez sur un élément pour modifier ses paramètres.
+          </h4>
+        </div>
       </div>
       <!--------------------------------------------   FIN EDIT ITEM  ---------------------------------------->
 
